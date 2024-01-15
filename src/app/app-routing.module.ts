@@ -15,6 +15,38 @@ const routes: Routes = [
                 (m) => m.ConsultantModule
             ),
     },
+    {
+        path: 'reception',
+        loadChildren: () =>
+            import('./reception/reception.module').then(
+                (m) => m.ReceptionModule
+            ),
+    },
+    {
+        path: 'patient',
+        loadChildren: () =>
+            import('./patient/patient.module').then((m) => m.PatientModule),
+    },
+    {
+        path: 'admin',
+        loadChildren: () =>
+            import('./admin/admin.module').then((m) => m.AdminModule),
+    },
+    {
+        path: 'pharmacy',
+        loadChildren: () =>
+            import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
+    },
+    {
+        path: 'nurse',
+        loadChildren: () =>
+            import('./nurse/nurse.module').then((m) => m.NurseModule),
+    },
+    {
+        path: 'staff',
+        loadChildren: () =>
+            import('./staff/staff.module').then((m) => m.StaffModule),
+    },
 ];
 
 @NgModule({
