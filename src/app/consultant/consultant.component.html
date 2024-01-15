@@ -1,1 +1,26 @@
-<p>consultant works!</p>
+<mat-toolbar class="justify-between">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button routerLink="ward_map">Consultant Portal</a>
+    <button mat-raised-button type="button" (click)="onLogout()">
+        Log Out
+    </button>
+</mat-toolbar>
+<mat-sidenav-container class="h-full">
+    <mat-sidenav #sidenav mode="push">
+        <mat-nav-list (click)="sidenav.toggle()">
+            <mat-list-item routerLink="ward_map">
+                <mat-icon matListItemIcon>map</mat-icon>
+                <div matListItemTitle>Ward Map</div>
+            </mat-list-item>
+            <mat-list-item routerLink="feed">
+                <mat-icon matListItemIcon>feed</mat-icon>
+                <div matListItemTitle>Feed</div>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './consultant.component.css'
 })
 export class ConsultantComponent {
-
+  onLogout(){}
 }

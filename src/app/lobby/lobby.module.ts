@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
         MatInputModule,
         MatRippleModule,
         ReactiveFormsModule,
+        MatButtonModule,
     ],
 })
 export class LobbyModule {}
