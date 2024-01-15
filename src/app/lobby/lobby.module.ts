@@ -8,11 +8,12 @@ import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatRippleModule} from '@angular/material/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRippleModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [
@@ -29,9 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         MatGridListModule,
         MatProgressSpinnerModule,
         MatFormFieldModule,
+        MatInputModule,
         MatRippleModule,
-        FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
 })
 export class LobbyModule {}

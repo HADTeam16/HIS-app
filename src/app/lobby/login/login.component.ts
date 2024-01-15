@@ -10,30 +10,18 @@ import { AuthService } from '../../auth.service';
     styleUrl: './login.component.css',
 })
 export class LoginComponent {
-    users: string[];
-    tile_active: boolean[];
-    loginForm: FormGroup;
-    passHide: boolean;
-    isLoading: boolean;
+    users = ['consultant', 'nurse', 'patient', 'staff'];
+    tile_active = [false, false, false, false];
+    loginForm = new FormGroup({
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        password: new FormControl(null, Validators.required),
+    });
+    passHide = true;
+    isLoading = false;
     rippleArr: MatRipple[];
     @ViewChildren(MatRipple) ripple: QueryList<MatRipple>;
 
-    constructor(private authService: AuthService, private router: Router) {
-        this.users = ['consultant', 'nurse', 'patient', 'staff'];
-        this.tile_active = [false, false, false, false];
-        this.passHide = true;
-        this.isLoading = false;
-    }
-
-    ngOnInit(): void {
-        this.loginForm = new FormGroup({
-            email: new FormControl(null, [
-                Validators.required,
-                Validators.email,
-            ]),
-            password: new FormControl(null, Validators.required),
-        });
-    }
+    constructor(private authService: AuthService, private router: Router) {}
 
     ngAfterViewInit() {
         this.rippleArr = this.ripple.toArray();

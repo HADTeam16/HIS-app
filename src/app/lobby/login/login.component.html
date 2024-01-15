@@ -1,4 +1,4 @@
-<mat-grid-list class="h-full" cols="2" rowHeight="fit" gutterSize="15px">
+<mat-grid-list class="h-5/6 m-4" cols="2" rowHeight="fit" gutterSize="15px">
 
     <mat-grid-tile *ngFor="let user of users;let i=index" matRipple [matRippleDisabled]="true" (click)="tile_select(user)"
       [ngClass]="{'mat-elevation-z2': !tile_active[i],'mat-elevation-z12': tile_active[i]}">
@@ -16,6 +16,7 @@
   
         <ng-template #notLoadingContent>
           <mat-form-field>
+            <mat-label>Username</mat-label>
             <input matInput formControlName="email" placeholder="email">
             <mat-error *ngIf="loginForm.get('email').invalid&&loginForm.get('email').touched">
               {{ getErrorMessage('email') }}
@@ -23,6 +24,7 @@
           </mat-form-field>
   
           <mat-form-field>
+            <mat-label>Password</mat-label>
             <input matInput formControlName="password" [type]="passHide ? 'password' : 'text'" placeholder="password">
             <button mat-icon-button matSuffix type="button" (click)="passHide = !passHide">
               <mat-icon>{{ passHide ? 'visibility_off' : 'visibility' }}</mat-icon>
