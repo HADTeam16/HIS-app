@@ -9,9 +9,11 @@ import { ConsultantComponent } from './consultant.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { ForumComponent } from './forum/forum.component';
 
 @NgModule({
-    declarations: [ConsultantComponent],
+    declarations: [ConsultantComponent, AppointmentsComponent, ForumComponent],
     imports: [
         CommonModule,
         RouterModule,

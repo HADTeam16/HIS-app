@@ -10,13 +10,9 @@
 <mat-sidenav-container class="h-full">
     <mat-sidenav #sidenav mode="push">
         <mat-nav-list (click)="sidenav.toggle()">
-            <mat-list-item routerLink="ward_map">
-                <mat-icon matListItemIcon>map</mat-icon>
-                <div matListItemTitle>Ward Map</div>
-            </mat-list-item>
-            <mat-list-item routerLink="feed">
-                <mat-icon matListItemIcon>feed</mat-icon>
-                <div matListItemTitle>Feed</div>
+            <mat-list-item *ngFor="let route of routes" [routerLink]="route.link">
+                <mat-icon matListItemIcon [svgIcon]="route.icon" />
+                <div matListItemTitle>{{ route.title }}</div>
             </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
