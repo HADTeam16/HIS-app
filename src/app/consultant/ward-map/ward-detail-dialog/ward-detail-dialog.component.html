@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Ward ID: {{ ward.ward_id }}</h2>
+<mat-dialog-content>
+    <span class="py-2">Patient ID: {{ ward.patient_id }}</span>
+    <mat-divider></mat-divider>
+    <span class="py-2">Status: {{ ward.available ? "Available" : "Occupied" }}</span>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
