@@ -1,5 +1,5 @@
 <div class="h-full w-full flex flex-col items-center">
-    <mat-button-toggle-group class="mt-4" #floorToggle="matButtonToggleGroup" (change)="onFloorChange(floorToggle.value)">
+    <mat-button-toggle-group class="mt-4" #floorToggle="matButtonToggleGroup" (change)="onFloorChange(floorToggle.value)" [value]="1">
         <mat-button-toggle *ngFor="let floor of getFloors(wards)" [value]="floor">
             Floor {{ floor }}
         </mat-button-toggle>

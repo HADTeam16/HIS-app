@@ -19,6 +19,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -43,6 +46,9 @@ import { MatDividerModule } from '@angular/material/divider';
         MatCardModule,
         MatDialogModule,
         MatDividerModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatExpansionModule,
     ],
 })
 export class ConsultantModule {}

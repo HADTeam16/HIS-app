@@ -1,1 +1,22 @@
-<p>appointments works!</p>
+<div class="h-full flex justify-evenly">
+    <div class="w-1/5">
+        <mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)"/>
+        <button mat-button (click)="setToday()">Today</button>
+        <button mat-button (click)="setTomorrow()">Tomorrow</button>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-accordion class="w-2/3 mt-8">
+        <mat-expansion-panel *ngFor="let appointment of selectedDateAppointments">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ appointment.patientId }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{ appointment.timeslot }}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            Appointment ID: {{ appointment.appointmentId }} <br />
+            Contact: {{ appointment.patientContactNumber }}
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
