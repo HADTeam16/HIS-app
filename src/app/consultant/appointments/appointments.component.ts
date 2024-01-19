@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     styleUrl: './appointments.component.css',
 })
 export class AppointmentsComponent {
-    selectedDate: Date;
+    selectedDate = new Date();
     selectedDateAppointments = [
         {
             patientId: 'Patient-001',
