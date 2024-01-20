@@ -3,24 +3,53 @@
         <mat-icon>menu</mat-icon>
     </button>
     <a mat-button routerLink="ward_map">Consultant Portal</a>
-    <button mat-raised-button type="button" (click)="onLogout()">
-        Log Out
-    </button>
+    <div class="flex justify-center items-center">
+        <button mat-icon-button class="mr-4" (click)="chat = !chat">
+            <mat-icon [svgIcon]="chat ? 'chat_filled' : 'chat_outlined'"
+                >chat</mat-icon
+            >
+        </button>
+        <button mat-raised-button type="button" (click)="onLogout()">
+            Log Out
+        </button>
+    </div>
 </mat-toolbar>
 <mat-sidenav-container class="h-full">
     <mat-sidenav #sidenav mode="push">
         <mat-nav-list (click)="sidenav.toggle()">
-            <mat-list-item *ngFor="let route of routes" [routerLink]="route.link">
+            <mat-list-item
+                *ngFor="let route of routes"
+                [routerLink]="route.link"
+            >
                 <mat-icon matListItemIcon [svgIcon]="route.icon" />
                 <div matListItemTitle>{{ route.title }}</div>
             </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+        <deep-chat
+            [ngStyle]="{ visibility: chat ? 'visible' : 'hidden' }"
+            style="
+                border-bottom-left-radius: 16px;
+                z-index: 1;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                background-color: rgb(250, 250, 250);
+            "
+            [initialMessages]="[
+                {
+                    text: 'Welcome to hospital chat forum! This is open to all hospital members.',
+                    role: 'ai'
+                }
+            ]"
+            [textInput]='{"placeholder": {"text": "Send a message"}}'
+            demo="true"
+        ></deep-chat>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
 <mat-divider></mat-divider>
 <footer class="h-16 w-full flex justify-center items-center bg-neutral-100">
-    <span class="text-zinc-500">{{"All rights reserved@HADTeam16"}}</span>
+    <span class="text-zinc-500">{{ "All rights reserved@HADTeam16" }}</span>
 </footer>

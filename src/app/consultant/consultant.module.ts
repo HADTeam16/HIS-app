@@ -5,7 +5,7 @@ import { FeedComponent } from './feed/feed.component';
 import { ForumComponent } from './forum/forum.component';
 import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-detail-dialog.component';
 
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsultantRoutingModule } from './consultant-routing.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -50,5 +50,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatNativeDateModule,
         MatExpansionModule,
     ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ConsultantModule {}

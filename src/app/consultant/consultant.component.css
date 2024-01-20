@@ -1,0 +1,8 @@
+deep-chat {
+    position: absolute;
+    z-index: 1;
+    border-bottom-left-radius: 16px;
+    top: 64px;
+    right: 0px;
+    background-color: rgb(250, 250, 250);
+}
