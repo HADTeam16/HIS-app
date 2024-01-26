@@ -1,7 +1,6 @@
 import { ConsultantComponent } from './consultant.component';
 import { WardMapComponent } from './ward-map/ward-map.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { FeedComponent } from './feed/feed.component';
 import { ForumComponent } from './forum/forum.component';
 import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-detail-dialog.component';
 
@@ -22,15 +21,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { PrecriptionDialogComponent } from './appointments/precription-dialog/precription-dialog.component';
+import { CanvasComponent } from '../common/components/canvas/canvas.component';
 
 @NgModule({
     declarations: [
         ConsultantComponent,
         WardMapComponent,
         AppointmentsComponent,
-        FeedComponent,
         ForumComponent,
         WardDetailDialogComponent,
+        PrecriptionDialogComponent,
+        CanvasComponent
     ],
     imports: [
         CommonModule,

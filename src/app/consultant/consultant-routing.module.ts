@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FeedComponent } from './feed/feed.component';
 import { WardMapComponent } from './ward-map/ward-map.component';
 import { ConsultantComponent } from './consultant.component';
 import { authGuard } from '../auth.guard';
@@ -16,7 +15,6 @@ const routes: Routes = [
             { path: '', redirectTo: 'ward_map', pathMatch: 'full' },
             { path: 'ward_map', component: WardMapComponent },
             { path: 'appointments', component: AppointmentsComponent },
-            { path: 'feed', component: FeedComponent },
             { path: 'forum', component: ForumComponent },
         ],
     },

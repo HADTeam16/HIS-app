@@ -105,18 +105,19 @@ export class LoginComponent {
 
     onSubmit(user: string) {
         this.isLoading = true;
-        this.authService
-            .login(user)
-            .then(
-                () => {
-                    this.router.navigate([user]);
-                },
-                (error) => {
-                    alert(error);
-                }
-            )
-            .finally(() => {
-                this.isLoading = false;
-            });
+        this.router.navigate([user]);
+        // this.authService
+        //     .login(user)
+        //     .then(
+        //         () => {
+        //             this.router.navigate([user]);
+        //         },
+        //         (error) => {
+        //             alert(error);
+        //         }
+        //     )
+        //     .finally(() => {
+        //         this.isLoading = false;
+        //     });
     }
 }

@@ -1,44 +1,45 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    isLogin = false;
+    private token: string | null = null;
+    private role: string | null = null;
 
-    roleAs: string;
-
-    constructor() {}
-
-    login(value: string) {
-        return new Promise((resolve, reject) => {
-            this.isLogin = true;
-            this.roleAs = value;
-            localStorage.setItem('STATE', 'true');
-            localStorage.setItem('ROLE', this.roleAs);
-            resolve({ success: this.isLogin, role: this.roleAs });
-        });
+    constructor(private http: HttpClient) {
+        this.token = localStorage.getItem('token');
+        this.role = localStorage.getItem('role');
     }
 
-    logout() {
-        return new Promise((resolve, reject) => {
-            this.isLogin = false;
-            this.roleAs = '';
-            localStorage.setItem('STATE', 'false');
-            localStorage.setItem('ROLE', '');
-            resolve({ success: this.isLogin, role: '' });
-        });
+    login(userName: string, password: string) {
+        this.http
+            .post('http://localhost:8008/api/users/login', {
+                userName,
+                password,
+            })
+            .subscribe((res: { token: string; role: string }) => {
+                console.log(res);
+                this.token = res.token;
+                this.role = res.role;
+                localStorage.setItem('token', res.token);
+                localStorage.setItem('role', res.role);
+            });
     }
 
-    isLoggedIn() {
-        const loggedIn = localStorage.getItem('STATE');
-        if (loggedIn == 'true') this.isLogin = true;
-        else this.isLogin = false;
-        return this.isLogin;
+    logout(): void {
+        this.token = null;
+        this.role = null;
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
     }
 
-    getRole() {
-        this.roleAs = localStorage.getItem('ROLE');
-        return this.roleAs;
+    isAuthenticated(): boolean {
+        return !!this.token;
+    }
+    
+    getRole(): string | null {
+        return this.role;
     }
 }

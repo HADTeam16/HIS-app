@@ -17,6 +17,9 @@
             </mat-expansion-panel-header>
             Appointment ID: {{ appointment.appointmentId }} <br />
             Contact: {{ appointment.patientContactNumber }}
+            <mat-action-row>
+                <button mat-button color="primary" (click)="addPrescription(appointment.appointmentId)">Add Prescription</button>
+            </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

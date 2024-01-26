@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PrecriptionDialogComponent } from './precription-dialog/precription-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-appointments',
@@ -40,6 +42,8 @@ export class AppointmentsComponent {
         },
     ];
 
+    constructor(private dialog:MatDialog){}
+
     onDateChange(newDate: Date) {
         this.selectedDate = newDate;
     }
@@ -52,5 +56,13 @@ export class AppointmentsComponent {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         this.selectedDate = tomorrow;
+    }
+
+    addPrescription(appointment_id:string){
+        this.dialog.open(PrecriptionDialogComponent, {
+            height: '80%',
+            width: '80%',
+            data: {appointment_id:appointment_id,prescription:"helloworld"},
+        });
     }
 }
