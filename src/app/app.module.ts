@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './material/material.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -16,19 +15,12 @@ import { MaterialModule } from './material/material.module';
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        MaterialModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {
-    icons = [
-        'ward',
-        'calendar_clock',
-        'feed',
-        'chat_filled',
-        'chat_outlined',
-    ];
+    icons = ['ward', 'calendar_clock', 'chat_filled', 'chat_outlined'];
 
     constructor(
         private matIconRegistry: MatIconRegistry,

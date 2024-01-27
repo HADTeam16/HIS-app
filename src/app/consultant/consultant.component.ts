@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import 'deep-chat';
+
 @Component({
     selector: 'app-consultant',
     templateUrl: './consultant.component.html',
     styleUrl: './consultant.component.css',
 })
 export class ConsultantComponent {
-    chat = false;
+    chat = 'invisible';
     routes = [
         { title: 'Ward Map', icon: 'ward', link: 'ward_map' },
         { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
-        { title: 'Feed', icon: 'feed', link: 'feed' },
     ];
 
     constructor(private authService: AuthService, private router: Router) {}

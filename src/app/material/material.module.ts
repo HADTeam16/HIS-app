@@ -13,26 +13,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CanvasComponent } from './canvas/canvas.component';
+import { ChatComponent } from './chat/chat.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [],
+    declarations: [CanvasComponent, ChatComponent],
     imports: [
         CommonModule,
-        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule,
         MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatGridListModule,
         MatCardModule,
-        MatDialogModule,
-        MatDividerModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatExpansionModule,
+        ReactiveFormsModule,
+        MatDividerModule
     ],
     exports: [
+        CanvasComponent,
+        ChatComponent,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
