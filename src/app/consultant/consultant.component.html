@@ -5,13 +5,9 @@
     <a mat-button routerLink="ward_map">Consultant Portal</a>
     <div class="flex justify-center items-center">
         <button mat-icon-button class="mr-4" (click)="chat = !chat">
-            <mat-icon [svgIcon]="chat ? 'chat_filled' : 'chat_outlined'"
-                >chat</mat-icon
-            >
+            <mat-icon [svgIcon]="chat ? 'chat_filled' : 'chat_outlined'">chat</mat-icon>
         </button>
-        <button mat-raised-button type="button" (click)="onLogout()">
-            Log Out
-        </button>
+        <button mat-raised-button type="button" (click)="onLogout()">Log Out</button>
     </div>
 </mat-toolbar>
 <mat-sidenav-container class="h-full">
@@ -31,7 +27,7 @@
             [ngStyle]="{ visibility: chat ? 'visible' : 'hidden' }"
             style="
                 border-bottom-left-radius: 16px;
-                z-index: 1;
+                z-index: 5;
                 position: absolute;
                 top: 0px;
                 right: 0px;

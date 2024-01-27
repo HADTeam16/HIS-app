@@ -13,7 +13,6 @@ export class ConsultantComponent {
         { title: 'Ward Map', icon: 'ward', link: 'ward_map' },
         { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
         { title: 'Feed', icon: 'feed', link: 'feed' },
-        { title: 'Forum', icon: 'forum', link: 'forum' },
     ];
 
     constructor(private authService: AuthService, private router: Router) {}
