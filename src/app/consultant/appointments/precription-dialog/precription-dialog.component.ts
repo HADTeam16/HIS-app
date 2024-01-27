@@ -1,6 +1,6 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CanvasComponent } from '../../../common/components/canvas/canvas.component';
+import { CanvasComponent } from '../../../material/canvas/canvas.component';
 
 @Component({
     selector: 'app-precription-dialog',

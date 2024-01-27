@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import 'deep-chat';
 import { AuthService } from '../auth.service';
+import 'deep-chat';
 @Component({
     selector: 'app-consultant',
     templateUrl: './consultant.component.html',

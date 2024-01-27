@@ -22,7 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PrecriptionDialogComponent } from './appointments/precription-dialog/precription-dialog.component';
-import { CanvasComponent } from '../common/components/canvas/canvas.component';
+import { CanvasComponent } from '../material/canvas/canvas.component';
 
 @NgModule({
     declarations: [
