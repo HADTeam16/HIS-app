@@ -1,0 +1,25 @@
+<div [ngClass]="chat" class="flex flex-col items-stretch absolute top-0 right-0 h-3/4 w-1/3 z-10 mat-elevation-z8">
+    <div #container class="flex flex-col justify-start gap-y-3 p-2 flex-grow overflow-y-scroll bg-neutral-100">
+        <mat-card *ngFor="let message of messages" [ngClass]="message.align" class="w-4/5">
+            <mat-card-header>
+                <img mat-card-avatar [src]="message.photo" class="h-6 w-6" />
+                <mat-card-title>{{ message.name }}</mat-card-title>
+                <mat-card-subtitle>{{ message.msgtime }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ message.text }}
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-divider style="border-top-color: rgb(229, 229, 229);"></mat-divider>
+    <mat-form-field subscriptSizing="dynamic">
+        <input
+            [formControl]="messageControl"
+            type="text"
+            matInput
+            placeholder="Send a message"
+            (keyup.enter)="onSendMessage()"
+        />
+        <mat-icon matSuffix (click)="onSendMessage()">send</mat-icon>
+    </mat-form-field>
+</div>

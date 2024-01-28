@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { WardDetailDialogComponent } from './ward-detail-dialog/ward-detail-dialog.component';
 
@@ -40,7 +40,7 @@ export class WardMapComponent {
             { ward_id: 24, available: true, patient_id: 0 },
         ],
     };
-
+    hoveredIndex: number | null = null;
     selectedFloorWards = this.wards[1];
 
     constructor(private dialog: MatDialog) {}
@@ -59,5 +59,9 @@ export class WardMapComponent {
             width: '60%',
             data: wardData,
         });
+    }
+
+    setHovered(index: number | null) {
+        this.hoveredIndex = index;
     }
 }

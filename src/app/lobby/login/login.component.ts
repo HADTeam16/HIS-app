@@ -10,7 +10,7 @@ import { AuthService } from '../../auth.service';
     styleUrl: './login.component.css',
 })
 export class LoginComponent {
-    users = ['consultant', 'nurse', 'patient', 'staff'];
+    users = ['consultant', 'nurse', 'admin', 'staff'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
@@ -37,11 +37,11 @@ export class LoginComponent {
             case 'consultant':
                 return 'emergency';
             case 'nurse':
-                return 'medical_services';
-            case 'patient':
-                return 'personal_injury';
+                return 'vaccines';
+            case 'admin':
+                return 'engineering';
             case 'staff':
-                return 'emergency';
+                return 'badge';
             default:
                 return 'engineering';
         }
@@ -84,7 +84,7 @@ export class LoginComponent {
                 }
                 this.tile_active = [false, true, false, false];
                 break;
-            case 'patient':
+            case 'admin':
                 if (!this.tile_active[2]) {
                     this.launchRipple(2);
                     this.passHide = true;

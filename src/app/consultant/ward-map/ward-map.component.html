@@ -1,20 +1,37 @@
 <div class="h-full w-full p-4 flex flex-col items-center">
-    <mat-button-toggle-group #floorToggle="matButtonToggleGroup" (change)="onFloorChange(floorToggle.value)" [value]="1">
+    <mat-button-toggle-group
+        #floorToggle="matButtonToggleGroup"
+        (change)="onFloorChange(floorToggle.value)"
+        [value]="1"
+    >
         <mat-button-toggle *ngFor="let floor of getFloors(wards)" [value]="floor">
             Floor {{ floor }}
         </mat-button-toggle>
     </mat-button-toggle-group>
-    <mat-grid-list class="h-4/6 w-full m-4" cols="5" rowHeight="fit" gutterSize="15px" *ngIf="selectedFloorWards">
-        <mat-grid-tile *ngFor="let ward of selectedFloorWards" (click)="openDialog(ward)">
-            <mat-card class="h-full w-full">
+    <mat-grid-list
+        class="h-4/6 w-full m-4"
+        cols="5"
+        rowHeight="fit"
+        gutterSize="15px"
+        *ngIf="selectedFloorWards"
+    >
+        <mat-grid-tile
+            (mouseenter)="setHovered(i)"
+            (mouseleave)="setHovered(null)"
+            [ngClass]="{ 'mat-elevation-z8': i === hoveredIndex }"
+            class="rounded-lg mat-elevation-z2"
+            *ngFor="let ward of selectedFloorWards; let i = index"
+            (click)="openDialog(ward)"
+        >
+            <mat-card class="h-full w-full rounded-lg">
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>Ward ID: {{ ward.ward_id }}</mat-card-title>
-                        <mat-card-subtitle>Patient ID: {{ ward.patient_id }}</mat-card-subtitle>
+                        <mat-card-subtitle>Patient ID:{{ ward.patient_id }}</mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
                 <mat-card-content>
-                    <span>Status: {{ ward.available ? "Available" : "Occupied" }}</span>
+                    <span>Status:{{ ward.available ? "Available" : "Occupied" }}</span>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
