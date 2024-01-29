@@ -13,14 +13,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CanvasComponent } from './canvas/canvas.component';
-import { ChatComponent } from './chat/chat.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
 
 @NgModule({
-    declarations: [CanvasComponent, ChatComponent],
+    declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
     imports: [
         CommonModule,
         MatFormFieldModule,
@@ -46,6 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatDatepickerModule,
         MatNativeDateModule,
         MatExpansionModule,
+        ElevateOnHoverDirective,
     ],
 })
 export class MaterialModule {}

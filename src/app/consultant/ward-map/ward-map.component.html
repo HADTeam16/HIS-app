@@ -16,11 +16,9 @@
         *ngIf="selectedFloorWards"
     >
         <mat-grid-tile
-            (mouseenter)="setHovered(i)"
-            (mouseleave)="setHovered(null)"
-            [ngClass]="{ 'mat-elevation-z8': i === hoveredIndex }"
+            elevateOnHover
             class="rounded-lg mat-elevation-z2"
-            *ngFor="let ward of selectedFloorWards; let i = index"
+            *ngFor="let ward of selectedFloorWards"
             (click)="openDialog(ward)"
         >
             <mat-card class="h-full w-full rounded-lg">
