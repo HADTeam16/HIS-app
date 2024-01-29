@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
@@ -29,7 +30,7 @@ import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive
         MatIconModule,
         MatCardModule,
         ReactiveFormsModule,
-        MatDividerModule
+        MatDividerModule,
     ],
     exports: [
         CanvasComponent,
@@ -47,6 +48,10 @@ import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive
         MatDatepickerModule,
         MatNativeDateModule,
         MatExpansionModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatRippleModule,
+        MatInputModule,
         ElevateOnHoverDirective,
     ],
 })
