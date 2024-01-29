@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { PatientLoginComponent } from './patient-login/patient-login.component';
 import { PatientAboutComponent } from './patient-about/patient-about.component';
 import { PatientContactUsComponent } from './patient-contact-us/patient-contact-us.component';
+import { PatientComponent } from './patient.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component: PatientLoginComponent },
-    { path: 'about', component: PatientAboutComponent },
-    { path: 'contact_us', component: PatientContactUsComponent },
+    {
+        path: '',
+        component: PatientComponent,
+        children: [
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: 'login', component: PatientLoginComponent },
+            { path: 'about', component: PatientAboutComponent },
+            { path: 'contact_us', component: PatientContactUsComponent },
+        ],
+    },
 ];
 
 @NgModule({

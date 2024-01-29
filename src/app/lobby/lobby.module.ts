@@ -6,15 +6,8 @@ import { LobbyComponent } from './lobby.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatRippleModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
     declarations: [
@@ -26,15 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [
         CommonModule,
         LobbyRoutingModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatGridListModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRippleModule,
         ReactiveFormsModule,
-        MatButtonModule,
+        MaterialModule
     ],
 })
 export class LobbyModule {}
