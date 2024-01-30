@@ -1,7 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth.service';
 import {
     animate,
     state,
@@ -46,7 +45,7 @@ export class LoginComponent {
     passHide = true;
     isLoading = false;
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private router: Router) {}
 
     getIcon(user: string) {
         switch (user) {
