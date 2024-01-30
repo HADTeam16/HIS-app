@@ -23,9 +23,9 @@ const routes: Routes = [
             ),
     },
     {
-        path: 'patient',
+        path: 'nurse',
         loadChildren: () =>
-            import('./patient/patient.module').then((m) => m.PatientModule),
+            import('./nurse/nurse.module').then((m) => m.NurseModule),
     },
     {
         path: 'admin',
@@ -33,19 +33,14 @@ const routes: Routes = [
             import('./admin/admin.module').then((m) => m.AdminModule),
     },
     {
+        path: 'patient',
+        loadChildren: () =>
+            import('./patient/patient.module').then((m) => m.PatientModule),
+    },
+    {
         path: 'pharmacy',
         loadChildren: () =>
             import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
-    },
-    {
-        path: 'nurse',
-        loadChildren: () =>
-            import('./nurse/nurse.module').then((m) => m.NurseModule),
-    },
-    {
-        path: 'staff',
-        loadChildren: () =>
-            import('./staff/staff.module').then((m) => m.StaffModule),
     },
 ];
 

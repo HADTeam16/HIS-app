@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-consultant',
@@ -14,10 +13,9 @@ export class ConsultantComponent {
         { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
     ];
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private router: Router) {}
 
     onLogout() {
-        this.authService.logout();
         this.router.navigate(['lobby']);
     }
 }
