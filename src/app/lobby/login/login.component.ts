@@ -1,16 +1,43 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatRipple } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
+    animations: [
+        trigger('slideInOut', [
+            state(
+                'in',
+                style({
+                    transform: 'translateX(0%)',
+                    opacity: 1,
+                })
+            ),
+            state(
+                'out',
+                style({
+                    transform: 'translateX(100%)',
+                    opacity: 0,
+                })
+            ),
+            transition('out => in', animate('300ms ease-in')),
+            transition('in => out', animate('300ms ease-out')),
+        ]),
+    ],
 })
 export class LoginComponent {
-    users = ['consultant', 'nurse', 'admin', 'staff'];
+    hoverState = ['out', 'out', 'out', 'out'];
+    users = ['consultant', 'reception', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
@@ -18,30 +45,19 @@ export class LoginComponent {
     });
     passHide = true;
     isLoading = false;
-    rippleArr: MatRipple[];
-    @ViewChildren(MatRipple) ripple: QueryList<MatRipple>;
 
     constructor(private authService: AuthService, private router: Router) {}
-
-    ngAfterViewInit() {
-        this.rippleArr = this.ripple.toArray();
-    }
-
-    launchRipple(i: number) {
-        const rippleRef = this.rippleArr[i].launch({ centered: true });
-        rippleRef.fadeOut();
-    }
 
     getIcon(user: string) {
         switch (user) {
             case 'consultant':
                 return 'emergency';
-            case 'nurse':
-                return 'vaccines';
+            case 'reception':
+                return 'badge';
             case 'admin':
                 return 'engineering';
-            case 'staff':
-                return 'badge';
+            case 'nurse':
+                return 'vaccines';
             default:
                 return 'engineering';
         }
@@ -72,28 +88,24 @@ export class LoginComponent {
         switch (i) {
             case 'consultant':
                 if (!this.tile_active[0]) {
-                    this.launchRipple(0);
                     this.passHide = true;
                 }
                 this.tile_active = [true, false, false, false];
                 break;
-            case 'nurse':
+            case 'reception':
                 if (!this.tile_active[1]) {
-                    this.launchRipple(1);
                     this.passHide = true;
                 }
                 this.tile_active = [false, true, false, false];
                 break;
             case 'admin':
                 if (!this.tile_active[2]) {
-                    this.launchRipple(2);
                     this.passHide = true;
                 }
                 this.tile_active = [false, false, true, false];
                 break;
-            case 'staff':
+            case 'nurse':
                 if (!this.tile_active[3]) {
-                    this.launchRipple(3);
                     this.passHide = true;
                 }
                 this.tile_active = [false, false, false, true];
