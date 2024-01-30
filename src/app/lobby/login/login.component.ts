@@ -1,41 +1,13 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrl: './login.component.css',
-    animations: [
-        trigger('slideInOut', [
-            state(
-                'in',
-                style({
-                    transform: 'translateX(0%)',
-                    opacity: 1,
-                })
-            ),
-            state(
-                'out',
-                style({
-                    transform: 'translateX(100%)',
-                    opacity: 0,
-                })
-            ),
-            transition('out => in', animate('300ms ease-in')),
-            transition('in => out', animate('300ms ease-out')),
-        ]),
-    ],
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-    hoverState = ['out', 'out', 'out', 'out'];
     users = ['consultant', 'reception', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({

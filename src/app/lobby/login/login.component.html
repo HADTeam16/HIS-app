@@ -1,45 +1,30 @@
 <mat-grid-list class="h-5/6 m-8" cols="2" rowHeight="fit" gutterSize="32px">
-    <mat-grid-tile
-        *ngFor="let user of users; let i = index"
-        (click)="tile_select(user)"
-        (mouseenter)="hoverState[i] = 'in'"
-        (mouseleave)="hoverState[i] = 'out'"
-        [ngClass]="{
-            'mat-elevation-z2': !tile_active[i],
-            'mat-elevation-z12': tile_active[i]
-        }"
-    >
+    <mat-grid-tile *ngFor="let user of users; let i = index" (click)="tile_select(user)">
         <ng-template #tileInactiveContent>
-          <div class="text-neutral-300">
-            <mat-icon>{{ getIcon(user) }}</mat-icon>
-            <span class="ml-4 text-2xl font-bold">{{(user|titlecase)+" Login"}}</span>
-          </div>
+            <div class="image-container">
+                <img
+                    [src]="'assets/covers/' + user + '.png'"
+                    class="h-full w-full object-cover opacity-30"
+                />
+            </div>
+            <div class="flex items-center z-10">
+                <mat-icon class="mx-2" color="primary">{{getIcon(user)}}</mat-icon>
+                <span class="mx-2 text-2xl">{{(user | titlecase) + " Login"}}</span>
+            </div>
         </ng-template>
-        <div [@slideInOut]="hoverState[i]" class="image-container">
-            <img [src]="'assets/covers/' + user + '.png'" />
-        </div>
-
         <form
             *ngIf="tile_active[i]; else tileInactiveContent"
             [formGroup]="loginForm"
             (ngSubmit)="onSubmit(user)"
         >
-            <mat-grid-tile-header>
-                {{ user | uppercase }}
-            </mat-grid-tile-header>
+            <mat-grid-tile-header>{{ user | uppercase }}</mat-grid-tile-header>
 
-            <mat-spinner
-                *ngIf="isLoading; else notLoadingContent"
-            ></mat-spinner>
+            <mat-spinner *ngIf="isLoading; else notLoadingContent"></mat-spinner>
 
             <ng-template #notLoadingContent>
                 <mat-form-field class="mr-2">
                     <mat-label>Username</mat-label>
-                    <input
-                        matInput
-                        formControlName="email"
-                        placeholder="email"
-                    />
+                    <input matInput formControlName="email" placeholder="email"/>
                     <mat-error
                         *ngIf="
                             loginForm.get('email').invalid &&
@@ -64,9 +49,7 @@
                         type="button"
                         (click)="passHide = !passHide"
                     >
-                        <mat-icon>{{
-                            passHide ? "visibility_off" : "visibility"
-                        }}</mat-icon>
+                        <mat-icon>{{passHide?"visibility_off":"visibility"}}</mat-icon>
                     </button>
                     <mat-error
                         *ngIf="
@@ -80,7 +63,7 @@
             </ng-template>
 
             <mat-grid-tile-footer>
-                <button mat-raised-button type="submit">Login</button>
+                <button mat-raised-button type="submit" color="accent">Login</button>
             </mat-grid-tile-footer>
         </form>
     </mat-grid-tile>
