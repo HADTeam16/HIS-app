@@ -2,7 +2,7 @@
     <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <a mat-button routerLink="ward_map">Consultant Portal</a>
+    <a mat-button routerLink="appointments">Consultant Portal</a>
     <div class="flex justify-center items-center">
         <button mat-icon-button class="mr-4" (click)="chat = chat=='visible'?'invisible':'visible'">
             <mat-icon [svgIcon]="chat=='visible' ? 'chat_filled' : 'chat_outlined'">chat</mat-icon>
@@ -28,6 +28,6 @@
     </mat-sidenav-content>
 </mat-sidenav-container>
 <mat-divider></mat-divider>
-<footer class="h-16 w-full flex justify-center items-center bg-neutral-100">
-    <span class="text-zinc-500">{{ "All rights reserved@HADTeam16" }}</span>
+<footer class="h-24 w-full flex justify-center items-center bg-gray-500">
+    <span class="text-white">{{ "All rights reserved@HADTeam16" }}</span>
 </footer>

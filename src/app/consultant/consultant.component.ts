@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 export class ConsultantComponent {
     chat = 'invisible';
     routes = [
-        { title: 'Ward Map', icon: 'ward', link: 'ward_map' },
         { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
+        { title: 'Ward Map', icon: 'ward', link: 'ward_map' },
     ];
 
     constructor(private router: Router) {}
