@@ -20,39 +20,45 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-    declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        MatDividerModule,
-    ],
-    exports: [
-        CanvasComponent,
-        ChatComponent,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatGridListModule,
-        MatCardModule,
-        MatDialogModule,
-        MatDividerModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatExpansionModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatRippleModule,
-        MatInputModule,
-        ElevateOnHoverDirective,
-    ],
+  declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatDividerModule,
+    MatTableModule,
+    MatPaginatorModule,
+  ],
+  exports: [
+    CanvasComponent,
+    ChatComponent,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatGridListModule,
+    MatCardModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatRippleModule,
+    MatInputModule,
+    ElevateOnHoverDirective,
+    MatTabsModule,
+  ],
 })
 export class MaterialModule {}
