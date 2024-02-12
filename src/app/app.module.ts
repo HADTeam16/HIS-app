@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     bootstrap: [AppComponent],
 })
 export class AppModule {
-    icons = ['ward', 'calendar_clock', 'chat_filled', 'chat_outlined'];
+    icons = ['ward', 'calendar_clock', 'chat_filled', 'chat_outlined','patient_list','person_add'];
 
     constructor(
         private matIconRegistry: MatIconRegistry,
