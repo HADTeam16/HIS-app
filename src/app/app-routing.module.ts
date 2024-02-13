@@ -9,11 +9,9 @@ const routes: Routes = [
             import('./lobby/lobby.module').then((m) => m.LobbyModule),
     },
     {
-        path: 'consultant',
+        path: 'doctor',
         loadChildren: () =>
-            import('./consultant/consultant.module').then(
-                (m) => m.ConsultantModule
-            ),
+            import('./doctor/doctor.module').then((m) => m.DoctorModule),
     },
     {
         path: 'reception',

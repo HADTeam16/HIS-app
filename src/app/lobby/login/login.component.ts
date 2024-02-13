@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-    users = ['consultant', 'reception', 'admin', 'nurse'];
+    users = ['doctor', 'reception', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
@@ -17,11 +18,11 @@ export class LoginComponent {
     passHide = true;
     isLoading = false;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private authService: AuthService) {}
 
     getIcon(user: string) {
         switch (user) {
-            case 'consultant':
+            case 'doctor':
                 return 'emergency';
             case 'reception':
                 return 'badge';
@@ -57,7 +58,7 @@ export class LoginComponent {
 
     tile_select(i: string) {
         switch (i) {
-            case 'consultant':
+            case 'doctor':
                 if (!this.tile_active[0]) {
                     this.passHide = true;
                 }
@@ -88,19 +89,20 @@ export class LoginComponent {
 
     onSubmit(user: string) {
         this.isLoading = true;
-        this.router.navigate([user]);
-        // this.authService
-        //     .login(user)
-        //     .then(
-        //         () => {
-        //             this.router.navigate([user]);
-        //         },
-        //         (error) => {
-        //             alert(error);
-        //         }
-        //     )
-        //     .finally(() => {
-        //         this.isLoading = false;
-        //     });
+        this.authService
+            .login(
+                this.loginForm.value.email,
+                this.loginForm.value.password,
+                user
+            )
+            .then(() => {
+                this.router.navigate([user]);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                this.isLoading = false;
+            });
     }
 }
