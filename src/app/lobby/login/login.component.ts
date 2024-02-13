@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
     styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-    users = ['consultant', 'reception', 'admin', 'nurse'];
+    users = ['doctor', 'reception', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
@@ -22,7 +22,7 @@ export class LoginComponent {
 
     getIcon(user: string) {
         switch (user) {
-            case 'consultant':
+            case 'doctor':
                 return 'emergency';
             case 'reception':
                 return 'badge';
@@ -58,7 +58,7 @@ export class LoginComponent {
 
     tile_select(i: string) {
         switch (i) {
-            case 'consultant':
+            case 'doctor':
                 if (!this.tile_active[0]) {
                     this.passHide = true;
                 }

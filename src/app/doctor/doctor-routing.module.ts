@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WardMapComponent } from './ward-map/ward-map.component';
-import { ConsultantComponent } from './consultant.component';
+import { DoctorComponent } from './doctor.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { WardMapComponent } from './ward-map/ward-map.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ConsultantComponent,
+        component: DoctorComponent,
         children: [
             { path: '', redirectTo: 'appointments', pathMatch: 'full' },
             { path: 'appointments', component: AppointmentsComponent },
@@ -20,4 +20,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class ConsultantRoutingModule {}
+export class DoctorRoutingModule {}

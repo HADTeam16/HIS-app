@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-consultant',
-    templateUrl: './consultant.component.html',
-    styleUrl: './consultant.component.css',
+    selector: 'app-doctor',
+    templateUrl: './doctor.component.html',
+    styleUrl: './doctor.component.scss',
 })
-export class ConsultantComponent {
+export class DoctorComponent {
     chat = 'invisible';
     routes = [
         { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
