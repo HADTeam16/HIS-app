@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
     declarations: [AppComponent],
@@ -16,11 +17,20 @@ import { HttpClientModule } from '@angular/common/http';
         BrowserAnimationsModule,
         HttpClientModule,
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {
-    icons = ['ward', 'calendar_clock', 'chat_filled', 'chat_outlined','patient_list','person_add'];
+    icons = [
+        'ward',
+        'calendar_clock',
+        'chat_filled',
+        'chat_outlined',
+        'patient_list',
+        'person_add',
+    ];
 
     constructor(
         private matIconRegistry: MatIconRegistry,
