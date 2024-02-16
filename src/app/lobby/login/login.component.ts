@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
     styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-    users = ['doctor', 'reception', 'admin', 'nurse'];
+    users = ['doctor', 'receptionist', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
@@ -24,7 +24,7 @@ export class LoginComponent {
         switch (user) {
             case 'doctor':
                 return 'emergency';
-            case 'reception':
+            case 'receptionist':
                 return 'badge';
             case 'admin':
                 return 'engineering';
@@ -40,8 +40,6 @@ export class LoginComponent {
             case 'email':
                 if (this.loginForm.get('email').hasError('required')) {
                     return 'You must enter a value';
-                } else if (this.loginForm.get('email').hasError('email')) {
-                    return 'Not a valid email';
                 } else {
                     return '';
                 }
@@ -64,7 +62,7 @@ export class LoginComponent {
                 }
                 this.tile_active = [true, false, false, false];
                 break;
-            case 'reception':
+            case 'receptionist':
                 if (!this.tile_active[1]) {
                     this.passHide = true;
                 }
@@ -95,14 +93,11 @@ export class LoginComponent {
                 this.loginForm.value.password,
                 user
             )
-            .then(() => {
-                this.router.navigate([user]);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => {
+            .subscribe((response) => {
                 this.isLoading = false;
+                if (response['message'] == 'Login Success') {
+                    this.router.navigate([user]);
+                }
             });
     }
 }
