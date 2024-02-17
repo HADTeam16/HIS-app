@@ -6,7 +6,7 @@
 <div class="flex items-center">
   <app-search-input (searchChanged)="applyFilter($event)"></app-search-input>
   <div class="ml-auto">
-    <a mat-button mat-raised-button color="primary">Add</a>
+    <a mat-button mat-raised-button color="primary" (click)="openAddDialog()">Add</a>
   </div>
 </div>
 

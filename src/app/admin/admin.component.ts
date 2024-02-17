@@ -33,6 +33,16 @@ export class AdminComponent {
     this.nurseDataSource.paginator = this.nursePaginator;
   }
 
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddDialogComponent, {
+      data: { tabIndex: this.selectedTabIndex },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle dialog closed if needed
+    });
+  }
+
   applyFilter(value: string) {
     switch (this.selectedTabIndex) {
       case 0:
