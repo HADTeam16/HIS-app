@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   doctorDataSource = new MatTableDataSource<PeriodicElement>(DOCTOR_ELEMENT_DATA);
@@ -22,7 +24,7 @@ export class AdminComponent {
   @ViewChild('pharmacyPaginator') pharmacyPaginator: MatPaginator;
   @ViewChild('nursePaginator') nursePaginator: MatPaginator;
 
-  selectedTabIndex = 0; // To keep track of the selected tab index
+  selectedTabIndex = 0;
 
   ngAfterViewInit() {
     this.doctorDataSource.paginator = this.doctorPaginator;
@@ -31,8 +33,7 @@ export class AdminComponent {
     this.nurseDataSource.paginator = this.nursePaginator;
   }
 
-  applyFilter(event: any) {
-    const value = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  applyFilter(value: string) {
     switch (this.selectedTabIndex) {
       case 0:
         this.doctorDataSource.filter = value;
@@ -57,6 +58,7 @@ export class AdminComponent {
     this.router.navigate(['lobby']);
   }
 }
+
 export interface PeriodicElement {
   name: string;
   position: number;
