@@ -20,9 +20,17 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { SnackbarService } from './services/snackbar.service';
 
 @NgModule({
-    declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
+    declarations: [
+        CanvasComponent,
+        ChatComponent,
+        ElevateOnHoverDirective,
+        SnackbarComponent,
+    ],
     imports: [
         CommonModule,
         MatFormFieldModule,
@@ -52,7 +60,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatFormFieldModule,
         MatRippleModule,
         MatInputModule,
+        MatSnackBarModule,
         ElevateOnHoverDirective,
     ],
+    providers: [SnackbarService],
 })
 export class MaterialModule {}

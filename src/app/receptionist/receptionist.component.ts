@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { SnackbarService } from '../material/services/snackbar.service';
 
 @Component({
     selector: 'app-receptionist',
@@ -12,9 +13,13 @@ export class ReceptionistComponent {
         { title: 'Add Patient', icon: 'person_add', link: 'add-patient' },
     ];
 
-    constructor(private authService: AuthService) {}
+    constructor(
+        private authService: AuthService,
+        private snackbarService: SnackbarService
+    ) {}
 
     onLogout() {
         this.authService.logout();
+        this.snackbarService.openSnackBar('Logged out successfully');
     }
 }
