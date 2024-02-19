@@ -29,7 +29,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
 import { RemoveUnderscorePipe } from './pipes/remove-underscore.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
     declarations: [
@@ -75,6 +75,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MatFormFieldModule,
         MatRippleModule,
         MatInputModule,
+        MatStepperModule,
         ElevateOnHoverDirective,
     ],
     providers: [SnackbarService],
