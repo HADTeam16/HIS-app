@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { SnackbarService } from '../../material/services/snackbar.service';
 
 @Component({
     selector: 'app-login',
@@ -12,13 +13,13 @@ export class LoginComponent {
     users = ['doctor', 'receptionist', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.email]),
+        email: new FormControl(null, Validators.required),
         password: new FormControl(null, Validators.required),
     });
     passHide = true;
     isLoading = false;
 
-    constructor(private router: Router, private authService: AuthService) {}
+    constructor(private router: Router, private authService: AuthService,private snackbarService:SnackbarService) {}
 
     getIcon(user: string) {
         switch (user) {
@@ -98,6 +99,7 @@ export class LoginComponent {
                 if (response['message'] == 'Login Success') {
                     this.router.navigate([user]);
                 }
+                this.snackbarService.openSnackBar(response["message"]);
             });
     }
 }

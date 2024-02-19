@@ -6,9 +6,7 @@ import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
     private baseURL = environment.baseURL;
     private tokenExpirationTimer: any;

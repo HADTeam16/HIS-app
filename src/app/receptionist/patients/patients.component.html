@@ -1,1 +1,34 @@
-<p>patients works!</p>
+<app-dynamic-table
+    [headers]="tableHeaders"
+    [data]="tableData"
+    [hasActions]="true"
+    [hasExpansion]="true"
+    [hasCheck]="true"
+    [paginate]="true"
+    [filter]="true"
+    ><ng-template #actionsTemplate let-patient>
+        <div class="abc">
+            <button
+                mat-stroked-button
+                (click)="viewPatientDetails(patient); $event.stopPropagation()"
+            >
+                Details
+            </button>
+        </div>
+    </ng-template>
+    <ng-template #expansionTemplate let-patient>
+        <div class="expanded-row-detail">
+            <span class="textarea-label">Patient remarks</span>
+            <mat-form-field appearance="fill">
+                <textarea
+                    matInput
+                    readonly
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    >{{ patient.url }}</textarea
+                >
+            </mat-form-field>
+        </div>
+    </ng-template>
+</app-dynamic-table>
