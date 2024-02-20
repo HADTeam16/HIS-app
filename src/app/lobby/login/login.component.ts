@@ -19,7 +19,11 @@ export class LoginComponent {
     passHide = true;
     isLoading = false;
 
-    constructor(private router: Router, private authService: AuthService,private snackbarService:SnackbarService) {}
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private snackbarService: SnackbarService
+    ) {}
 
     getIcon(user: string) {
         switch (user) {
@@ -87,6 +91,7 @@ export class LoginComponent {
     }
 
     onSubmit(user: string) {
+        let snackBarMsg: string;
         this.isLoading = true;
         this.authService
             .login(
@@ -94,12 +99,20 @@ export class LoginComponent {
                 this.loginForm.value.password,
                 user
             )
-            .subscribe((response) => {
-                this.isLoading = false;
-                if (response['message'] == 'Login Success') {
-                    this.router.navigate([user]);
-                }
-                this.snackbarService.openSnackBar(response["message"]);
+            .subscribe({
+                next: (response) => {
+                    if (response['message'] == 'Login Success') {
+                        this.router.navigate([user]);
+                    }
+                    snackBarMsg = response['message'];
+                },
+                error: (error) => {
+                    snackBarMsg = error.message;
+                },
+                complete: () => {
+                    this.snackbarService.openSnackBar(snackBarMsg);
+                    this.isLoading = false;
+                },
             });
     }
 }

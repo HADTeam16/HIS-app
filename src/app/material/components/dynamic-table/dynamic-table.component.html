@@ -23,7 +23,7 @@
       <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col" [sticky]="getStickyStatus(col)">
         <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!getSortStatus(col)"
           [ngStyle]="{'width':getColWidth(col),'padding-left':getSortStatus(col)?'12px':col===columnsToDisplay[0]?'24px':'0px'}">
-          {{this.headerAlias[col] ? this.headerAlias[col] : col}} </th>
+          {{this.headerAlias[col] ? this.headerAlias[col] : col|titlecase}} </th>
         <td mat-cell *matCellDef="let row" [ngStyle]="{'min-width':getColWidth(col)}"> {{row[col]}} </td>
       </ng-container>
   

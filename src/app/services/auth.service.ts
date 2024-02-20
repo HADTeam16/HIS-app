@@ -16,7 +16,7 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient, private router: Router) {}
 
-    isAuthenticated():boolean{
+    isAuthenticated(): boolean {
         return !!this.token;
     }
 
@@ -30,10 +30,14 @@ export class AuthService {
             .pipe(
                 catchError(this.handleError),
                 tap((msg) => {
+                    console.log("Response - ",msg);
                     if (msg['message'] == 'Login Success') {
                         localStorage.setItem('HIS_user_token', msg['token']);
                         this.token = msg['token'];
-                        localStorage.setItem('HIS_user',JSON.stringify(msg['user']));
+                        localStorage.setItem(
+                            'HIS_user',
+                            JSON.stringify(msg['user'])
+                        );
                         this.user.next(msg['user']);
                         // this.autoLogout();
                     }
@@ -73,21 +77,19 @@ export class AuthService {
     }
 
     private handleError(errorRes: HttpErrorResponse) {
-        let errorMessage = 'An unknown error occurred!';
-        if (!errorRes.error || !errorRes.error.error) {
-            return throwError(errorMessage);
-        }
-        switch (errorRes.error.error.message) {
-            case 'EMAIL_EXISTS':
-                errorMessage = 'This email exists already';
+        let errorMessage = 'Unknown error';
+        console.log("Errorres - ",errorRes);
+        switch (errorRes.status) {
+            case 401:
+                errorMessage = 'Invalid username or password!';
                 break;
-            case 'EMAIL_NOT_FOUND':
-                errorMessage = 'This email does not exist.';
+            case 403:
+                errorMessage = 'Request forbidden!';
                 break;
-            case 'INVALID_PASSWORD':
-                errorMessage = 'This password is not correct.';
+            case 404:
+                errorMessage = 'Server not available!';
                 break;
         }
-        return throwError(errorMessage);
+        return throwError(() => new Error(errorRes.error.message));
     }
 }
