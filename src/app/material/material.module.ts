@@ -30,6 +30,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
 import { RemoveUnderscorePipe } from './pipes/remove-underscore.pipe';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     declarations: [
@@ -77,6 +79,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatInputModule,
         MatStepperModule,
         ElevateOnHoverDirective,
+        MatSelectModule,
+        MatTabsModule,
     ],
     providers: [SnackbarService],
 })
