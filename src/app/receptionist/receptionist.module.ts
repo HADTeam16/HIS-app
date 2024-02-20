@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { PatientsComponent } from './patients/patients.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReceptionistService } from '../services/receptionist.service';
 
 @NgModule({
     declarations: [
@@ -20,5 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
         MaterialModule,
         ReactiveFormsModule,
     ],
+    providers: [ReceptionistService],
 })
 export class ReceptionistModule {}
