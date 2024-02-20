@@ -1,0 +1,21 @@
+.example-stepper {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+#personalForm,#addressForm{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+}
+
+#contactForm,#patientForm{
+    display: flex;
+    flex-direction: column;
+    mat-form-field{
+        width: 300px;
+    }
+}

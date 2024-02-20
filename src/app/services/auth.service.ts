@@ -28,9 +28,7 @@ export class AuthService {
         return this.httpClient
             .post(this.baseURL + Api.login, { userName, password, role })
             .pipe(
-                catchError(this.handleError),
                 tap((msg) => {
-                    console.log("Response - ",msg);
                     if (msg['message'] == 'Login Success') {
                         localStorage.setItem('HIS_user_token', msg['token']);
                         this.token = msg['token'];
@@ -74,22 +72,5 @@ export class AuthService {
         this.tokenExpirationTimer = setTimeout(() => {
             this.logout();
         }, expirationDuration);
-    }
-
-    private handleError(errorRes: HttpErrorResponse) {
-        let errorMessage = 'Unknown error';
-        console.log("Errorres - ",errorRes);
-        switch (errorRes.status) {
-            case 401:
-                errorMessage = 'Invalid username or password!';
-                break;
-            case 403:
-                errorMessage = 'Request forbidden!';
-                break;
-            case 404:
-                errorMessage = 'Server not available!';
-                break;
-        }
-        return throwError(() => new Error(errorRes.error.message));
     }
 }

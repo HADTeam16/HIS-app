@@ -6,6 +6,7 @@ import { ReceptionistComponent } from './receptionist.component';
 import { MaterialModule } from '../material/material.module';
 import { PatientsComponent } from './patients/patients.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ReceptionistService } from '../services/receptionist.service';
 
 @NgModule({
@@ -14,7 +15,12 @@ import { ReceptionistService } from '../services/receptionist.service';
         PatientsComponent,
         AddPatientComponent,
     ],
-    imports: [CommonModule, ReceptionistRoutingModule, MaterialModule],
+    imports: [
+        CommonModule,
+        ReceptionistRoutingModule,
+        MaterialModule,
+        ReactiveFormsModule,
+    ],
     providers: [ReceptionistService],
 })
 export class ReceptionistModule {}
