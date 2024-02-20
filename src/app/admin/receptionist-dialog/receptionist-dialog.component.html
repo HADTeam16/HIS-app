@@ -1,0 +1,93 @@
+<!-- doctor-dialog.component.html -->
+<h2 mat-dialog-title>Receptionist's Form</h2>
+<div class="dialog-form">
+
+    <div class="row mt-6">
+        <mat-form-field class="mb-4 ml-8">
+          <mat-label>First Name</mat-label>
+          <input matInput class="w-full"> 
+        </mat-form-field>
+      
+        <mat-form-field class="mb-4 ml-4">
+          <mat-label>Middle Name</mat-label>
+          <input matInput class="w-full">
+        </mat-form-field>
+      
+        <mat-form-field class="mb-4 ml-4 mr-8">
+          <mat-label>Last Name</mat-label>
+          <input matInput class="w-full">
+        </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+        <mat-form-field class="mb-4 ml-8">
+            <mat-label>Age</mat-label>
+            <input matInput class="w-full"> 
+          </mat-form-field>
+
+          <mat-form-field class="mb-4 ml-4">
+            <mat-label>Gender</mat-label>
+            <mat-select>
+              <mat-option value="one">Male</mat-option>
+              <mat-option value="two">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="mb-4 ml-4">
+            <mat-label>Contact</mat-label>
+            <input matInput class="w-full">
+          </mat-form-field>
+    </div>
+
+    <div class="row mt-6">
+      <mat-form-field class="mb-4 mx-8 w-full sm:w-auto md:w-full lg:w-full">
+        <mat-label>Address Line 1</mat-label>
+        <input matInput class="w-full"> 
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-6">
+      <mat-form-field class="mb-4 mx-8 w-full sm:w-auto md:w-full lg:w-full">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput class="w-full"> 
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-6">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Landmark</mat-label>
+        <input matInput class="w-full"> 
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-14">
+        <mat-label>Pincode</mat-label>
+        <input matInput class="w-full"> 
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+        <mat-form-field class="mb-4 ml-8">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="ml-8">
+            <mat-label>Profile photo</mat-label>
+            <input matInput readonly style="cursor: not-allowed; background-color: #f0f0f0;" placeholder="Click here to add">
+            <button mat-icon-button matSuffix (click)="openFileInput()" [attr.aria-label]="'Add Profile Photo'">
+              <mat-icon>add_a_photo</mat-icon>
+            </button>
+            <input type="file" id="fileInput" style="display: none" (change)="handleFileInput($event)" />
+          </mat-form-field>
+  
+    </div>
+
+    <div class="row mt-3 text-center p-4">
+        <a mat-raised-button color="primary">Save</a>
+    </div>
+
+</div>
+  
