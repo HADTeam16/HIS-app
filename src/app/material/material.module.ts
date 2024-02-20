@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
@@ -59,6 +60,7 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     ElevateOnHoverDirective,
     MatTabsModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}
