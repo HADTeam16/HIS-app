@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -91,7 +92,6 @@ export class LoginComponent {
     }
 
     onSubmit(user: string) {
-        let snackBarMsg: string;
         this.isLoading = true;
         this.authService
             .login(
@@ -99,19 +99,20 @@ export class LoginComponent {
                 this.loginForm.value.password,
                 user
             )
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+            )
             .subscribe({
                 next: (response) => {
                     if (response['message'] == 'Login Success') {
                         this.router.navigate([user]);
                     }
-                    snackBarMsg = response['message'];
+                    this.snackbarService.openSnackBar(response['message']);
                 },
                 error: (error) => {
-                    snackBarMsg = error.message;
-                },
-                complete: () => {
-                    this.snackbarService.openSnackBar(snackBarMsg);
-                    this.isLoading = false;
+                    this.snackbarService.openSnackBar(error.error.message);
                 },
             });
     }

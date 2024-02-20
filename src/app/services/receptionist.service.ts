@@ -13,7 +13,6 @@ export class ReceptionistService {
         return this.httpClient
             .get(environment.baseURL + Api.get_all_patients)
             .pipe(
-                catchError(this.handleError),
                 defaultIfEmpty([]),
                 map((patient_list: any[]): Patient[] => {
                     return patient_list.map((item) => ({
@@ -29,25 +28,9 @@ export class ReceptionistService {
     }
 
     registerPatient(patient: Patient) {
-        return this.httpClient
-            .post(environment.baseURL + Api.register_patient, patient)
-            .pipe(catchError(this.handleError));
-    }
-
-    private handleError(errorRes: HttpErrorResponse) {
-        let errorMessage = 'Unknown error';
-        console.log('Error res - ', errorRes);
-        switch (errorRes.status) {
-            case 401:
-                errorMessage = 'Invalid username or password!';
-                break;
-            case 403:
-                errorMessage = 'Request forbidden!';
-                break;
-            case 404:
-                errorMessage = 'Server not available!';
-                break;
-        }
-        return throwError(() => new Error(errorRes.error.message));
+        return this.httpClient.post(
+            environment.baseURL + Api.register_patient,
+            patient
+        );
     }
 }

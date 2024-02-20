@@ -10,14 +10,35 @@ import { Observable, map } from 'rxjs';
     styleUrl: './add-patient.component.scss',
 })
 export class AddPatientComponent {
-    firstFormGroup = this._formBuilder.group({
-        firstCtrl: ['', Validators.required],
+    personalDetailsFormGroup = this._formBuilder.group({
+        firstName: [''],
+        middleName: [''],
+        lastName: [''],
+        dateOfBirth: [''],
+        gender: [''],
+        profilePicture: [''],
     });
-    secondFormGroup = this._formBuilder.group({
-        secondCtrl: ['', Validators.required],
+    addressDetailsFormGroup = this._formBuilder.group({
+        addressLine1: [''],
+        addressLine2: [''],
+        city: [''],
+        state: [''],
+        country: [''],
+        landmark: [''],
+        pinCode: [''],
     });
-    thirdFormGroup = this._formBuilder.group({
-        thirdCtrl: ['', Validators.required],
+    contactDetailsFormGroup = this._formBuilder.group({
+        contact: [''],
+        email: [''],
+        emergencyContactName: [''],
+        emergencyContactNumber: [''],
+    });
+    patientDetailsFormGroup = this._formBuilder.group({
+        purpose: [''],
+        temperature: [''],
+        bloodPressure: [''],
+        admissionDate: [''],
+        dischargeDate: [''],
     });
     stepperOrientation: Observable<StepperOrientation>;
 
