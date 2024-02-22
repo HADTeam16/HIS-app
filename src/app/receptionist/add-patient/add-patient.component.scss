@@ -6,16 +6,45 @@
     margin-top: 16px;
 }
 
-#personalForm,#addressForm{
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 24px;
+#personalForm {
+    #name-section,
+    #dob-section {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 24px;
+    }
 }
 
-#contactForm,#patientForm{
+#addressForm {
+    #address-line-section,
+    #city-section,
+    #pincode-section {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 24px;
+    }
+}
+
+#contactForm {
+    #contact-section,#email-section{
+        display: flex;
+        align-items: center;
+        button{
+            margin-left: 64px;
+        }
+    }
+    #emergency-section {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 24px;
+    }
+}
+
+#contactForm,
+#patientForm {
     display: flex;
     flex-direction: column;
-    mat-form-field{
+    mat-form-field {
         width: 300px;
     }
 }

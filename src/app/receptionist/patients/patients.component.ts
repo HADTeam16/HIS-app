@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Patient } from '../../models/user';
 
 @Component({
     selector: 'app-patients',
@@ -7,71 +8,200 @@ import { Component } from '@angular/core';
 })
 export class PatientsComponent {
     tableHeaders = [
-        'patient_id',
-        'name',
+        'id',
+        'firstName',
+        'lastName',
         'status',
         'age',
         'gender',
-        'appointment_date',
-        'ward_id',
+        'appointmentDate',
+        'wardId',
     ];
-    tableData = [
+    headerAlias = {
+        id: 'Patient ID',
+        firstName: 'First name',
+        lastName: 'Last name',
+        appointmentDate: 'Appointment date',
+        wardId: 'Ward ID',
+    };
+    tableData: Patient[] = [
         {
-            patient_id: 'P01',
-            name: 'Anne Hathaway',
-            status: 'active',
+            id: 1,
+            userName: '',
+            password: '',
+            firstName: 'Anne',
+            middleName: '',
+            lastName: 'Hathaway',
             age: 34,
-            gender: 'F',
-            appointment_date: new Date().toUTCString(),
-            ward_id: 'W04',
+            gender: 'Female',
+            dateOfBirth: new Date().toUTCString(),
+            country: 'America',
+            state: 'California',
+            city: 'San Diego',
+            addressLine1: 'addr line 1',
+            addressLine2: 'addr line 2',
+            landmark: 'landmark',
+            pinCode: '657832',
+            contact: '1234567890',
+            email: 'anne@gmail.com',
+            profilePicture: 'path/to/profile',
+            emergencyContactName: 'er name',
+            emergencyContactNumber: '1234567890',
+            role: 'patient',
+            purpose: 'regular checkup',
+            temperature: '93C',
+            bloodPressure: '108Hg',
+            admissionDate: new Date().toUTCString(),
+            dischargeDate: '',
+            status: 'active',
+            appointmentDate: new Date().toUTCString(),
+            wardId: 'W04',
         },
         {
-            patient_id: 'P02',
-            name: 'Bob Odenkirk',
-            status: 'inactive',
+            id: 2,
+            userName: '',
+            password: '',
+            firstName: 'Bob',
+            middleName: '',
+            lastName: 'Odenkirk',
             age: 45,
-            gender: 'M',
-            appointment_date: '',
-            ward_id: '',
-        },
-        {
-            patient_id: 'P03',
-            name: 'Anjali Arora',
-            status: 'active',
-            age: 27,
-            gender: 'F',
-            appointment_date: '',
-            ward_id: 'W05',
-        },
-        {
-            patient_id: 'P04',
-            name: 'Rajesh Kumar',
-            status: 'active',
-            age: 68,
-            gender: 'M',
-            appointment_date: new Date().toUTCString(),
-            ward_id: '',
-        },
-        {
-            patient_id: 'P05',
-            name: 'Jack Daniel',
+            gender: 'Male',
+            dateOfBirth: new Date().toUTCString(),
+            country: 'America',
+            state: 'California',
+            city: 'San Diego',
+            addressLine1: 'addr line 1',
+            addressLine2: 'addr line 2',
+            landmark: 'landmark',
+            pinCode: '657832',
+            contact: '1234567890',
+            email: 'bob@gmail.com',
+            profilePicture: 'path/to/profile',
+            emergencyContactName: 'er name',
+            emergencyContactNumber: '1234567890',
+            role: 'patient',
+            purpose: 'regular checkup',
+            temperature: '93C',
+            bloodPressure: '108Hg',
+            admissionDate: new Date().toUTCString(),
+            dischargeDate: '',
             status: 'inactive',
-            age: 86,
-            gender: 'O',
-            appointment_date: '',
-            ward_id: '',
+            appointmentDate: '',
+            wardId: '',
+        },
+        {
+            id: 3,
+            userName: '',
+            password: '',
+            firstName: 'Subhash',
+            middleName: '',
+            lastName: 'Sen',
+            age: 27,
+            gender: 'Male',
+            dateOfBirth: new Date().toUTCString(),
+            country: 'India',
+            state: 'West Bengal',
+            city: 'Kolkata',
+            addressLine1: 'addr line 1',
+            addressLine2: 'addr line 2',
+            landmark: 'landmark',
+            pinCode: '657832',
+            contact: '1234567890',
+            email: 'subhash@gmail.com',
+            profilePicture: 'path/to/profile',
+            emergencyContactName: 'er name',
+            emergencyContactNumber: '1234567890',
+            role: 'patient',
+            purpose: 'regular checkup',
+            temperature: '93C',
+            bloodPressure: '108Hg',
+            admissionDate: new Date().toUTCString(),
+            dischargeDate: '',
+            status: 'inactive',
+            appointmentDate: '',
+            wardId: 'W05',
+        },
+        {
+            id: 4,
+            userName: '',
+            password: '',
+            firstName: 'Rajesh',
+            middleName: '',
+            lastName: 'Kumar',
+            age: 68,
+            gender: 'Male',
+            dateOfBirth: new Date().toUTCString(),
+            country: 'India',
+            state: 'West Bengal',
+            city: 'Kolkata',
+            addressLine1: 'addr line 1',
+            addressLine2: 'addr line 2',
+            landmark: 'landmark',
+            pinCode: '657832',
+            contact: '1234567890',
+            email: 'rajesh@gmail.com',
+            profilePicture: 'path/to/profile',
+            emergencyContactName: 'er name',
+            emergencyContactNumber: '1234567890',
+            role: 'patient',
+            purpose: 'regular checkup',
+            temperature: '93C',
+            bloodPressure: '108Hg',
+            admissionDate: new Date().toUTCString(),
+            dischargeDate: '',
+            status: 'active',
+            appointmentDate: new Date().toUTCString(),
+            wardId: '',
+        },
+        {
+            id: 5,
+            userName: '',
+            password: '',
+            firstName: 'Neha',
+            middleName: '',
+            lastName: 'Sharma',
+            age: 78,
+            gender: 'Female',
+            dateOfBirth: new Date().toUTCString(),
+            country: 'India',
+            state: 'Maharashtra',
+            city: 'Mumbai',
+            addressLine1: 'addr line 1',
+            addressLine2: 'addr line 2',
+            landmark: 'landmark',
+            pinCode: '657832',
+            contact: '1234567890',
+            email: 'neha@gmail.com',
+            profilePicture: 'path/to/profile',
+            emergencyContactName: 'er name',
+            emergencyContactNumber: '1234567890',
+            role: 'patient',
+            purpose: 'regular checkup',
+            temperature: '93C',
+            bloodPressure: '108Hg',
+            admissionDate: new Date().toUTCString(),
+            dischargeDate: '',
+            status: 'inactive',
+            appointmentDate: '',
+            wardId: '',
         },
     ];
 
-    viewPatientDetails(patient: {
-        patient_id: string;
-        name: string;
-        status: string;
-        age: number;
-        gender: string;
-        appointment_date: string;
-        ward_id: string;
-    }) {
+    viewPatientDetails(patient: Patient) {
         console.log(patient);
+    }
+
+    getFullAddress(patient: Patient) {
+        return (
+            patient.addressLine1 +
+            ', ' +
+            patient.addressLine2 +
+            ', ' +
+            patient.city +
+            ', ' +
+            patient.state +
+            ', ' +
+            patient.country
+        );
     }
 }

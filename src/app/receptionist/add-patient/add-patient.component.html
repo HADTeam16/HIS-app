@@ -7,56 +7,60 @@
     <mat-step [formGroup]="personalDetailsFormGroup">
         <ng-template matStepLabel>Personal Details</ng-template>
         <form [formGroup]="personalDetailsFormGroup" id="personalForm">
-            <mat-form-field>
-                <mat-label>First Name</mat-label>
-                <input
-                    matInput
-                    formControlName="firstName"
-                    placeholder="First Name"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Middle Name</mat-label>
-                <input
-                    matInput
-                    formControlName="middleName"
-                    placeholder="Middle Name"
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Last Name</mat-label>
-                <input
-                    matInput
-                    formControlName="lastName"
-                    placeholder="Last Name"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Date of Birth</mat-label>
-                <input
-                    matInput
-                    [matDatepicker]="dobPicker"
-                    formControlName="dateOfBirth"
-                    placeholder="Date of Birth"
-                    required
-                />
-                <mat-datepicker-toggle
-                    matSuffix
-                    [for]="dobPicker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #dobPicker></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Gender</mat-label>
-                <input
-                    matInput
-                    formControlName="gender"
-                    placeholder="Gender"
-                    required
-                />
-            </mat-form-field>
+            <section id="name-section">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input
+                        matInput
+                        formControlName="firstName"
+                        placeholder="First Name"
+                        required
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Middle Name</mat-label>
+                    <input
+                        matInput
+                        formControlName="middleName"
+                        placeholder="Middle Name"
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input
+                        matInput
+                        formControlName="lastName"
+                        placeholder="Last Name"
+                        required
+                    />
+                </mat-form-field>
+            </section>
+            <section id="dob-section">
+                <mat-form-field>
+                    <mat-label>Gender</mat-label>
+                    <input
+                        matInput
+                        formControlName="gender"
+                        placeholder="Gender"
+                        required
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Date of Birth</mat-label>
+                    <input
+                        matInput
+                        [matDatepicker]="dobPicker"
+                        formControlName="dateOfBirth"
+                        placeholder="Date of Birth"
+                        required
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="dobPicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #dobPicker></mat-datepicker>
+                </mat-form-field>
+            </section>
             <mat-form-field>
                 <mat-label>Profile Picture</mat-label>
                 <input matInput formControlName="profilePicture" />
@@ -69,66 +73,72 @@
     <mat-step [formGroup]="addressDetailsFormGroup">
         <ng-template matStepLabel>Address Details</ng-template>
         <form [formGroup]="addressDetailsFormGroup" id="addressForm">
-            <mat-form-field>
-                <mat-label>Address Line 1</mat-label>
-                <input
-                    matInput
-                    formControlName="addressLine1"
-                    placeholder="Address line 1"
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Address Line 2</mat-label>
-                <input
-                    matInput
-                    formControlName="addressLine2"
-                    placeholder="Address line 2"
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>City</mat-label>
-                <input
-                    matInput
-                    formControlName="city"
-                    placeholder="City"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>State</mat-label>
-                <input
-                    matInput
-                    formControlName="state"
-                    placeholder="State"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Country</mat-label>
-                <input
-                    matInput
-                    formControlName="country"
-                    placeholder="Country"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Landmark</mat-label>
-                <input
-                    matInput
-                    formControlName="landmark"
-                    placeholder="Landmark"
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Pin Code</mat-label>
-                <input
-                    matInput
-                    formControlName="pinCode"
-                    placeholder="Pincode"
-                    required
-                />
-            </mat-form-field>
+            <section id="address-line-section">
+                <mat-form-field>
+                    <mat-label>Address Line 1</mat-label>
+                    <input
+                        matInput
+                        formControlName="addressLine1"
+                        placeholder="Address line 1"
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address Line 2</mat-label>
+                    <input
+                        matInput
+                        formControlName="addressLine2"
+                        placeholder="Address line 2"
+                    />
+                </mat-form-field>
+            </section>
+            <section id="city-section">
+                <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input
+                        matInput
+                        formControlName="city"
+                        placeholder="City"
+                        required
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>State</mat-label>
+                    <input
+                        matInput
+                        formControlName="state"
+                        placeholder="State"
+                        required
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Country</mat-label>
+                    <input
+                        matInput
+                        formControlName="country"
+                        placeholder="Country"
+                        required
+                    />
+                </mat-form-field>
+            </section>
+            <section id="pincode-section">
+                <mat-form-field>
+                    <mat-label>Landmark</mat-label>
+                    <input
+                        matInput
+                        formControlName="landmark"
+                        placeholder="Landmark"
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Pin Code</mat-label>
+                    <input
+                        matInput
+                        formControlName="pinCode"
+                        placeholder="Pincode"
+                        required
+                    />
+                </mat-form-field>
+            </section>
         </form>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -138,40 +148,48 @@
     <mat-step [formGroup]="contactDetailsFormGroup">
         <ng-template matStepLabel>Contact Details</ng-template>
         <form [formGroup]="contactDetailsFormGroup" id="contactForm">
-            <mat-form-field>
-                <mat-label>Contact</mat-label>
-                <input
-                    matInput
-                    formControlName="contact"
-                    placeholder="Contact"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input
-                    matInput
-                    formControlName="email"
-                    placeholder="Email"
-                    required
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Emergency Contact Name</mat-label>
-                <input
-                    matInput
-                    formControlName="emergencyContactName"
-                    placeholder="Emergency Contact Name"
-                />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Emergency Contact Number</mat-label>
-                <input
-                    matInput
-                    formControlName="emergencyContactNumber"
-                    placeholder="Emergency Contact Number"
-                />
-            </mat-form-field>
+            <section id="contact-section">
+                <mat-form-field>
+                    <mat-label>Contact</mat-label>
+                    <input
+                        matInput
+                        formControlName="contact"
+                        placeholder="Contact"
+                        required
+                    />
+                </mat-form-field>
+                <button mat-raised-button>Verify phone number</button>
+            </section>
+            <section id="email-section">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input
+                        matInput
+                        formControlName="email"
+                        placeholder="Email"
+                        required
+                    />
+                </mat-form-field>
+                <button mat-raised-button>Verify email</button>
+            </section>
+            <section id="emergency-section">
+                <mat-form-field>
+                    <mat-label>Emergency Contact Name</mat-label>
+                    <input
+                        matInput
+                        formControlName="emergencyContactName"
+                        placeholder="Emergency Contact Name"
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Emergency Contact Number</mat-label>
+                    <input
+                        matInput
+                        formControlName="emergencyContactNumber"
+                        placeholder="Emergency Contact Number"
+                    />
+                </mat-form-field>
+            </section>
         </form>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>

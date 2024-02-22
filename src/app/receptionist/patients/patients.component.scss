@@ -1,0 +1,11 @@
+.expanded-row-detail{
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    .expansion-table{
+        width: 80%;
+        border-collapse: collapse;
+        tr,th,td{border: solid 1px black;}
+        th,td{text-align: left;padding: 2px 3px;}
+    }
+}

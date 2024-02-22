@@ -1,33 +1,52 @@
-<app-dynamic-table
-    [headers]="tableHeaders"
-    [data]="tableData"
-    [hasActions]="true"
-    [hasExpansion]="true"
-    [paginate]="true"
-    [filter]="true"
-    ><ng-template #actionsTemplate let-patient>
-        <div class="abc">
-            <button
-                mat-stroked-button
-                (click)="viewPatientDetails(patient); $event.stopPropagation()"
-            >
-                Details
-            </button>
-        </div>
-    </ng-template>
-    <ng-template #expansionTemplate let-patient>
-        <div class="expanded-row-detail">
-            <span class="textarea-label">Patient remarks</span>
-            <mat-form-field appearance="fill">
-                <textarea
-                    matInput
-                    readonly
-                    cdkTextareaAutosize
-                    cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="5"
-                    >{{ patient.url }}</textarea
+<section class="p-4">
+    <app-dynamic-table
+        [headers]="tableHeaders"
+        [data]="tableData"
+        [headerAlias]="headerAlias"
+        [hasActions]="true"
+        [hasExpansion]="true"
+        [paginate]="true"
+        [filter]="true"
+        ><ng-template #actionsTemplate let-patient>
+            <div class="abc">
+                <button
+                    mat-stroked-button
+                    [disabled]="patient.appointmentDate != ''"
+                    (click)="
+                        viewPatientDetails(patient); $event.stopPropagation()
+                    "
                 >
-            </mat-form-field>
-        </div>
-    </ng-template>
-</app-dynamic-table>
+                    Book Appointment
+                </button>
+            </div>
+        </ng-template>
+        <ng-template #expansionTemplate let-patient>
+            <div class="expanded-row-detail">
+                <table class="expansion-table">
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>{{ patient.dateOfBirth }}</td>
+                        <th>PinCode</th>
+                        <td>{{ patient.pinCode }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td colspan="3">{{getFullAddress(patient)}}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact</th>
+                        <td>{{ patient.contact }}</td>
+                        <th>Email</th>
+                        <td>{{ patient.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Emergency Contact Name</th>
+                        <td>{{ patient.emergencyContactName }}</td>
+                        <th>Emergency Contact Number</th>
+                        <td>{{ patient.emergencyContactNumber }}</td>
+                    </tr>
+                </table>
+            </div>
+        </ng-template>
+    </app-dynamic-table>
+</section>
