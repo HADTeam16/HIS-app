@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { NurseRoutingModule } from './nurse-routing.module';
 import { NurseComponent } from './nurse.component';
-
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
-    NurseComponent
+    NurseComponent,
+    AppointmentsComponent
   ],
   imports: [
     CommonModule,
-    NurseRoutingModule
+    NurseRoutingModule,
+    MaterialModule,
   ]
 })
 export class NurseModule { }

@@ -1,0 +1,22 @@
+<div class="h-full w-full flex flex-col items-center">
+    <div class="mt-8">
+        <h2>Your Ward Allocations</h2>
+    </div>
+    <mat-accordion class="w-2/3 mt-8">
+        <mat-expansion-panel *ngFor="let appointment of selectedDateAppointments">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ appointment.patientId }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{ appointment.timeslot }}
+                </mat-panel-description>
+                <mat-panel-description>
+                    {{ appointment.wardNumber }}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            Appointment ID: {{ appointment.appointmentId }} <br />
+            Contact: {{ appointment.patientContactNumber }}
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
