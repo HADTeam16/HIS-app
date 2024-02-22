@@ -16,6 +16,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --mdc-filled-text-field-container-shape: 0px;
 }
 
+.mat-sort-header-container {
+  justify-content: center;
+}
+
 $my-primary: mat.define-palette(mat.$teal-palette, 500);
 $my-accent: mat.define-palette(mat.$blue-grey-palette, A100, A200, A400);
 
