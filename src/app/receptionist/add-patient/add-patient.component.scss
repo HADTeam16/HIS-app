@@ -6,7 +6,17 @@
     margin-top: 16px;
 }
 
+.stepper-actions{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin: 8px 0px;
+}
+
 #personalForm {
+    mat-form-field{
+        width: 30%;
+    }
     #name-section,
     #dob-section {
         display: flex;
@@ -16,6 +26,9 @@
 }
 
 #addressForm {
+    mat-form-field{
+        width: 30%;
+    }
     #address-line-section,
     #city-section,
     #pincode-section {
@@ -26,10 +39,14 @@
 }
 
 #contactForm {
-    #contact-section,#email-section{
+    mat-form-field {
+        width: 40%;
+    }
+    #contact-section,
+    #email-section {
         display: flex;
         align-items: center;
-        button{
+        button {
             margin-left: 64px;
         }
     }
@@ -40,11 +57,14 @@
     }
 }
 
-#contactForm,
 #patientForm {
-    display: flex;
-    flex-direction: column;
-    mat-form-field {
-        width: 300px;
+    #purpose-field {
+        width: 50%;
+    }
+    #temp-section,
+    #admission-section {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 24px;
     }
 }
