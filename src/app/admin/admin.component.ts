@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -11,7 +12,7 @@ import { AddDialogComponent } from './add-dialog/add-dialog.component';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(private authService:AuthService,private router: Router, public dialog: MatDialog) {}
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   doctorDataSource = new MatTableDataSource<PeriodicElement>(DOCTOR_ELEMENT_DATA);
@@ -65,7 +66,7 @@ export class AdminComponent {
   }
 
   onLogout() {
-    this.router.navigate(['lobby']);
+    this.authService.logout();
   }
 }
 
