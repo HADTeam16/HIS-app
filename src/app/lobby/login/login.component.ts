@@ -1,29 +1,36 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { SnackbarService } from '../../material/services/snackbar.service';
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-    users = ['consultant', 'reception', 'admin', 'nurse'];
+    users = ['doctor', 'receptionist', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.email]),
+        email: new FormControl(null, Validators.required),
         password: new FormControl(null, Validators.required),
     });
     passHide = true;
     isLoading = false;
 
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private snackbarService: SnackbarService
+    ) {}
 
     getIcon(user: string) {
         switch (user) {
-            case 'consultant':
+            case 'doctor':
                 return 'emergency';
-            case 'reception':
+            case 'receptionist':
                 return 'badge';
             case 'admin':
                 return 'engineering';
@@ -39,8 +46,6 @@ export class LoginComponent {
             case 'email':
                 if (this.loginForm.get('email').hasError('required')) {
                     return 'You must enter a value';
-                } else if (this.loginForm.get('email').hasError('email')) {
-                    return 'Not a valid email';
                 } else {
                     return '';
                 }
@@ -57,13 +62,13 @@ export class LoginComponent {
 
     tile_select(i: string) {
         switch (i) {
-            case 'consultant':
+            case 'doctor':
                 if (!this.tile_active[0]) {
                     this.passHide = true;
                 }
                 this.tile_active = [true, false, false, false];
                 break;
-            case 'reception':
+            case 'receptionist':
                 if (!this.tile_active[1]) {
                     this.passHide = true;
                 }
@@ -88,19 +93,27 @@ export class LoginComponent {
 
     onSubmit(user: string) {
         this.isLoading = true;
-        this.router.navigate([user]);
-        // this.authService
-        //     .login(user)
-        //     .then(
-        //         () => {
-        //             this.router.navigate([user]);
-        //         },
-        //         (error) => {
-        //             alert(error);
-        //         }
-        //     )
-        //     .finally(() => {
-        //         this.isLoading = false;
-        //     });
+        this.authService
+            .login(
+                this.loginForm.value.email,
+                this.loginForm.value.password,
+                user
+            )
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+            )
+            .subscribe({
+                next: (response) => {
+                    if (response['message'] == 'Login Success') {
+                        this.router.navigate([user]);
+                    }
+                    this.snackbarService.openSnackBar(response['message']);
+                },
+                error: (error) => {
+                    this.snackbarService.openSnackBar(error.error.message);
+                },
+            });
     }
 }

@@ -1,0 +1,29 @@
+<mat-toolbar class="justify-between">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button routerLink="patients">Reception Portal</a>
+    <div class="flex justify-center items-center">
+        <button mat-raised-button type="button" (click)="onLogout()">Log Out</button>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container class="min-h-full">
+    <mat-sidenav #sidenav mode="push">
+        <mat-nav-list (click)="sidenav.toggle()">
+            <mat-list-item
+                *ngFor="let route of routes"
+                [routerLink]="route.link"
+            >
+                <mat-icon matListItemIcon [svgIcon]="route.icon" />
+                <div matListItemTitle>{{ route.title }}</div>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<mat-divider></mat-divider>
+<footer class="h-24 w-full flex justify-center items-center bg-gray-500">
+    <span class="text-white">{{ "All rights reserved@HADTeam16" }}</span>
+</footer>

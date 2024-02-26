@@ -1,0 +1,33 @@
+.heading-panel{
+    .heading-title{
+        padding: 12px;
+        font-size: 32px;
+        font-weight: 500;
+    }
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.table-container {
+    width: 100%;
+
+    table {
+        width: 100%;
+
+        td{
+            text-align: center;
+        }
+
+        th.actions-header{
+            text-align: center;
+        }
+
+        .mat-column-expand {
+            width: 64px;
+        }
+
+        tr.detail-row {
+            height: 0px;
+        }
+    }
+}

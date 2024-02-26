@@ -17,50 +17,71 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { SnackbarService } from './services/snackbar.service';
+import { DynamicTableComponent } from './components/dynamic-table/dynamic-table.component';
 import { MatTableModule } from '@angular/material/table';
-import {MatSelectModule} from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+import { RemoveUnderscorePipe } from './pipes/remove-underscore.pipe';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [CanvasComponent, ChatComponent, ElevateOnHoverDirective],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatDividerModule,
-    MatTableModule,
-    MatPaginatorModule,
-  ],
-  exports: [
-    CanvasComponent,
-    ChatComponent,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatGridListModule,
-    MatCardModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatExpansionModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatRippleModule,
-    MatInputModule,
-    ElevateOnHoverDirective,
-    MatTabsModule,
-    MatSelectModule,
-  ],
+    declarations: [
+        CanvasComponent,
+        ChatComponent,
+        ElevateOnHoverDirective,
+        SnackbarComponent,
+        DynamicTableComponent,
+        RemoveUnderscorePipe,
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatDividerModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatSortModule,
+    ],
+    exports: [
+        CanvasComponent,
+        ChatComponent,
+        DynamicTableComponent,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatGridListModule,
+        MatCardModule,
+        MatDialogModule,
+        MatDividerModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatExpansionModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatRippleModule,
+        MatInputModule,
+        MatStepperModule,
+        ElevateOnHoverDirective,
+        MatSelectModule,
+        MatTabsModule,
+    ],
+    providers: [SnackbarService],
 })
 export class MaterialModule {}
