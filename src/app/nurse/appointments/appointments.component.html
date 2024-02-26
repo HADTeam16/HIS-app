@@ -6,17 +6,23 @@
         <mat-expansion-panel *ngFor="let appointment of selectedDateAppointments">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ appointment.patientId }}
+                    {{ appointment.wardNumber }}
                 </mat-panel-title>
                 <mat-panel-description>
-                    {{ appointment.timeslot }}
+                    {{ appointment.patientId }}
                 </mat-panel-description>
                 <mat-panel-description>
-                    {{ appointment.wardNumber }}
+                    {{ appointment.patientName }}
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            Appointment ID: {{ appointment.appointmentId }} <br />
-            Contact: {{ appointment.patientContactNumber }}
+            Appointment ID: {{ appointment.appointmentId }} <br /><br />
+            Blood Pressure: {{ appointment.bloodPressure }}<br /><br />
+            Temprature : {{ appointment.temprature }}<br /><br />
+            Oxygen Level : {{appointment.oxygenLevel}}<br /><br />
+            Heart Rate : {{ appointment.heartRate }} <br />
+            <mat-action-row>
+                <button mat-button color="primary" (click)="editDetails(appointment)">Edit Details</button>
+            </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
