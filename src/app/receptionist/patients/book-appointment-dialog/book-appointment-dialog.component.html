@@ -1,0 +1,48 @@
+<div class="flex justify-center items-center">
+    <mat-spinner *ngIf="doctorsLoading; else doctorsLoaded"></mat-spinner>
+    <ng-template #doctorsLoaded>
+        <form class="m-8 flex flex-col justify-evenly items-center">
+            <mat-form-field>
+                <mat-select
+                    placeholder="Select specialization"
+                    (selectionChange)="onSelectSpecialization($event.value)"
+                >
+                    <mat-option
+                        *ngFor="let specialization of specializations | async"
+                        [value]="specialization"
+                        >{{ specialization }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select
+                    placeholder="Select doctor"
+                    (selectionChange)="onSelectDoctor($event.value)"
+                >
+                    <mat-option
+                        *ngFor="let doctor of doctors_list | async"
+                        [value]="doctor.id"
+                    >
+                        {{ "Dr. " + doctor.firstName + " " + doctor.lastName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Enter purpose"
+                    (keyup)="updatePurpose($event.target)"
+                />
+            </mat-form-field>
+            <button
+                mat-stroked-button
+                type="button"
+                color="primary"
+                [disabled]="selected_doctor_id == null"
+                (click)="onBookAppointment()"
+            >
+                Book Appointment
+            </button>
+        </form>
+    </ng-template>
+</div>

@@ -20,7 +20,6 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SnackbarService } from './services/snackbar.service';
 import { DynamicTableComponent } from './components/dynamic-table/dynamic-table.component';
@@ -55,6 +54,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatPaginatorModule,
         MatCheckboxModule,
         MatSortModule,
+        MatButtonModule,
     ],
     exports: [
         CanvasComponent,
