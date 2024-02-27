@@ -1,24 +1,65 @@
 <div class="h-full w-full flex justify-evenly">
     <div class="w-1/5">
-        <mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)"/>
+        <mat-calendar
+            [selected]="selectedDate"
+            (selectedChange)="onDateChange($event)"
+        />
         <button mat-button (click)="setToday()">Today</button>
         <button mat-button (click)="setTomorrow()">Tomorrow</button>
     </div>
     <mat-divider [vertical]="true"></mat-divider>
     <mat-accordion class="w-2/3 mt-8">
-        <mat-expansion-panel *ngFor="let appointment of selectedDateAppointments">
+        <mat-expansion-panel
+            *ngFor="let appointment of selectedDateAppointments"
+        >
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ appointment.patientId }}
+                    {{
+                        "P" + appointment.patientId.toString().padStart(4, "0")
+                    }}
                 </mat-panel-title>
                 <mat-panel-description>
-                    {{ appointment.timeslot }}
+                    {{ formatDate(appointment.slot) }}
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            Appointment ID: {{ appointment.appointmentId }} <br />
-            Contact: {{ appointment.patientContactNumber }}
+            <div class="flex w-2/3 justify-between">
+                <section>
+                    Appointment ID:
+                    {{
+                        "A" +
+                            appointment.appointmentId
+                                .toString()
+                                .padStart(4, "0")
+                    }}
+                    <br />
+                    Name: {{ appointment.name }}<br />
+                    Age: {{ appointment.age }}<br />
+                    Gender: {{ appointment.gender }}
+                </section>
+                <section>
+                    Contact: {{ appointment.contact }}<br />
+                    Purpose: {{ appointment.purpose ? appointment.purpose : "-"
+                    }}<br />
+                    Temperature:
+                    {{ appointment.temperature ? appointment.temperature : "-"
+                    }}<br />
+                    Blood Pressure:
+                    {{
+                        appointment.bloodPressure
+                            ? appointment.bloodPressure
+                            : "-"
+                    }}
+                </section>
+            </div>
+            <br />
             <mat-action-row>
-                <button mat-button color="primary" (click)="addPrescription(appointment.appointmentId)">Add Prescription</button>
+                <button
+                    mat-button
+                    color="primary"
+                    (click)="addPrescription(appointment.appointmentId)"
+                >
+                    Add Prescription
+                </button>
             </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>

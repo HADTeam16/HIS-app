@@ -59,6 +59,10 @@ export class ReceptionistService {
 
     bookAppointment(appointment: Appointment) {
         return this.httpClient
-            .post(environment.baseURL + Api.book_appointment, appointment);
+            .post(environment.baseURL + Api.book_appointment, appointment)
+            .pipe(
+                defaultIfEmpty('Some error occured'),
+                map((response) => response['response'])
+            );
     }
 }

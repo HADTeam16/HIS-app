@@ -1,0 +1,27 @@
+<form class="flex flex-col items-center justify-between m-8">
+    <mat-form-field>
+        <mat-label>Select OT</mat-label>
+        <mat-select placeholder="Select OT">
+            <mat-option value="EOT-01">EOT-01</mat-option>
+            <mat-option value="EOT-02">EOT-02</mat-option>
+            <mat-option value="OT-03">OT-03</mat-option>
+            <mat-option value="OT-04">OT-04</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Select doctor</mat-label>
+        <mat-select placeholder="Select doctor">
+            <mat-option *ngFor="let ed of emergencyDoctors" [value]="ed">
+                {{ ed }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="onCallEmergency()"
+    >
+        Call Emergency
+    </button>
+</form>
