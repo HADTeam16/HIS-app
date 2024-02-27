@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { Patient } from '../../models/user';
+import { ReceptionistService } from '../../services/receptionist.service';
+import { finalize } from 'rxjs';
+import { SnackbarService } from '../../material/services/snackbar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BookAppointmentDialogComponent } from './book-appointment-dialog/book-appointment-dialog.component';
 
 @Component({
     selector: 'app-patients',
@@ -7,22 +12,12 @@ import { Patient } from '../../models/user';
     styleUrl: './patients.component.scss',
 })
 export class PatientsComponent {
-    tableHeaders = [
-        'id',
-        'firstName',
-        'lastName',
-        'status',
-        'age',
-        'gender',
-        'appointmentDate',
-        'wardId',
-    ];
+    isLoading = false;
+    tableHeaders = ['id', 'firstName', 'lastName', 'age', 'gender'];
     headerAlias = {
         id: 'Patient ID',
         firstName: 'First name',
         lastName: 'Last name',
-        appointmentDate: 'Appointment date',
-        wardId: 'Ward ID',
     };
     tableData: Patient[] = [
         {
@@ -53,9 +48,6 @@ export class PatientsComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toDateString(),
             dischargeDate: '',
-            status: 'active',
-            appointmentDate: new Date().toUTCString(),
-            wardId: 'W04',
         },
         {
             id: 2,
@@ -85,9 +77,6 @@ export class PatientsComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
-            status: 'inactive',
-            appointmentDate: '',
-            wardId: '',
         },
         {
             id: 3,
@@ -117,9 +106,6 @@ export class PatientsComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
-            status: 'inactive',
-            appointmentDate: '',
-            wardId: 'W05',
         },
         {
             id: 4,
@@ -149,9 +135,6 @@ export class PatientsComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
-            status: 'active',
-            appointmentDate: new Date().toUTCString(),
-            wardId: '',
         },
         {
             id: 5,
@@ -181,14 +164,48 @@ export class PatientsComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
-            status: 'inactive',
-            appointmentDate: '',
-            wardId: '',
         },
     ];
 
-    viewPatientDetails(patient: Patient) {
-        console.log(patient);
+    constructor(
+        private receptionistService: ReceptionistService,
+        private snackbarService: SnackbarService,
+        private dialog: MatDialog
+    ) {
+        this.isLoading = true;
+        this.receptionistService
+            .getAllPatients()
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+            )
+            .subscribe({
+                next: (response) => {
+                    this.tableData = response;
+                },
+                error: (error) => {
+                    this.snackbarService.openSnackBar(error);
+                },
+            });
+    }
+
+    bookAppointment(patient: Patient) {
+        const dialogRef = this.dialog.open(BookAppointmentDialogComponent, {
+            data: patient,
+        });
+        dialogRef.afterClosed().subscribe({
+            next: (booked: boolean) => {
+                if (booked) {
+                    console.log('Appointment booked');
+                } else {
+                    console.log('Appointment not possible');
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
 
     getFullAddress(patient: Patient) {

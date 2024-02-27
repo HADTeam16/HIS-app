@@ -8,12 +8,14 @@ import { PatientsComponent } from './patients/patients.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReceptionistService } from '../services/receptionist.service';
+import { BookAppointmentDialogComponent } from './patients/book-appointment-dialog/book-appointment-dialog.component';
 
 @NgModule({
     declarations: [
         ReceptionistComponent,
         PatientsComponent,
         AddPatientComponent,
+        BookAppointmentDialogComponent,
     ],
     imports: [
         CommonModule,

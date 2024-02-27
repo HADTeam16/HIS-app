@@ -29,7 +29,16 @@ export class Patient extends User {
     bloodPressure: string;
     admissionDate: string;
     dischargeDate: string;
-    status:string;
-    appointmentDate:string;
-    wardId:string;
+}
+
+export class Doctor extends User {
+    medicalLicenseNumber: string;
+    specialization: string;
+    boardCertification: string;
+    experience: string;
+    medicalDegree: string;
+    cv: string;
+    drugScreeningResult: string;
+    workStart: string;
+    workEnd: string;
 }
