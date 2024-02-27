@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { SnackbarService } from '../../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Patient } from '../../models/user';
-import { finalize } from 'rxjs';
-import { ReceptionistService } from '../../services/receptionist.service';
 import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-ward-dialog.component';
 
 @Component({
@@ -168,26 +165,8 @@ export class AssignWardComponent {
     ];
 
     constructor(
-        private receptionistService: ReceptionistService,
-        private snackbarService: SnackbarService,
         private dialog: MatDialog
     ) {
-        this.isLoading = true;
-        this.receptionistService
-            .getAllPatients()
-            .pipe(
-                finalize(() => {
-                    this.isLoading = false;
-                })
-            )
-            .subscribe({
-                next: (response) => {
-                    this.tableData = response;
-                },
-                error: (error) => {
-                    this.snackbarService.openSnackBar(error);
-                },
-            });
     }
 
     bookAppointment(patient: Patient) {
