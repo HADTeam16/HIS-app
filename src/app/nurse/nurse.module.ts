@@ -7,12 +7,16 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { MaterialModule } from '../material/material.module';
 import { EditDetailsDialogComponent } from './appointments/edit-details-dialog/edit-details-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { AssignWardComponent } from './assign-ward/assign-ward.component';
+import { AllocateWardDialogComponent } from './assign-ward/allocate-ward-dialog/allocate-ward-dialog.component';
 
 @NgModule({
   declarations: [
     NurseComponent,
     AppointmentsComponent,
-    EditDetailsDialogComponent
+    EditDetailsDialogComponent,
+    AssignWardComponent,
+    AllocateWardDialogComponent
   ],
   imports: [
     CommonModule,
