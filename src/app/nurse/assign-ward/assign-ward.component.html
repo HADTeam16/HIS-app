@@ -1,0 +1,55 @@
+<section class="flex justify-center items-center p-4">
+    <mat-spinner *ngIf="isLoading; else notLoadingContent"></mat-spinner>
+    <ng-template #notLoadingContent>
+        <app-dynamic-table
+            [headers]="tableHeaders"
+            [data]="tableData"
+            [headerAlias]="headerAlias"
+            [hasActions]="true"
+            [hasExpansion]="true"
+            [paginate]="true"
+            [filter]="true"
+            ><ng-template #actionsTemplate let-patient>
+                <div class="abc">
+                    <button
+                        mat-stroked-button
+                        (click)="
+                            bookAppointment(patient);
+                            $event.stopPropagation()
+                        "
+                    >
+                        Assign Ward
+                    </button>
+                </div>
+            </ng-template>
+            <ng-template #expansionTemplate let-patient>
+                <div class="expanded-row-detail">
+                    <table class="expansion-table">
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td>{{ patient.dateOfBirth }}</td>
+                            <th>PinCode</th>
+                            <td>{{ patient.pinCode }}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td colspan="3">{{ getFullAddress(patient) }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact</th>
+                            <td>{{ patient.contact }}</td>
+                            <th>Email</th>
+                            <td>{{ patient.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Emergency Contact Name</th>
+                            <td>{{ patient.emergencyContactName }}</td>
+                            <th>Emergency Contact Number</th>
+                            <td>{{ patient.emergencyContactNumber }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </ng-template>
+        </app-dynamic-table>
+    </ng-template>
+</section>

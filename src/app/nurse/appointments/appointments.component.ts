@@ -73,8 +73,6 @@ export class AppointmentsComponent {
     
     editDetails(ele:any){
       this.dialog.open(EditDetailsDialogComponent, {
-          height: '40%',
-          width: '30%',
           data: ele,
       });
   }
