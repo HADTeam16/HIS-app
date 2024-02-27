@@ -9,6 +9,7 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReceptionistService } from '../services/receptionist.service';
 import { BookAppointmentDialogComponent } from './patients/book-appointment-dialog/book-appointment-dialog.component';
+import { EmergencyDialogComponent } from './emergency-dialog/emergency-dialog.component';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { BookAppointmentDialogComponent } from './patients/book-appointment-dial
         PatientsComponent,
         AddPatientComponent,
         BookAppointmentDialogComponent,
+        EmergencyDialogComponent,
     ],
     imports: [
         CommonModule,

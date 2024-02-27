@@ -73,12 +73,10 @@ export class BookAppointmentDialogComponent {
             })
             .subscribe({
                 next: (response: string) => {
-                    console.log('Success', response);
                     this.snackbarService.openSnackBar(response);
                     this.dialogRef.close(true);
                 },
                 error: (err) => {
-                    console.log('Error', err);
                     this.snackbarService.openSnackBar(err);
                     this.dialogRef.close(false);
                 },
