@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { AdminService } from '../services/admin.service';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { MaterialModule } from '../material/material.module';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DoctorDialogComponent } from './doctor-dialog/doctor-dialog.component';
@@ -31,6 +30,7 @@ import { AddDialogComponent } from './add-dialog/add-dialog.component';
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
-  ]
+  ],
+  providers: [AdminService],
 })
 export class AdminModule { }

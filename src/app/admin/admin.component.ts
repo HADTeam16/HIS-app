@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { AuthService } from '../services/auth.service';
+import { Doctor } from '../models/user';
+import { AdminService } from '../services/admin.service';
+import { finalize } from 'rxjs';
+import { SnackbarService } from '../material/services/snackbar.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +16,41 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(private authService:AuthService,private router: Router, public dialog: MatDialog) {}
+
+  isLoading = false;
+  tableHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
+  headerAlias = {
+      id: 'Doctor ID',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      dateOfBirth: 'Date of Birth',
+      email: 'Email'
+  };
+
+  tableData: Doctor[] = [];
+  constructor(
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private adminService: AdminService,
+    private snackbarService: SnackbarService,
+  ){
+    this.isLoading = true;
+    this.adminService
+      .getAllDoctors()
+      .pipe(
+        finalize(() => {
+            this.isLoading = false;
+        })
+      )
+      .subscribe({
+        next: (response) => {
+            this.tableData = response;
+        },
+        error: (error) => {
+            this.snackbarService.openSnackBar(error);
+        },
+    }); 
+   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   doctorDataSource = new MatTableDataSource<PeriodicElement>(DOCTOR_ELEMENT_DATA);
