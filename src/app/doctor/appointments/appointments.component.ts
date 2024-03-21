@@ -63,13 +63,13 @@ export class AppointmentsComponent {
     }
 
     setToday() {
-        this.selectedDate = new Date();
+        this.onDateChange(new Date());
     }
 
     setTomorrow() {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        this.selectedDate = tomorrow;
+        this.onDateChange(tomorrow);
     }
 
     addPrescription(appointment_id: number) {
