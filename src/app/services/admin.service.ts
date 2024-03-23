@@ -30,4 +30,27 @@ export class AdminService {
                 })
             );
         }
+        // getAllNurse() {
+        //     return this.httpClient
+        //         .get(environment.baseURL + Api.get_all_doctors)
+        //         .pipe(
+        //             defaultIfEmpty([]),
+        //             map((doctor_list: any[]): Doctor[] => {
+        //                 return doctor_list.map((item) => ({
+        //                     ...item.user,
+        //                     headNurse: item.headNurse
+        //                 }));
+        //             })
+        //         );
+    //     }
+        
+    registerDoctor(doctor: Doctor) {
+        console.log("Inside AdminService");
+        console.log(doctor);
+            return this.httpClient.post(
+                environment.baseURL + Api.register_doctor,
+                doctor
+            );
+        }
+
     }

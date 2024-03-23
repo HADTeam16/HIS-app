@@ -12,6 +12,7 @@ import { ReceptionistDialogComponent } from './receptionist-dialog/receptionist-
 import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AddDialogComponent } from './add-dialog/add-dialog.component';
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
   ],
   providers: [AdminService],
 })

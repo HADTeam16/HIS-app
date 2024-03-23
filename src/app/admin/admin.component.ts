@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { AuthService } from '../services/auth.service';
-import { Doctor } from '../models/user';
+import { Doctor, Nurse } from '../models/user';
 import { AdminService } from '../services/admin.service';
 import { finalize } from 'rxjs';
 import { SnackbarService } from '../material/services/snackbar.service';
@@ -20,14 +20,16 @@ export class AdminComponent {
   isLoading = false;
   tableHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
   headerAlias = {
-      id: 'Doctor ID',
+      id: 'User ID',
       firstName: 'First Name',
       lastName: 'Last Name',
       dateOfBirth: 'Date of Birth',
       email: 'Email'
   };
 
-  tableData: Doctor[] = [];
+  tableDataDoctor: Doctor[] = [];
+  //tableDataNurse: Nurse[] = [];
+
   constructor(
     private authService: AuthService,
     public dialog: MatDialog,
@@ -44,7 +46,7 @@ export class AdminComponent {
       )
       .subscribe({
         next: (response) => {
-            this.tableData = response;
+            this.tableDataDoctor = response;
         },
         error: (error) => {
             this.snackbarService.openSnackBar(error);

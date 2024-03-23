@@ -7,6 +7,7 @@ export enum Api {
     register_patient = 'api/receptionist/signup/patient',
     get_all_doctors = 'api/doctors/get/all/doctors',
     book_appointment = 'api/appointment/book/appointment',
+    register_doctor = 'api/signup/user',
 
     //doctor
     get_appointment = 'api/appointment/get/all/appointments/by/date'
