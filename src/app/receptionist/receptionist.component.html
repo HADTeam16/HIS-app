@@ -4,7 +4,19 @@
     </button>
     <a mat-button routerLink="patients">Reception Portal</a>
     <div class="flex justify-center items-center">
-        <button mat-raised-button type="button" (click)="onLogout()">Log Out</button>
+        <button mat-icon-button class="mr-4" (click)="callEmergency()">
+            <mat-icon
+                [svgIcon]="
+                    emergency
+                        ? 'e911_emergency_filled'
+                        : 'e911_emergency_outline'
+                "
+                >chat</mat-icon
+            >
+        </button>
+        <button mat-raised-button type="button" (click)="onLogout()">
+            Log Out
+        </button>
     </div>
 </mat-toolbar>
 <mat-sidenav-container class="min-h-full">

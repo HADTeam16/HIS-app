@@ -32,6 +32,8 @@ export class AppModule {
         'chat_outlined',
         'patient_list',
         'person_add',
+        'e911_emergency_filled',
+        'e911_emergency_outline',
     ];
 
     constructor(
