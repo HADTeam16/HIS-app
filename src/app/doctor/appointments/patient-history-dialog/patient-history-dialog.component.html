@@ -1,0 +1,63 @@
+<mat-sidenav-container class="h-full">
+    <mat-sidenav mode="side" opened class="w-1/5">
+        <mat-list role="list">
+            <div *ngFor="let appointment of appointments; let i = index">
+                <mat-list-item
+                    role="listitem"
+                    (click)="fetchAppointmentDetails(i)"
+                    class="h-8 text-center"
+                >
+                    {{ "A" + appointment.toString().padStart(3, "0") }}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-card *ngIf="appointment != null">
+            <mat-card-header>
+                <mat-card-title>Patient Statistics</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <table>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <td colspan="3">{{ appointment.appointmentId }}</td>
+                    </tr>
+                    <tr>
+                        <th>Temperature</th>
+                        <td>{{ appointment.temperature }}</td>
+                        <th>Blood Pressure</th>
+                        <td>{{ appointment.bloodPressure }}</td>
+                    </tr>
+                    <tr>
+                        <th>Height</th>
+                        <td>{{ appointment.height }}</td>
+                        <th>Weight</th>
+                        <td>{{ appointment.weight }}</td>
+                    </tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="prescription && prescription.length > 0">
+            <mat-card-header>
+                <mat-card-title>Prescription</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img mat-card-image [src]="prescription" />
+            </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="records.length > 0">
+            <mat-card-header>
+                <mat-card-title>Records</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img
+                    mat-card-image
+                    *ngFor="let record of records"
+                    [src]="record"
+                />
+            </mat-card-content>
+        </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>

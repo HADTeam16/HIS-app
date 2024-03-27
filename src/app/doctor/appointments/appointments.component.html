@@ -76,11 +76,18 @@
                 <br />
                 <mat-action-row>
                     <button
-                        mat-button
+                        mat-raised-button
                         color="primary"
-                        (click)="addPrescription(appointment.appointmentId)"
+                        (click)="finishAppointment(appointment.appointmentId)"
                     >
-                        Add Prescription
+                        Finish Appointment
+                    </button>
+                    <button
+                        mat-stroked-button
+                        color="primary"
+                        (click)="viewHistory(appointment.patientId)"
+                    >
+                        View Patient History
                     </button>
                 </mat-action-row>
             </mat-expansion-panel>
