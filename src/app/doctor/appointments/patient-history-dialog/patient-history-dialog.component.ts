@@ -18,6 +18,7 @@ export class PatientHistoryDialogComponent {
     prescription: string;
     records: string[] = [];
     isPrescriptionText: boolean;
+    loadedImage: string = '';
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { patientId: number },
@@ -46,6 +47,7 @@ export class PatientHistoryDialogComponent {
     }
 
     fetchAppointmentDetails(i: number) {
+        this.loadedImage = '';
         this.isLoadingDetails = true;
         this.doctorService
             .getAppointmentDetails(this.appointments[i])
@@ -63,11 +65,47 @@ export class PatientHistoryDialogComponent {
                     this.appointment = res.appointment;
                     this.prescription = res.prescription;
                     this.records = res.records;
-                    this.snackbarService.openSnackBar("Appointment details fetched.");
+                    this.snackbarService.openSnackBar(
+                        'Appointment details fetched.'
+                    );
                 },
                 error: (err) => {
                     this.snackbarService.openSnackBar('Error:' + err);
                 },
             });
+    }
+    
+    formatDate(dateString: string) {
+        const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ];
+        const suffixes = ['th', 'st', 'nd', 'rd'];
+
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        let hour = date.getHours();
+        const minute = date.getMinutes();
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+
+        hour = hour % 12;
+        hour = hour ? hour : 12; // the hour '0' should be '12'
+        const minuteStr = minute < 10 ? '0' + minute : minute;
+
+        const daySuffix = suffixes[(day % 10) - 1] || suffixes[0];
+
+        return `${day}${daySuffix} ${month}, ${year} - ${hour}:${minuteStr}${ampm}`;
     }
 }
