@@ -8,7 +8,7 @@ export enum Api {
     get_all_doctors = 'api/doctors/get/all/doctors',
     book_appointment = 'api/appointment/book/appointment',
     register_doctor = 'auth/signup/user',
-    get_all_doctors_by_id = 'get/user/{userId}',
+    get_all_doctors_by_id = 'get/user/',
 
     //doctor
     get_appointment = 'api/appointment/get/all/appointments/by/date',

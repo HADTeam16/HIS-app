@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../enums/api';
-import { defaultIfEmpty, map } from 'rxjs';
+import { Observable, defaultIfEmpty, map } from 'rxjs';
 import { Doctor } from '../models/user';
 
 @Injectable()
@@ -33,7 +33,7 @@ export class AdminService {
         
         getDoctorById(doctorId: number): Observable<Doctor[]> {
             return this.httpClient
-              .get(environment.baseURL + Api.get_all_doctors_by_id + `/${doctorId}`)
+              .get(environment.baseURL + Api.get_all_doctors_by_id + doctorId)
               .pipe(
                 defaultIfEmpty([]),
                 map((doctor_list: any[]): Doctor[] => {

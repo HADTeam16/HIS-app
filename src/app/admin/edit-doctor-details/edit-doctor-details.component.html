@@ -1,1 +1,181 @@
-<p>edit-doctor-details works!</p>
+<!-- doctor-dialog.component.html -->
+<h2 mat-dialog-title>Doctor's Form</h2>
+<div class="dialog-form">
+  <form [formGroup]="editdoctorForm">
+    <div class="row mt-6">
+
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middleName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Age</mat-label>
+        <input matInput formControlName="age">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>State</mat-label>
+        <input matInput formControlName="state">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Address Line 1</mat-label>
+        <input matInput formControlName="addressLine1">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput formControlName="addressLine2">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Landmark</mat-label>
+        <input matInput formControlName="landmark">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Pincode</mat-label>
+        <input matInput formControlName="pinCode">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Contact</mat-label>
+        <input matInput formControlName="contact">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Profile Picture</mat-label>
+        <input matInput formControlName="profilePicture">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Emergency Contact Name</mat-label>
+        <input matInput formControlName="emergencyContactName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Emergency Contact Number</mat-label>
+        <input matInput formControlName="emergencyContactNumber">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Role</mat-label>
+        <input matInput formControlName="role">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Medical License Number</mat-label>
+        <input matInput formControlName="medicalLicenseNumber">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Specialization</mat-label>
+        <input matInput formControlName="specialization">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Board Certification</mat-label>
+        <input matInput formControlName="boardCertification">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Experience</mat-label>
+        <input matInput formControlName="experience">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Medical Degree</mat-label>
+        <input matInput formControlName="medicalDegree">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>CV</mat-label>
+        <input matInput formControlName="cv">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Drug Screening Result</mat-label>
+        <input matInput formControlName="drugScreeningResult">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Work Start</mat-label>
+        <input matInput formControlName="workStart">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Work End</mat-label>
+        <input matInput formControlName="workEnd">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-3 text-center p-4">
+      <button 
+        mat-stroked-button
+        type="submit"
+        color="primary"
+        (click)="onRegisterDoctor()">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
