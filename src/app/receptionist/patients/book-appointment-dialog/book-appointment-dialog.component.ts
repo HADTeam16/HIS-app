@@ -18,6 +18,12 @@ export class BookAppointmentDialogComponent {
     doctors_list = new BehaviorSubject<Doctor[]>([]);
     selected_doctor_id: number | null = null;
     purpose: string;
+    patient_stats: {
+        temperature: string;
+        bloodPressure: string;
+        weight: string;
+        height: string;
+    } = { temperature: '', bloodPressure: '', height: '', weight: '' };
 
     constructor(
         public dialogRef: MatDialogRef<BookAppointmentDialogComponent>,
