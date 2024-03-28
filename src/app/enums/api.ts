@@ -11,5 +11,9 @@ export enum Api {
     get_all_doctors_by_id = 'get/user/{userId}',
 
     //doctor
-    get_appointment = 'api/appointment/get/all/appointments/by/date'
+    get_appointment = 'api/appointment/get/all/appointments/by/date',
+    get_patient_appointment = 'api/appointment/get/all/previous/appointment/for/patient',
+    get_appointment_details = 'api/appointment/get/appointment/prescription/records/',
+    add_prescription = 'api/appointment/add/prescription/',
+    add_records = 'api/records/add/records/',
 }

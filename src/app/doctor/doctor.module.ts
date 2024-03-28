@@ -9,6 +9,8 @@ import { PrecriptionDialogComponent } from './appointments/precription-dialog/pr
 import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-detail-dialog.component';
 import { WardMapComponent } from './ward-map/ward-map.component';
 import { DoctorService } from '../services/doctor.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PatientHistoryDialogComponent } from './appointments/patient-history-dialog/patient-history-dialog.component';
 
 @NgModule({
     declarations: [
@@ -17,8 +19,14 @@ import { DoctorService } from '../services/doctor.service';
         PrecriptionDialogComponent,
         WardMapComponent,
         WardDetailDialogComponent,
+        PatientHistoryDialogComponent,
     ],
-    imports: [CommonModule, DoctorRoutingModule, MaterialModule],
+    imports: [
+        CommonModule,
+        DoctorRoutingModule,
+        MaterialModule,
+        ReactiveFormsModule,
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [DoctorService],
 })

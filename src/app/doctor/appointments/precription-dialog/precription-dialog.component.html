@@ -1,13 +1,61 @@
 <h2 mat-dialog-title>Appointment ID: {{ prescription.appointment_id }}</h2>
 <mat-dialog-content>
-    <app-canvas [pen_state]="pen_state"></app-canvas>
+    <app-canvas
+        *ngIf="prescription_state == 'canvas'"
+        [pen_state]="pen_state"
+    ></app-canvas>
+    <mat-form-field *ngIf="prescription_state == 'text'" class="w-full">
+        <mat-label>Prescription</mat-label>
+        <textarea
+            matInput
+            [formControl]="textControl"
+            type="text"
+            rows="32"
+        ></textarea>
+    </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <mat-button-toggle-group [value]="pen_state" class="mr-4">
-        <mat-button-toggle value="write" (click)="setPenStatus('write')">Write</mat-button-toggle>
-        <mat-button-toggle value="erase" (click)="setPenStatus('erase')">Erase</mat-button-toggle>
-    </mat-button-toggle-group>
-    <button mat-raised-button color="accent" (click)="onClearPad()">Clear</button>
-    <button mat-raised-button color="primary" (click)="savePrescription()">Save</button>
-    <button mat-stroked-button mat-dialog-close color="warn">Close</button>
+    <div class="flex justify-between items-center w-full">
+        <div>
+            <mat-button-toggle-group [value]="prescription_state" class="mr-4">
+                <mat-button-toggle
+                    value="canvas"
+                    (click)="setPrescriptionStatus('canvas')"
+                    >Canvas</mat-button-toggle
+                >
+                <mat-button-toggle
+                    value="text"
+                    (click)="setPrescriptionStatus('text')"
+                    >Text</mat-button-toggle
+                >
+            </mat-button-toggle-group>
+            <mat-button-toggle-group
+                [value]="pen_state"
+                class="mr-4"
+                *ngIf="prescription_state == 'canvas'"
+            >
+                <mat-button-toggle value="write" (click)="setPenStatus('write')"
+                    >Write</mat-button-toggle
+                >
+                <mat-button-toggle value="erase" (click)="setPenStatus('erase')"
+                    >Erase</mat-button-toggle
+                >
+            </mat-button-toggle-group>
+            <button mat-raised-button color="accent" (click)="onClearPad()">
+                Clear
+            </button>
+        </div>
+        <div>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="savePrescription()"
+            >
+                Save
+            </button>
+            <button mat-stroked-button mat-dialog-close color="warn">
+                Close
+            </button>
+        </div>
+    </div>
 </mat-dialog-actions>

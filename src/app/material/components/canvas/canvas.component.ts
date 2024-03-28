@@ -18,11 +18,13 @@ export class CanvasComponent {
     @Input() width = '950';
     @Input() pen_state = 'write';
 
-    @ViewChild('prescriptionPad') canvasEl: ElementRef;
+    @ViewChild('prescriptionPad') canvasEl: ElementRef<HTMLCanvasElement>;
     signaturePad: SignaturePad;
 
     ngAfterViewInit() {
-        this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
+        this.signaturePad = new SignaturePad(this.canvasEl.nativeElement, {
+            backgroundColor: 'white',
+        });
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -41,7 +43,18 @@ export class CanvasComponent {
     }
 
     onSavePrescription() {
-        const dataURL = this.signaturePad.toDataURL();
-        console.log(dataURL);
+        this.downloadImage(
+            this.signaturePad.toDataURL('image/jpeg', 1),
+            'prescription.jpg'
+        );
+    }
+
+    downloadImage(dataUrl: string, filename: string) {
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 }

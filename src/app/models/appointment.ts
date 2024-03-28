@@ -13,6 +13,7 @@ export class DoctorsAppointment extends Appointment {
     slot: string;
     temperature: string;
     bloodPressure: string;
-    admissionDate: string;
-    dischargeDate: string;
+    weight: string;
+    height: string;
+    needWard: boolean;
 }
