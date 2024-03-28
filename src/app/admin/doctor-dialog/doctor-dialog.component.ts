@@ -62,7 +62,6 @@ export class DoctorDialogComponent {
   }
 
   onRegisterDoctor() {
-      console.log("Submitted successfully");
       const formData = this.doctorForm.value;
       this.adminService
       .registerDoctor({

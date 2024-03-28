@@ -5,12 +5,16 @@ export enum Api {
     //receptionist
     get_all_patients = 'api/patient/getallpatients',
     register_patient = 'api/receptionist/signup/patient',
-    get_all_doctors = 'api/doctors/get/all/doctors',
     book_appointment = 'api/appointment/book/appointment',
-    register_doctor = 'auth/signup/user',
-    get_all_doctors_by_id = 'get/user/',
+    
 
     //doctor
+    register_doctor = 'auth/signup/user',
+    get_doctor_by_id = 'api/users/get/user/',
+    get_all_doctors = 'api/doctors/get/all/doctors',
+    update_doctor_by_id = 'api/users/update/user',
+
+
     get_appointment = 'api/appointment/get/all/appointments/by/date',
     get_patient_appointment = 'api/appointment/get/all/previous/appointment/for/patient',
     get_appointment_details = 'api/appointment/get/appointment/prescription/records/',
