@@ -21,6 +21,7 @@ export class User {
     emergencyContactName: string;
     emergencyContactNumber: string;
     role: string;
+    isDisable: boolean;
 }
 
 export class Patient extends User {

@@ -14,16 +14,21 @@
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-card *ngIf="appointment != null">
-            <mat-card-header>
+        <div *ngIf="appointment != null" class="m-4">
+            <h1>
+                {{
+                    "Appointment A" +
+                        appointment.appointmentId.toString().padStart(3, "0")
+                }}
+            </h1>
+        </div>
+        <mat-card *ngIf="appointment != null" class="m-4">
+            <mat-card-header class="mb-4">
                 <mat-card-title>Patient Statistics</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-content class="mt-4">
                 <table>
-                    <tr>
-                        <th>Appointment ID</th>
-                        <td colspan="3">{{ appointment.appointmentId }}</td>
-                    </tr>
                     <tr>
                         <th>Temperature</th>
                         <td>{{ appointment.temperature }}</td>
@@ -39,19 +44,21 @@
                 </table>
             </mat-card-content>
         </mat-card>
-        <mat-card *ngIf="prescription && prescription.length > 0">
-            <mat-card-header>
+        <mat-card *ngIf="prescription && prescription.length > 0" class="m-4">
+            <mat-card-header class="mb-4">
                 <mat-card-title>Prescription</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-content class="mt-4">
                 <img mat-card-image [src]="prescription" />
             </mat-card-content>
         </mat-card>
-        <mat-card *ngIf="records.length > 0">
-            <mat-card-header>
+        <mat-card *ngIf="records.length > 0" class="m-4">
+            <mat-card-header class="mb-4">
                 <mat-card-title>Records</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-content class="mt-4">
                 <img
                     mat-card-image
                     *ngFor="let record of records"
