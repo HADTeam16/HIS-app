@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AuthService } from '../services/auth.service';
 import { Doctor, Nurse } from '../models/user';
 import { AdminService } from '../services/admin.service';
@@ -72,6 +73,16 @@ export class AdminComponent {
     this.receptionistDataSource.paginator = this.receptionistPaginator;
     this.pharmacyDataSource.paginator = this.pharmacyPaginator;
     this.nurseDataSource.paginator = this.nursePaginator;
+  }
+
+  onEdit(doctorId: number): void {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: { tabIndex: this.selectedTabIndex, doctorId: doctorId },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle dialog closed if needed
+    });
   }
 
   openAddDialog() {

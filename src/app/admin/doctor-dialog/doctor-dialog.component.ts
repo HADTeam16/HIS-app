@@ -56,7 +56,8 @@ export class DoctorDialogComponent {
       cv: [''],
       drugScreeningResult: [''],
       workStart: [''],
-      workEnd: ['']
+      workEnd: [''],
+      isDisable: false,
     });
   }
 
@@ -95,7 +96,8 @@ export class DoctorDialogComponent {
         cv: formData.cv,
         drugScreeningResult: formData.drugScreeningResult,
         workStart: formData.workStart,
-        workEnd: formData.workEnd
+        workEnd: formData.workEnd,
+        isDisable: formData.isDisable,
       })
       .subscribe({
         next: (response: string) => {

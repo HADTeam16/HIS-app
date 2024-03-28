@@ -3,6 +3,17 @@
 <div class="dialog-form">
   <form [formGroup]="doctorForm">
     <div class="row mt-6">
+
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>UserName</mat-label>
+        <input matInput formControlName="userName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password">
+      </mat-form-field>
+
       <mat-form-field class="mb-4 ml-8">
         <mat-label>First Name</mat-label>
         <input matInput formControlName="firstName">

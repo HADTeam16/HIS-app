@@ -13,6 +13,9 @@ import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.compo
 import { SearchInputComponent } from './search-input/search-input.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReceptionistDialogComponent,
     PharmacyDialogComponent,
     SearchInputComponent,
-    AddDialogComponent
+    AddDialogComponent,
+    EditDoctorDetailsComponent,
+    EditDialogComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    MatSlideToggleModule,
   ],
   providers: [AdminService],
 })
