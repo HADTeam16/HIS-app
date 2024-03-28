@@ -58,7 +58,7 @@
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["src/global-shim.ts"]
           },
           "configurations": {
             "production": {
