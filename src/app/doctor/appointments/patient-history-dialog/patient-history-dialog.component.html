@@ -1,13 +1,19 @@
+<mat-toolbar color="primary" class="flex justify-between">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ "Patient History" }}</span>
+</mat-toolbar>
 <mat-sidenav-container class="h-full">
-    <mat-sidenav mode="side" opened class="w-1/5">
+    <mat-sidenav #sidenav mode="side" opened class="w-1/3" mode="over">
         <mat-list role="list">
             <div *ngFor="let appointment of appointments; let i = index">
                 <mat-list-item
                     role="listitem"
-                    (click)="fetchAppointmentDetails(i)"
+                    (click)="sidenav.toggle(); fetchAppointmentDetails(i)"
                     class="h-8 text-center"
                 >
-                    {{ "A" + appointment.toString().padStart(3, "0") }}
+                    {{ formatDate(appointment.dateTime) }}
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
@@ -20,7 +26,7 @@
                     <mat-icon [svgIcon]="'arrow_back'" />
                 </button>
             </div>
-            <img [src]="loadedImage" />
+            <img [src]="loadedImage" class="w-full" />
         </ng-template>
         <div *ngIf="loadedImage == ''; else imageViewTemplate">
             <div
