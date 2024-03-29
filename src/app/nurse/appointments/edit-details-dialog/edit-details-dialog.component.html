@@ -1,31 +1,47 @@
-<h2 class="mx-auto" mat-dialog-title>{{editDetails.appointmentId}}</h2>
+<div class="flex flex-col justify-between m-8">
+    <h2 mat-dialog-title>{{ editDetails.appointmentId }}</h2>
 
-<div class="dialog-form">
-    <div class="row mt-6">
-        <mat-form-field class="mb-4 ml-8">
+    <div class="row">
+        <mat-form-field class="mr-2">
             <mat-label>Temprature :</mat-label>
-            <input matInput [(ngModel)]="editDetails.temprature" class="w-full">
-          </mat-form-field>          
-      
-          <mat-form-field class="mb-4 ml-8">
+            <input
+                matInput
+                [(ngModel)]="editDetails.temprature"
+                class="w-full"
+            />
+        </mat-form-field>
+
+        <mat-form-field>
             <mat-label>Oxygen Level :</mat-label>
-            <input matInput [(ngModel)]="editDetails.oxygenLevel" class="w-full">
-          </mat-form-field>
+            <input
+                matInput
+                [(ngModel)]="editDetails.oxygenLevel"
+                class="w-full"
+            />
+        </mat-form-field>
     </div>
 
-    <div class="row mt-6">
-        <mat-form-field class="mb-4 ml-8">
+    <div class="row">
+        <mat-form-field class="mr-2">
             <mat-label>Heart Rate :</mat-label>
-            <input matInput [(ngModel)]="editDetails.heartRate" class="w-full">
-          </mat-form-field>          
-      
-          <mat-form-field class="mb-4 ml-8">
+            <input
+                matInput
+                [(ngModel)]="editDetails.heartRate"
+                class="w-full"
+            />
+        </mat-form-field>
+
+        <mat-form-field>
             <mat-label>Blood Pressure :</mat-label>
-            <input matInput [(ngModel)]="editDetails.bloodPressure" class="w-full">
-          </mat-form-field>
+            <input
+                matInput
+                [(ngModel)]="editDetails.bloodPressure"
+                class="w-full"
+            />
+        </mat-form-field>
     </div>
 
-   <div class="row mt-6">
-    <button mat-button color="primary">Primary</button>
-   </div>
+    <div class="row mt-6 flex justify-end">
+        <button mat-stroked-button color="primary">Edit</button>
+    </div>
 </div>

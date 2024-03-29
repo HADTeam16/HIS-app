@@ -8,59 +8,82 @@
         <button mat-button (click)="setTomorrow()">Tomorrow</button>
     </div>
     <mat-divider [vertical]="true"></mat-divider>
-    <mat-accordion class="w-2/3 mt-8">
-        <mat-expansion-panel
-            *ngFor="let appointment of selectedDateAppointments"
-        >
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    {{
-                        "P" + appointment.patientId.toString().padStart(4, "0")
-                    }}
-                </mat-panel-title>
-                <mat-panel-description>
-                    {{ formatDate(appointment.slot) }}
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="flex w-2/3 justify-between">
-                <section>
-                    Appointment ID:
-                    {{
-                        "A" +
-                            appointment.appointmentId
-                                .toString()
-                                .padStart(4, "0")
-                    }}
-                    <br />
-                    Name: {{ appointment.name }}<br />
-                    Age: {{ appointment.age }}<br />
-                    Gender: {{ appointment.gender }}
-                </section>
-                <section>
-                    Contact: {{ appointment.contact }}<br />
-                    Purpose: {{ appointment.purpose ? appointment.purpose : "-"
-                    }}<br />
-                    Temperature:
-                    {{ appointment.temperature ? appointment.temperature : "-"
-                    }}<br />
-                    Blood Pressure:
-                    {{
-                        appointment.bloodPressure
-                            ? appointment.bloodPressure
-                            : "-"
-                    }}
-                </section>
+    <div class="w-2/3 mt-8" *ngIf="isLoading; else notLoadingContent">
+        <mat-spinner></mat-spinner>
+    </div>
+    <ng-template #notLoadingContent>
+        <ng-template #noAppointmentsFound>
+            <div class="w-2/3 mt-8">
+                <span class="text-xl">No Appointments found!</span>
             </div>
-            <br />
-            <mat-action-row>
-                <button
-                    mat-button
-                    color="primary"
-                    (click)="addPrescription(appointment.appointmentId)"
-                >
-                    Add Prescription
-                </button>
-            </mat-action-row>
-        </mat-expansion-panel>
-    </mat-accordion>
+        </ng-template>
+        <mat-accordion
+            class="w-2/3 mt-8"
+            *ngIf="
+                selectedDateAppointments.length > 0;
+                else noAppointmentsFound
+            "
+        >
+            <mat-expansion-panel
+                *ngFor="let appointment of selectedDateAppointments"
+            >
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{
+                            "P" +
+                                appointment.patientId
+                                    .toString()
+                                    .padStart(4, "0")
+                        }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{ formatDate(appointment.slot) }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flex w-2/3 justify-between">
+                    <section>
+                        Appointment ID:
+                        {{
+                            "A" +
+                                appointment.appointmentId
+                                    .toString()
+                                    .padStart(4, "0")
+                        }}
+                        <br />
+                        Name: {{ appointment.name }}<br />
+                        Age: {{ appointment.age }}<br />
+                        Gender: {{ appointment.gender }}
+                    </section>
+                    <section>
+                        Contact: {{ appointment.contact }}<br />
+                        Purpose:
+                        {{ appointment.purpose ? appointment.purpose : "-"
+                        }}<br />
+                        Temperature:
+                        {{
+                            appointment.temperature
+                                ? appointment.temperature
+                                : "-"
+                        }}<br />
+                        Blood Pressure:
+                        {{
+                            appointment.bloodPressure
+                                ? appointment.bloodPressure
+                                : "-"
+                        }}
+                    </section>
+                </div>
+                <br />
+                <mat-action-row>
+                    <button
+                        mat-button
+                        color="primary"
+                        (click)="addPrescription(appointment.appointmentId)"
+                    >
+                        Add Prescription
+                    </button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </ng-template>
 </div>

@@ -22,11 +22,11 @@ export class AppointmentsComponent {
         private dialog: MatDialog,
         private snackbarService: SnackbarService
     ) {
-        this.isLoading = true;
-        this.getAppointmentList(this.selectedDate.toISOString().split('T')[0]);
+        this.onDateChange(new Date());
     }
 
     getAppointmentList(date: string) {
+        this.isLoading = true;
         this.getAppointmentSub = this.doctorService
             .getAppointments(date)
             .pipe(
@@ -49,17 +49,27 @@ export class AppointmentsComponent {
 
     onDateChange(newDate: Date) {
         this.selectedDate = newDate;
-        this.getAppointmentList(newDate.toISOString().split('T')[0]);
+        const formattedDate = new Intl.DateTimeFormat('en-IN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            timeZone: 'Asia/Kolkata',
+        })
+            .format(newDate)
+            .split('/')
+            .reverse()
+            .join('-');
+        this.getAppointmentList(formattedDate);
     }
 
     setToday() {
-        this.selectedDate = new Date();
+        this.onDateChange(new Date());
     }
 
     setTomorrow() {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        this.selectedDate = tomorrow;
+        this.onDateChange(tomorrow);
     }
 
     addPrescription(appointment_id: number) {
@@ -74,9 +84,22 @@ export class AppointmentsComponent {
     }
 
     formatDate(dateString) {
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const suffixes = ["th", "st", "nd", "rd"];
-    
+        const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ];
+        const suffixes = ['th', 'st', 'nd', 'rd'];
+
         const date = new Date(dateString);
         const day = date.getDate();
         const month = months[date.getMonth()];
@@ -84,16 +107,16 @@ export class AppointmentsComponent {
         let hour = date.getHours();
         const minute = date.getMinutes();
         const ampm = hour >= 12 ? 'PM' : 'AM';
-    
+
         hour = hour % 12;
         hour = hour ? hour : 12; // the hour '0' should be '12'
         const minuteStr = minute < 10 ? '0' + minute : minute;
-    
+
         const daySuffix = suffixes[(day % 10) - 1] || suffixes[0];
-    
+
         return `${day}${daySuffix} ${month}, ${year} ${hour}:${minuteStr}${ampm}`;
     }
-    
+
     ngOnDestroy() {
         this.getAppointmentSub.unsubscribe();
     }
