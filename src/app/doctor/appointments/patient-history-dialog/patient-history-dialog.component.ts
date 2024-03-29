@@ -12,7 +12,7 @@ import { DoctorsAppointment } from '../../../models/appointment';
 })
 export class PatientHistoryDialogComponent {
     isLoadingAppointments: boolean;
-    appointments: number[] = [];
+    appointments: { appointmentId: number; dateTime: string }[] = [];
     isLoadingDetails: boolean;
     appointment: DoctorsAppointment | null = null;
     prescription: string;
@@ -34,7 +34,7 @@ export class PatientHistoryDialogComponent {
                 })
             )
             .subscribe({
-                next: (val: number[]) => {
+                next: (val: { appointmentId: number; dateTime: string }[]) => {
                     this.appointments = val;
                     this.snackbarService.openSnackBar(
                         'Appointments list fetched.'
@@ -50,7 +50,7 @@ export class PatientHistoryDialogComponent {
         this.loadedImage = '';
         this.isLoadingDetails = true;
         this.doctorService
-            .getAppointmentDetails(this.appointments[i])
+            .getAppointmentDetails(this.appointments[i].appointmentId)
             .pipe(
                 finalize(() => {
                     this.isLoadingDetails = false;
@@ -74,7 +74,7 @@ export class PatientHistoryDialogComponent {
                 },
             });
     }
-    
+
     formatDate(dateString: string) {
         const months = [
             'Jan',
