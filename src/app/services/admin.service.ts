@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../enums/api';
-import { Observable, defaultIfEmpty, map } from 'rxjs';
+import { Observable, catchError, defaultIfEmpty, map } from 'rxjs';
 import { Doctor } from '../models/user';
 
 @Injectable()
@@ -50,11 +50,21 @@ export class AdminService {
             );
         }
         
-        updateDoctorById(doctorId: number, updatedDoctor: Doctor): Observable<Doctor> {
-            return this.httpClient
-              .put<Doctor>(`${environment.baseURL}${Api.update_doctor_by_id}/${doctorId}`, updatedDoctor);
-          }
+    updateDoctorById(doctorId: number, updatedDoctor: Doctor): Observable<Doctor> {
+        return this.httpClient
+            .put<Doctor>(`${environment.baseURL}${Api.update_doctor_by_id}/${doctorId}`, updatedDoctor);
+    }
         
+    toggleDoctorById(doctorId: number): Observable<string> {
+    return this.httpClient.put<string>(`${environment.baseURL}${Api.toggle_user_status}/${doctorId}`, null)
+        .pipe(
+        catchError((error: any) => {
+            console.error('An error occurred:', error); // Log the error
+            throw 'Error occurred while toggling doctor status'; // Throw custom error message
+        })
+        );
+    }
+      
           
     
         // getAllNurse() {

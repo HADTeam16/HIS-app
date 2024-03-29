@@ -68,6 +68,41 @@ export class AdminComponent {
 
   selectedTabIndex = 0;
 
+  toggleDoctorStatus(doctor: Doctor): void {
+    this.isLoading = true;
+    this.adminService.toggleDoctorById(doctor.id).pipe(finalize(() => { this.isLoading = false; }))
+      .subscribe({
+        next: (response) => {
+          let message;
+          if (typeof response === 'string') {
+            message = response;
+          } else {
+            message = 'Status changed successfully';
+          }
+          this.snackbarService.openSnackBar(message);
+          // Toggle the status in the local data
+          console.log('Before toggling:', this.tableDataDoctor);
+          const doctorIndex = this.tableDataDoctor.findIndex(el => el.id === doctor.id);
+          if (doctorIndex !== -1) {
+            this.tableDataDoctor[doctorIndex].isDisable = !this.tableDataDoctor[doctorIndex].isDisable;
+          }
+          console.log('After toggling:', this.tableDataDoctor);
+        },
+        error: (error) => {
+          let errorMessage = 'An error occurred';
+          if (error && error.error && typeof error.error === 'string') {
+            errorMessage = error.error;
+          }
+          this.snackbarService.openSnackBar(errorMessage);
+          // Revert the UI changes if any
+          const doctorIndex = this.tableDataDoctor.findIndex(el => el.id === doctor.id);
+          if (doctorIndex !== -1) {
+            this.tableDataDoctor[doctorIndex].isDisable = !this.tableDataDoctor[doctorIndex].isDisable;
+          }
+        }
+      });
+} 
+
   ngAfterViewInit() {
     this.doctorDataSource.paginator = this.doctorPaginator;
     this.receptionistDataSource.paginator = this.receptionistPaginator;

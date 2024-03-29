@@ -34,7 +34,9 @@
                           class="mr-3" 
                           color="primary"
                           (click)="onEdit(doctor.id)">Edit</button>
-                          <mat-slide-toggle class="ml-3">Disable</mat-slide-toggle>
+                          <mat-slide-toggle class="ml-3" [checked]="doctor.isDisable" (change)="toggleDoctorStatus(doctor)">
+                            Disable
+                          </mat-slide-toggle>
                         </div>
                     </ng-template>
                 </app-dynamic-table>
