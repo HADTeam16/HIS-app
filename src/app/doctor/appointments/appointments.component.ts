@@ -5,6 +5,7 @@ import { DoctorService } from '../../services/doctor.service';
 import { Subscription, finalize } from 'rxjs';
 import { DoctorsAppointment } from '../../models/appointment';
 import { SnackbarService } from '../../material/services/snackbar.service';
+import { PatientHistoryDialogComponent } from './patient-history-dialog/patient-history-dialog.component';
 
 @Component({
     selector: 'app-appointments',
@@ -72,7 +73,7 @@ export class AppointmentsComponent {
         this.onDateChange(tomorrow);
     }
 
-    addPrescription(appointment_id: number) {
+    finishAppointment(appointment_id: number) {
         this.dialog.open(PrecriptionDialogComponent, {
             height: '80%',
             width: '80%',
@@ -83,7 +84,15 @@ export class AppointmentsComponent {
         });
     }
 
-    formatDate(dateString) {
+    viewHistory(patientId: number) {
+        this.dialog.open(PatientHistoryDialogComponent, {
+            height: '80%',
+            width: '80%',
+            data: { patientId },
+        });
+    }
+
+    formatDate(dateString: string) {
         const months = [
             'Jan',
             'Feb',

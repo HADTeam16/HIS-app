@@ -4,7 +4,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AuthService } from '../services/auth.service';
+import { Doctor, Nurse } from '../models/user';
+import { AdminService } from '../services/admin.service';
+import { finalize } from 'rxjs';
+import { SnackbarService } from '../material/services/snackbar.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +17,43 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(private authService:AuthService,private router: Router, public dialog: MatDialog) {}
+
+  isLoading = false;
+  tableHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
+  headerAlias = {
+      id: 'User ID',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      dateOfBirth: 'Date of Birth',
+      email: 'Email'
+  };
+
+  tableDataDoctor: Doctor[] = [];
+  //tableDataNurse: Nurse[] = [];
+
+  constructor(
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private adminService: AdminService,
+    private snackbarService: SnackbarService,
+  ){
+    this.isLoading = true;
+    this.adminService
+      .getAllDoctors()
+      .pipe(
+        finalize(() => {
+            this.isLoading = false;
+        })
+      )
+      .subscribe({
+        next: (response) => {
+            this.tableDataDoctor = response;
+        },
+        error: (error) => {
+            this.snackbarService.openSnackBar(error);
+        },
+    }); 
+   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   doctorDataSource = new MatTableDataSource<PeriodicElement>(DOCTOR_ELEMENT_DATA);
@@ -27,11 +68,56 @@ export class AdminComponent {
 
   selectedTabIndex = 0;
 
+  toggleDoctorStatus(doctor: Doctor): void {
+    this.isLoading = true;
+    this.adminService.toggleDoctorById(doctor.id).pipe(finalize(() => { this.isLoading = false; }))
+      .subscribe({
+        next: (response) => {
+          let message;
+          if (typeof response === 'string') {
+            message = response;
+          } else {
+            message = 'Status changed successfully';
+          }
+          this.snackbarService.openSnackBar(message);
+          // Toggle the status in the local data
+          console.log('Before toggling:', this.tableDataDoctor);
+          const doctorIndex = this.tableDataDoctor.findIndex(el => el.id === doctor.id);
+          if (doctorIndex !== -1) {
+            this.tableDataDoctor[doctorIndex].isDisable = !this.tableDataDoctor[doctorIndex].isDisable;
+          }
+          console.log('After toggling:', this.tableDataDoctor);
+        },
+        error: (error) => {
+          let errorMessage = 'An error occurred';
+          if (error && error.error && typeof error.error === 'string') {
+            errorMessage = error.error;
+          }
+          this.snackbarService.openSnackBar(errorMessage);
+          // Revert the UI changes if any
+          const doctorIndex = this.tableDataDoctor.findIndex(el => el.id === doctor.id);
+          if (doctorIndex !== -1) {
+            this.tableDataDoctor[doctorIndex].isDisable = !this.tableDataDoctor[doctorIndex].isDisable;
+          }
+        }
+      });
+} 
+
   ngAfterViewInit() {
     this.doctorDataSource.paginator = this.doctorPaginator;
     this.receptionistDataSource.paginator = this.receptionistPaginator;
     this.pharmacyDataSource.paginator = this.pharmacyPaginator;
     this.nurseDataSource.paginator = this.nursePaginator;
+  }
+
+  onEdit(doctorId: number): void {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: { tabIndex: this.selectedTabIndex, doctorId: doctorId },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle dialog closed if needed
+    });
   }
 
   openAddDialog() {

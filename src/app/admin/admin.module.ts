@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { AdminService } from '../services/admin.service';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { MaterialModule } from '../material/material.module';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DoctorDialogComponent } from './doctor-dialog/doctor-dialog.component';
@@ -13,6 +12,10 @@ import { ReceptionistDialogComponent } from './receptionist-dialog/receptionist-
 import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { AddDialogComponent } from './add-dialog/add-dialog.component';
     ReceptionistDialogComponent,
     PharmacyDialogComponent,
     SearchInputComponent,
-    AddDialogComponent
+    AddDialogComponent,
+    EditDoctorDetailsComponent,
+    EditDialogComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +36,9 @@ import { AddDialogComponent } from './add-dialog/add-dialog.component';
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
-  ]
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+  ],
+  providers: [AdminService],
 })
 export class AdminModule { }

@@ -21,6 +21,7 @@ export class User {
     emergencyContactName: string;
     emergencyContactNumber: string;
     role: string;
+    isDisable: boolean;
 }
 
 export class Patient extends User {
@@ -41,4 +42,8 @@ export class Doctor extends User {
     drugScreeningResult: string;
     workStart: string;
     workEnd: string;
+}
+
+export class Nurse extends User{
+    headNurse: boolean;
 }

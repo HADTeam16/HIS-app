@@ -4,12 +4,12 @@ import { Patient } from '../../models/user';
 import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-ward-dialog.component';
 
 @Component({
-  selector: 'app-assign-ward',
-  templateUrl: './assign-ward.component.html',
-  styleUrl: './assign-ward.component.scss'
+    selector: 'app-assign-ward',
+    templateUrl: './assign-ward.component.html',
+    styleUrl: './assign-ward.component.scss',
 })
 export class AssignWardComponent {
-  isLoading = false;
+    isLoading = false;
     tableHeaders = ['id', 'firstName', 'lastName', 'age', 'gender'];
     headerAlias = {
         id: 'Patient ID',
@@ -45,6 +45,7 @@ export class AssignWardComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toDateString(),
             dischargeDate: '',
+            isDisable: false,
         },
         {
             id: 2,
@@ -74,6 +75,7 @@ export class AssignWardComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
+            isDisable: false,
         },
         {
             id: 3,
@@ -103,6 +105,7 @@ export class AssignWardComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
+            isDisable: false,
         },
         {
             id: 4,
@@ -132,6 +135,7 @@ export class AssignWardComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
+            isDisable: false,
         },
         {
             id: 5,
@@ -161,13 +165,11 @@ export class AssignWardComponent {
             bloodPressure: '108Hg',
             admissionDate: new Date().toUTCString(),
             dischargeDate: '',
+            isDisable: false,
         },
     ];
 
-    constructor(
-        private dialog: MatDialog
-    ) {
-    }
+    constructor(private dialog: MatDialog) {}
 
     bookAppointment(patient: Patient) {
         const dialogRef = this.dialog.open(AllocateWardDialogComponent, {

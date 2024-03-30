@@ -39,6 +39,14 @@ export class PrecriptionDialogComponent {
     }
 
     savePrescription() {
-        this.canvasComponent.onSavePrescription();
+        if (this.prescription_state == 'canvas') {
+            this.canvasComponent.onSavePrescription();
+        } else if (this.prescription_state == 'text') {
+            const utf8Encoded = new TextEncoder().encode(
+                this.textControl.value
+            );
+            const base64Encoded = btoa(String.fromCharCode(...utf8Encoded));
+            console.log(`data:text/plain;base64,${base64Encoded}`);
+        }
     }
 }

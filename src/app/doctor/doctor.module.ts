@@ -10,6 +10,7 @@ import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-de
 import { WardMapComponent } from './ward-map/ward-map.component';
 import { DoctorService } from '../services/doctor.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PatientHistoryDialogComponent } from './appointments/patient-history-dialog/patient-history-dialog.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         PrecriptionDialogComponent,
         WardMapComponent,
         WardDetailDialogComponent,
+        PatientHistoryDialogComponent,
     ],
     imports: [
         CommonModule,
