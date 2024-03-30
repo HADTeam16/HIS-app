@@ -51,9 +51,11 @@ export class PatientsComponent {
         dialogRef.afterClosed().subscribe({
             next: (booked: boolean) => {
                 if (booked) {
-                    console.log('Appointment booked');
+                    this.snackbarService.openSnackBar('Appointment booked');
                 } else {
-                    console.log('Appointment not possible');
+                    this.snackbarService.openSnackBar(
+                        'Appointment not possible'
+                    );
                 }
             },
             error: (err) => {

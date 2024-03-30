@@ -36,6 +36,7 @@ export class AppModule {
         'person_add',
         'e911_emergency_filled',
         'e911_emergency_outline',
+        'arrow_back',
     ];
 
     constructor(

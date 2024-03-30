@@ -28,13 +28,4 @@ export class WebsocketService {
             this.stompClient.disconnect();
         }
     }
-
-    // Function to send the appointment details to the backend
-    sendAppointmentDetails(appointmentDetails) {
-        this.stompClient.send(
-            '/app/appointmentBooked',
-            {},
-            JSON.stringify(appointmentDetails)
-        );
-    }
 }

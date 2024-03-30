@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
     selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
     constructor(
         private router: Router,
         private authService: AuthService,
-        private snackbarService: SnackbarService
+        private snackbarService: SnackbarService,
+        private websocketService:WebsocketService
     ) {}
 
     getIcon(user: string) {
@@ -107,6 +109,7 @@ export class LoginComponent {
             .subscribe({
                 next: (response) => {
                     if (response['message'] == 'Login Success') {
+                        this.websocketService.connect();
                         this.router.navigate([user]);
                     }
                     this.snackbarService.openSnackBar(response['message']);

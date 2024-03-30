@@ -123,7 +123,7 @@ export class AppointmentsComponent {
 
         const daySuffix = suffixes[(day % 10) - 1] || suffixes[0];
 
-        return `${day}${daySuffix} ${month}, ${year} ${hour}:${minuteStr}${ampm}`;
+        return `${hour}:${minuteStr}${ampm}`;
     }
 
     ngOnDestroy() {
