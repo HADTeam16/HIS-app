@@ -91,7 +91,7 @@ export class AdminService {
     
     getAllNurse() {
         return this.httpClient
-            .get(environment.baseURL + Api.get_all_doctors)
+            .get(environment.baseURL + Api.get_all_nurse)
             .pipe(
                 defaultIfEmpty([]),
                 map((nurse_list: any[]): Nurse[] => {
@@ -131,6 +131,15 @@ export class AdminService {
         return this.httpClient.post(
             environment.baseURL + Api.register_doctor,
             doctor
+        );
+    }
+
+    registerNurse(nurse: Nurse) {
+        console.log("Inside AdminService");
+        console.log(nurse);
+        return this.httpClient.post(
+            environment.baseURL + Api.register_nurse,
+            nurse
         );
     }
 

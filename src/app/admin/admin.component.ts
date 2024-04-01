@@ -19,14 +19,22 @@ import { SnackbarService } from '../material/services/snackbar.service';
 export class AdminComponent {
 
   isLoading = false;
-  tableHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
-  headerAlias = {
+  tableDoctorHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
+  tableNurseHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
+  headerDoctorAlias = {
       id: 'User ID',
       firstName: 'First Name',
       lastName: 'Last Name',
       dateOfBirth: 'Date of Birth',
       email: 'Email'
   };
+  headerNurseAlias = {
+    id: 'User ID',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    dateOfBirth: 'Date of Birth',
+    email: 'Email'
+};
 
   tableDataDoctor: Doctor[] = [];
   tableDataNurse: Nurse[] = [];
@@ -53,6 +61,7 @@ export class AdminComponent {
       .subscribe({
         next: (response) => {
           this.tableDataDoctor = response;
+          console.log("Doctor - ");
           console.log(this.tableDataDoctor);
         },
         error: (error) => {
@@ -73,6 +82,7 @@ export class AdminComponent {
       .subscribe({
         next: (response) => {
           this.tableDataNurse = response;
+          console.log("Nurse - ");
           console.log(this.tableDataNurse);
         },
         error: (error) => {

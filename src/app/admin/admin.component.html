@@ -19,9 +19,9 @@
               <ng-template #notLoadingContent>
                 <div class="w-full overflow-x-auto">
                   <app-dynamic-table
-                    [headers]="tableHeaders"
+                    [headers]="tableDoctorHeaders"
                     [data]="tableDataDoctor"
-                    [headerAlias]="headerAlias"
+                    [headerAlias]="headerDoctorAlias"
                     [hasActions]="true"
                     [hasExpansion]="false"
                     [paginate]="true"
@@ -88,9 +88,9 @@
             <ng-template #notLoadingContent>
               <div class="w-full overflow-x-auto">
                 <app-dynamic-table
-                  [headers]="tableHeaders"
+                  [headers]="tableNurseHeaders"
                   [data]="tableDataNurse"
-                  [headerAlias]="headerAlias"
+                  [headerAlias]="headerNurseAlias"
                   [hasActions]="true"
                   [hasExpansion]="false"
                   [paginate]="true"
