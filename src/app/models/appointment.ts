@@ -4,6 +4,13 @@ export class Appointment {
     purpose: string;
 }
 
+export class ReceptionistAppointment extends Appointment {
+    temperature: string;
+    bloodPressure: string;
+    weight: string;
+    height: string;
+}
+
 export class DoctorsAppointment extends Appointment {
     appointmentId: number;
     contact: string;

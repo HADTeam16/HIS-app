@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { Api } from '../enums/api';
 import { defaultIfEmpty, map } from 'rxjs';
 import { Doctor, Patient } from '../models/user';
-import { Appointment } from '../models/appointment';
+import { Appointment, ReceptionistAppointment } from '../models/appointment';
 
 @Injectable()
 export class ReceptionistService {
@@ -57,7 +57,7 @@ export class ReceptionistService {
             );
     }
 
-    bookAppointment(appointment: Appointment) {
+    bookAppointment(appointment: ReceptionistAppointment) {
         return this.httpClient
             .post(environment.baseURL + Api.book_appointment, appointment)
             .pipe(

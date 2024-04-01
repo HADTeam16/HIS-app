@@ -88,7 +88,7 @@ export class AppointmentsComponent {
         this.dialog.open(PatientHistoryDialogComponent, {
             height: '80%',
             width: '80%',
-            data: { patientId },
+            data: { patientId, date: this.selectedDate },
         });
     }
 
