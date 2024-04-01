@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
     MatPaginatorModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
   ],
   providers: [AdminService],
 })

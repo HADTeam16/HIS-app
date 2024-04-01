@@ -20,6 +20,8 @@ export enum Api {
     register_nurse = 'auth/signup/user',
     update_nurse_by_id = 'api/users/update/user',
 
+
+    //user
     toggle_user_status = 'auth/toggle/user/status',
 
     get_appointment = 'api/appointment/get/all/appointments/by/date',
