@@ -44,6 +44,7 @@ export class DynamicTableComponent {
     @Input() colWidth: { [header: string]: string } = {};
     @Input('headers') displayedColumns: string[] = [];
     @Input() data: {}[] = [];
+    @Input() title: string = '';
 
     dataSource: MatTableDataSource<{}>;
     columnsToDisplay: string[] = [];
