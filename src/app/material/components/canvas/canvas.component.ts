@@ -15,7 +15,7 @@ import SignaturePad from 'signature_pad';
 })
 export class CanvasComponent {
     @Input() height = '1000';
-    @Input() width = '950';
+    @Input() width = '750';
     @Input() pen_state = 'write';
 
     @ViewChild('prescriptionPad') canvasEl: ElementRef<HTMLCanvasElement>;
@@ -29,7 +29,7 @@ export class CanvasComponent {
 
     ngOnChanges(changes: SimpleChanges) {
         let pen_state_change: SimpleChange = changes['pen_state'];
-        if (this.signaturePad) {
+        if (this.signaturePad && pen_state_change) {
             if (pen_state_change.currentValue == 'write') {
                 this.signaturePad.penColor = 'black';
             } else if (pen_state_change.currentValue == 'erase') {

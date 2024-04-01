@@ -9,19 +9,12 @@ import { WebsocketService } from './services/websocket.service';
 })
 export class AppComponent {
     title = 'HIS-app';
+    
     constructor(
-        private authService: AuthService,
-        private webSocketService: WebsocketService
+        private authService: AuthService
     ) {}
+
     ngOnInit() {
         this.authService.autoLogin();
-        this.webSocketService.connect();
-    }
-    ngOnDestroy() {
-        this.webSocketService.disconnect();
-    }
-
-    bookAppointment(appointmentDetails) {
-        this.webSocketService.sendAppointmentDetails(appointmentDetails);
     }
 }

@@ -1,70 +1,107 @@
+<mat-toolbar color="primary" class="flex justify-between">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ "Patient History" }}</span>
+</mat-toolbar>
 <mat-sidenav-container class="h-full">
-    <mat-sidenav mode="side" opened class="w-1/5">
+    <mat-sidenav #sidenav mode="side" opened class="w-1/3" mode="over">
         <mat-list role="list">
             <div *ngFor="let appointment of appointments; let i = index">
                 <mat-list-item
                     role="listitem"
-                    (click)="fetchAppointmentDetails(i)"
+                    (click)="sidenav.toggle(); fetchAppointmentDetails(i)"
                     class="h-8 text-center"
                 >
-                    {{ "A" + appointment.toString().padStart(3, "0") }}
+                    {{ formatDate(appointment.dateTime) }}
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div *ngIf="appointment != null" class="m-4">
-            <h1>
-                {{
-                    "Appointment A" +
-                        appointment.appointmentId.toString().padStart(3, "0")
-                }}
-            </h1>
+        <ng-template #imageViewTemplate>
+            <div class="absolute top-2 left-2">
+                <button mat-fab color="primary" (click)="loadedImage = ''">
+                    <mat-icon [svgIcon]="'arrow_back'" />
+                </button>
+            </div>
+            <img [src]="loadedImage" class="w-full" />
+        </ng-template>
+        <div *ngIf="loadedImage == ''; else imageViewTemplate">
+            <div
+                *ngIf="appointment != null"
+                class="m-4 flex justify-between items-center"
+            >
+                <span class="text-2xl font-normal font-sans">
+                    {{
+                        "Appointment A" +
+                            appointment.appointmentId
+                                .toString()
+                                .padStart(3, "0")
+                    }}
+                </span>
+                <span class="text-lg font-light">{{
+                    formatDate(appointment.slot)
+                }}</span>
+            </div>
+            <mat-divider id="title_divider"></mat-divider>
+            <mat-card *ngIf="appointment != null" class="m-4">
+                <mat-card-header class="mb-4">
+                    <mat-card-title>Patient Statistics</mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content class="mt-4">
+                    <table>
+                        <tr>
+                            <th>Temperature</th>
+                            <td>{{ appointment.temperature }}</td>
+                            <th>Blood Pressure</th>
+                            <td>{{ appointment.bloodPressure }}</td>
+                        </tr>
+                        <tr>
+                            <th>Height</th>
+                            <td>{{ appointment.height }}</td>
+                            <th>Weight</th>
+                            <td>{{ appointment.weight }}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <mat-card
+                *ngIf="prescription && prescription.length > 0"
+                class="m-4"
+            >
+                <mat-card-header class="mb-4">
+                    <mat-card-title>Prescription</mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content class="mt-4">
+                    <img
+                        mat-card-image
+                        [src]="prescription"
+                        class="h-36 w-36 m-2 p-2 border border-solid border-gray-300"
+                        (click)="loadedImage = prescription"
+                    />
+                </mat-card-content>
+            </mat-card>
+            <mat-card *ngIf="records.length > 0" class="m-4">
+                <mat-card-header class="mb-4">
+                    <mat-card-title>Records</mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content class="mt-4">
+                    <div class="flex flex-wrap">
+                        <img
+                            mat-card-image
+                            *ngFor="let record of records"
+                            [src]="record"
+                            class="h-36 w-36 m-2 p-2 border border-solid border-gray-300"
+                            (click)="loadedImage = record"
+                        />
+                    </div>
+                </mat-card-content>
+            </mat-card>
         </div>
-        <mat-card *ngIf="appointment != null" class="m-4">
-            <mat-card-header class="mb-4">
-                <mat-card-title>Patient Statistics</mat-card-title>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-content class="mt-4">
-                <table>
-                    <tr>
-                        <th>Temperature</th>
-                        <td>{{ appointment.temperature }}</td>
-                        <th>Blood Pressure</th>
-                        <td>{{ appointment.bloodPressure }}</td>
-                    </tr>
-                    <tr>
-                        <th>Height</th>
-                        <td>{{ appointment.height }}</td>
-                        <th>Weight</th>
-                        <td>{{ appointment.weight }}</td>
-                    </tr>
-                </table>
-            </mat-card-content>
-        </mat-card>
-        <mat-card *ngIf="prescription && prescription.length > 0" class="m-4">
-            <mat-card-header class="mb-4">
-                <mat-card-title>Prescription</mat-card-title>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-content class="mt-4">
-                <img mat-card-image [src]="prescription" />
-            </mat-card-content>
-        </mat-card>
-        <mat-card *ngIf="records.length > 0" class="m-4">
-            <mat-card-header class="mb-4">
-                <mat-card-title>Records</mat-card-title>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-content class="mt-4">
-                <img
-                    mat-card-image
-                    *ngFor="let record of records"
-                    [src]="record"
-                />
-            </mat-card-content>
-        </mat-card>
     </mat-sidenav-content>
 </mat-sidenav-container>
