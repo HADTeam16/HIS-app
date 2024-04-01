@@ -49,10 +49,10 @@ export class DoctorService {
             );
     }
 
-    getPatientAppointments(patientId: number) {
+    getPatientAppointments(patientId: number, date: Date) {
         return this.httpClient
             .get(environment.baseURL + Api.get_patient_appointment, {
-                params: { patientId, date: new Date().toISOString() },
+                params: { patientId, date: date.toISOString() },
             })
             .pipe(defaultIfEmpty([]));
     }
