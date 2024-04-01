@@ -29,41 +29,65 @@ export class AdminComponent {
   };
 
   tableDataDoctor: Doctor[] = [];
-  //tableDataNurse: Nurse[] = [];
+  tableDataNurse: Nurse[] = [];
 
   constructor(
     private authService: AuthService,
     public dialog: MatDialog,
     private adminService: AdminService,
     private snackbarService: SnackbarService,
-  ){
+  ) {
+    this.getDoctors();
+    this.getNurses();
+  }
+  
+  getDoctors() {
     this.isLoading = true;
     this.adminService
       .getAllDoctors()
       .pipe(
         finalize(() => {
-            this.isLoading = false;
+          this.isLoading = false;
         })
       )
       .subscribe({
         next: (response) => {
-            this.tableDataDoctor = response;
+          this.tableDataDoctor = response;
+          console.log(this.tableDataDoctor);
         },
         error: (error) => {
-            this.snackbarService.openSnackBar(error);
+          this.snackbarService.openSnackBar(error);
         },
-    }); 
-   }
+      });
+  }
+
+  getNurses() {
+    this.isLoading = true;
+    this.adminService
+      .getAllNurse()
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          this.tableDataNurse = response;
+          console.log(this.tableDataNurse);
+        },
+        error: (error) => {
+          this.snackbarService.openSnackBar(error);
+        },
+      });
+  }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   doctorDataSource = new MatTableDataSource<PeriodicElement>(DOCTOR_ELEMENT_DATA);
   receptionistDataSource = new MatTableDataSource<PeriodicElement>(RECEPTIONIST_ELEMENT_DATA);
   nurseDataSource = new MatTableDataSource<PeriodicElement>(NURSE_ELEMENT_DATA);
-  pharmacyDataSource = new MatTableDataSource<PeriodicElement>(PHARMACY_ELEMENT_DATA);
 
   @ViewChild('doctorPaginator') doctorPaginator: MatPaginator;
   @ViewChild('receptionistPaginator') receptionistPaginator: MatPaginator;
-  @ViewChild('pharmacyPaginator') pharmacyPaginator: MatPaginator;
   @ViewChild('nursePaginator') nursePaginator: MatPaginator;
 
   selectedTabIndex = 0;
@@ -101,18 +125,62 @@ export class AdminComponent {
           }
         }
       });
-} 
+  } 
+  
+  toggleNurseStatus(doctor: Doctor): void {
+    this.isLoading = true;
+    this.adminService.toggleDoctorById(doctor.id).pipe(finalize(() => { this.isLoading = false; }))
+      .subscribe({
+        next: (response) => {
+          let message;
+          if (typeof response === 'string') {
+            message = response;
+          } else {
+            message = 'Status changed successfully';
+          }
+          this.snackbarService.openSnackBar(message);
+          // Toggle the status in the local data
+          console.log('Before toggling:', this.tableDataDoctor);
+          const doctorIndex = this.tableDataDoctor.findIndex(el => el.id === doctor.id);
+          if (doctorIndex !== -1) {
+            this.tableDataDoctor[doctorIndex].isDisable = !this.tableDataDoctor[doctorIndex].isDisable;
+          }
+          console.log('After toggling:', this.tableDataDoctor);
+        },
+        error: (error) => {
+          let errorMessage = 'An error occurred';
+          if (error && error.error && typeof error.error === 'string') {
+            errorMessage = error.error;
+          }
+          this.snackbarService.openSnackBar(errorMessage);
+          // Revert the UI changes if any
+          const doctorIndex = this.tableDataDoctor.findIndex(el => el.id === doctor.id);
+          if (doctorIndex !== -1) {
+            this.tableDataDoctor[doctorIndex].isDisable = !this.tableDataDoctor[doctorIndex].isDisable;
+          }
+        }
+      });
+  } 
 
   ngAfterViewInit() {
     this.doctorDataSource.paginator = this.doctorPaginator;
     this.receptionistDataSource.paginator = this.receptionistPaginator;
-    this.pharmacyDataSource.paginator = this.pharmacyPaginator;
     this.nurseDataSource.paginator = this.nursePaginator;
   }
 
-  onEdit(doctorId: number): void {
+  onDoctorEdit(doctorId: number): void {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: { tabIndex: this.selectedTabIndex, doctorId: doctorId },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle dialog closed if needed
+    });
+  }
+
+  onNurseEdit(nurseId: number): void {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: { tabIndex: this.selectedTabIndex, nurseId: nurseId },
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -139,9 +207,6 @@ export class AdminComponent {
         this.receptionistDataSource.filter = value;
         break;
       case 2:
-        this.pharmacyDataSource.filter = value;
-        break;
-      case 3:
         this.nurseDataSource.filter = value;
         break;
     }

@@ -89,6 +89,10 @@
       </div>
       <!-- Doctor Specific fields -->
       <div class="row mt-4">
+        <mat-form-field class="mb-4 ml-4">
+          <mat-label>Medical License Number</mat-label>
+          <input matInput formControlName="medicalLicenseNumber" [value]="tableDataDoctor?.medicalLicenseNumber">
+        </mat-form-field>
         <mat-form-field class="mb-4 ml-4 mr-8">
           <mat-label>Specialization</mat-label>
           <input matInput formControlName="specialization" [value]="tableDataDoctor?.specialization">

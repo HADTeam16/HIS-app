@@ -9,7 +9,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { DoctorDialogComponent } from './doctor-dialog/doctor-dialog.component';
 import { NurseDialogComponent } from './nurse-dialog/nurse-dialog.component';
 import { ReceptionistDialogComponent } from './receptionist-dialog/receptionist-dialog.component';
-import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +23,6 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
     DoctorDialogComponent,
     NurseDialogComponent,
     ReceptionistDialogComponent,
-    PharmacyDialogComponent,
     SearchInputComponent,
     AddDialogComponent,
     EditDoctorDetailsComponent,
