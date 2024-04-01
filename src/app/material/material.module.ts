@@ -31,6 +31,8 @@ import { RemoveUnderscorePipe } from './pipes/remove-underscore.pipe';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
     declarations: [
@@ -81,6 +83,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         ElevateOnHoverDirective,
         MatSelectModule,
         MatTabsModule,
+        MatSlideToggleModule,
+        MatMenuModule,
     ],
     providers: [SnackbarService],
 })
