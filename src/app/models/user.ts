@@ -43,3 +43,7 @@ export class Doctor extends User {
     workStart: string;
     workEnd: string;
 }
+
+export class Nurse extends User{
+    headNurse: boolean;
+}
