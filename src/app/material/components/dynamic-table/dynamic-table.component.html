@@ -1,5 +1,5 @@
 <div class="heading-panel">
-    <span class="heading-title">Patient List</span>
+    <span class="heading-title" *ngIf="title != ''">{{ title }}</span>
     <mat-form-field [ngStyle]="{ display: filter ? 'inline-block' : 'none' }">
         <mat-label>Filter</mat-label>
         <input
