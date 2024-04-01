@@ -14,6 +14,12 @@ export enum Api {
     get_all_doctors = 'api/doctors/get/all/doctors',
     update_doctor_by_id = 'api/users/update/user',
 
+    //nurse
+    get_all_nurse = 'api/nurse/get/all/nurse',
+    get_nurse_by_id = 'api/users/get/user/',
+    register_nurse = 'auth/signup/user',
+    update_nurse_by_id = 'api/users/update/user',
+
     toggle_user_status = 'auth/toggle/user/status',
 
     get_appointment = 'api/appointment/get/all/appointments/by/date',

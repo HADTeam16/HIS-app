@@ -33,7 +33,7 @@
                           mat-stroked-button 
                           class="mr-3" 
                           color="primary"
-                          (click)="onEdit(doctor.id)">Edit</button>
+                          (click)="onDoctorEdit(doctor.id)">Edit</button>
                           <mat-slide-toggle class="ml-3" [checked]="doctor.isDisable" (change)="toggleDoctorStatus(doctor)">
                             Disable
                           </mat-slide-toggle>
@@ -81,79 +81,40 @@
           </mat-paginator>
         </div> 
     </mat-tab>
-    <mat-tab label="Nurse">
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="pharmacyDataSource">
-        
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> No. </th>
-              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-        
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-        
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef> Weight </th>
-              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-        
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef> Symbol </th>
-              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        
-          <mat-paginator #pharmacyPaginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons aria-label="Select page of periodic elements">
-          </mat-paginator>
-        </div> 
-    </mat-tab>
-    <mat-tab label="Pharmacy">
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="nurseDataSource">
-        
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> No. </th>
-              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-        
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-        
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef> Weight </th>
-              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-        
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef> Symbol </th>
-              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        
-          <mat-paginator #nursePaginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons aria-label="Select page of periodic elements">
-          </mat-paginator>
-        </div> 
-    </mat-tab>
-    </mat-tab-group>
+    <mat-tab label="Nurse"> 
+      <div class="mat-elevation-z8 w-full">
+          <section class="flex justify-center items-center p-4">
+            <mat-spinner *ngIf="isLoading; else notLoadingContent"></mat-spinner>
+            <ng-template #notLoadingContent>
+              <div class="w-full overflow-x-auto">
+                <app-dynamic-table
+                  [headers]="tableHeaders"
+                  [data]="tableDataNurse"
+                  [headerAlias]="headerAlias"
+                  [hasActions]="true"
+                  [hasExpansion]="false"
+                  [paginate]="true"
+                  [filter]="true"
+              >
+                  <ng-template #actionsTemplate let-nurse>
+                      <div>
+                        <button 
+                        mat-stroked-button 
+                        class="mr-3" 
+                        color="primary"
+                        (click)="onNurseEdit(nurse.id)">Edit</button>
+                        <mat-slide-toggle class="ml-3" [checked]="nurse.isDisable" (change)="toggleNurseStatus(nurse)">
+                          Disable
+                        </mat-slide-toggle>
+                      </div>
+                  </ng-template>
+              </app-dynamic-table>
+              </div>
+            </ng-template>
+          </section>
+        </div>    
+  </mat-tab>
+</mat-tab-group>
 </div>
 <mat-divider></mat-divider>
 <footer class="h-24 w-full flex justify-center items-center bg-gray-500">

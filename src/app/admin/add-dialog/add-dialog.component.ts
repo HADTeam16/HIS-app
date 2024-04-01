@@ -9,8 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     <ng-container [ngSwitch]="tabIndex">
       <app-doctor-dialog *ngSwitchCase="0"></app-doctor-dialog>
       <app-receptionist-dialog *ngSwitchCase="1"></app-receptionist-dialog>
-      <app-pharmacy-dialog *ngSwitchCase="2"></app-pharmacy-dialog>
-      <app-nurse-dialog *ngSwitchCase="3"></app-nurse-dialog>
+      <app-nurse-dialog *ngSwitchCase="2"></app-nurse-dialog>
     </ng-container>
   `,
 })

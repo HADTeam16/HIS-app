@@ -1,22 +1,38 @@
-<h2 mat-dialog-title>Appointment ID: {{ prescription.appointment_id }}</h2>
+<div class="flex justify-between items-center w-full">
+    <span class="text-xl ml-8 mt-4">
+        Appointment ID: {{ prescription.appointment_id }}
+    </span>
+    <mat-slide-toggle
+        class="mr-8 mt-4"
+        color="primary"
+        (change)="onAssignWardToggle($event)"
+    >
+        Assign Ward
+    </mat-slide-toggle>
+</div>
 <mat-dialog-content>
-    <app-canvas
-        *ngIf="prescription_state == 'canvas'"
-        [pen_state]="pen_state"
-    ></app-canvas>
-    <mat-form-field *ngIf="prescription_state == 'text'" class="w-full">
-        <mat-label>Prescription</mat-label>
-        <textarea
-            matInput
-            [formControl]="textControl"
-            type="text"
-            rows="32"
-        ></textarea>
-    </mat-form-field>
+    <div
+        class="border border-gray-300 border-solid"
+        [ngStyle]="{ width: prescription_state == 'canvas' ? '750px' : '95%' }"
+    >
+        <app-canvas
+            *ngIf="prescription_state == 'canvas'"
+            [pen_state]="pen_state"
+        ></app-canvas>
+        <mat-form-field *ngIf="prescription_state == 'text'" class="w-full">
+            <mat-label>Prescription</mat-label>
+            <textarea
+                matInput
+                [formControl]="textControl"
+                type="text"
+                rows="32"
+            ></textarea>
+        </mat-form-field>
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions>
     <div class="flex justify-between items-center w-full">
-        <div>
+        <div class="flex flex-nowrap items-center">
             <mat-button-toggle-group [value]="prescription_state" class="mr-4">
                 <mat-button-toggle
                     value="canvas"
@@ -46,6 +62,25 @@
             </button>
         </div>
         <div>
+            <button
+                mat-fab
+                extended
+                color="accent"
+                [matMenuTriggerFor]="recordsMenu"
+            >
+                <mat-icon>attach_file</mat-icon>
+                {{ filesData.length + " records attached" }}
+            </button>
+            <mat-menu #recordsMenu="matMenu">
+                <button mat-menu-item (click)="openFileSelector()">
+                    Add records
+                </button>
+                <button mat-menu-item (click)="clearRecords()">
+                    Clear records
+                </button>
+            </mat-menu>
+        </div>
+        <div class="flex flex-nowrap items-center">
             <button
                 mat-raised-button
                 color="primary"
