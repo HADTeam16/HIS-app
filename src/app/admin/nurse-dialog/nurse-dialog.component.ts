@@ -91,6 +91,5 @@ export class NurseDialogComponent {
             this.dialogRef.close(false);
         },
       });
-    console.log(formData);
   }
 }
