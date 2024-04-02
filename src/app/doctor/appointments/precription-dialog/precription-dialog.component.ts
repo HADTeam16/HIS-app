@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CanvasComponent } from '../../../material/components/canvas/canvas.component';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { DoctorService } from '../../../services/doctor.service';
+import { SnackbarService } from '../../../material/services/snackbar.service';
 
 @Component({
     selector: 'app-precription-dialog',
@@ -19,7 +21,9 @@ export class PrecriptionDialogComponent {
 
     constructor(
         @Inject(MAT_DIALOG_DATA)
-        public prescription: { appointment_id: string; prescription: string }
+        public prescription: { appointment_id: number; prescription: string },
+        private doctorService: DoctorService,
+        private snackbarService: SnackbarService
     ) {}
 
     openFileSelector() {
@@ -79,15 +83,40 @@ export class PrecriptionDialogComponent {
         }
     }
 
-    savePrescription() {
+    finishAppointment() {
+        let prescription;
         if (this.prescription_state == 'canvas') {
-            this.canvasComponent.onSavePrescription();
+            prescription = this.canvasComponent.onSavePrescription();
         } else if (this.prescription_state == 'text') {
             const utf8Encoded = new TextEncoder().encode(
                 this.textControl.value
             );
             const base64Encoded = btoa(String.fromCharCode(...utf8Encoded));
-            console.log(`data:text/plain;base64,${base64Encoded}`);
+            prescription = `data:text/plain;base64,${base64Encoded}`;
         }
+        const records = this.filesData.map((el) => el.base64);
+        this.doctorService
+            .addAppointmentData(
+                this.prescription.appointment_id,
+                prescription,
+                records,
+                this.needsWard
+            )
+            .then(
+                (res) => {
+                    console.log(res);
+                    this.snackbarService.openSnackBar(
+                        this.needsWard
+                            ? 'Appointment data uploaded and patient added to ward queue'
+                            : 'Appointment data uploaded'
+                    );
+                },
+                (err) => {
+                    console.log(err);
+                }
+            )
+            .finally(() => {
+                console.log('Appointment finished successfully');
+            });
     }
 }
