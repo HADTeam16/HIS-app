@@ -1,7 +1,11 @@
 <div class="flex justify-center items-center">
     <mat-spinner *ngIf="doctorsLoading; else doctorsLoaded"></mat-spinner>
     <ng-template #doctorsLoaded>
-        <form class="m-8 grid grid-cols-2 gap-4 justify-items-center items-center">
+        <form
+            [formGroup]="patientForm"
+            (submit)="onBookAppointment()"
+            class="m-8 grid grid-cols-2 gap-4 justify-items-center items-center"
+        >
             <mat-form-field>
                 <mat-select
                     placeholder="Select specialization"
@@ -15,12 +19,17 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input type="text" matInput placeholder="Enter temperature" />
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Enter temperature"
+                    formControlName="temperature"
+                />
             </mat-form-field>
             <mat-form-field>
                 <mat-select
+                    formControlName="doctorId"
                     placeholder="Select doctor"
-                    (selectionChange)="onSelectDoctor($event.value)"
                 >
                     <mat-option
                         *ngFor="let doctor of doctors_list | async"
@@ -35,27 +44,37 @@
                     type="text"
                     matInput
                     placeholder="Enter Blood Pressure"
+                    formControlName="bloodPressure"
                 />
             </mat-form-field>
             <mat-form-field>
                 <input
                     matInput
                     placeholder="Enter purpose"
-                    (keyup)="updatePurpose($event.target)"
+                    formControlName="purpose"
                 />
             </mat-form-field>
             <mat-form-field>
-                <input type="text" matInput placeholder="Enter Weight" />
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Enter Height"
+                    formControlName="height"
+                />
             </mat-form-field>
             <mat-form-field>
-                <input type="text" matInput placeholder="Enter Height" />
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Enter Weight"
+                    formControlName="weight"
+                />
             </mat-form-field>
             <button
                 mat-stroked-button
-                type="button"
+                type="submit"
                 color="primary"
-                [disabled]="selected_doctor_id == null"
-                (click)="onBookAppointment()"
+                [disabled]="patientForm.value.doctorId == 0"
             >
                 Book Appointment
             </button>

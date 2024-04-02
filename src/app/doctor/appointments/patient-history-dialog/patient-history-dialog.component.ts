@@ -21,13 +21,14 @@ export class PatientHistoryDialogComponent {
     loadedImage: string = '';
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: { patientId: number },
+        @Inject(MAT_DIALOG_DATA)
+        public data: { patientId: number; date: Date },
         private doctorService: DoctorService,
         private snackbarService: SnackbarService
     ) {
         this.isLoadingAppointments = true;
         this.doctorService
-            .getPatientAppointments(this.data.patientId)
+            .getPatientAppointments(this.data.patientId, this.data.date)
             .pipe(
                 finalize(() => {
                     this.isLoadingAppointments = false;

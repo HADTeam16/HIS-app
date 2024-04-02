@@ -1,93 +1,144 @@
 <!-- doctor-dialog.component.html -->
-<h2 mat-dialog-title>Nurse's Form</h2>
+<h2 mat-dialog-title>Doctor's Form</h2>
 <div class="dialog-form">
-
+  <form [formGroup]="nurseForm">
     <div class="row mt-6">
-        <mat-form-field class="mb-4 ml-8">
-          <mat-label>First Name</mat-label>
-          <input matInput class="w-full"> 
-        </mat-form-field>
-      
-        <mat-form-field class="mb-4 ml-4">
-          <mat-label>Middle Name</mat-label>
-          <input matInput class="w-full">
-        </mat-form-field>
-      
-        <mat-form-field class="mb-4 ml-4 mr-8">
-          <mat-label>Last Name</mat-label>
-          <input matInput class="w-full">
-        </mat-form-field>
-    </div>
 
-    <div class="row mt-4">
-        <mat-form-field class="mb-4 ml-8">
-            <mat-label>Age</mat-label>
-            <input matInput class="w-full"> 
-          </mat-form-field>
-
-          <mat-form-field class="mb-4 ml-4">
-            <mat-label>Gender</mat-label>
-            <mat-select>
-              <mat-option value="one">Male</mat-option>
-              <mat-option value="two">Female</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field class="mb-4 ml-4">
-            <mat-label>Contact</mat-label>
-            <input matInput class="w-full">
-          </mat-form-field>
-    </div>
-
-    <div class="row mt-6">
-      <mat-form-field class="mb-4 mx-8 w-full sm:w-auto md:w-full lg:w-full">
-        <mat-label>Address Line 1</mat-label>
-        <input matInput class="w-full"> 
-      </mat-form-field>
-    </div>
-
-    <div class="row mt-6">
-      <mat-form-field class="mb-4 mx-8 w-full sm:w-auto md:w-full lg:w-full">
-        <mat-label>Address Line 2</mat-label>
-        <input matInput class="w-full"> 
-      </mat-form-field>
-    </div>
-
-    <div class="row mt-6">
       <mat-form-field class="mb-4 ml-8">
-        <mat-label>Landmark</mat-label>
-        <input matInput class="w-full"> 
+        <mat-label>UserName</mat-label>
+        <input matInput formControlName="userName">
       </mat-form-field>
 
-      <mat-form-field class="mb-4 ml-14">
-        <mat-label>Pincode</mat-label>
-        <input matInput class="w-full"> 
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middleName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName">
       </mat-form-field>
     </div>
 
     <div class="row mt-4">
-        <mat-form-field class="mb-4 ml-8">
-            <mat-label>Date of Birth</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Age</mat-label>
+        <input matInput formControlName="age">
+      </mat-form-field>
 
-          <mat-form-field class="ml-8">
-            <mat-label>Profile photo</mat-label>
-            <input matInput readonly style="cursor: not-allowed; background-color: #f0f0f0;" placeholder="Click here to add">
-            <button mat-icon-button matSuffix (click)="openFileInput()" [attr.aria-label]="'Add Profile Photo'">
-              <mat-icon>add_a_photo</mat-icon>
-            </button>
-            <input type="file" id="fileInput" style="display: none" (change)="handleFileInput($event)" />
-          </mat-form-field>
-  
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>State</mat-label>
+        <input matInput formControlName="state">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Address Line 1</mat-label>
+        <input matInput formControlName="addressLine1">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput formControlName="addressLine2">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Landmark</mat-label>
+        <input matInput formControlName="landmark">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Pincode</mat-label>
+        <input matInput formControlName="pinCode">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Contact</mat-label>
+        <input matInput formControlName="contact">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Profile Picture</mat-label>
+        <input matInput formControlName="profilePicture">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4">
+        <mat-label>Emergency Contact Name</mat-label>
+        <input matInput formControlName="emergencyContactName">
+      </mat-form-field>
+
+      <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-label>Emergency Contact Number</mat-label>
+        <input matInput formControlName="emergencyContactNumber">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-form-field class="mb-4 ml-8">
+        <mat-label>Role</mat-label>
+        <input matInput formControlName="role">
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-4">
+      <mat-checkbox>Head Nurse</mat-checkbox>
     </div>
 
     <div class="row mt-3 text-center p-4">
-        <a mat-raised-button color="primary">Save</a>
+      <button 
+        mat-stroked-button
+        type="submit"
+        color="primary"
+        (click)="onRegisterNurse()">
+        Save
+      </button>
     </div>
-
+  </form>
 </div>
-  

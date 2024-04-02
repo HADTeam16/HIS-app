@@ -4,6 +4,7 @@ import { Doctor, Patient } from '../../../models/user';
 import { ReceptionistService } from '../../../services/receptionist.service';
 import { BehaviorSubject, Subscription, finalize } from 'rxjs';
 import { SnackbarService } from '../../../material/services/snackbar.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-book-appointment-dialog',
@@ -16,14 +17,14 @@ export class BookAppointmentDialogComponent {
     doctorsLoading = true;
     specializations = new BehaviorSubject<string[]>([]);
     doctors_list = new BehaviorSubject<Doctor[]>([]);
-    selected_doctor_id: number | null = null;
-    purpose: string;
-    patient_stats: {
-        temperature: string;
-        bloodPressure: string;
-        weight: string;
-        height: string;
-    } = { temperature: '', bloodPressure: '', height: '', weight: '' };
+    patientForm = new FormGroup({
+        doctorId: new FormControl(0),
+        purpose: new FormControl(''),
+        temperature: new FormControl(''),
+        bloodPressure: new FormControl(''),
+        height: new FormControl(''),
+        weight: new FormControl(''),
+    });
 
     constructor(
         public dialogRef: MatDialogRef<BookAppointmentDialogComponent>,
@@ -59,23 +60,19 @@ export class BookAppointmentDialogComponent {
                 (doctor) => doctor.specialization == specialization
             )
         );
-        this.selected_doctor_id = null;
-    }
-
-    onSelectDoctor(selected_doctor_id: number) {
-        this.selected_doctor_id = selected_doctor_id;
-    }
-
-    updatePurpose(purpose_input: EventTarget) {
-        this.purpose = (<HTMLInputElement>purpose_input).value;
+        this.patientForm.controls['doctorId'].reset();
     }
 
     onBookAppointment() {
         this.receptionistService
             .bookAppointment({
-                doctorId: this.selected_doctor_id,
+                doctorId: this.patientForm.value.doctorId,
                 patientId: this.data.id,
-                purpose: this.purpose,
+                purpose: this.patientForm.value.purpose,
+                temperature: this.patientForm.value.temperature,
+                bloodPressure: this.patientForm.value.bloodPressure,
+                height: this.patientForm.value.height,
+                weight: this.patientForm.value.weight,
             })
             .subscribe({
                 next: (response: string) => {
