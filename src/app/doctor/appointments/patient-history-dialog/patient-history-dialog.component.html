@@ -20,6 +20,7 @@
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
+        <h1 *ngIf="appointments.length == 0">Nothing to show</h1>
         <ng-template #imageViewTemplate>
             <div class="absolute top-2 left-2">
                 <button mat-fab color="primary" (click)="loadedImage = ''">

@@ -42,19 +42,20 @@ export class CanvasComponent {
         this.signaturePad.clear();
     }
 
-    onSavePrescription() {
-        this.downloadImage(
-            this.signaturePad.toDataURL('image/jpeg', 1),
-            'prescription.jpg'
-        );
+    onSavePrescription(): string {
+        return this.signaturePad.toDataURL('image/jpeg', 1);
+        // this.downloadImage(
+        //     this.signaturePad.toDataURL('image/jpeg', 1),
+        //     'prescription.jpg'
+        // );
     }
 
-    downloadImage(dataUrl: string, filename: string) {
-        const a = document.createElement('a');
-        a.href = dataUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    }
+    // downloadImage(dataUrl: string, filename: string) {
+    //     const a = document.createElement('a');
+    //     a.href = dataUrl;
+    //     a.download = filename;
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     document.body.removeChild(a);
+    // }
 }
