@@ -16,6 +16,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EditNurseDetailsComponent } from './edit-nurse-details/edit-nurse-details.component';
+import { EditReceptionistDetailsComponent } from './edit-receptionist-details/edit-receptionist-details.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     SearchInputComponent,
     AddDialogComponent,
     EditDoctorDetailsComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    EditNurseDetailsComponent,
+    EditReceptionistDetailsComponent
   ],
   imports: [
     CommonModule,
