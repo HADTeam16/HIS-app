@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { WebsocketService } from './services/websocket.service';
+import { UtilityService } from './services/utility.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { WebsocketService } from './services/websocket.service';
         AuthService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         WebsocketService,
+        UtilityService,
     ],
     bootstrap: [AppComponent],
 })
