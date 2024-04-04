@@ -58,7 +58,7 @@
                                                 toggleDoctorStatus(doctor)
                                             "
                                         >
-                                            Disable
+                                        {{ doctor.isDisable ? 'Enable' : 'Disable' }}
                                         </mat-slide-toggle>
                                     </div>
                                 </ng-template>
