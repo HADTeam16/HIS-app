@@ -47,3 +47,7 @@ export class Doctor extends User {
 export class Nurse extends User{
     headNurse: boolean;
 }
+
+export class Receptionist extends User{
+    
+}
