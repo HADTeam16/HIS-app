@@ -2,9 +2,6 @@ export class Appointment {
     doctorId: number;
     patientId: number;
     purpose: string;
-}
-
-export class ReceptionistAppointment extends Appointment {
     temperature: string;
     bloodPressure: string;
     weight: string;
@@ -18,9 +15,6 @@ export class DoctorsAppointment extends Appointment {
     age: number;
     gender: string;
     slot: string;
-    temperature: string;
-    bloodPressure: string;
-    weight: string;
-    height: string;
     needWard: boolean;
+    completed: boolean;
 }
