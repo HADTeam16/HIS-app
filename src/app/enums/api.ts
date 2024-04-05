@@ -24,6 +24,7 @@ export enum Api {
     get_nurse_by_id = 'api/users/get/user/',
     register_nurse = 'auth/signup/user',
     update_nurse_by_id = 'api/users/update/user',
+    is_head_nurse = 'api/is/head/nurse/',
 
     //receptionist
     get_all_receptionist = 'api/receptionist/get/all/receptionist',
