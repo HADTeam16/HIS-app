@@ -33,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormatDateFullPipe } from './pipes/format-date-full.pipe';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { MatMenuModule } from '@angular/material/menu';
         SnackbarComponent,
         DynamicTableComponent,
         RemoveUnderscorePipe,
+        FormatDateFullPipe,
     ],
     imports: [
         CommonModule,
@@ -62,6 +64,7 @@ import { MatMenuModule } from '@angular/material/menu';
         CanvasComponent,
         ChatComponent,
         DynamicTableComponent,
+        FormatDateFullPipe,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,

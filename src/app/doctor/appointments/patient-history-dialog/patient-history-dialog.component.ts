@@ -75,38 +75,4 @@ export class PatientHistoryDialogComponent {
                 },
             });
     }
-
-    formatDate(dateString: string) {
-        const months = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-        ];
-        const suffixes = ['th', 'st', 'nd', 'rd'];
-
-        const date = new Date(dateString);
-        const day = date.getDate();
-        const month = months[date.getMonth()];
-        const year = date.getFullYear();
-        let hour = date.getHours();
-        const minute = date.getMinutes();
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-
-        hour = hour % 12;
-        hour = hour ? hour : 12; // the hour '0' should be '12'
-        const minuteStr = minute < 10 ? '0' + minute : minute;
-
-        const daySuffix = suffixes[(day % 10) - 1] || suffixes[0];
-
-        return `${day}${daySuffix} ${month}, ${year} - ${hour}:${minuteStr}${ampm}`;
-    }
 }

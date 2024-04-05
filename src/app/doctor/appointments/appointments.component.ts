@@ -6,22 +6,26 @@ import { Subscription, finalize } from 'rxjs';
 import { DoctorsAppointment } from '../../models/appointment';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { PatientHistoryDialogComponent } from './patient-history-dialog/patient-history-dialog.component';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { UtilityService } from '../../services/utility.service';
 
 @Component({
     selector: 'app-appointments',
     templateUrl: './appointments.component.html',
-    styleUrl: './appointments.component.css',
 })
 export class AppointmentsComponent {
     isLoading: boolean;
+    isToday: boolean;
     selectedDate = new Date();
     getAppointmentSub: Subscription;
     selectedDateAppointments: DoctorsAppointment[] = [];
+    displayAppointments: DoctorsAppointment[] = [];
 
     constructor(
         private doctorService: DoctorService,
         private dialog: MatDialog,
-        private snackbarService: SnackbarService
+        private snackbarService: SnackbarService,
+        private utilityService: UtilityService
     ) {
         this.onDateChange(new Date());
     }
@@ -38,6 +42,7 @@ export class AppointmentsComponent {
             .subscribe({
                 next: (response) => {
                     this.selectedDateAppointments = response;
+                    this.displayAppointments = response;
                     this.snackbarService.openSnackBar('Appointments loaded');
                 },
                 error: () => {
@@ -48,8 +53,27 @@ export class AppointmentsComponent {
             });
     }
 
+    onStatusToggle(event: MatButtonToggleChange) {
+        switch (event.value) {
+            case 'all':
+                this.displayAppointments = this.selectedDateAppointments;
+                break;
+            case 'upcoming':
+                this.displayAppointments = this.selectedDateAppointments.filter(
+                    (el) => !el.completed
+                );
+                break;
+            case 'completed':
+                this.displayAppointments = this.selectedDateAppointments.filter(
+                    (el) => el.completed
+                );
+                break;
+        }
+    }
+
     onDateChange(newDate: Date) {
         this.selectedDate = newDate;
+        this.isToday = this.utilityService.isToday(newDate);
         const formattedDate = new Intl.DateTimeFormat('en-IN', {
             year: 'numeric',
             month: '2-digit',
@@ -92,27 +116,8 @@ export class AppointmentsComponent {
         });
     }
 
-    formatDate(dateString: string) {
-        const months = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-        ];
-        const suffixes = ['th', 'st', 'nd', 'rd'];
-
+    formatTime(dateString: string) {
         const date = new Date(dateString);
-        const day = date.getDate();
-        const month = months[date.getMonth()];
-        const year = date.getFullYear();
         let hour = date.getHours();
         const minute = date.getMinutes();
         const ampm = hour >= 12 ? 'PM' : 'AM';
@@ -120,8 +125,6 @@ export class AppointmentsComponent {
         hour = hour % 12;
         hour = hour ? hour : 12; // the hour '0' should be '12'
         const minuteStr = minute < 10 ? '0' + minute : minute;
-
-        const daySuffix = suffixes[(day % 10) - 1] || suffixes[0];
 
         return `${hour}:${minuteStr}${ampm}`;
     }
