@@ -89,7 +89,7 @@
                         <br />
                         <mat-action-row>
                             <button
-                                *ngIf="isToday"
+                            *ngIf="isToday&&!appointment.completed"
                                 mat-raised-button
                                 color="primary"
                                 (click)="
