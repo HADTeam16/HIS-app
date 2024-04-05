@@ -42,6 +42,7 @@ export class DoctorService {
                                 height: appointment['height'],
                                 weight: appointment['weight'],
                                 needWard: appointment['needWard'],
+                                completed: appointment['completed'],
                             };
                         }
                     );
