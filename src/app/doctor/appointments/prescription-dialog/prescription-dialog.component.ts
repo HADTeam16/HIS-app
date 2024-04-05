@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CanvasComponent } from '../../../material/components/canvas/canvas.component';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -7,11 +7,10 @@ import { DoctorService } from '../../../services/doctor.service';
 import { SnackbarService } from '../../../material/services/snackbar.service';
 
 @Component({
-    selector: 'app-precription-dialog',
-    templateUrl: './precription-dialog.component.html',
-    styleUrl: './precription-dialog.component.scss',
+    selector: 'app-prescription-dialog',
+    templateUrl: './prescription-dialog.component.html',
 })
-export class PrecriptionDialogComponent {
+export class PrescriptionDialogComponent {
     needsWard: boolean = false;
     filesData: { name: string; base64: string }[] = [];
     prescription_state: 'canvas' | 'text' = 'canvas';
@@ -20,6 +19,7 @@ export class PrecriptionDialogComponent {
     textControl = new FormControl('');
 
     constructor(
+        public dialogRef: MatDialogRef<PrescriptionDialogComponent>,
         @Inject(MAT_DIALOG_DATA)
         public prescription: { appointment_id: number; prescription: string },
         private doctorService: DoctorService,
@@ -110,6 +110,7 @@ export class PrecriptionDialogComponent {
                             ? 'Appointment data uploaded and patient added to ward queue'
                             : 'Appointment data uploaded'
                     );
+                    this.dialogRef.close();
                 },
                 (err) => {
                     this.snackbarService.openSnackBar(err);

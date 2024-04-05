@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PrecriptionDialogComponent } from './precription-dialog/precription-dialog.component';
+import { PrescriptionDialogComponent } from './prescription-dialog/prescription-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DoctorService } from '../../services/doctor.service';
 import { Subscription, finalize } from 'rxjs';
@@ -98,7 +98,7 @@ export class AppointmentsComponent {
     }
 
     finishAppointment(appointment_id: number) {
-        this.dialog.open(PrecriptionDialogComponent, {
+        this.dialog.open(PrescriptionDialogComponent, {
             height: '80%',
             width: '80%',
             data: {
