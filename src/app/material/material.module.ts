@@ -34,6 +34,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormatDateFullPipe } from './pipes/format-date-full.pipe';
+import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { FormatDateFullPipe } from './pipes/format-date-full.pipe';
         DynamicTableComponent,
         RemoveUnderscorePipe,
         FormatDateFullPipe,
+        SingleFileUploadComponent,
     ],
     imports: [
         CommonModule,
@@ -64,6 +66,7 @@ import { FormatDateFullPipe } from './pipes/format-date-full.pipe';
         CanvasComponent,
         ChatComponent,
         DynamicTableComponent,
+        SingleFileUploadComponent,
         FormatDateFullPipe,
         MatToolbarModule,
         MatIconModule,
