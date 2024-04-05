@@ -1,6 +1,6 @@
 <!-- doctor-dialog.component.html -->
 <h2 mat-dialog-title>Doctor's Form</h2>
-<form [formGroup]="doctorForm" class="flex flex-col justify-between m-8 h-96">
+<form [formGroup]="doctorForm" class="flex flex-col justify-between m-8 h-96" (submit)="onRegisterDoctor()">
     <div class="row">
         <mat-form-field class="mr-4">
             <mat-label>First Name</mat-label>
@@ -37,8 +37,8 @@
         <mat-form-field class="mr-4">
             <mat-label>Gender</mat-label>
             <mat-select formControlName="gender">
-                <mat-option value="male">Male</mat-option>
-                <mat-option value="female">Female</mat-option>
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -107,11 +107,6 @@
             <input matInput formControlName="email" />
         </mat-form-field>
 
-        <mat-form-field class="mr-4">
-            <mat-label>Profile Picture</mat-label>
-            <input matInput formControlName="profilePicture" />
-        </mat-form-field>
-
         <mat-form-field>
             <mat-label>Emergency Contact Name</mat-label>
             <input matInput formControlName="emergencyContactName" />
@@ -122,11 +117,6 @@
         <mat-form-field class="mr-4">
             <mat-label>Emergency Contact Number</mat-label>
             <input matInput formControlName="emergencyContactNumber" />
-        </mat-form-field>
-
-        <mat-form-field class="mr-4">
-            <mat-label>Role</mat-label>
-            <input matInput formControlName="role" />
         </mat-form-field>
 
         <mat-form-field class="mr-4">
@@ -142,30 +132,8 @@
 
     <div class="row">
         <mat-form-field class="mr-4">
-            <mat-label>Board Certification</mat-label>
-            <input matInput formControlName="boardCertification" />
-        </mat-form-field>
-
-        <mat-form-field class="mr-4">
             <mat-label>Experience</mat-label>
             <input matInput formControlName="experience" />
-        </mat-form-field>
-
-        <mat-form-field class="mr-4">
-            <mat-label>Medical Degree</mat-label>
-            <input matInput formControlName="medicalDegree" />
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>CV</mat-label>
-            <input matInput formControlName="cv" />
-        </mat-form-field>
-    </div>
-
-    <div class="row">
-        <mat-form-field class="mr-4">
-            <mat-label>Drug Screening Result</mat-label>
-            <input matInput formControlName="drugScreeningResult" />
         </mat-form-field>
 
         <mat-form-field class="mr-4">
@@ -173,17 +141,40 @@
             <input matInput formControlName="workStart" />
         </mat-form-field>
 
-        <mat-form-field class="mr-4">
+        <mat-form-field>
             <mat-label>Work End</mat-label>
             <input matInput formControlName="workEnd" />
         </mat-form-field>
+
     </div>
+
+    <table class="w-2/3">
+        <tr>
+            <td>
+                <app-single-file-upload [label]="'Profile Picture'" [fileTypes]="['application/pdf']" (selected)="onProfilePictureSelected($event)"></app-single-file-upload>
+            </td>
+            <td>
+                <app-single-file-upload [label]="'Board Certification'" [fileTypes]="['application/pdf']" (selected)="onBoardCertificationSelected($event)"></app-single-file-upload>
+            </td>
+            <td>
+                <app-single-file-upload [label]="'CV'" [fileTypes]="['application/pdf']" (selected)="onCVSelected($event)"></app-single-file-upload>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <app-single-file-upload class="mr-6" [label]="'Medical Degree'" [fileTypes]="['application/pdf']" (selected)="onMedicalDegreeSelected($event)"></app-single-file-upload>
+            </td>
+            <td colspan="2">
+                <app-single-file-upload [label]="'Drug Screening Result'" [fileTypes]="['application/pdf']" (selected)="onDrugScreeningResultSelected($event)"></app-single-file-upload>
+            </td>
+        </tr>
+    </table>
+
     <div class="row mt-3 text-center p-4">
         <button
             mat-stroked-button
             type="submit"
             color="primary"
-            (click)="onRegisterDoctor()"
         >
             Save
         </button>
