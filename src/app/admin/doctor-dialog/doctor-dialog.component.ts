@@ -5,6 +5,7 @@ import { AdminService } from '../../services/admin.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { Subscription } from 'rxjs';
+import { UtilityService } from '../../services/utility.service';
 
 @Component({
   selector: 'app-doctor-dialog',
@@ -17,13 +18,17 @@ export class DoctorDialogComponent {
   getAllDoctorsSub: Subscription;
   doctors: Doctor[];
   doctorsLoading = true;
+  selectedFile: File | undefined;
+  base64Image: string | undefined;
+  selectedFileName: string | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DoctorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Doctor,
     private adminService: AdminService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private utilityService: UtilityService,
   ) {
     this.doctorForm = this.formBuilder.group({
       id: [''],
@@ -47,7 +52,7 @@ export class DoctorDialogComponent {
       profilePicture: [''],
       emergencyContactName: [''],
       emergencyContactNumber: [''],
-      role: [''],
+      role: ['doctor'],
       medicalLicenseNumber: [''],
       specialization: [''],
       boardCertification: [''],
@@ -61,8 +66,29 @@ export class DoctorDialogComponent {
     });
   }
 
+  onProfilePictureSelected(event : string) {
+    this.doctorForm.controls['profilePicture'].setValue(event);
+  }
+
+  onBoardCertificationSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
+  onCVSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
+  onMedicalDegreeSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
+  onDrugScreeningResultSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
   onRegisterDoctor() {
-      const formData = this.doctorForm.value;
+    const formData = this.doctorForm.value;
+    console.log(formData);
       this.adminService
       .registerDoctor({
         id: formData.id,
