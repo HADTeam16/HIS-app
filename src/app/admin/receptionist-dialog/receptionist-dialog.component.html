@@ -1,6 +1,6 @@
 <!-- receptionist-dialog.component.html -->
 <h2 mat-dialog-title>Receptionist's Form</h2>
-<div class="dialog-form flex flex-col justify-between m-8">
+<div class="dialog-form flex flex-col justify-between m-8 h-96">
   <form [formGroup]="receptionistForm">
     <div class="row">
 
@@ -40,8 +40,8 @@
       <mat-form-field class="mr-4">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
-          <mat-option value="male">Male</mat-option>
-          <mat-option value="female">Female</mat-option>
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
         </mat-select>
       </mat-form-field>
 

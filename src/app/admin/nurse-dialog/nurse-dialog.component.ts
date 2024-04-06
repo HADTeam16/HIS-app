@@ -46,7 +46,7 @@ export class NurseDialogComponent {
       profilePicture: [''],
       emergencyContactName: [''],
       emergencyContactNumber: [''],
-      role: [''],
+      role: ['nurse'],
       isDisable: false,
       headNurse: false,
     });

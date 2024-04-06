@@ -5,7 +5,7 @@ import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorComponent } from './doctor.component';
 import { MaterialModule } from '../material/material.module';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { PrecriptionDialogComponent } from './appointments/precription-dialog/precription-dialog.component';
+import { PrescriptionDialogComponent } from './appointments/prescription-dialog/prescription-dialog.component';
 import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-detail-dialog.component';
 import { WardMapComponent } from './ward-map/ward-map.component';
 import { DoctorService } from '../services/doctor.service';
@@ -16,7 +16,7 @@ import { PatientHistoryDialogComponent } from './appointments/patient-history-di
     declarations: [
         DoctorComponent,
         AppointmentsComponent,
-        PrecriptionDialogComponent,
+        PrescriptionDialogComponent,
         WardMapComponent,
         WardDetailDialogComponent,
         PatientHistoryDialogComponent,
