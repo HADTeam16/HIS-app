@@ -20,17 +20,18 @@
                     (click)="sidenav.toggle(); fetchAppointmentDetails(i)"
                     class="h-8 text-center"
                 >
-                    {{ formatDate(appointment.dateTime) }}
+                    {{ appointment.dateTime | formatDateFull }}
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div class="h-full w-full flex justify-center items-center" *ngIf="appointments.length == 0; else appointmentDetailsTemplate">
-            <h1>
-                Nothing to show
-            </h1>
+        <div
+            class="h-full w-full flex justify-center items-center"
+            *ngIf="appointments.length == 0; else appointmentDetailsTemplate"
+        >
+            <h1>Nothing to show</h1>
         </div>
         <ng-template #appointmentDetailsTemplate>
             <ng-template #loadedImageTemplate>
@@ -50,7 +51,7 @@
                         }}
                     </span>
                     <span class="text-lg font-light">{{
-                        formatDate(appointment.slot)
+                        appointment.slot | formatDateFull
                     }}</span>
                 </div>
                 <mat-divider id="title_divider"></mat-divider>

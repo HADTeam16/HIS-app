@@ -5,6 +5,7 @@ import { AdminService } from '../../services/admin.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { Subscription } from 'rxjs';
+import { UtilityService } from '../../services/utility.service';
 
 @Component({
   selector: 'app-doctor-dialog',
@@ -17,51 +18,77 @@ export class DoctorDialogComponent {
   getAllDoctorsSub: Subscription;
   doctors: Doctor[];
   doctorsLoading = true;
+  selectedFile: File | undefined;
+  base64Image: string | undefined;
+  selectedFileName: string | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DoctorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Doctor,
     private adminService: AdminService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private utilityService: UtilityService,
   ) {
     this.doctorForm = this.formBuilder.group({
-      id: [''],
-      userName: [''],
-      password: [''],
-      firstName: [''],
-      middleName: [''],
-      lastName: [''],
-      gender: [''],
-      dateOfBirth: [''],
-      country: [''],
-      state: [''],
-      city: [''],
-      addressLine1: [''],
-      addressLine2: [''],
-      landmark: [''],
-      pinCode: [''],
-      contact: [''],
-      email: [''],
-      profilePicture: [''],
-      emergencyContactName: [''],
-      emergencyContactNumber: [''],
-      role: [''],
-      medicalLicenseNumber: [''],
-      specialization: [''],
-      boardCertification: [''],
-      experience: [''],
-      medicalDegree: [''],
-      cv: [''],
-      drugScreeningResult: [''],
-      workStart: [''],
-      workEnd: [''],
+      id: [null],
+      userName: [null],
+      password: [null],
+      firstName: [null],
+      middleName: [null],
+      lastName: [null],
+      age: [null],
+      gender: [null],
+      dateOfBirth: [null],
+      country: [null],
+      state: [null],
+      city: [null],
+      addressLine1: [null],
+      addressLine2: [null],
+      landmark: [null],
+      pinCode: [null],
+      contact: [null],
+      email: [null],
+      profilePicture: [null],
+      emergencyContactName: [null],
+      emergencyContactNumber: [null],
+      role: ['doctor'],
+      medicalLicenseNumber: [null],
+      specialization: [null],
+      boardCertification: [null],
+      experience: [null],
+      medicalDegree: [null],
+      cv: [null],
+      drugScreeningResult: [null],
+      workStart: [null],
+      workEnd: [null],
       isDisable: false,
     });
   }
 
+  onProfilePictureSelected(event : string) {
+    this.doctorForm.controls['profilePicture'].setValue(event);
+  }
+
+  onBoardCertificationSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
+  onCVSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
+  onMedicalDegreeSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
+  onDrugScreeningResultSelected(event : string) {
+    this.doctorForm.controls['boardCertification'].setValue(event);
+  }
+
   onRegisterDoctor() {
-      const formData = this.doctorForm.value;
+    const formData = this.doctorForm.value;
+    console.log(formData);
       this.adminService
       .registerDoctor({
         id: formData.id,

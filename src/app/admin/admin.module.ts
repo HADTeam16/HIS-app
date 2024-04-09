@@ -18,6 +18,8 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EditNurseDetailsComponent } from './edit-nurse-details/edit-nurse-details.component';
 import { EditReceptionistDetailsComponent } from './edit-receptionist-details/edit-receptionist-details.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { EditReceptionistDetailsComponent } from './edit-receptionist-details/ed
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [AdminService],
 })
