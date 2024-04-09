@@ -7,17 +7,17 @@ import { Doctor, Nurse, Receptionist } from '../models/user';
 
 @Injectable()
 export class NurseService {
-  constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {}
 
-  public isHeadNurseSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public isHeadNurseSubject: BehaviorSubject<boolean> =
+        new BehaviorSubject<boolean>(false);
 
-  isHeadNurse(nurseId: number): Observable<boolean> {
-    console.log("Called Head Nurse");
-    return this.httpClient
-      .get(environment.baseURL + Api.is_head_nurse + nurseId)
-      .pipe(
-        map((response: any) => { console.log("Called API"); return response.message === 'yes'}),
-              tap((isHeadNurse: boolean) => this.isHeadNurseSubject.next(isHeadNurse))
-          );
-  }
+    isHeadNurse(nurseId: number) {
+        console.log('Called Head Nurse', nurseId);
+        return this.httpClient
+            .get(environment.baseURL + Api.is_head_nurse + nurseId)
+            .subscribe((res: { message: string }) => {
+                this.isHeadNurseSubject.next(res.message === 'yes');
+            });
+    }
 }
