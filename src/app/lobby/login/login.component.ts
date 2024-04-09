@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
 import { WebsocketService } from '../../services/websocket.service';
+import { NurseService } from '../../services/nurse.service';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
         private router: Router,
         private authService: AuthService,
         private snackbarService: SnackbarService,
-        private websocketService:WebsocketService
+        private websocketService: WebsocketService,
+        private nurseService: NurseService,
     ) {}
 
     getIcon(user: string) {
@@ -109,8 +111,15 @@ export class LoginComponent {
             .subscribe({
                 next: (response) => {
                     if (response['message'] == 'Login Success') {
-                        this.websocketService.connect();
-                        this.router.navigate([user]);
+                        if (response['user']['role'] == 'nurse') {
+                            const userId = response['user']['id'];
+                            // {  }
+                            console.log("Insisde");
+                            this.nurseService
+                                .isHeadNurse(userId);
+                            }
+                            // this.websocketService.connect();
+                            this.router.navigate([user]);
                     }
                     this.snackbarService.openSnackBar(response['message']);
                 },
