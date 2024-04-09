@@ -37,7 +37,6 @@ export class DoctorDialogComponent {
       firstName: [null],
       middleName: [null],
       lastName: [null],
-      age: [null],
       gender: [null],
       dateOfBirth: [null],
       country: [null],
