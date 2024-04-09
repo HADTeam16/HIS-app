@@ -33,15 +33,11 @@
       </mat-form-field>
 
       <mat-form-field class="mr-4">
-        <mat-label>Age</mat-label>
-        <input matInput formControlName="age">
-      </mat-form-field>
-
-      <mat-form-field class="mr-4">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
-          <mat-option value="Male">Male</mat-option>
-          <mat-option value="Female">Female</mat-option>
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="notSpecified">Not Specified</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -124,8 +120,9 @@
     </div>
 
     <div class="row ml-3">
-      <mat-checkbox>Head Nurse</mat-checkbox>
+      <mat-checkbox formControlName="headNurse" (change)="onHeadNurseChange($event.checked)">Head Nurse</mat-checkbox>
     </div>
+     
 
     <div class="row mt-3 ml-3 text-center p-4">
       <button 
