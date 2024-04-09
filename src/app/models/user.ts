@@ -5,7 +5,6 @@ export class User {
     firstName: string;
     middleName: string;
     lastName: string;
-    age: number;
     gender: string;
     dateOfBirth: string;
     country: string;

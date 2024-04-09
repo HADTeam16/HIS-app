@@ -17,15 +17,12 @@
         </mat-form-field>
       </div>
       <div class="row mt-4">
-        <mat-form-field class="mb-4 ml-8">
-          <mat-label>Age</mat-label>
-          <input matInput formControlName="age" [value]="tableDataReceptionist?.age">
-        </mat-form-field>
         <mat-form-field class="mb-4 ml-4">
           <mat-label>Gender</mat-label>
           <mat-select formControlName="gender" [value]="tableDataReceptionist?.gender">
             <mat-option value="male">Male</mat-option>
             <mat-option value="female">Female</mat-option>
+            <mat-option value="notSpecified">Not Specified</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="mb-4 ml-4">

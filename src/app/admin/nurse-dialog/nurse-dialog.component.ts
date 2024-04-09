@@ -31,7 +31,6 @@ export class NurseDialogComponent {
       firstName: [''],
       middleName: [''],
       lastName: [''],
-      age: [''],
       gender: [''],
       dateOfBirth: [''],
       country: [''],
@@ -52,6 +51,12 @@ export class NurseDialogComponent {
     });
   }
 
+  onHeadNurseChange(checked: boolean) {
+    this.nurseForm.patchValue({
+      headNurse: checked
+    });
+  }
+
   onRegisterNurse() {
       const formData = this.nurseForm.value;
       this.adminService
@@ -62,7 +67,6 @@ export class NurseDialogComponent {
         firstName: formData.firstName,
         middleName: formData.middleName,
         lastName: formData.lastName,
-        age: formData.age,
         gender: formData.gender,
         dateOfBirth: formData.dateOfBirth,
         country: formData.country,

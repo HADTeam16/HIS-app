@@ -109,20 +109,16 @@ export class LoginComponent {
                 })
             )
             .subscribe({
-                next: async (response) => {
+                next: (response) => {
                     if (response['message'] == 'Login Success') {
                         if (response['user']['role'] == 'nurse') {
                             const userId = response['user']['id'];
                             // {  }
-                            await this.nurseService
-                                .isHeadNurse(userId)
-                                .subscribe((isHeadNurse) => {
-                                    if (isHeadNurse) {
-                                        next: () => {this.nurseService.flag.set()}
-                                    }
-                                });
+                            console.log("Insisde");
+                            this.nurseService
+                                .isHeadNurse(userId);
                             }
-                            this.websocketService.connect();
+                            // this.websocketService.connect();
                             this.router.navigate([user]);
                     }
                     this.snackbarService.openSnackBar(response['message']);
