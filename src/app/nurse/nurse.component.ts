@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { SnackbarService } from '../material/services/snackbar.service';
 
 @Component({
   selector: 'app-nurse',
@@ -13,9 +15,10 @@ export class NurseComponent {
     { title: 'Manage Appointments', icon: 'ward', link: 'assign_ward' },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService : AuthService, private snackBarService : SnackbarService) {}
 
   onLogout() {
-    this.router.navigate(['lobby']);
+    this.authService.logout();
+    this.snackBarService.openSnackBar("Logged Out Successfully");
   }
 }

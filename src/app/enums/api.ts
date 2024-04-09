@@ -24,13 +24,13 @@ export enum Api {
     get_nurse_by_id = 'api/users/get/user/',
     register_nurse = 'auth/signup/user',
     update_nurse_by_id = 'api/users/update/user',
+    is_head_nurse = 'api/nurse/is/head/nurse/',
 
     //receptionist
     get_all_receptionist = 'api/receptionist/get/all/receptionist',
     get_receptionist_by_id = 'api/users/get/user/',
     register_receptionist = 'auth/signup/user',
     update_receptionist_by_id = 'api/users/update/user',
-
 
     //user
     toggle_user_status = 'auth/toggle/user/status',
