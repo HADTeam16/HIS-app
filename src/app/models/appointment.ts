@@ -12,7 +12,6 @@ export class DoctorsAppointment extends Appointment {
     appointmentId: number;
     contact: string;
     name: string;
-    age: number;
     gender: string;
     slot: string;
     needWard: boolean;

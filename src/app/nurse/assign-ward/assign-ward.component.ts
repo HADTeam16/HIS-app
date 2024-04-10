@@ -10,7 +10,7 @@ import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-war
 })
 export class AssignWardComponent {
     isLoading = false;
-    tableHeaders = ['id', 'firstName', 'lastName', 'age', 'gender'];
+    tableHeaders = ['id', 'firstName', 'lastName', 'gender'];
     headerAlias = {
         id: 'Patient ID',
         firstName: 'First name',
