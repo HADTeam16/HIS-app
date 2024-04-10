@@ -2,7 +2,8 @@
     <header class="flex p-4"><h1>Patient registration</h1></header>
     <mat-stepper
         class="example-stepper shadow-md"
-        [orientation]="stepperOrientation | async"
+        [orientation]="(stepperOrientation | async)!"
+        linear
     >
         <!-- Personal Details Step -->
         <mat-step [stepControl]="personalDetailsFormGroup">
@@ -158,19 +159,35 @@
             <form [formGroup]="contactDetailsFormGroup" id="contactForm">
                 <section id="contact-section">
                     <mat-form-field>
-                        <mat-label>Contact</mat-label>
+                        <mat-label>Mobile Number</mat-label>
                         <input
                             matInput
-                            formControlName="contact"
+                            formControlName="mobile"
                             placeholder="Contact"
                             required
                         />
                     </mat-form-field>
-                    <button mat-raised-button>Verify phone number</button>
+                    <button
+                        mat-raised-button
+                        type="button"
+                        (click)="sendMobileOtp()"
+                    >
+                        Verify number
+                    </button>
+                    <!-- <mat-form-field *ngIf="showOtpField[0]"> -->
+                    <mat-form-field>
+                        <mat-label>Mobile OTP</mat-label>
+                        <input
+                            matInput
+                            formControlName="mobile_otp"
+                            placeholder="Enter OTP recieved on mobile"
+                            required
+                        />
+                    </mat-form-field>
                 </section>
                 <section id="email-section">
                     <mat-form-field>
-                        <mat-label>Email</mat-label>
+                        <mat-label>Email Address</mat-label>
                         <input
                             matInput
                             formControlName="email"
@@ -178,7 +195,23 @@
                             required
                         />
                     </mat-form-field>
-                    <button mat-raised-button>Verify email</button>
+                    <button
+                        mat-raised-button
+                        type="button"
+                        (click)="sendEmailOtp()"
+                    >
+                        Verify email
+                    </button>
+                    <!-- <mat-form-field *ngIf="showOtpField[1]"> -->
+                    <mat-form-field>
+                        <mat-label>Email OTP</mat-label>
+                        <input
+                            matInput
+                            formControlName="email_otp"
+                            placeholder="Enter OTP recieved on email"
+                            required
+                        />
+                    </mat-form-field>
                 </section>
                 <section id="emergency-section">
                     <mat-form-field>
@@ -252,7 +285,7 @@
             </form>
             <div class="stepper-actions">
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button type="submit">Finish</button>
+                <button mat-button (click)="registerPatient()">Finish</button>
             </div>
         </mat-step>
     </mat-stepper>
