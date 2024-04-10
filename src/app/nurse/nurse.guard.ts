@@ -7,14 +7,10 @@ export const nurseGuard: CanActivateFn = (route, state) => {
     const nurseService = inject(NurseService);
     console.log('nurseService');
     const router = inject(Router);
-    return nurseService.isHeadNurseSubject.pipe( take(1), map((res) => {
-        console.log('res - ' + res);
-        if (res) {
-            console.log('res - ' + res);
-            return true;
-        } else {
-            return router.createUrlTree(['/nurse']);;
-        }
+    return nurseService.isHeadNurseSubject.pipe(
+        take(1),
+        map((res) => {
+            return res ? true : router.createUrlTree(['/nurse']);
         })
-    )
+    );
 };

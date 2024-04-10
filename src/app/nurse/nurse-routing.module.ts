@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NurseComponent } from './nurse.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AssignWardComponent } from './assign-ward/assign-ward.component';
-import { nurseGuard } from '../guards/nurse.guard';
+import { nurseGuard } from './nurse.guard';
 
 const routes: Routes = [
   {

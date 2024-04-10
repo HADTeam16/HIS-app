@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { WebsocketService } from './services/websocket.service';
 import { UtilityService } from './services/utility.service';
 import { NurseService } from './services/nurse.service';
+import { OtpService } from './services/otp.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -26,7 +27,7 @@ import { NurseService } from './services/nurse.service';
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         WebsocketService,
         UtilityService,
-        NurseService,
+        OtpService,
     ],
     bootstrap: [AppComponent],
 })

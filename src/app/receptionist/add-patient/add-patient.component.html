@@ -1,7 +1,7 @@
 <div class="p-4">
     <header class="flex p-4"><h1>Patient registration</h1></header>
     <mat-stepper
-        class="example-stepper"
+        class="example-stepper shadow-md"
         [orientation]="stepperOrientation | async"
     >
         <!-- Personal Details Step -->
@@ -229,7 +229,7 @@
                         />
                     </mat-form-field>
                 </section>
-                <section>
+                <section id="height-section">
                     <mat-form-field>
                         <mat-label>Height</mat-label>
                         <input

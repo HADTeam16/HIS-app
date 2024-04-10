@@ -13,7 +13,6 @@ export class NurseService {
         new BehaviorSubject<boolean>(false);
 
     isHeadNurse(nurseId: number) {
-        console.log('Called Head Nurse', nurseId);
         return this.httpClient
             .get(environment.baseURL + Api.is_head_nurse + nurseId)
             .subscribe((res: { message: string }) => {
