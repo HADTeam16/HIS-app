@@ -24,18 +24,16 @@ export class User {
 }
 
 export class Patient extends User {
-    purpose: string;
-    temperature: string;
-    bloodPressure: string;
-    admissionDate: string;
-    dischargeDate: string;
+    temperature: number;
+    bloodPressure: number;
+    height: number;
+    weight: number;
 }
 
 export class Doctor extends User {
     medicalLicenseNumber: string;
     specialization: string;
     boardCertification: string;
-    experience: string;
     medicalDegree: string;
     cv: string;
     drugScreeningResult: string;
@@ -43,10 +41,8 @@ export class Doctor extends User {
     workEnd: string;
 }
 
-export class Nurse extends User{
+export class Nurse extends User {
     headNurse: boolean;
 }
 
-export class Receptionist extends User{
-    
-}
+export class Receptionist extends User {}

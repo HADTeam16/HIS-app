@@ -13,7 +13,7 @@ import { BookAppointmentDialogComponent } from './book-appointment-dialog/book-a
 })
 export class PatientsComponent {
     isLoading = false;
-    tableHeaders = ['id', 'firstName', 'lastName', 'age', 'gender'];
+    tableHeaders = ['id', 'firstName', 'lastName', 'gender'];
     headerAlias = {
         id: 'Patient ID',
         firstName: 'First name',

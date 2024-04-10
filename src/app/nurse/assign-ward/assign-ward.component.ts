@@ -10,7 +10,7 @@ import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-war
 })
 export class AssignWardComponent {
     isLoading = false;
-    tableHeaders = ['id', 'firstName', 'lastName', 'age', 'gender'];
+    tableHeaders = ['id', 'firstName', 'lastName', 'gender'];
     headerAlias = {
         id: 'Patient ID',
         firstName: 'First name',
@@ -39,11 +39,10 @@ export class AssignWardComponent {
             emergencyContactName: 'er name',
             emergencyContactNumber: '1234567890',
             role: 'patient',
-            purpose: 'regular checkup',
-            temperature: '93C',
-            bloodPressure: '108Hg',
-            admissionDate: new Date().toDateString(),
-            dischargeDate: '',
+            temperature: 93,
+            bloodPressure: 112,
+            height: 170,
+            weight: 86,
             isDisable: false,
         },
         {
@@ -68,11 +67,10 @@ export class AssignWardComponent {
             emergencyContactName: 'er name',
             emergencyContactNumber: '1234567890',
             role: 'patient',
-            purpose: 'regular checkup',
-            temperature: '93C',
-            bloodPressure: '108Hg',
-            admissionDate: new Date().toUTCString(),
-            dischargeDate: '',
+            temperature: 93,
+            bloodPressure: 112,
+            height: 170,
+            weight: 86,
             isDisable: false,
         },
         {
@@ -97,11 +95,10 @@ export class AssignWardComponent {
             emergencyContactName: 'er name',
             emergencyContactNumber: '1234567890',
             role: 'patient',
-            purpose: 'regular checkup',
-            temperature: '93C',
-            bloodPressure: '108Hg',
-            admissionDate: new Date().toUTCString(),
-            dischargeDate: '',
+            temperature: 93,
+            bloodPressure: 112,
+            height: 170,
+            weight: 86,
             isDisable: false,
         },
         {
@@ -126,11 +123,10 @@ export class AssignWardComponent {
             emergencyContactName: 'er name',
             emergencyContactNumber: '1234567890',
             role: 'patient',
-            purpose: 'regular checkup',
-            temperature: '93C',
-            bloodPressure: '108Hg',
-            admissionDate: new Date().toUTCString(),
-            dischargeDate: '',
+            temperature: 93,
+            bloodPressure: 112,
+            height: 170,
+            weight: 86,
             isDisable: false,
         },
         {
@@ -155,11 +151,10 @@ export class AssignWardComponent {
             emergencyContactName: 'er name',
             emergencyContactNumber: '1234567890',
             role: 'patient',
-            purpose: 'regular checkup',
-            temperature: '93C',
-            bloodPressure: '108Hg',
-            admissionDate: new Date().toUTCString(),
-            dischargeDate: '',
+            temperature: 93,
+            bloodPressure: 112,
+            height: 170,
+            weight: 86,
             isDisable: false,
         },
     ];
