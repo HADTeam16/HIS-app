@@ -26,8 +26,6 @@ export class LoginComponent {
         private router: Router,
         private authService: AuthService,
         private snackbarService: SnackbarService,
-        private websocketService: WebsocketService,
-        private nurseService: NurseService
     ) {}
 
     getIcon(user: string) {
@@ -111,11 +109,6 @@ export class LoginComponent {
             .subscribe({
                 next: (response) => {
                     if (response['message'] == 'Login Success') {
-                        if (response['user']['role'] == 'nurse') {
-                            const userId = response['user']['id'];
-                            this.nurseService.isHeadNurse(userId);
-                        }
-                        this.websocketService.connect();
                         this.router.navigate([user]);
                     }
                     this.snackbarService.openSnackBar(response['message']);
