@@ -20,10 +20,10 @@ export class BookAppointmentDialogComponent {
     patientForm = new FormGroup({
         doctorId: new FormControl(0),
         purpose: new FormControl(''),
-        temperature: new FormControl(''),
-        bloodPressure: new FormControl(''),
-        height: new FormControl(''),
-        weight: new FormControl(''),
+        temperature: new FormControl(0),
+        bloodPressure: new FormControl(0),
+        height: new FormControl(0),
+        weight: new FormControl(0),
     });
 
     constructor(
