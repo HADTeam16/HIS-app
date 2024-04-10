@@ -1,9 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../enums/api';
 import { defaultIfEmpty, map } from 'rxjs';
-import { Doctor, Patient } from '../models/user';
+import { Doctor, Patient, PatientRegistration } from '../models/user';
 import { Appointment } from '../models/appointment';
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ReceptionistService {
             );
     }
 
-    registerPatient(patient: Patient) {
+    registerPatient(patient: PatientRegistration) {
         return this.httpClient.post(
             environment.baseURL + Api.register_patient,
             patient

@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ReceptionistService } from '../services/receptionist.service';
 import { BookAppointmentDialogComponent } from './patients/book-appointment-dialog/book-appointment-dialog.component';
 import { EmergencyDialogComponent } from './emergency-dialog/emergency-dialog.component';
+import { MobileotpValidator } from './validators/mobile-otp.validator';
+import { EmailotpValidator } from './validators/email-otp.validator';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,6 @@ import { EmergencyDialogComponent } from './emergency-dialog/emergency-dialog.co
         MaterialModule,
         ReactiveFormsModule,
     ],
-    providers: [ReceptionistService],
+    providers: [ReceptionistService, MobileotpValidator, EmailotpValidator],
 })
 export class ReceptionistModule {}

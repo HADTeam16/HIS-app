@@ -40,14 +40,14 @@
 
 #contactForm {
     mat-form-field {
-        width: 40%;
+        width: 30%;
     }
     #contact-section,
     #email-section {
         display: flex;
         align-items: center;
         button {
-            margin-left: 64px;
+            margin: 0px 48px;
         }
     }
     #emergency-section {
