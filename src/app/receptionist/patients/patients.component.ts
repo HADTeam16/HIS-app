@@ -59,7 +59,7 @@ export class PatientsComponent {
                 }
             },
             error: (err) => {
-                console.log(err);
+                this.snackbarService.openSnackBar('Error : ', err);
             },
         });
     }
