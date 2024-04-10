@@ -21,8 +21,8 @@ export class ReceptionistService {
                         purpose: item.purpose,
                         temperature: item.temperature,
                         bloodPressure: item.bloodPressure,
-                        admissionDate: item.admissionDate,
-                        dischargeDate: item.dischargeDate,
+                        height: item.height,
+                        weight: item.weight,
                     }));
                 })
             );
@@ -46,7 +46,6 @@ export class ReceptionistService {
                         medicalLicenseNumber: item.medicalLicenseNumber,
                         specialization: item.specialization,
                         boardCertification: item.boardCertification,
-                        experience: item.experience,
                         medicalDegree: item.medicalDegree,
                         cv: item.cv,
                         drugScreeningResult: item.drugScreeningResult,
