@@ -47,7 +47,13 @@
         display: flex;
         align-items: center;
         button {
+            width: 150px;
             margin: 0px 48px;
+        }
+        .verified-icon{
+            margin-left: 24px;
+            transform: scale(1.5);
+            color: green;
         }
     }
     #emergency-section {

@@ -21,7 +21,7 @@ export class BookAppointmentDialogComponent {
         doctorId: new FormControl(0),
         purpose: new FormControl(''),
         temperature: new FormControl(0),
-        bloodPressure: new FormControl(0),
+        bloodPressure: new FormControl(''),
         height: new FormControl(0),
         weight: new FormControl(0),
     });

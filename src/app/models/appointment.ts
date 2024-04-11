@@ -3,7 +3,7 @@ export class Appointment {
     patientId: number;
     purpose: string;
     temperature: number;
-    bloodPressure: number;
+    bloodPressure: string;
     weight: number;
     height: number;
 }

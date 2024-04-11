@@ -18,6 +18,15 @@
                             placeholder="First Name"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                personalDetailsFormGroup
+                                    .get('firstName')
+                                    .hasError('required')
+                            "
+                        >
+                            First Name is required!
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Middle Name</mat-label>
@@ -46,6 +55,15 @@
                                 >Undisclosed</mat-option
                             >
                         </mat-select>
+                        <mat-error
+                            *ngIf="
+                                personalDetailsFormGroup
+                                    .get('gender')
+                                    .hasError('required')
+                            "
+                        >
+                            Gender is required!
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Date of Birth</mat-label>
@@ -62,6 +80,15 @@
                             [for]="dobPicker"
                         ></mat-datepicker-toggle>
                         <mat-datepicker #dobPicker></mat-datepicker>
+                        <mat-error
+                            *ngIf="
+                                personalDetailsFormGroup
+                                    .get('dateOfBirth')
+                                    .hasError('required')
+                            "
+                        >
+                            Date of birth is required!
+                        </mat-error>
                     </mat-form-field>
                     <app-single-file-upload
                         [label]="'Upload profile picture'"
@@ -87,6 +114,14 @@
                             placeholder="Address line 1"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                addressDetailsFormGroup
+                                    .get('addressLine1')
+                                    .hasError('required')
+                            "
+                            >Address line 1 is required!</mat-error
+                        >
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Address Line 2</mat-label>
@@ -106,6 +141,14 @@
                             placeholder="City"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                addressDetailsFormGroup
+                                    .get('city')
+                                    .hasError('required')
+                            "
+                            >City is required!</mat-error
+                        >
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>State</mat-label>
@@ -115,6 +158,14 @@
                             placeholder="State"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                addressDetailsFormGroup
+                                    .get('state')
+                                    .hasError('required')
+                            "
+                            >State is required!</mat-error
+                        >
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Country</mat-label>
@@ -124,6 +175,14 @@
                             placeholder="Country"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                addressDetailsFormGroup
+                                    .get('country')
+                                    .hasError('required')
+                            "
+                            >Country is required!</mat-error
+                        >
                     </mat-form-field>
                 </section>
                 <section id="pincode-section">
@@ -143,7 +202,25 @@
                             type="number"
                             placeholder="Pincode"
                             required
+                            maxlength="6"
                         />
+                        <mat-error
+                            *ngIf="
+                                addressDetailsFormGroup
+                                    .get('pinCode')
+                                    .hasError('required')
+                            "
+                            >Pincode is required!</mat-error
+                        >
+                        <mat-error
+                            *ngIf="
+                                addressDetailsFormGroup
+                                    .get('pinCode')
+                                    .hasError('pattern')
+                            "
+                        >
+                            Please enter a 6 digit pincode!
+                        </mat-error>
                     </mat-form-field>
                 </section>
             </form>
@@ -165,17 +242,42 @@
                             formControlName="mobile"
                             placeholder="Contact"
                             required
+                            maxlength="10"
                         />
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile')
+                                    .hasError('required')
+                            "
+                        >
+                            Mobile is required!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile')
+                                    .hasError('pattern')
+                            "
+                        >
+                            Please enter a 10 digit mobile number!
+                        </mat-error>
                     </mat-form-field>
                     <button
                         mat-raised-button
                         type="button"
                         (click)="sendMobileOtp()"
+                        [disabled]="
+                            contactDetailsFormGroup.get('mobile').invalid
+                        "
                     >
                         Verify number
                     </button>
-                    <!-- <mat-form-field *ngIf="showOtpField[0]"> -->
-                    <mat-form-field>
+                    <mat-form-field
+                        [ngStyle]="{
+                            visibility: showOtpField[0] ? 'visible' : 'hidden'
+                        }"
+                    >
                         <mat-label>Mobile OTP</mat-label>
                         <input
                             matInput
@@ -183,7 +285,50 @@
                             placeholder="Enter OTP recieved on mobile"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile_otp')
+                                    .hasError('required')
+                            "
+                        >
+                            Mobile OTP is required!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile_otp')
+                                    .hasError('pattern')
+                            "
+                        >
+                            Enter 6 digit Mobile OTP!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile_otp')
+                                    .hasError('invalidOtp')
+                            "
+                        >
+                            Mobile OTP is invalid!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile_otp')
+                                    .hasError('serverError')
+                            "
+                        >
+                            Error processing Mobile OTP!
+                        </mat-error>
                     </mat-form-field>
+                    <mat-icon
+                        [ngStyle]="{
+                            visibility: showVerified[0] ? 'visible' : 'hidden'
+                        }"
+                        [svgIcon]="'verified'"
+                        class="verified-icon"
+                    ></mat-icon>
                 </section>
                 <section id="email-section">
                     <mat-form-field>
@@ -194,16 +339,40 @@
                             placeholder="Email"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email')
+                                    .hasError('required')
+                            "
+                        >
+                            Email is required!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email')
+                                    .hasError('email')
+                            "
+                        >
+                            Enter a valid email!
+                        </mat-error>
                     </mat-form-field>
                     <button
                         mat-raised-button
                         type="button"
                         (click)="sendEmailOtp()"
+                        [disabled]="
+                            contactDetailsFormGroup.get('email').invalid
+                        "
                     >
                         Verify email
                     </button>
-                    <!-- <mat-form-field *ngIf="showOtpField[1]"> -->
-                    <mat-form-field>
+                    <mat-form-field
+                        [ngStyle]="{
+                            visibility: showOtpField[1] ? 'visible' : 'hidden'
+                        }"
+                    >
                         <mat-label>Email OTP</mat-label>
                         <input
                             matInput
@@ -211,7 +380,50 @@
                             placeholder="Enter OTP recieved on email"
                             required
                         />
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email_otp')
+                                    .hasError('required')
+                            "
+                        >
+                            Email OTP is required!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email_otp')
+                                    .hasError('pattern')
+                            "
+                        >
+                            Enter 6 digit Email OTP!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email_otp')
+                                    .hasError('invalidOtp')
+                            "
+                        >
+                            Email OTP is invalid!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email_otp')
+                                    .hasError('serverError')
+                            "
+                        >
+                            Error processing Email OTP!
+                        </mat-error>
                     </mat-form-field>
+                    <mat-icon
+                        [ngStyle]="{
+                            visibility: showVerified[1] ? 'visible' : 'hidden'
+                        }"
+                        [svgIcon]="'verified'"
+                        class="verified-icon"
+                    ></mat-icon>
                 </section>
                 <section id="emergency-section">
                     <mat-form-field>

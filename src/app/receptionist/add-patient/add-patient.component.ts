@@ -14,6 +14,7 @@ import { EmailotpValidator } from '../validators/email-otp.validator';
 import { OtpService } from '../../services/otp.service';
 import { ReceptionistService } from '../../services/receptionist.service';
 import { PatientRegistration } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-patient',
@@ -56,12 +57,13 @@ export class AddPatientComponent {
     });
     patientDetailsFormGroup = this._formBuilder.group({
         temperature: [0],
-        bloodPressure: [0],
+        bloodPressure: [''],
         height: [0],
         weight: [0],
     });
     stepperOrientation: Observable<StepperOrientation>;
     showOtpField = [false, false];
+    showVerified = [false, false];
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -70,11 +72,28 @@ export class AddPatientComponent {
         private snackbarService: SnackbarService,
         private otpService: OtpService,
         private mobileOtpValidator: MobileotpValidator,
-        private emailOtpValidator: EmailotpValidator
+        private emailOtpValidator: EmailotpValidator,
+        private router: Router
     ) {
         this.stepperOrientation = breakpointObserver
             .observe('(min-width: 800px)')
             .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+        this.contactDetailsFormGroup.get('mobile_otp').statusChanges.subscribe({
+            next: (stat) => {
+                if (stat == 'VALID') {
+                    this.contactDetailsFormGroup.get('mobile_otp').disable();
+                    this.showVerified[0] = true;
+                }
+            },
+        });
+        this.contactDetailsFormGroup.get('email_otp').statusChanges.subscribe({
+            next: (stat) => {
+                if (stat == 'VALID') {
+                    this.contactDetailsFormGroup.get('email_otp').disable();
+                    this.showVerified[1] = true;
+                }
+            },
+        });
     }
 
     registerPatient() {
@@ -104,10 +123,12 @@ export class AddPatientComponent {
             bloodPressure: patientDetails.bloodPressure,
             height: patientDetails.height,
             weight: patientDetails.weight,
+            role: 'patient',
         };
         this.receptionistService.registerPatient(patient).subscribe({
             next: (res: { token: string; message: string; user: {} }) => {
                 this.snackbarService.openSnackBar(res.message);
+                this.router.navigate(['/receptionist']);
             },
             error: (error) => {
                 this.snackbarService.openSnackBar(error);
