@@ -142,21 +142,17 @@ export class AddPatientComponent {
     }
 
     sendMobileOtp() {
-        const mobileField: FormControl =
-            this.contactDetailsFormGroup.controls.mobile;
-        if (mobileField.valid) {
-            this.otpService.getMobileOtp('+91' + mobileField.value);
-            this.showOtpField[0] = true;
-        }
+        this.otpService.getMobileOtp(
+            '+91' + this.contactDetailsFormGroup.controls.mobile.value
+        );
+        this.showOtpField[0] = true;
     }
 
     sendEmailOtp() {
-        const emailField: FormControl =
-            this.contactDetailsFormGroup.controls.email;
-        if (emailField.valid) {
-            this.otpService.getEmailOtp(emailField.value);
-            this.showOtpField[1] = true;
-        }
+        this.otpService.getEmailOtp(
+            this.contactDetailsFormGroup.controls.email.value
+        );
+        this.showOtpField[1] = true;
     }
 
     getTodaysDate() {

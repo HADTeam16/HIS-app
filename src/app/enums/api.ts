@@ -37,7 +37,6 @@ export enum Api {
 
     //otp
     get_mobile_otp = 'api/otp/verification/send/otp/via/sms',
-    verify_mobile_otp = 'api/otp/verification/validate/otp',
     get_email_otp = 'api/otp/verification/send/otp/via/email',
-    verify_email_otp = 'api/otp/verification/validate/otp',
+    verify_otp = 'api/otp/verification/validate/otp',
 }

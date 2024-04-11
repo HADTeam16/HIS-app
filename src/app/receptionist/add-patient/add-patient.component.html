@@ -284,6 +284,7 @@
                             formControlName="mobile_otp"
                             placeholder="Enter OTP recieved on mobile"
                             required
+                            maxlength="6"
                         />
                         <mat-error
                             *ngIf="
@@ -311,6 +312,24 @@
                             "
                         >
                             Mobile OTP is invalid!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile_otp')
+                                    .hasError('expired')
+                            "
+                        >
+                            Mobile OTP has expired!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('mobile_otp')
+                                    .hasError('accessDenied')
+                            "
+                        >
+                            Mobile OTP validation access denied!
                         </mat-error>
                         <mat-error
                             *ngIf="
@@ -379,6 +398,7 @@
                             formControlName="email_otp"
                             placeholder="Enter OTP recieved on email"
                             required
+                            maxlength="6"
                         />
                         <mat-error
                             *ngIf="
@@ -406,6 +426,24 @@
                             "
                         >
                             Email OTP is invalid!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email_otp')
+                                    .hasError('expired')
+                            "
+                        >
+                            Email OTP has expired!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="
+                                contactDetailsFormGroup
+                                    .get('email_otp')
+                                    .hasError('accessDenied')
+                            "
+                        >
+                            Email OTP validation access denied!
                         </mat-error>
                         <mat-error
                             *ngIf="
@@ -470,7 +508,6 @@
                             matInput
                             formControlName="bloodPressure"
                             placeholder="Blood Pressure"
-                            type="number"
                         />
                     </mat-form-field>
                 </section>
