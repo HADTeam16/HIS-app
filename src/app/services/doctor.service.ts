@@ -36,6 +36,9 @@ export class DoctorService {
                                 gender: appointment['patient']['user'][
                                     'gender'
                                 ],
+                                dateOfBirth: appointment['patient']['user'][
+                                    'dateOfBirth'
+                                ],
                                 temperature: appointment['temperature'],
                                 bloodPressure: appointment['bloodPressure'],
                                 height: appointment['height'],

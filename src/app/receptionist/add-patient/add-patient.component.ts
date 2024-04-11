@@ -1,12 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component } from '@angular/core';
-import {
-    Validators,
-    FormBuilder,
-    EmailValidator,
-    FormControl,
-} from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { MobileotpValidator } from '../validators/mobile-otp.validator';
@@ -26,7 +21,7 @@ export class AddPatientComponent {
         firstName: ['', Validators.required],
         middleName: [''],
         lastName: [''],
-        dateOfBirth: ['', Validators.required],
+        dateOfBirth: [new Date('2000-01-01'), Validators.required],
         gender: ['', Validators.required],
         profilePicture: ['', Validators.required],
     });
@@ -106,7 +101,7 @@ export class AddPatientComponent {
             middleName: personalDetails.middleName,
             lastName: personalDetails.lastName,
             gender: personalDetails.gender,
-            dateOfBirth: personalDetails.dateOfBirth,
+            dateOfBirth: this.formatDateOfBirth(personalDetails.dateOfBirth),
             profilePicture: personalDetails.profilePicture,
             addressLine1: addressDetails.addressLine1,
             addressLine2: addressDetails.addressLine2,
@@ -157,5 +152,11 @@ export class AddPatientComponent {
 
     getTodaysDate() {
         return new Date();
+    }
+
+    formatDateOfBirth(dob: Date): string {
+        return `${dob.getFullYear()}-${(dob.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${dob.getDate().toString().padStart(2, '0')}`;
     }
 }

@@ -43,7 +43,7 @@
                                     "P" +
                                         appointment.patientId
                                             .toString()
-                                            .padStart(4, "0")
+                                            .padStart(3, "0")
                                 }}
                             </mat-panel-title>
                             <mat-panel-description>
@@ -57,11 +57,12 @@
                                     "A" +
                                         appointment.appointmentId
                                             .toString()
-                                            .padStart(4, "0")
+                                            .padStart(3, "0")
                                 }}
                                 <br />
                                 Name: {{ appointment.name }}<br />
-                                Gender: {{ appointment.gender }}
+                                Gender: {{ appointment.gender }} <br />
+                                Age: {{ appointment.dateOfBirth | age }}
                             </section>
                             <section>
                                 Contact: {{ appointment.contact }}<br />
@@ -88,7 +89,7 @@
                         <br />
                         <mat-action-row>
                             <button
-                            *ngIf="isToday&&!appointment.completed"
+                                *ngIf="isToday && !appointment.completed"
                                 mat-raised-button
                                 color="primary"
                                 (click)="

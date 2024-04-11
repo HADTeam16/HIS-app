@@ -13,6 +13,7 @@ export class DoctorsAppointment extends Appointment {
     contact: string;
     name: string;
     gender: string;
+    dateOfBirth: string;
     slot: string;
     needWard: boolean;
     completed: boolean;
