@@ -25,30 +25,35 @@ export class NurseDialogComponent {
     private snackbarService: SnackbarService
   ) {
     this.nurseForm = this.formBuilder.group({
-      id: [null],
-      userName: [null],
-      password: [null],
-      firstName: [null],
-      middleName: [null],
-      lastName: [null],
-      age: [null],
-      gender: [null],
-      dateOfBirth: [null],
-      country: [null],
-      state: [null],
-      city: [null],
-      addressLine1: [null],
-      addressLine2: [null],
-      landmark: [null],
-      pinCode: [null],
-      contact: [null],
-      email: [null],
-      profilePicture: [null],
-      emergencyContactName: [null],
-      emergencyContactNumber: [null],
-      role: ['nurse'],
+      id: [''],
+      userName: [''],
+      password: [''],
+      firstName: [''],
+      middleName: [''],
+      lastName: [''],
+      gender: [''],
+      dateOfBirth: [''],
+      country: [''],
+      state: [''],
+      city: [''],
+      addressLine1: [''],
+      addressLine2: [''],
+      landmark: [''],
+      pinCode: [''],
+      contact: [''],
+      email: [''],
+      profilePicture: [''],
+      emergencyContactName: [''],
+      emergencyContactNumber: [''],
+      role: [''],
       isDisable: false,
       headNurse: false,
+    });
+  }
+
+  onHeadNurseChange(checked: boolean) {
+    this.nurseForm.patchValue({
+      headNurse: checked
     });
   }
 
@@ -62,7 +67,6 @@ export class NurseDialogComponent {
         firstName: formData.firstName,
         middleName: formData.middleName,
         lastName: formData.lastName,
-        age: formData.age,
         gender: formData.gender,
         dateOfBirth: formData.dateOfBirth,
         country: formData.country,

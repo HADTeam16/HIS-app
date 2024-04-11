@@ -24,6 +24,7 @@ export enum Api {
     get_nurse_by_id = 'api/users/get/user/',
     register_nurse = 'auth/signup/user',
     update_nurse_by_id = 'api/users/update/user',
+    is_head_nurse = 'api/nurse/is/head/nurse/',
 
     //receptionist
     get_all_receptionist = 'api/receptionist/get/all/receptionist',
@@ -31,7 +32,12 @@ export enum Api {
     register_receptionist = 'auth/signup/user',
     update_receptionist_by_id = 'api/users/update/user',
 
-
     //user
     toggle_user_status = 'auth/toggle/user/status',
+
+    //otp
+    get_mobile_otp = 'sms/otp/send/otp',
+    verify_mobile_otp = 'sms/otp/validate/otp',
+    get_email_otp = 'api/email/otp/send/otp',
+    verify_email_otp = 'api/email/otp/validate/otp',
 }

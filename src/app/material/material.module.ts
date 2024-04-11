@@ -35,6 +35,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormatDateFullPipe } from './pipes/format-date-full.pipe';
 import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
+import { AgePipe } from './pipes/age.pipe';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { SingleFileUploadComponent } from './components/single-file-upload/singl
         RemoveUnderscorePipe,
         FormatDateFullPipe,
         SingleFileUploadComponent,
+        AgePipe,
     ],
     imports: [
         CommonModule,
@@ -68,6 +70,7 @@ import { SingleFileUploadComponent } from './components/single-file-upload/singl
         DynamicTableComponent,
         SingleFileUploadComponent,
         FormatDateFullPipe,
+        AgePipe,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,

@@ -16,24 +16,14 @@
           <mat-label>Last Name</mat-label>
           <input matInput formControlName="lastName" [value]="tableDataDoctor?.lastName">
         </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Age</mat-label>
-          <input matInput formControlName="age" [value]="tableDataDoctor?.age">
-        </mat-form-field>
       </div>
-
-      <div class="row">
-        <mat-form-field class="mr-4">
-          <mat-label>Age</mat-label>
-          <input matInput formControlName="age" [value]="tableDataDoctor?.age">
-        </mat-form-field>
-        
-        <mat-form-field class="mr-4">
+      <div class="row mt-4">
+        <mat-form-field class="mb-4 ml-4">
           <mat-label>Gender</mat-label>
           <mat-select formControlName="gender" [value]="tableDataDoctor?.gender">
-            <mat-option value="Male">Male</mat-option>
-            <mat-option value="Female">Female</mat-option>
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+            <mat-option value="notSpecified">Not Specified</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -114,11 +104,6 @@
         <mat-form-field class="mr-4">
           <mat-label>Specialization</mat-label>
           <input matInput formControlName="specialization" [value]="tableDataDoctor?.specialization">
-        </mat-form-field>
-
-        <mat-form-field class="mr-4">
-          <mat-label>Experience</mat-label>
-          <input matInput formControlName="experience" [value]="tableDataDoctor?.experience">
         </mat-form-field>
 
         <mat-form-field>

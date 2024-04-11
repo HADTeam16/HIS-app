@@ -1,272 +1,292 @@
-<section class="flex p-4"><h1>Patient registration</h1></section>
-<mat-stepper
-    class="example-stepper"
-    [orientation]="(stepperOrientation | async)!"
->
-    <!-- Personal Details Step -->
-    <mat-step [formGroup]="personalDetailsFormGroup">
-        <ng-template matStepLabel>Personal Details</ng-template>
-        <form [formGroup]="personalDetailsFormGroup" id="personalForm">
-            <section id="name-section">
-                <mat-form-field>
-                    <mat-label>First Name</mat-label>
-                    <input
-                        matInput
-                        formControlName="firstName"
-                        placeholder="First Name"
-                        required
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Middle Name</mat-label>
-                    <input
-                        matInput
-                        formControlName="middleName"
-                        placeholder="Middle Name"
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Last Name</mat-label>
-                    <input
-                        matInput
-                        formControlName="lastName"
-                        placeholder="Last Name"
-                        required
-                    />
-                </mat-form-field>
-            </section>
-            <section id="dob-section">
-                <mat-form-field>
-                    <mat-label>Gender</mat-label>
-                    <input
-                        matInput
-                        formControlName="gender"
-                        placeholder="Gender"
-                        required
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Date of Birth</mat-label>
-                    <input
-                        matInput
-                        [matDatepicker]="dobPicker"
-                        formControlName="dateOfBirth"
-                        placeholder="Date of Birth"
-                        required
-                    />
-                    <mat-datepicker-toggle
-                        matSuffix
-                        [for]="dobPicker"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #dobPicker></mat-datepicker>
-                </mat-form-field>
-            </section>
-            <mat-form-field>
-                <mat-label>Profile Picture</mat-label>
-                <input matInput formControlName="profilePicture" />
-            </mat-form-field>
-        </form>
-        <div class="stepper-actions">
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
+<div class="p-4">
+    <header class="flex p-4"><h1>Patient registration</h1></header>
+    <mat-stepper
+        class="example-stepper shadow-md"
+        [orientation]="(stepperOrientation | async)!"
+        linear
+    >
+        <!-- Personal Details Step -->
+        <mat-step [stepControl]="personalDetailsFormGroup">
+            <ng-template matStepLabel>Personal Details</ng-template>
+            <form [formGroup]="personalDetailsFormGroup" id="personalForm">
+                <section id="name-section">
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input
+                            matInput
+                            formControlName="firstName"
+                            placeholder="First Name"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Middle Name</mat-label>
+                        <input
+                            matInput
+                            formControlName="middleName"
+                            placeholder="Middle Name"
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input
+                            matInput
+                            formControlName="lastName"
+                            placeholder="Last Name"
+                        />
+                    </mat-form-field>
+                </section>
+                <section id="dob-section">
+                    <mat-form-field>
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender" required>
+                            <mat-option value="Male">Male</mat-option>
+                            <mat-option value="Female">Female</mat-option>
+                            <mat-option value="notSpecified"
+                                >Undisclosed</mat-option
+                            >
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Date of Birth</mat-label>
+                        <input
+                            matInput
+                            [matDatepicker]="dobPicker"
+                            formControlName="dateOfBirth"
+                            placeholder="Date of Birth"
+                            required
+                            [max]="getTodaysDate()"
+                        />
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="dobPicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #dobPicker></mat-datepicker>
+                    </mat-form-field>
+                    <app-single-file-upload
+                        [label]="'Upload profile picture'"
+                        (selected)="onProfilePicUpload($event)"
+                    ></app-single-file-upload>
+                </section>
+            </form>
+            <div class="stepper-actions">
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
 
-    <!-- Address Details Step -->
-    <mat-step [formGroup]="addressDetailsFormGroup">
-        <ng-template matStepLabel>Address Details</ng-template>
-        <form [formGroup]="addressDetailsFormGroup" id="addressForm">
-            <section id="address-line-section">
-                <mat-form-field>
-                    <mat-label>Address Line 1</mat-label>
-                    <input
-                        matInput
-                        formControlName="addressLine1"
-                        placeholder="Address line 1"
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Address Line 2</mat-label>
-                    <input
-                        matInput
-                        formControlName="addressLine2"
-                        placeholder="Address line 2"
-                    />
-                </mat-form-field>
-            </section>
-            <section id="city-section">
-                <mat-form-field>
-                    <mat-label>City</mat-label>
-                    <input
-                        matInput
-                        formControlName="city"
-                        placeholder="City"
-                        required
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>State</mat-label>
-                    <input
-                        matInput
-                        formControlName="state"
-                        placeholder="State"
-                        required
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Country</mat-label>
-                    <input
-                        matInput
-                        formControlName="country"
-                        placeholder="Country"
-                        required
-                    />
-                </mat-form-field>
-            </section>
-            <section id="pincode-section">
-                <mat-form-field>
-                    <mat-label>Landmark</mat-label>
-                    <input
-                        matInput
-                        formControlName="landmark"
-                        placeholder="Landmark"
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Pin Code</mat-label>
-                    <input
-                        matInput
-                        formControlName="pinCode"
-                        placeholder="Pincode"
-                        required
-                    />
-                </mat-form-field>
-            </section>
-        </form>
-        <div class="stepper-actions">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
+        <!-- Address Details Step -->
+        <mat-step [stepControl]="addressDetailsFormGroup">
+            <ng-template matStepLabel>Address Details</ng-template>
+            <form [formGroup]="addressDetailsFormGroup" id="addressForm">
+                <section id="address-line-section">
+                    <mat-form-field>
+                        <mat-label>Address Line 1</mat-label>
+                        <input
+                            matInput
+                            formControlName="addressLine1"
+                            placeholder="Address line 1"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Address Line 2</mat-label>
+                        <input
+                            matInput
+                            formControlName="addressLine2"
+                            placeholder="Address line 2"
+                        />
+                    </mat-form-field>
+                </section>
+                <section id="city-section">
+                    <mat-form-field>
+                        <mat-label>City</mat-label>
+                        <input
+                            matInput
+                            formControlName="city"
+                            placeholder="City"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>State</mat-label>
+                        <input
+                            matInput
+                            formControlName="state"
+                            placeholder="State"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Country</mat-label>
+                        <input
+                            matInput
+                            formControlName="country"
+                            placeholder="Country"
+                            required
+                        />
+                    </mat-form-field>
+                </section>
+                <section id="pincode-section">
+                    <mat-form-field>
+                        <mat-label>Landmark</mat-label>
+                        <input
+                            matInput
+                            formControlName="landmark"
+                            placeholder="Landmark"
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Pin Code</mat-label>
+                        <input
+                            matInput
+                            formControlName="pinCode"
+                            type="number"
+                            placeholder="Pincode"
+                            required
+                        />
+                    </mat-form-field>
+                </section>
+            </form>
+            <div class="stepper-actions">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
 
-    <!-- Contact Details Step -->
-    <mat-step [formGroup]="contactDetailsFormGroup">
-        <ng-template matStepLabel>Contact Details</ng-template>
-        <form [formGroup]="contactDetailsFormGroup" id="contactForm">
-            <section id="contact-section">
-                <mat-form-field>
-                    <mat-label>Contact</mat-label>
-                    <input
-                        matInput
-                        formControlName="contact"
-                        placeholder="Contact"
-                        required
-                    />
-                </mat-form-field>
-                <button mat-raised-button>Verify phone number</button>
-            </section>
-            <section id="email-section">
-                <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input
-                        matInput
-                        formControlName="email"
-                        placeholder="Email"
-                        required
-                    />
-                </mat-form-field>
-                <button mat-raised-button>Verify email</button>
-            </section>
-            <section id="emergency-section">
-                <mat-form-field>
-                    <mat-label>Emergency Contact Name</mat-label>
-                    <input
-                        matInput
-                        formControlName="emergencyContactName"
-                        placeholder="Emergency Contact Name"
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Emergency Contact Number</mat-label>
-                    <input
-                        matInput
-                        formControlName="emergencyContactNumber"
-                        placeholder="Emergency Contact Number"
-                    />
-                </mat-form-field>
-            </section>
-        </form>
-        <div class="stepper-actions">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
+        <!-- Contact Details Step -->
+        <mat-step [stepControl]="contactDetailsFormGroup">
+            <ng-template matStepLabel>Contact Details</ng-template>
+            <form [formGroup]="contactDetailsFormGroup" id="contactForm">
+                <section id="contact-section">
+                    <mat-form-field>
+                        <mat-label>Mobile Number</mat-label>
+                        <input
+                            matInput
+                            formControlName="mobile"
+                            placeholder="Contact"
+                            required
+                        />
+                    </mat-form-field>
+                    <button
+                        mat-raised-button
+                        type="button"
+                        (click)="sendMobileOtp()"
+                    >
+                        Verify number
+                    </button>
+                    <!-- <mat-form-field *ngIf="showOtpField[0]"> -->
+                    <mat-form-field>
+                        <mat-label>Mobile OTP</mat-label>
+                        <input
+                            matInput
+                            formControlName="mobile_otp"
+                            placeholder="Enter OTP recieved on mobile"
+                            required
+                        />
+                    </mat-form-field>
+                </section>
+                <section id="email-section">
+                    <mat-form-field>
+                        <mat-label>Email Address</mat-label>
+                        <input
+                            matInput
+                            formControlName="email"
+                            placeholder="Email"
+                            required
+                        />
+                    </mat-form-field>
+                    <button
+                        mat-raised-button
+                        type="button"
+                        (click)="sendEmailOtp()"
+                    >
+                        Verify email
+                    </button>
+                    <!-- <mat-form-field *ngIf="showOtpField[1]"> -->
+                    <mat-form-field>
+                        <mat-label>Email OTP</mat-label>
+                        <input
+                            matInput
+                            formControlName="email_otp"
+                            placeholder="Enter OTP recieved on email"
+                            required
+                        />
+                    </mat-form-field>
+                </section>
+                <section id="emergency-section">
+                    <mat-form-field>
+                        <mat-label>Emergency Contact Name</mat-label>
+                        <input
+                            matInput
+                            formControlName="emergencyContactName"
+                            placeholder="Emergency Contact Name"
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Emergency Contact Number</mat-label>
+                        <input
+                            matInput
+                            formControlName="emergencyContactNumber"
+                            placeholder="Emergency Contact Number"
+                        />
+                    </mat-form-field>
+                </section>
+            </form>
+            <div class="stepper-actions">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
 
-    <!-- Patient Details Step -->
-    <mat-step [formGroup]="patientDetailsFormGroup">
-        <ng-template matStepLabel>Patient Details</ng-template>
-        <form [formGroup]="patientDetailsFormGroup" id="patientForm">
-            <mat-form-field id="purpose-field">
-                <mat-label>Purpose</mat-label>
-                <textarea
-                    matInput
-                    formControlName="purpose"
-                    placeholder="Purpose"
-                    rows="3"
-                ></textarea>
-            </mat-form-field>
-            <section id="temp-section">
-                <mat-form-field>
-                    <mat-label>Temperature</mat-label>
-                    <input
-                        matInput
-                        formControlName="temperature"
-                        placeholder="Temperature"
-                    />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Blood Pressure</mat-label>
-                    <input
-                        matInput
-                        formControlName="bloodPressure"
-                        placeholder="Blood Pressure"
-                    />
-                </mat-form-field>
-            </section>
-            <section id="admission-section">
-                <mat-form-field>
-                    <mat-label>Admission Date</mat-label>
-                    <input
-                        matInput
-                        [matDatepicker]="admissionDatePicker"
-                        formControlName="admissionDate"
-                        placeholder="Admission Date"
-                        required
-                    />
-                    <mat-datepicker-toggle
-                        matSuffix
-                        [for]="admissionDatePicker"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #admissionDatePicker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Discharge Date</mat-label>
-                    <input
-                        matInput
-                        [matDatepicker]="dischargeDatePicker"
-                        formControlName="dischargeDate"
-                        placeholder="Discharge Date"
-                    />
-                    <mat-datepicker-toggle
-                        matSuffix
-                        [for]="dischargeDatePicker"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #dischargeDatePicker></mat-datepicker>
-                </mat-form-field>
-            </section>
-        </form>
-        <div class="stepper-actions">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button type="submit">Finish</button>
-        </div>
-    </mat-step>
-</mat-stepper>
+        <!-- Patient Details Step -->
+        <mat-step [stepControl]="patientDetailsFormGroup">
+            <ng-template matStepLabel>Patient Details</ng-template>
+            <form [formGroup]="patientDetailsFormGroup" id="patientForm">
+                <section id="temp-section">
+                    <mat-form-field>
+                        <mat-label>Temperature</mat-label>
+                        <input
+                            matInput
+                            formControlName="temperature"
+                            placeholder="Temperature"
+                            type="number"
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Blood Pressure</mat-label>
+                        <input
+                            matInput
+                            formControlName="bloodPressure"
+                            placeholder="Blood Pressure"
+                            type="number"
+                        />
+                    </mat-form-field>
+                </section>
+                <section id="height-section">
+                    <mat-form-field>
+                        <mat-label>Height</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            formControlName="height"
+                            type="number"
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Weight</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            formControlName="weight"
+                            type="number"
+                        />
+                    </mat-form-field>
+                </section>
+            </form>
+            <div class="stepper-actions">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="registerPatient()">Finish</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</div>

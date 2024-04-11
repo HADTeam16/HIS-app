@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NurseComponent } from './nurse.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AssignWardComponent } from './assign-ward/assign-ward.component';
+import { nurseGuard } from './nurse.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
       children: [
           { path: '', redirectTo: 'appointments', pathMatch: 'full' },
           { path: 'appointments', component: AppointmentsComponent },
-          { path: 'assign_ward', component: AssignWardComponent },
+          { path: 'assign_ward', component: AssignWardComponent,canActivate:[nurseGuard] },
       ],
   },
 ];

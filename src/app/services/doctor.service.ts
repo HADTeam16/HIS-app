@@ -33,7 +33,6 @@ export class DoctorService {
                                     ] +
                                     ' ' +
                                     appointment['patient']['user']['lastName'],
-                                age: appointment['patient']['user']['age'],
                                 gender: appointment['patient']['user'][
                                     'gender'
                                 ],

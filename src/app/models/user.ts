@@ -1,11 +1,7 @@
-export class User {
-    id: number;
-    userName: string;
-    password: string;
+class UserBasicDetails {
     firstName: string;
     middleName: string;
     lastName: string;
-    age: number;
     gender: string;
     dateOfBirth: string;
     country: string;
@@ -20,23 +16,27 @@ export class User {
     profilePicture: string;
     emergencyContactName: string;
     emergencyContactNumber: string;
-    role: string;
+}
+
+export class User extends UserBasicDetails {
+    id: number;
+    userName: string;
+    password: string;
     isDisable: boolean;
+    role: string;
 }
 
 export class Patient extends User {
-    purpose: string;
-    temperature: string;
-    bloodPressure: string;
-    admissionDate: string;
-    dischargeDate: string;
+    temperature: number;
+    bloodPressure: number;
+    height: number;
+    weight: number;
 }
 
 export class Doctor extends User {
     medicalLicenseNumber: string;
     specialization: string;
     boardCertification: string;
-    experience: string;
     medicalDegree: string;
     cv: string;
     drugScreeningResult: string;
@@ -44,10 +44,15 @@ export class Doctor extends User {
     workEnd: string;
 }
 
-export class Nurse extends User{
+export class Nurse extends User {
     headNurse: boolean;
 }
 
-export class Receptionist extends User{
-    
+export class Receptionist extends User {}
+
+export class PatientRegistration extends UserBasicDetails {
+    temperature: number;
+    bloodPressure: number;
+    height: number;
+    weight: number;
 }
