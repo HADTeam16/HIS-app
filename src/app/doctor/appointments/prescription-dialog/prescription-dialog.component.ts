@@ -84,7 +84,7 @@ export class PrescriptionDialogComponent {
     }
 
     finishAppointment() {
-        let prescription;
+        let prescription: string;
         if (this.prescription_state == 'canvas') {
             prescription = this.canvasComponent.onSavePrescription();
         } else if (this.prescription_state == 'text') {
@@ -104,15 +104,11 @@ export class PrescriptionDialogComponent {
                 this.needsWard
             )
             .then(
-                (res) => {
-                    this.snackbarService.openSnackBar(
-                        this.needsWard
-                            ? 'Appointment data uploaded and patient added to ward queue'
-                            : 'Appointment data uploaded'
-                    );
-                    this.dialogRef.close();
+                (res: string) => {
+                    this.snackbarService.openSnackBar(res);
+                    this.dialogRef.close("success");
                 },
-                (err) => {
+                (err: string) => {
                     this.snackbarService.openSnackBar(err);
                 }
             );

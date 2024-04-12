@@ -15,9 +15,10 @@ export enum Api {
     get_appointment = 'api/appointment/get/all/appointments/by/date',
     get_patient_appointment = 'api/appointment/get/all/previous/appointment/for/patient',
     get_appointment_details = 'api/appointment/get/appointment/prescription/records/',
-    add_prescription = 'api/prescription/add/prescription/',
-    add_records = 'api/records/add/records/',
-    add_to_ward_queue = 'api/doctors/recommend/ward/',
+    // add_prescription = 'api/prescription/add/prescription/',
+    // add_records = 'api/records/add/records/',
+    // add_to_ward_queue = 'api/doctors/recommend/ward/',
+    finish_appointment = 'api/doctors/finish/appointment',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
