@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { NurseService } from '../services/nurse.service';
+import { NurseService } from './nurse.service';
 import { map, take } from 'rxjs';
 
 export const nurseGuard: CanActivateFn = (route, state) => {

@@ -18,7 +18,6 @@ import { ChatComponent } from './components/chat/chat.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ElevateOnHoverDirective } from './directives/elevate-on-hover.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SnackbarService } from './services/snackbar.service';
@@ -27,27 +26,20 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
-import { RemoveUnderscorePipe } from './pipes/remove-underscore.pipe';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormatDateTimePipe } from './pipes/format-date-full.pipe';
 import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
-import { AgePipe } from './pipes/age.pipe';
 
 @NgModule({
     declarations: [
         CanvasComponent,
         ChatComponent,
-        ElevateOnHoverDirective,
         SnackbarComponent,
         DynamicTableComponent,
-        RemoveUnderscorePipe,
-        FormatDateTimePipe,
         SingleFileUploadComponent,
-        AgePipe,
     ],
     imports: [
         CommonModule,
@@ -69,8 +61,6 @@ import { AgePipe } from './pipes/age.pipe';
         ChatComponent,
         DynamicTableComponent,
         SingleFileUploadComponent,
-        FormatDateTimePipe,
-        AgePipe,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
@@ -89,7 +79,6 @@ import { AgePipe } from './pipes/age.pipe';
         MatRippleModule,
         MatInputModule,
         MatStepperModule,
-        ElevateOnHoverDirective,
         MatSelectModule,
         MatTabsModule,
         MatSlideToggleModule,
