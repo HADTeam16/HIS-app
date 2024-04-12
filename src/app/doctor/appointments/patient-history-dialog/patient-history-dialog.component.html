@@ -20,7 +20,7 @@
                     (click)="sidenav.toggle(); fetchAppointmentDetails(i)"
                     class="h-8 text-center"
                 >
-                    {{ appointment.dateTime | formatDateFull }}
+                    {{ appointment.dateTime | formatDateTime }}
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
@@ -51,7 +51,7 @@
                         }}
                     </span>
                     <span class="text-lg font-light">{{
-                        appointment.slot | formatDateFull
+                        appointment.slot | formatDateTime
                     }}</span>
                 </div>
                 <mat-divider id="title_divider"></mat-divider>

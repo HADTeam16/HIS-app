@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'formatDateFull',
+    name: 'formatDateTime',
 })
-export class FormatDateFullPipe implements PipeTransform {
+export class FormatDateTimePipe implements PipeTransform {
     transform(value: string): string {
         const months = [
             'Jan',
@@ -26,7 +26,7 @@ export class FormatDateFullPipe implements PipeTransform {
         const year = date.getFullYear();
         let hour = date.getHours();
         const minute = date.getMinutes();
-        const ampm = hour >= 12 ? 'PM' : 'AM';
+        const meridiem = hour >= 12 ? 'PM' : 'AM';
 
         hour = hour % 12;
         hour = hour ? hour : 12;
@@ -47,6 +47,6 @@ export class FormatDateFullPipe implements PipeTransform {
             }
         }
 
-        return `${day}${daySuffix} ${month}, ${year} - ${hour}:${minuteStr}${ampm}`;
+        return `${day}${daySuffix} ${month}, ${year} - ${hour}:${minuteStr}${meridiem}`;
     }
 }

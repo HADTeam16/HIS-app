@@ -4,10 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'age',
 })
 export class AgePipe implements PipeTransform {
-    transform(value: string): unknown {
-        if (!value) return null;
+    transform(dateOfBirth: string): number {
+        if (!dateOfBirth) return null;
 
-        const dob = new Date(value);
+        const dob = new Date(dateOfBirth);
         const today = new Date();
 
         let age = today.getFullYear() - dob.getFullYear();

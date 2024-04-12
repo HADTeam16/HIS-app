@@ -11,9 +11,6 @@ export class MobileotpValidator implements AsyncValidator {
     constructor(private otpService: OtpService) {}
     validate(control: AbstractControl): Promise<ValidationErrors | null> {
         const mobile_number = control.parent.get('mobile').value;
-        return this.otpService.verifyMobileotp(
-            '+91' + mobile_number,
-            control.value
-        );
+        return this.otpService.verifyOtp('+91' + mobile_number, control.value);
     }
 }

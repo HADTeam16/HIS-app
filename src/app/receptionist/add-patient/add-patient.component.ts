@@ -1,12 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component } from '@angular/core';
-import {
-    Validators,
-    FormBuilder,
-    EmailValidator,
-    FormControl,
-} from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { MobileotpValidator } from '../validators/mobile-otp.validator';
@@ -14,6 +9,8 @@ import { EmailotpValidator } from '../validators/email-otp.validator';
 import { OtpService } from '../../services/otp.service';
 import { ReceptionistService } from '../../services/receptionist.service';
 import { PatientRegistration } from '../../models/user';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-add-patient',
@@ -25,7 +22,7 @@ export class AddPatientComponent {
         firstName: ['', Validators.required],
         middleName: [''],
         lastName: [''],
-        dateOfBirth: ['', Validators.required],
+        dateOfBirth: [new Date('2000-01-01'), Validators.required],
         gender: ['', Validators.required],
         profilePicture: ['', Validators.required],
     });
@@ -55,13 +52,14 @@ export class AddPatientComponent {
         emergencyContactNumber: [''],
     });
     patientDetailsFormGroup = this._formBuilder.group({
-        temperature: [0],
-        bloodPressure: [0],
-        height: [0],
-        weight: [0],
+        temperature: [],
+        bloodPressure: ['', Validators.pattern('^[0-9]{1,3}/[0-9]{1,3}$')],
+        height: [],
+        weight: [],
     });
     stepperOrientation: Observable<StepperOrientation>;
     showOtpField = [false, false];
+    showVerified = [false, false];
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -70,11 +68,28 @@ export class AddPatientComponent {
         private snackbarService: SnackbarService,
         private otpService: OtpService,
         private mobileOtpValidator: MobileotpValidator,
-        private emailOtpValidator: EmailotpValidator
+        private emailOtpValidator: EmailotpValidator,
+        private router: Router
     ) {
         this.stepperOrientation = breakpointObserver
             .observe('(min-width: 800px)')
             .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+        this.contactDetailsFormGroup.get('mobile_otp').statusChanges.subscribe({
+            next: (stat) => {
+                if (stat == 'VALID') {
+                    this.contactDetailsFormGroup.get('mobile_otp').disable();
+                    this.showVerified[0] = true;
+                }
+            },
+        });
+        this.contactDetailsFormGroup.get('email_otp').statusChanges.subscribe({
+            next: (stat) => {
+                if (stat == 'VALID') {
+                    this.contactDetailsFormGroup.get('email_otp').disable();
+                    this.showVerified[1] = true;
+                }
+            },
+        });
     }
 
     registerPatient() {
@@ -87,7 +102,7 @@ export class AddPatientComponent {
             middleName: personalDetails.middleName,
             lastName: personalDetails.lastName,
             gender: personalDetails.gender,
-            dateOfBirth: personalDetails.dateOfBirth,
+            dateOfBirth: this.formatDateOfBirth(personalDetails.dateOfBirth),
             profilePicture: personalDetails.profilePicture,
             addressLine1: addressDetails.addressLine1,
             addressLine2: addressDetails.addressLine2,
@@ -99,18 +114,23 @@ export class AddPatientComponent {
             contact: contactDetails.mobile,
             email: contactDetails.email,
             emergencyContactName: contactDetails.emergencyContactName,
-            emergencyContactNumber: contactDetails.emergencyContactNumber,
+            emergencyContactNumber:
+                contactDetails.emergencyContactName.length > 0
+                    ? contactDetails.emergencyContactNumber
+                    : '',
             temperature: patientDetails.temperature,
             bloodPressure: patientDetails.bloodPressure,
             height: patientDetails.height,
             weight: patientDetails.weight,
+            role: 'patient',
         };
         this.receptionistService.registerPatient(patient).subscribe({
             next: (res: { token: string; message: string; user: {} }) => {
                 this.snackbarService.openSnackBar(res.message);
+                this.router.navigate(['/receptionist']);
             },
-            error: (error) => {
-                this.snackbarService.openSnackBar(error);
+            error: (error: HttpErrorResponse) => {
+                this.snackbarService.openSnackBar(error.error.message);
             },
         });
     }
@@ -121,24 +141,26 @@ export class AddPatientComponent {
     }
 
     sendMobileOtp() {
-        const mobileField: FormControl =
-            this.contactDetailsFormGroup.controls.mobile;
-        if (mobileField.valid) {
-            this.otpService.getMobileOtp('+91' + mobileField.value);
-            this.showOtpField[0] = true;
-        }
+        this.otpService.getMobileOtp(
+            '+91' + this.contactDetailsFormGroup.controls.mobile.value
+        );
+        this.showOtpField[0] = true;
     }
 
     sendEmailOtp() {
-        const emailField: FormControl =
-            this.contactDetailsFormGroup.controls.email;
-        if (emailField.valid) {
-            this.otpService.getEmailOtp(emailField.value);
-            this.showOtpField[1] = true;
-        }
+        this.otpService.getEmailOtp(
+            this.contactDetailsFormGroup.controls.email.value
+        );
+        this.showOtpField[1] = true;
     }
 
     getTodaysDate() {
         return new Date();
+    }
+
+    formatDateOfBirth(dob: Date): string {
+        return `${dob.getFullYear()}-${(dob.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${dob.getDate().toString().padStart(2, '0')}`;
     }
 }
