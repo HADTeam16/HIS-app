@@ -6,9 +6,9 @@ import { Observable, map } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { MobileotpValidator } from '../validators/mobile-otp.validator';
 import { EmailotpValidator } from '../validators/email-otp.validator';
-import { OtpService } from '../../services/otp.service';
-import { ReceptionistService } from '../../services/receptionist.service';
-import { PatientRegistration } from '../../models/user';
+import { OtpService } from '../../shared/services/otp.service';
+import { ReceptionistService } from '../receptionist.service';
+import { PatientRegistration } from '../../shared/models/user';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 

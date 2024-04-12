@@ -1,9 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { Api } from '../enums/api';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { Doctor, Nurse, Receptionist } from '../models/user';
+import { Api } from '../shared/enums/api';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class NurseService {

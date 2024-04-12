@@ -4,7 +4,7 @@ import {
     AsyncValidator,
     ValidationErrors,
 } from '@angular/forms';
-import { OtpService } from '../../services/otp.service';
+import { OtpService } from '../../shared/services/otp.service';
 
 @Injectable()
 export class EmailotpValidator implements AsyncValidator {

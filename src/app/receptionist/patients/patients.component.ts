@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Patient } from '../../models/user';
-import { ReceptionistService } from '../../services/receptionist.service';
+import { Patient } from '../../shared/models/user';
+import { ReceptionistService } from '../receptionist.service';
 import { finalize, Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';

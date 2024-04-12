@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CanvasComponent } from '../../../material/components/canvas/canvas.component';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { DoctorService } from '../../../services/doctor.service';
+import { DoctorService } from '../../doctor.service';
 import { SnackbarService } from '../../../material/services/snackbar.service';
 
 @Component({

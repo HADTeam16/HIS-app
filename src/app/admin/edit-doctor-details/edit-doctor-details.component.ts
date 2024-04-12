@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Doctor } from '../../models/user';
-import { AdminService } from '../../services/admin.service';
+import { Doctor } from '../../shared/models/user';
+import { AdminService } from '../admin.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackbarService } from '../../material/services/snackbar.service';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { finalize } from 'rxjs';
 
 

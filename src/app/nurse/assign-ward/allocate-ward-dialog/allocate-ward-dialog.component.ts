@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CanvasComponent } from '../../../material/components/canvas/canvas.component';
-import { Patient } from '../../../models/user';
+import { Patient } from '../../../shared/models/user';
 
 @Component({
   selector: 'app-allocate-ward-dialog',

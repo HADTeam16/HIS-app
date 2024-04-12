@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Patient } from '../../models/user';
+import { Patient } from '../../shared/models/user';
 import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-ward-dialog.component';
 
 @Component({
