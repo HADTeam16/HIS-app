@@ -98,14 +98,23 @@ export class AppointmentsComponent {
     }
 
     finishAppointment(appointment_id: number) {
-        this.dialog.open(PrescriptionDialogComponent, {
-            height: '80%',
-            width: '80%',
-            data: {
-                appointment_id: appointment_id,
-                prescription: 'helloworld',
-            },
-        });
+        this.dialog
+            .open(PrescriptionDialogComponent, {
+                height: '80%',
+                width: '80%',
+                data: {
+                    appointment_id: appointment_id,
+                    prescription: 'helloworld',
+                },
+            })
+            .afterClosed()
+            .subscribe({
+                next: (res) => {
+                    if (res == 'success') {
+                        this.setToday();
+                    }
+                },
+            });
     }
 
     viewHistory(patientId: number) {
