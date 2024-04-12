@@ -3,9 +3,9 @@
     display: flex;
     justify-content: center;
     .expansion-table{
-        width: 80%;
+        width: 90%;
         border-collapse: collapse;
         tr,th,td{border: solid 1px black;}
-        th,td{text-align: left;padding: 2px 3px;}
+        th,td{text-align: left;padding: 3px 4px;}
     }
 }

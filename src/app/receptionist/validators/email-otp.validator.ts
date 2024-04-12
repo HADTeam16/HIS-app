@@ -11,6 +11,6 @@ export class EmailotpValidator implements AsyncValidator {
     constructor(private otpService: OtpService) {}
     validate(control: AbstractControl): Promise<ValidationErrors | null> {
         const email = control.parent.get('email').value;
-        return this.otpService.verifyEmailOtp(email, control.value);
+        return this.otpService.verifyOtp(email, control.value);
     }
 }

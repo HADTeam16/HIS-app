@@ -36,8 +36,7 @@ export enum Api {
     toggle_user_status = 'auth/toggle/user/status',
 
     //otp
-    get_mobile_otp = 'sms/otp/send/otp',
-    verify_mobile_otp = 'sms/otp/validate/otp',
-    get_email_otp = 'api/email/otp/send/otp',
-    verify_email_otp = 'api/email/otp/validate/otp',
+    get_mobile_otp = 'api/otp/verification/send/otp/via/sms',
+    get_email_otp = 'api/otp/verification/send/otp/via/email',
+    verify_otp = 'api/otp/verification/validate/otp',
 }

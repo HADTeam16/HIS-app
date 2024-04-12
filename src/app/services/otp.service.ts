@@ -29,31 +29,7 @@ export class OtpService {
                 });
         });
     }
-    verifyMobileotp(
-        mobile_number: string,
-        otp: string
-    ): Promise<ValidationErrors | null> {
-        return new Promise((resolve, reject) => {
-            if (otp.length != 6) resolve({ invalidOtp: true });
-            this.httpclient
-                .post(environment.baseURL + Api.verify_mobile_otp, {
-                    username: mobile_number,
-                    otpNumber: otp,
-                })
-                .subscribe({
-                    next: (res: { message: string }) => {
-                        if (res.message == 'OTP is valid') {
-                            resolve(null);
-                        } else {
-                            resolve({ invalidOtp: true });
-                        }
-                    },
-                    error: (error) => {
-                        resolve({ serverError: true });
-                    },
-                });
-        });
-    }
+
     getEmailOtp(email: string): Promise<string> {
         return new Promise((resolve, reject) => {
             this.httpclient
@@ -75,27 +51,39 @@ export class OtpService {
                 });
         });
     }
-    verifyEmailOtp(
-        email: string,
-        otp: string
+
+    verifyOtp(
+        username: string,
+        otpNumber: string
     ): Promise<ValidationErrors | null> {
         return new Promise((resolve, reject) => {
-            if (otp.length != 6) resolve({ invalidOtp: true });
+            if (otpNumber.length != 6) resolve({ invalidOtp: true });
             this.httpclient
-                .post(environment.baseURL + Api.verify_email_otp, {
-                    username: email,
-                    emailOtpNumber: otp,
+                .post(environment.baseURL + Api.verify_otp, {
+                    username,
+                    otpNumber,
                 })
                 .subscribe({
                     next: (res: { message: string }) => {
-                        if (res.message == 'OTP is valid') {
-                            resolve(null);
-                        } else {
-                            resolve({ invalidOtp: true });
+                        switch (res.message) {
+                            case 'OTP is valid':
+                                resolve(null);
+                                break;
+                            case 'OTP has been expired':
+                                resolve({ expired: true });
+                                break;
+                            case 'Invalid OTP':
+                                resolve({ invalidOtp: true });
+                                break;
+                            case 'Access denied!':
+                                resolve({ accessDenied: true });
+                                break;
+                            default:
+                                resolve({ unknownError: true });
+                                break;
                         }
                     },
                     error: (error) => {
-                        console.log('Email error - ', error);
                         resolve({ serverError: true });
                     },
                 });

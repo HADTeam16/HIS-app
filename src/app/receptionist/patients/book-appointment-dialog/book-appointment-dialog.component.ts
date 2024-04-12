@@ -5,6 +5,7 @@ import { ReceptionistService } from '../../../services/receptionist.service';
 import { BehaviorSubject, Subscription, finalize } from 'rxjs';
 import { SnackbarService } from '../../../material/services/snackbar.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-book-appointment-dialog',
@@ -18,12 +19,12 @@ export class BookAppointmentDialogComponent {
     specializations = new BehaviorSubject<string[]>([]);
     doctors_list = new BehaviorSubject<Doctor[]>([]);
     patientForm = new FormGroup({
-        doctorId: new FormControl(0),
+        doctorId: new FormControl(),
         purpose: new FormControl(''),
-        temperature: new FormControl(0),
-        bloodPressure: new FormControl(0),
-        height: new FormControl(0),
-        weight: new FormControl(0),
+        temperature: new FormControl(),
+        bloodPressure: new FormControl(''),
+        height: new FormControl(),
+        weight: new FormControl(),
     });
 
     constructor(
@@ -79,8 +80,8 @@ export class BookAppointmentDialogComponent {
                     this.snackbarService.openSnackBar(response);
                     this.dialogRef.close(true);
                 },
-                error: (err) => {
-                    this.snackbarService.openSnackBar(err);
+                error: (error: HttpErrorResponse) => {
+                    this.snackbarService.openSnackBar(error.error.response);
                     this.dialogRef.close(false);
                 },
             });

@@ -33,7 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormatDateFullPipe } from './pipes/format-date-full.pipe';
+import { FormatDateTimePipe } from './pipes/format-date-full.pipe';
 import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
 import { AgePipe } from './pipes/age.pipe';
 
@@ -45,7 +45,7 @@ import { AgePipe } from './pipes/age.pipe';
         SnackbarComponent,
         DynamicTableComponent,
         RemoveUnderscorePipe,
-        FormatDateFullPipe,
+        FormatDateTimePipe,
         SingleFileUploadComponent,
         AgePipe,
     ],
@@ -69,7 +69,7 @@ import { AgePipe } from './pipes/age.pipe';
         ChatComponent,
         DynamicTableComponent,
         SingleFileUploadComponent,
-        FormatDateFullPipe,
+        FormatDateTimePipe,
         AgePipe,
         MatToolbarModule,
         MatIconModule,

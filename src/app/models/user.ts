@@ -16,6 +16,7 @@ class UserBasicDetails {
     profilePicture: string;
     emergencyContactName: string;
     emergencyContactNumber: string;
+    role: string;
 }
 
 export class User extends UserBasicDetails {
@@ -23,12 +24,11 @@ export class User extends UserBasicDetails {
     userName: string;
     password: string;
     isDisable: boolean;
-    role: string;
 }
 
 export class Patient extends User {
     temperature: number;
-    bloodPressure: number;
+    bloodPressure: string;
     height: number;
     weight: number;
 }
@@ -52,7 +52,7 @@ export class Receptionist extends User {}
 
 export class PatientRegistration extends UserBasicDetails {
     temperature: number;
-    bloodPressure: number;
+    bloodPressure: string;
     height: number;
     weight: number;
 }
