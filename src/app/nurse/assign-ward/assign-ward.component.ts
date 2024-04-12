@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Patient } from '../../models/user';
+import { NeedWard } from '../../models/ward';
+import { Subscription } from 'rxjs';
+import { SnackbarService } from '../../material/services/snackbar.service';
+import { NurseService } from '../../services/nurse.service';
 import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-ward-dialog.component';
 
 @Component({
@@ -15,168 +19,50 @@ export class AssignWardComponent {
         id: 'Patient ID',
         firstName: 'First name',
         lastName: 'Last name',
+        gender: 'gender',
     };
-    tableData: Patient[] = [
-        {
-            id: 1,
-            userName: '',
-            password: '',
-            firstName: 'Anne',
-            middleName: '',
-            lastName: 'Hathaway',
-            gender: 'Female',
-            dateOfBirth: new Date().toDateString(),
-            country: 'America',
-            state: 'California',
-            city: 'San Diego',
-            addressLine1: 'addr line 1',
-            addressLine2: 'addr line 2',
-            landmark: 'landmark',
-            pinCode: '657832',
-            contact: '1234567890',
-            email: 'anne@gmail.com',
-            profilePicture: 'path/to/profile',
-            emergencyContactName: 'er name',
-            emergencyContactNumber: '1234567890',
-            role: 'patient',
-            temperature: 93,
-            bloodPressure: 112,
-            height: 170,
-            weight: 86,
-            isDisable: false,
-        },
-        {
-            id: 2,
-            userName: '',
-            password: '',
-            firstName: 'Bob',
-            middleName: '',
-            lastName: 'Odenkirk',
-            gender: 'Male',
-            dateOfBirth: new Date().toDateString(),
-            country: 'America',
-            state: 'California',
-            city: 'San Diego',
-            addressLine1: 'addr line 1',
-            addressLine2: 'addr line 2',
-            landmark: 'landmark',
-            pinCode: '657832',
-            contact: '1234567890',
-            email: 'bob@gmail.com',
-            profilePicture: 'path/to/profile',
-            emergencyContactName: 'er name',
-            emergencyContactNumber: '1234567890',
-            role: 'patient',
-            temperature: 93,
-            bloodPressure: 112,
-            height: 170,
-            weight: 86,
-            isDisable: false,
-        },
-        {
-            id: 3,
-            userName: '',
-            password: '',
-            firstName: 'Subhash',
-            middleName: '',
-            lastName: 'Sen',
-            gender: 'Male',
-            dateOfBirth: new Date().toDateString(),
-            country: 'India',
-            state: 'West Bengal',
-            city: 'Kolkata',
-            addressLine1: 'addr line 1',
-            addressLine2: 'addr line 2',
-            landmark: 'landmark',
-            pinCode: '657832',
-            contact: '1234567890',
-            email: 'subhash@gmail.com',
-            profilePicture: 'path/to/profile',
-            emergencyContactName: 'er name',
-            emergencyContactNumber: '1234567890',
-            role: 'patient',
-            temperature: 93,
-            bloodPressure: 112,
-            height: 170,
-            weight: 86,
-            isDisable: false,
-        },
-        {
-            id: 4,
-            userName: '',
-            password: '',
-            firstName: 'Rajesh',
-            middleName: '',
-            lastName: 'Kumar',
-            gender: 'Male',
-            dateOfBirth: new Date().toDateString(),
-            country: 'India',
-            state: 'West Bengal',
-            city: 'Kolkata',
-            addressLine1: 'addr line 1',
-            addressLine2: 'addr line 2',
-            landmark: 'landmark',
-            pinCode: '657832',
-            contact: '1234567890',
-            email: 'rajesh@gmail.com',
-            profilePicture: 'path/to/profile',
-            emergencyContactName: 'er name',
-            emergencyContactNumber: '1234567890',
-            role: 'patient',
-            temperature: 93,
-            bloodPressure: 112,
-            height: 170,
-            weight: 86,
-            isDisable: false,
-        },
-        {
-            id: 5,
-            userName: '',
-            password: '',
-            firstName: 'Neha',
-            middleName: '',
-            lastName: 'Sharma',
-            gender: 'Female',
-            dateOfBirth: new Date().toDateString(),
-            country: 'India',
-            state: 'Maharashtra',
-            city: 'Mumbai',
-            addressLine1: 'addr line 1',
-            addressLine2: 'addr line 2',
-            landmark: 'landmark',
-            pinCode: '657832',
-            contact: '1234567890',
-            email: 'neha@gmail.com',
-            profilePicture: 'path/to/profile',
-            emergencyContactName: 'er name',
-            emergencyContactNumber: '1234567890',
-            role: 'patient',
-            temperature: 93,
-            bloodPressure: 112,
-            height: 170,
-            weight: 86,
-            isDisable: false,
-        },
-    ];
+    patientsWhoNeedWard: NeedWard[] = [];
+    getPatientsWhoNeedWardSub: Subscription;
+    constructor(
+        private dialog: MatDialog,
+        private snackbarService: SnackbarService,
+        private nurseService: NurseService
+    ) {}
 
-    constructor(private dialog: MatDialog) {}
+    ngOnInit(): void {
+        this.getPatientsWhoNeedWard();
+    }
 
-    bookAppointment(patient: Patient) {
+    getPatientsWhoNeedWard(): void {
+        this.getPatientsWhoNeedWardSub = this.nurseService
+            .getPatientsWhoNeedsWards()
+            .subscribe({
+                next: (needWard: NeedWard[]) => {
+                    this.patientsWhoNeedWard = needWard;
+                },
+                error: (error) => {
+                    console.error(
+                        'Error fetching patients who need ward:',
+                        error
+                    );
+                },
+            });
+    }
+
+    openAllocateWardDialog(needWardId: number): void {
         const dialogRef = this.dialog.open(AllocateWardDialogComponent, {
-            data: patient,
+            data: { needWardId },
         });
-        dialogRef.afterClosed().subscribe({
-            next: (booked: boolean) => {
-                if (booked) {
-                    console.log('Appointment booked');
-                } else {
-                    console.log('Appointment not possible');
-                }
-            },
-            error: (err) => {
-                console.log(err);
-            },
+
+        dialogRef.afterClosed().subscribe((result) => {
+            // Handle any actions after the dialog is closed, if needed
         });
+    }
+
+    ngOnDestroy(): void {
+        if (this.getPatientsWhoNeedWardSub) {
+            this.getPatientsWhoNeedWardSub.unsubscribe();
+        }
     }
 
     getFullAddress(patient: Patient) {

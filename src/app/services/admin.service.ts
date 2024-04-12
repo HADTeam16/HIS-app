@@ -7,7 +7,7 @@ import { Doctor, Nurse, Receptionist } from '../models/user';
 
 @Injectable()
 export class AdminService {
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {}
 
     getAllDoctors() {
         return this.httpClient
@@ -35,7 +35,8 @@ export class AdminService {
                         email: item.user.email,
                         profilePicture: item.user.profilePicture,
                         emergencyContactName: item.user.emergencyContactName,
-                        emergencyContactNumber: item.user.emergencyContactNumber,
+                        emergencyContactNumber:
+                            item.user.emergencyContactNumber,
                         role: item.user.role,
                         isDisable: item.user.disable,
                         medicalLicenseNumber: item.medicalLicenseNumber,
@@ -49,7 +50,7 @@ export class AdminService {
                     }));
                 })
             );
-    }    
+    }
 
     getAllNurse() {
         return this.httpClient
@@ -77,10 +78,11 @@ export class AdminService {
                         email: item.user.email,
                         profilePicture: item.user.profilePicture,
                         emergencyContactName: item.user.emergencyContactName,
-                        emergencyContactNumber: item.user.emergencyContactNumber,
+                        emergencyContactNumber:
+                            item.user.emergencyContactNumber,
                         role: item.user.role,
                         isDisable: item.user.disable,
-                        headNurse: item.headNurse
+                        headNurse: item.headNurse,
                     }));
                 })
             );
@@ -112,14 +114,15 @@ export class AdminService {
                         email: item.user.email,
                         profilePicture: item.user.profilePicture,
                         emergencyContactName: item.user.emergencyContactName,
-                        emergencyContactNumber: item.user.emergencyContactNumber,
+                        emergencyContactNumber:
+                            item.user.emergencyContactNumber,
                         role: item.user.role,
                         isDisable: item.user.disable,
                     }));
                 })
             );
     }
-        
+
     getDoctorById(doctorId: number): Observable<Doctor> {
         return this.httpClient
             .get(environment.baseURL + Api.get_doctor_by_id + doctorId)
@@ -137,74 +140,101 @@ export class AdminService {
                 }))
             );
     }
-    
+
     getNurseById(nurseId: number): Observable<Nurse> {
         return this.httpClient
             .get(environment.baseURL + Api.get_nurse_by_id + nurseId)
             .pipe(
                 map((response: any) => ({
                     ...response.user,
-                    headNurse : response.headNurse,
+                    headNurse: response.headNurse,
                 }))
             );
     }
-    
+
     getReceptionistById(receptionistId: number): Observable<Receptionist> {
         return this.httpClient
-            .get(environment.baseURL + Api.get_receptionist_by_id + receptionistId)
+            .get(
+                environment.baseURL +
+                    Api.get_receptionist_by_id +
+                    receptionistId
+            )
             .pipe(
                 map((response: any) => ({
                     ...response.user,
                 }))
             );
     }
-    
-        
-    updateDoctorById(doctorId: number, updatedDoctor: Doctor): Observable<Doctor> {
-        return this.httpClient
-            .put<Doctor>(`${environment.baseURL}${Api.update_doctor_by_id}/${doctorId}`, updatedDoctor);
-    }
 
-    updateNurseById(nurseId: number, updatedNurse: Nurse): Observable<Nurse> {
-        return this.httpClient
-            .put<Nurse>(`${environment.baseURL}${Api.update_nurse_by_id}/${nurseId}`, updatedNurse);
-    }
-    
-    updateReceptionistById(receptionistId: number, updatedReceptionist: Receptionist): Observable<Receptionist> {
-        return this.httpClient
-            .put<Receptionist>(`${environment.baseURL}${Api.update_receptionist_by_id}/${receptionistId}`, updatedReceptionist);
-    }
-        
-    toggleDoctorById(doctorId: number): Observable<string> {
-    return this.httpClient.put<string>(`${environment.baseURL}${Api.toggle_user_status}/${doctorId}`, null)
-        .pipe(
-        catchError((error: any) => {
-            console.error('An error occurred:', error); 
-            throw 'Error occurred while toggling doctor status'; 
-        })
+    updateDoctorById(
+        doctorId: number,
+        updatedDoctor: Doctor
+    ): Observable<Doctor> {
+        return this.httpClient.put<Doctor>(
+            `${environment.baseURL}${Api.update_doctor_by_id}/${doctorId}`,
+            updatedDoctor
         );
     }
 
-    toggleNurseById(nurseId: number): Observable<string> {
-        return this.httpClient.put<string>(`${environment.baseURL}${Api.toggle_user_status}/${nurseId}`, null)
+    updateNurseById(nurseId: number, updatedNurse: Nurse): Observable<Nurse> {
+        return this.httpClient.put<Nurse>(
+            `${environment.baseURL}${Api.update_nurse_by_id}/${nurseId}`,
+            updatedNurse
+        );
+    }
+
+    updateReceptionistById(
+        receptionistId: number,
+        updatedReceptionist: Receptionist
+    ): Observable<Receptionist> {
+        return this.httpClient.put<Receptionist>(
+            `${environment.baseURL}${Api.update_receptionist_by_id}/${receptionistId}`,
+            updatedReceptionist
+        );
+    }
+
+    toggleDoctorById(doctorId: number): Observable<string> {
+        return this.httpClient
+            .put<string>(
+                `${environment.baseURL}${Api.toggle_user_status}/${doctorId}`,
+                null
+            )
             .pipe(
-            catchError((error: any) => {
-                console.error('An error occurred:', error); 
-                throw 'Error occurred while toggling nurse status'; 
-            })
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while toggling doctor status';
+                })
             );
     }
-    
-    toggleReceptionistById(receptionistId: number): Observable<string> {
-        return this.httpClient.put<string>(`${environment.baseURL}${Api.toggle_user_status}/${receptionistId}`, null)
+
+    toggleNurseById(nurseId: number): Observable<string> {
+        return this.httpClient
+            .put<string>(
+                `${environment.baseURL}${Api.toggle_user_status}/${nurseId}`,
+                null
+            )
             .pipe(
-            catchError((error: any) => {
-                console.error('An error occurred:', error); 
-                throw 'Error occurred while toggling receptionist status'; 
-            })
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while toggling nurse status';
+                })
             );
-        }
-        
+    }
+
+    toggleReceptionistById(receptionistId: number): Observable<string> {
+        return this.httpClient
+            .put<string>(
+                `${environment.baseURL}${Api.toggle_user_status}/${receptionistId}`,
+                null
+            )
+            .pipe(
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while toggling receptionist status';
+                })
+            );
+    }
+
     registerDoctor(doctor: Doctor) {
         return this.httpClient.post(
             environment.baseURL + Api.register_doctor,
