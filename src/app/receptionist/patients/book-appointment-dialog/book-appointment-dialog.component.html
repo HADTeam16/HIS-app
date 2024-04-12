@@ -19,13 +19,13 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Enter Temperature</mat-label>
                 <input
                     matInput
                     placeholder="Enter temperature"
                     formControlName="temperature"
                     type="number"
                 />
+                <span matSuffix class="mr-2">°C</span>
             </mat-form-field>
             <mat-form-field>
                 <mat-select
@@ -43,9 +43,11 @@
             <mat-form-field>
                 <input
                     matInput
-                    placeholder="Enter Blood Pressure"
-                    formControlName="bloodPressure"
+                    placeholder="Enter Weight"
+                    formControlName="weight"
+                    type="number"
                 />
+                <span matSuffix class="mr-2">Kg</span>
             </mat-form-field>
             <mat-form-field>
                 <input
@@ -55,28 +57,27 @@
                 />
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Enter Height</mat-label>
                 <input
                     matInput
                     placeholder="Enter Height"
                     formControlName="height"
                     type="number"
                 />
+                <span matSuffix class="mr-2">cm</span>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Enter Weight</mat-label>
+                <mat-label>Enter Blood Pressure</mat-label>
                 <input
                     matInput
-                    placeholder="Enter Weight"
-                    formControlName="weight"
-                    type="number"
+                    placeholder="Enter Blood Pressure"
+                    formControlName="bloodPressure"
                 />
             </mat-form-field>
             <button
                 mat-stroked-button
                 type="submit"
                 color="primary"
-                [disabled]="patientForm.value.doctorId == 0"
+                [disabled]="!patientForm.get('doctorId').value"
             >
                 Book Appointment
             </button>

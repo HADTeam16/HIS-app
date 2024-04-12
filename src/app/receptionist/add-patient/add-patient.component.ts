@@ -10,6 +10,7 @@ import { OtpService } from '../../services/otp.service';
 import { ReceptionistService } from '../../services/receptionist.service';
 import { PatientRegistration } from '../../models/user';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-add-patient',
@@ -51,10 +52,10 @@ export class AddPatientComponent {
         emergencyContactNumber: [''],
     });
     patientDetailsFormGroup = this._formBuilder.group({
-        temperature: [0],
-        bloodPressure: [''],
-        height: [0],
-        weight: [0],
+        temperature: [],
+        bloodPressure: ['', Validators.pattern('^[0-9]{1,3}/[0-9]{1,3}$')],
+        height: [],
+        weight: [],
     });
     stepperOrientation: Observable<StepperOrientation>;
     showOtpField = [false, false];
@@ -113,7 +114,10 @@ export class AddPatientComponent {
             contact: contactDetails.mobile,
             email: contactDetails.email,
             emergencyContactName: contactDetails.emergencyContactName,
-            emergencyContactNumber: contactDetails.emergencyContactNumber,
+            emergencyContactNumber:
+                contactDetails.emergencyContactName.length > 0
+                    ? contactDetails.emergencyContactNumber
+                    : '',
             temperature: patientDetails.temperature,
             bloodPressure: patientDetails.bloodPressure,
             height: patientDetails.height,
@@ -125,8 +129,8 @@ export class AddPatientComponent {
                 this.snackbarService.openSnackBar(res.message);
                 this.router.navigate(['/receptionist']);
             },
-            error: (error) => {
-                this.snackbarService.openSnackBar(error);
+            error: (error: HttpErrorResponse) => {
+                this.snackbarService.openSnackBar(error.error.message);
             },
         });
     }

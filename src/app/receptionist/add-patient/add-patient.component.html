@@ -236,14 +236,14 @@
             <form [formGroup]="contactDetailsFormGroup" id="contactForm">
                 <section id="contact-section">
                     <mat-form-field>
-                        <mat-label>Mobile Number</mat-label>
                         <input
                             matInput
                             formControlName="mobile"
-                            placeholder="Contact"
+                            placeholder="Enter Mobile Number"
                             required
                             maxlength="10"
                         />
+                        <span matTextPrefix class="pr-2">+91</span>
                         <mat-error
                             *ngIf="
                                 contactDetailsFormGroup
@@ -354,6 +354,7 @@
                         <mat-label>Email Address</mat-label>
                         <input
                             matInput
+                            type="email"
                             formControlName="email"
                             placeholder="Email"
                             required
@@ -472,13 +473,22 @@
                             placeholder="Emergency Contact Name"
                         />
                     </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Emergency Contact Number</mat-label>
+                    <mat-form-field
+                        [ngStyle]="{
+                            visibility:
+                                contactDetailsFormGroup.get(
+                                    'emergencyContactName'
+                                ).value.length > 0
+                                    ? 'visible'
+                                    : 'hidden'
+                        }"
+                    >
                         <input
                             matInput
                             formControlName="emergencyContactNumber"
                             placeholder="Emergency Contact Number"
                         />
+                        <span matTextPrefix class="pr-2">+91</span>
                     </mat-form-field>
                 </section>
             </form>
@@ -494,13 +504,13 @@
             <form [formGroup]="patientDetailsFormGroup" id="patientForm">
                 <section id="temp-section">
                     <mat-form-field>
-                        <mat-label>Temperature</mat-label>
                         <input
                             matInput
                             formControlName="temperature"
                             placeholder="Temperature"
                             type="number"
                         />
+                        <span matTextSuffix>°C</span>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Blood Pressure</mat-label>
@@ -513,22 +523,22 @@
                 </section>
                 <section id="height-section">
                     <mat-form-field>
-                        <mat-label>Height</mat-label>
                         <input
                             matInput
-                            type="number"
+                            placeholder="Height"
                             formControlName="height"
                             type="number"
                         />
+                        <span matTextSuffix>cm</span>
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-label>Weight</mat-label>
                         <input
                             matInput
-                            type="number"
+                            placeholder="Weight"
                             formControlName="weight"
                             type="number"
                         />
+                        <span matTextSuffix>Kg</span>
                     </mat-form-field>
                 </section>
             </form>

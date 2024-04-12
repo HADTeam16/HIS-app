@@ -64,6 +64,9 @@
 }
 
 #patientForm {
+    mat-form-field {
+        width: 30%;
+    }
     #temp-section,
     #height-section {
         display: flex;
