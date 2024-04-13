@@ -61,7 +61,7 @@ export class DoctorDialogComponent {
             profilePicture: [''],
             emergencyContactName: [''],
             emergencyContactNumber: [''],
-            role: [''],
+            role: ['doctor'],
             medicalLicenseNumber: [''],
             specialization: [''],
             boardCertification: [''],
