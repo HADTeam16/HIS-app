@@ -1,9 +1,9 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Patient } from '../../../models/user';
+import { Patient } from '../../../shared/models/user';
 import { SnackbarService } from '../../../material/services/snackbar.service';
 import { Subscription } from 'rxjs';
-import { NurseService } from '../../../services/nurse.service';
+import { NurseService } from '../../nurse.service';
 
 @Component({
     selector: 'app-allocate-ward-dialog',

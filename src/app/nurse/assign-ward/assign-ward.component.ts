@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Patient } from '../../models/user';
-import { NeedWard } from '../../models/ward';
+import { Patient } from '../../shared/models/user';
+import { NeedWard } from '../../shared/models/ward';
 import { Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
-import { NurseService } from '../../services/nurse.service';
+import { NurseService } from '../nurse.service';
 import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-ward-dialog.component';
 
 @Component({

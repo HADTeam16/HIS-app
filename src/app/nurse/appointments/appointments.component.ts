@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Patient } from '../../models/user';
+import { Patient } from '../../shared/models/user';
 import { Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
-import { NurseService } from '../../services/nurse.service';
+import { NurseService } from '../nurse.service';
 import { EditDetailsDialogComponent } from './edit-details-dialog/edit-details-dialog.component';
 
 @Component({
