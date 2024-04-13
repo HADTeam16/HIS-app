@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Doctor, Patient } from '../../../models/user';
-import { ReceptionistService } from '../../../services/receptionist.service';
+import { Doctor, Patient } from '../../../shared/models/user';
+import { ReceptionistService } from '../../receptionist.service';
 import { BehaviorSubject, Subscription, finalize } from 'rxjs';
 import { SnackbarService } from '../../../material/services/snackbar.service';
 import { FormControl, FormGroup } from '@angular/forms';

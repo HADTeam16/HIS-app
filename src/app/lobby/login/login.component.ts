@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
-import { WebsocketService } from '../../services/websocket.service';
-import { NurseService } from '../../services/nurse.service';
+import { WebsocketService } from '../../shared/services/websocket.service';
+import { NurseService } from '../../nurse/nurse.service';
 
 @Component({
     selector: 'app-login',

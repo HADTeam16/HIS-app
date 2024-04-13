@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { Api } from '../enums/api';
+import { Api } from '../shared/enums/api';
 import { defaultIfEmpty, map } from 'rxjs';
-import { Doctor, Patient, PatientRegistration } from '../models/user';
-import { Appointment } from '../models/appointment';
+import { Doctor, Patient, PatientRegistration } from '../shared/models/user';
+import { Appointment } from '../shared/models/appointment';
 
 @Injectable()
 export class ReceptionistService {

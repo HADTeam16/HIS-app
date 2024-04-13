@@ -35,11 +35,6 @@ const routes: Routes = [
         loadChildren: () =>
             import('./admin/admin.module').then((m) => m.AdminModule),
     },
-    {
-        path: 'pharmacy',
-        loadChildren: () =>
-            import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
-    },
 ];
 
 @NgModule({
