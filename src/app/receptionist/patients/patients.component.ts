@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Patient } from '../../models/user';
-import { ReceptionistService } from '../../services/receptionist.service';
-import { finalize } from 'rxjs';
+import { Patient } from '../../shared/models/user';
+import { ReceptionistService } from '../receptionist.service';
+import { finalize, Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BookAppointmentDialogComponent } from './book-appointment-dialog/book-appointment-dialog.component';
@@ -20,6 +20,7 @@ export class PatientsComponent {
         lastName: 'Last name',
     };
     tableData: Patient[];
+    patientSubscription: Subscription;
 
     constructor(
         private receptionistService: ReceptionistService,
@@ -27,7 +28,7 @@ export class PatientsComponent {
         private dialog: MatDialog
     ) {
         this.isLoading = true;
-        this.receptionistService
+        this.patientSubscription = this.receptionistService
             .getAllPatients()
             .pipe(
                 finalize(() => {
@@ -45,36 +46,38 @@ export class PatientsComponent {
     }
 
     bookAppointment(patient: Patient) {
-        const dialogRef = this.dialog.open(BookAppointmentDialogComponent, {
-            data: patient,
-        });
-        dialogRef.afterClosed().subscribe({
-            next: (booked: boolean) => {
-                if (booked) {
-                    this.snackbarService.openSnackBar('Appointment booked');
-                } else {
-                    this.snackbarService.openSnackBar(
-                        'Appointment not possible'
-                    );
-                }
-            },
-            error: (err) => {
-                this.snackbarService.openSnackBar('Error : ', err);
-            },
-        });
+        this.dialog
+            .open(BookAppointmentDialogComponent, {
+                data: patient,
+            })
+            .afterClosed()
+            .subscribe({
+                next: (booked: boolean) => {
+                    // if (booked) {
+                    //     this.snackbarService.openSnackBar('Appointment booked');
+                    // } else {
+                    //     this.snackbarService.openSnackBar(
+                    //         'Appointment not possible'
+                    //     );
+                    // }
+                },
+                error: (err) => {
+                    this.snackbarService.openSnackBar('Error : ', err);
+                },
+            });
     }
 
     getFullAddress(patient: Patient) {
         return (
             patient.addressLine1 +
-            ', ' +
-            patient.addressLine2 +
-            ', ' +
-            patient.city +
-            ', ' +
-            patient.state +
-            ', ' +
-            patient.country
+            (patient.addressLine2 ? ', ' + patient.addressLine2 : '') +
+            (patient.city ? ', ' + patient.city : '') +
+            (patient.state ? ', ' + patient.state : '') +
+            (patient.country ? ', ' + patient.country : '')
         );
+    }
+
+    ngOnDestroy() {
+        this.patientSubscription.unsubscribe();
     }
 }

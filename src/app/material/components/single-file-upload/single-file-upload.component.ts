@@ -21,6 +21,7 @@ export class SingleFileUploadComponent {
                 if (this.fileTypes.includes(files[0].type)) {
                     this.convertFileToBase64(files[0]).then(
                         (res: string) => {
+                            this.label = files[0].name;
                             this.selected.emit(res);
                         },
                         (err) => {

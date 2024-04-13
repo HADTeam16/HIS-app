@@ -5,7 +5,7 @@
     class="flex flex-col justify-between m-8 h-96"
     (submit)="onRegisterDoctor()"
 >
-    <div class="row">
+    <div class="row flex justify-between">
         <mat-form-field class="mr-4">
             <mat-label>First Name</mat-label>
             <input matInput formControlName="firstName" />
@@ -20,19 +20,9 @@
             <mat-label>Last Name</mat-label>
             <input matInput formControlName="lastName" />
         </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>UserName</mat-label>
-            <input matInput formControlName="userName" />
-        </mat-form-field>
     </div>
 
-    <div class="row">
-        <mat-form-field class="mr-4">
-            <mat-label>Password</mat-label>
-            <input matInput formControlName="password" />
-        </mat-form-field>
-
+    <div class="row flex justify-between">
       <mat-form-field class="mr-4">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
@@ -41,168 +31,131 @@
           <mat-option value="notSpecified">Not Specified</mat-option>
         </mat-select>
       </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Date of Birth</mat-label>
-            <input
-                matInput
-                formControlName="dateOfBirth"
-                [matDatepicker]="picker"
-            />
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+      <mat-form-field class="mr-4">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    <mat-form-field class="mr-4">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country" />
+    </mat-form-field>
     </div>
 
-    <div class="row">
-        <mat-form-field class="mr-4">
-            <mat-label>Country</mat-label>
-            <input matInput formControlName="country" />
-        </mat-form-field>
-
+    <div class="row flex justify-between">
         <mat-form-field class="mr-4">
             <mat-label>State</mat-label>
             <input matInput formControlName="state" />
         </mat-form-field>
-
-        <mat-form-field class="m4-4">
+        <mat-form-field class="mr-4">
             <mat-label>City</mat-label>
             <input matInput formControlName="city" />
         </mat-form-field>
-    </div>
-
-    <div class="row">
         <mat-form-field class="mr-4">
             <mat-label>Address Line 1</mat-label>
             <input matInput formControlName="addressLine1" />
         </mat-form-field>
+    </div>
 
+    <div class="row flex justify-between">
         <mat-form-field class="mr-4">
             <mat-label>Address Line 2</mat-label>
             <input matInput formControlName="addressLine2" />
         </mat-form-field>
-
         <mat-form-field class="mr-4">
             <mat-label>Landmark</mat-label>
             <input matInput formControlName="landmark" />
         </mat-form-field>
-
-        <mat-form-field>
+        <mat-form-field class="mr-4">
             <mat-label>Pincode</mat-label>
             <input matInput formControlName="pinCode" />
         </mat-form-field>
     </div>
 
-    <div class="row">
+    <div class="row flex justify-between">
         <mat-form-field class="mr-4">
             <mat-label>Contact</mat-label>
             <input matInput formControlName="contact" />
         </mat-form-field>
-
         <mat-form-field class="mr-4">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" />
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Emergency Contact Name</mat-label>
-            <input matInput formControlName="emergencyContactName" />
-        </mat-form-field>
-    </div>
-
-    <div class="row">
-        <mat-form-field class="mr-4">
-            <mat-label>Emergency Contact Number</mat-label>
-            <input matInput formControlName="emergencyContactNumber" />
         </mat-form-field>
 
         <mat-form-field class="mr-4">
             <mat-label>Medical License Number</mat-label>
             <input matInput formControlName="medicalLicenseNumber" />
         </mat-form-field>
+        
+    </div>
 
-        <mat-form-field>
+    <div class="row flex justify-between">
+        <mat-form-field class="mr-4">
             <mat-label>Specialization</mat-label>
             <input matInput formControlName="specialization" />
         </mat-form-field>
-    </div>
-
-    <div class="row">
         <mat-form-field class="mr-4">
             <mat-label>Work Start</mat-label>
             <input matInput formControlName="workStart" />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="mr-4">
             <mat-label>Work End</mat-label>
             <input matInput formControlName="workEnd" />
         </mat-form-field>
     </div>
 
-    <table class="w-4/5">
-        <tr>
-            <td>
-                <app-single-file-upload
-                    [label]="
-                        this.filesUploadedFlags[0]
-                            ? fileLabelMappings.profile[0]
-                            : fileLabelMappings.profile[1]
-                    "
-                    [fileTypes]="['application/pdf']"
-                    (selected)="onProfilePictureSelected($event)"
-                ></app-single-file-upload>
-            </td>
-            <td>
-                <app-single-file-upload
-                    [label]="
-                        this.filesUploadedFlags[1]
-                            ? fileLabelMappings.certification[0]
-                            : fileLabelMappings.certification[1]
-                    "
-                    [fileTypes]="['application/pdf']"
-                    (selected)="onBoardCertificationSelected($event)"
-                ></app-single-file-upload>
-            </td>
-            <td>
-                <app-single-file-upload
-                    [label]="
+    <div class="row flex justify-around">
+        <mat-form-field class="flex w-64 mr-4">
+            <mat-label>Emergency Contact Name</mat-label>
+            <input matInput formControlName="emergencyContactName" />
+        </mat-form-field>
+        <mat-form-field class="flex w-64 mr-4">
+            <mat-label>Emergency Contact Number</mat-label>
+            <input matInput formControlName="emergencyContactNumber" />
+        </mat-form-field>
+    
+    </div>
+    <div class="row flex justify-around mb-4">
+        <app-single-file-upload [label]="
+                                this.filesUploadedFlags[0]
+                                    ? fileLabelMappings.profile[0]
+                                    : fileLabelMappings.profile[1]
+                            " [fileTypes]="['application/pdf']"
+            (selected)="onProfilePictureSelected($event)"></app-single-file-upload>
+        <app-single-file-upload [label]="
+                                this.filesUploadedFlags[1]
+                                    ? fileLabelMappings.certification[0]
+                                    : fileLabelMappings.certification[1]
+                            " [fileTypes]="['application/pdf']"
+            (selected)="onBoardCertificationSelected($event)"></app-single-file-upload>
+    </div>
+    <div class="row flex justify-around">
+        <app-single-file-upload
+            [label]="
+                this.filesUploadedFlags[3]
+                    ? fileLabelMappings.degree[0]
+                    : fileLabelMappings.degree[1]
+            "
+            [fileTypes]="['application/pdf']"
+            (selected)="onMedicalDegreeSelected($event)"
+        ></app-single-file-upload>
+        <app-single-file-upload [label]="
                         this.filesUploadedFlags[2]
                             ? fileLabelMappings.cv[0]
                             : fileLabelMappings.cv[1]
-                    "
-                    [fileTypes]="['application/pdf']"
-                    (selected)="onCVSelected($event)"
-                ></app-single-file-upload>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <app-single-file-upload
-                    [label]="
-                        this.filesUploadedFlags[3]
-                            ? fileLabelMappings.degree[0]
-                            : fileLabelMappings.degree[1]
-                    "
-                    [fileTypes]="['application/pdf']"
-                    (selected)="onMedicalDegreeSelected($event)"
-                ></app-single-file-upload>
-            </td>
-            <td colspan="2">
-                <app-single-file-upload
-                    [label]="
-                        this.filesUploadedFlags[4]
-                            ? fileLabelMappings.drugs[0]
-                            : fileLabelMappings.drugs[1]
-                    "
-                    [fileTypes]="['application/pdf']"
-                    (selected)="onDrugScreeningResultSelected($event)"
-                ></app-single-file-upload>
-            </td>
-        </tr>
-    </table>
+                    " [fileTypes]="['application/pdf']" (selected)="onCVSelected($event)"></app-single-file-upload>
+        <app-single-file-upload
+            [label]="
+                this.filesUploadedFlags[4]
+                    ? fileLabelMappings.drugs[0]
+                    : fileLabelMappings.drugs[1]
+            "
+            [fileTypes]="['application/pdf']"
+            (selected)="onDrugScreeningResultSelected($event)"
+        ></app-single-file-upload>
+        </div>
 
     <div class="row mt-3 text-center p-4">
         <button mat-stroked-button type="submit" color="primary">Save</button>

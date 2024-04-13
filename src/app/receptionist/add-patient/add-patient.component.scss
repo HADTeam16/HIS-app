@@ -40,14 +40,20 @@
 
 #contactForm {
     mat-form-field {
-        width: 40%;
+        width: 30%;
     }
     #contact-section,
     #email-section {
         display: flex;
         align-items: center;
         button {
-            margin-left: 64px;
+            width: 150px;
+            margin: 0px 48px;
+        }
+        .verified-icon{
+            margin-left: 24px;
+            transform: scale(1.5);
+            color: green;
         }
     }
     #emergency-section {
@@ -58,6 +64,9 @@
 }
 
 #patientForm {
+    mat-form-field {
+        width: 30%;
+    }
     #temp-section,
     #height-section {
         display: flex;

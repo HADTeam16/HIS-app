@@ -9,7 +9,7 @@ import { EditDetailsDialogComponent } from './appointments/edit-details-dialog/e
 import { FormsModule } from '@angular/forms';
 import { AssignWardComponent } from './assign-ward/assign-ward.component';
 import { AllocateWardDialogComponent } from './assign-ward/allocate-ward-dialog/allocate-ward-dialog.component';
-import { NurseService } from '../services/nurse.service';
+import { NurseService } from './nurse.service';
 
 @NgModule({
     declarations: [

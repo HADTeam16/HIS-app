@@ -1,7 +1,4 @@
-export class User {
-    id: number;
-    userName: string;
-    password: string;
+class UserBasicDetails {
     firstName: string;
     middleName: string;
     lastName: string;
@@ -20,12 +17,18 @@ export class User {
     emergencyContactName: string;
     emergencyContactNumber: string;
     role: string;
+}
+
+export class User extends UserBasicDetails {
+    id: number;
+    userName: string;
+    password: string;
     isDisable: boolean;
 }
 
 export class Patient extends User {
     temperature: number;
-    bloodPressure: number;
+    bloodPressure: string;
     height: number;
     weight: number;
 }
@@ -46,3 +49,10 @@ export class Nurse extends User {
 }
 
 export class Receptionist extends User {}
+
+export class PatientRegistration extends UserBasicDetails {
+    temperature: number;
+    bloodPressure: string;
+    height: number;
+    weight: number;
+}

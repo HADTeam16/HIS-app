@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { SnackbarService } from '../material/services/snackbar.service';
-import { NurseService } from '../services/nurse.service';
+import { NurseService } from './nurse.service';
 import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-nurse',
     templateUrl: './nurse.component.html',
-    styleUrls: ['./nurse.component.css'],
 })
 export class NurseComponent {
     chat = 'invisible';

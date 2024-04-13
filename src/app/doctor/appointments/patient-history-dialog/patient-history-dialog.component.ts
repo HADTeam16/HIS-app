@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DoctorService } from '../../../services/doctor.service';
+import { DoctorService } from '../../doctor.service';
 import { finalize } from 'rxjs';
 import { SnackbarService } from '../../../material/services/snackbar.service';
-import { DoctorsAppointment } from '../../../models/appointment';
+import { DoctorsAppointment } from '../../../shared/models/appointment';
 
 @Component({
     selector: 'app-patient-history-dialog',

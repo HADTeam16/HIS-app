@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { PrescriptionDialogComponent } from './prescription-dialog/prescription-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DoctorService } from '../../services/doctor.service';
+import { DoctorService } from '../doctor.service';
 import { Subscription, finalize } from 'rxjs';
-import { DoctorsAppointment } from '../../models/appointment';
+import { DoctorsAppointment } from '../../shared/models/appointment';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { PatientHistoryDialogComponent } from './patient-history-dialog/patient-history-dialog.component';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { UtilityService } from '../../services/utility.service';
+import { UtilityService } from '../../shared/services/utility.service';
 
 @Component({
     selector: 'app-appointments',
@@ -98,14 +98,23 @@ export class AppointmentsComponent {
     }
 
     finishAppointment(appointment_id: number) {
-        this.dialog.open(PrescriptionDialogComponent, {
-            height: '80%',
-            width: '80%',
-            data: {
-                appointment_id: appointment_id,
-                prescription: 'helloworld',
-            },
-        });
+        this.dialog
+            .open(PrescriptionDialogComponent, {
+                height: '80%',
+                width: '80%',
+                data: {
+                    appointment_id: appointment_id,
+                    prescription: 'helloworld',
+                },
+            })
+            .afterClosed()
+            .subscribe({
+                next: (res) => {
+                    if (res == 'success') {
+                        this.setToday();
+                    }
+                },
+            });
     }
 
     viewHistory(patientId: number) {

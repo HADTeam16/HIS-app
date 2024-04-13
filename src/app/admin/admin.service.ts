@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { Api } from '../enums/api';
+import { Api } from '../shared/enums/api';
 import { Observable, catchError, defaultIfEmpty, map } from 'rxjs';
-import { Doctor, Nurse, Receptionist } from '../models/user';
+import { Doctor, Nurse, Receptionist } from '../shared/models/user';
 
 @Injectable()
 export class AdminService {

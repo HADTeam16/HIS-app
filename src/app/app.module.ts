@@ -7,12 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthService } from './services/auth.service';
-import { WebsocketService } from './services/websocket.service';
-import { UtilityService } from './services/utility.service';
-import { NurseService } from './services/nurse.service';
-import { OtpService } from './services/otp.service';
+import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { AuthService } from './shared/services/auth.service';
+import { WebsocketService } from './shared/services/websocket.service';
+import { UtilityService } from './shared/services/utility.service';
+import { OtpService } from './shared/services/otp.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -42,6 +41,7 @@ export class AppModule {
         'e911_emergency_filled',
         'e911_emergency_outline',
         'arrow_back',
+        'verified',
     ];
 
     constructor(

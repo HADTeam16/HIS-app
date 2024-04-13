@@ -15,9 +15,10 @@ export enum Api {
     get_appointment = 'api/appointment/get/all/appointments/by/date',
     get_patient_appointment = 'api/appointment/get/all/previous/appointment/for/patient',
     get_appointment_details = 'api/appointment/get/appointment/prescription/records/',
-    add_prescription = 'api/prescription/add/prescription/',
-    add_records = 'api/records/add/records/',
-    add_to_ward_queue = 'api/doctors/recommend/ward/',
+    // add_prescription = 'api/prescription/add/prescription/',
+    // add_records = 'api/records/add/records/',
+    // add_to_ward_queue = 'api/doctors/recommend/ward/',
+    finish_appointment = 'api/doctors/finish/appointment',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
@@ -40,4 +41,9 @@ export enum Api {
 
     //user
     toggle_user_status = 'auth/toggle/user/status',
+
+    //otp
+    get_mobile_otp = 'api/otp/verification/send/otp/via/sms',
+    get_email_otp = 'api/otp/verification/send/otp/via/email',
+    verify_otp = 'api/otp/verification/validate/otp',
 }
