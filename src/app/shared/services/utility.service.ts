@@ -58,4 +58,25 @@ export class UtilityService {
             date.getFullYear() === today.getFullYear()
         );
     }
+
+    isPast(d1: Date): boolean {
+        const year1 = d1.getFullYear();
+        const month1 = d1.getMonth();
+        const day1 = d1.getDate();
+
+        const d2 = new Date();
+        const year2 = d2.getFullYear();
+        const month2 = d2.getMonth();
+        const day2 = d2.getDate();
+
+        if (year1 < year2) {
+            return true;
+        } else if (year1 === year2 && month1 < month2) {
+            return true;
+        } else if (year1 === year2 && month1 === month2 && day1 < day2) {
+            return true;
+        }
+
+        return false;
+    }
 }

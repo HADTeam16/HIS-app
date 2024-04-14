@@ -12,6 +12,7 @@ import { DoctorService } from './doctor.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PatientHistoryDialogComponent } from './appointments/patient-history-dialog/patient-history-dialog.component';
 import { SharedModule } from '../shared/shared.module';
+import { CancelAppointmentDialogComponent } from './appointments/cancel-appointment-dialog/cancel-appointment-dialog.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
         WardMapComponent,
         WardDetailDialogComponent,
         PatientHistoryDialogComponent,
+        CancelAppointmentDialogComponent,
     ],
     imports: [
         CommonModule,

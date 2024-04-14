@@ -16,5 +16,5 @@ export class DoctorsAppointment extends Appointment {
     dateOfBirth: string;
     slot: string;
     needWard: boolean;
-    completed: boolean;
+    completed: -1 | 0 | 1;
 }
