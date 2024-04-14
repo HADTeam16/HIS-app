@@ -32,47 +32,48 @@ export class DoctorDialogComponent {
     };
     filesUploadedFlags = [false, false, false, false, false];
 
-    constructor(
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DoctorDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Doctor,
-        private adminService: AdminService,
-        private snackbarService: SnackbarService,
-        private utilityService: UtilityService
-    ) {
-        this.doctorForm = this.formBuilder.group({
-            id: [''],
-            userName: [''],
-            password: [''],
-            firstName: [''],
-            middleName: [''],
-            lastName: [''],
-            gender: [''],
-            dateOfBirth: [''],
-            country: [''],
-            state: [''],
-            city: [''],
-            addressLine1: [''],
-            addressLine2: [''],
-            landmark: [''],
-            pinCode: [''],
-            contact: [''],
-            email: [''],
-            profilePicture: [''],
-            emergencyContactName: [''],
-            emergencyContactNumber: [''],
-            role: ['doctor'],
-            medicalLicenseNumber: [''],
-            specialization: [''],
-            boardCertification: [''],
-            medicalDegree: [''],
-            cv: [''],
-            drugScreeningResult: [''],
-            workStart: [''],
-            workEnd: [''],
-            isDisable: false,
-        });
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<DoctorDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Doctor,
+    private adminService: AdminService,
+    private snackbarService: SnackbarService,
+    private utilityService: UtilityService,
+  ) {
+    this.doctorForm = this.formBuilder.group({
+      id: [null],
+      userName: [null],
+      password: [null],
+      firstName: [null],
+      middleName: [null],
+      lastName: [null],
+      gender: [null],
+      dateOfBirth: [null],
+      country: [null],
+      state: [null],
+      city: [null],
+      addressLine1: [null],
+      addressLine2: [null],
+      landmark: [null],
+      pinCode: [null],
+      contact: [null],
+      email: [null],
+      profilePicture: [null],
+      emergencyContactName: [null],
+      emergencyContactNumber: [null],
+      role: ['doctor'],
+      medicalLicenseNumber: [null],
+      specialization: [null],
+      boardCertification: [null],
+      experience: [null],
+      medicalDegree: [null],
+      cv: [null],
+      drugScreeningResult: [null],
+      workStart: [null],
+      workEnd: [null],
+      isDisable: false,
+    });
+  }
 
     onProfilePictureSelected(event: string) {
         this.doctorForm.controls['profilePicture'].setValue(event);

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { NurseRoutingModule } from './nurse-routing.module';
 import { NurseComponent } from './nurse.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
@@ -19,7 +19,13 @@ import { NurseService } from './nurse.service';
         AssignWardComponent,
         AllocateWardDialogComponent,
     ],
-    imports: [CommonModule, NurseRoutingModule, MaterialModule, FormsModule],
+    imports: [
+        CommonModule,
+        NurseRoutingModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
     providers: [NurseService],
 })
 export class NurseModule {}

@@ -1,16 +1,17 @@
 <div class="m-8 flex flex-col items-center justify-between">
     <mat-form-field>
-        <mat-label>
-            Select Ward
-        </mat-label>
-        <mat-select placeholder="Select Ward">
-            <mat-option *ngFor="let ward of Wards" [value]="ward">
-                {{ward}}
+        <mat-label>Select Ward</mat-label>
+        <mat-select placeholder="Select Ward" [(ngModel)]="selectedWard">
+            <mat-option *ngFor="let ward of availableWardIds" [value]="ward">
+                {{ ward }}
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="onAssignWard()"> 
+    <button
+        mat-stroked-button
+        color="primary"
+        (click)="onAssignWard(selectedWard)"
+    >
         Assign Ward
     </button>
 </div>
-

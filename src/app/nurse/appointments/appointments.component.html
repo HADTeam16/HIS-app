@@ -3,25 +3,30 @@
         <h2>Your Ward Allocations</h2>
     </div>
     <mat-accordion class="w-2/3 mt-8">
-        <mat-expansion-panel *ngFor="let appointment of selectedDateAppointments">
+        <mat-expansion-panel *ngFor="let patient of assignedPatients">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ appointment.wardNumber }}
+                    {{ patient.id }}
                 </mat-panel-title>
                 <mat-panel-description>
-                    {{ appointment.patientId }}
+                    {{ patient.firstName }}
                 </mat-panel-description>
                 <mat-panel-description>
-                    {{ appointment.patientName }}
+                    {{ patient.lastName }}
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            Appointment ID: {{ appointment.appointmentId }} <br /><br />
-            Blood Pressure: {{ appointment.bloodPressure }}<br /><br />
-            Temprature : {{ appointment.temprature }}<br /><br />
-            Oxygen Level : {{appointment.oxygenLevel}}<br /><br />
-            Heart Rate : {{ appointment.heartRate }} <br />
+            Blood Pressure: {{ patient.bloodPressure }}<br /><br />
+            Temprature : {{ patient.temperature }}<br /><br />
+            Height : {{ patient.height }}<br /><br />
+            Weight : {{ patient.weight }} <br />
             <mat-action-row>
-                <button mat-button color="primary" (click)="editDetails(appointment)">Edit Details</button>
+                <button
+                    mat-button
+                    color="primary"
+                    (click)="editDetails(patient)"
+                >
+                    Edit Details
+                </button>
             </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>

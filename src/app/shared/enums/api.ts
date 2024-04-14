@@ -27,6 +27,12 @@ export enum Api {
     register_nurse = 'auth/signup/user',
     update_nurse_by_id = 'api/users/update/user',
     is_head_nurse = 'api/nurse/is/head/nurse/',
+    get_available_wards = 'api/nurse/get/all/available/wardIds',
+    get_patients_who_needs_wards = 'api/nurse/patients/who/needs/ward',
+    get_allotted_wards = 'api/nurse/allotted/ward/',
+    update_ward_patient_details = 'api/nurse/update/assigned/ward/patient/details/',
+    get_assigned_patients = 'api/nurse/assigned/patients',
+    update_assigned_patient_details = 'api/nurse/update/assigned/ward/patient/details/',
 
     //receptionist
     get_all_receptionist = 'api/receptionist/get/all/receptionist',

@@ -3,7 +3,7 @@
     <ng-template #notLoadingContent>
         <app-dynamic-table
             [headers]="tableHeaders"
-            [data]="tableData"
+            [data]="patientsWhoNeedWard"
             [headerAlias]="headerAlias"
             [hasActions]="true"
             [hasExpansion]="true"
@@ -13,10 +13,7 @@
                 <div class="abc">
                     <button
                         mat-stroked-button
-                        (click)="
-                            bookAppointment(patient);
-                            $event.stopPropagation()
-                        "
+                        (click)="openAllocateWardDialog(patient.needWardId)"
                     >
                         Assign Ward
                     </button>

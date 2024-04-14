@@ -2,12 +2,21 @@
     <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <a mat-button routerLink="ward_map">Head Nurse Portal</a>
+    <a mat-button routerLink="ward_map">Nurse Portal</a>
     <div class="flex justify-center items-center">
-        <button mat-icon-button class="mr-4" (click)="chat = chat=='visible'?'invisible':'visible'">
-            <mat-icon [svgIcon]="chat=='visible' ? 'chat_filled' : 'chat_outlined'">chat</mat-icon>
+        <button
+            mat-icon-button
+            class="mr-4"
+            (click)="chat = chat == 'visible' ? 'invisible' : 'visible'"
+        >
+            <mat-icon
+                [svgIcon]="chat == 'visible' ? 'chat_filled' : 'chat_outlined'"
+                >chat</mat-icon
+            >
         </button>
-        <button mat-raised-button type="button" (click)="onLogout()">Log Out</button>
+        <button mat-raised-button type="button" (click)="onLogout()">
+            Log Out
+        </button>
     </div>
 </mat-toolbar>
 <mat-sidenav-container class="h-full">
@@ -23,7 +32,7 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-chat [chat]="chat" (chatClosed)="chat=$event"></app-chat>
+        <app-chat [chat]="chat" (chatClosed)="chat = $event"></app-chat>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
