@@ -16,6 +16,13 @@ export class ReceptionistDialogComponent {
   getAllReceptionistSub: Subscription;
   receptionist: Receptionist[];
   receptionistLoading = true;
+  selectedFile: File | undefined;
+    base64Image: string | undefined;
+    selectedFileName: string | undefined;
+    fileLabelMappings = {
+        profile: ['Profile picture selected', 'Select profile picture'],
+    };
+    filesUploadedFlags = [false, false, false, false, false];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,6 +57,11 @@ export class ReceptionistDialogComponent {
       isDisable: false,
     });
   }
+
+  onProfilePictureSelected(event: string) {
+    this.receptionistForm.controls['profilePicture'].setValue(event);
+    this.filesUploadedFlags[0] = true;
+}
 
   onRegisterReceptionist() {
       const formData = this.receptionistForm.value;

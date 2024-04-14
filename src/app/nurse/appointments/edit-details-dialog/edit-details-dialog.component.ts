@@ -18,21 +18,21 @@ export class EditDetailsDialogComponent {
     isLoading = false;
 
     constructor(
-        private dialogRef: MatDialogRef<EditDetailsDialogComponent>,
-        private formBuilder: FormBuilder,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-        public allocateWard: Patient,
-        private snackbarService: SnackbarService,
-        private nurseService: NurseService
-    ) {
-        this.editPatientDetailsForm = this.formBuilder.group({
-            temperature: [''],
-            bloodPressure: [''],
-            height: [''],
-            weight: [''],
-          });
-        this.editDetails = data?.ele;
-    }
+      private dialogRef: MatDialogRef<EditDetailsDialogComponent>,
+      private formBuilder: FormBuilder,
+      @Inject(MAT_DIALOG_DATA) public data: any,
+      private snackbarService: SnackbarService,
+      private nurseService: NurseService
+  ) {
+      this.editPatientDetailsForm = this.formBuilder.group({
+          temperature: [''],
+          bloodPressure: [''],
+          height: [''],
+          weight: [''],
+      });
+      this.editDetails = data?.ele;
+      console.log("Recieved - " + this.editDetails);
+  }  
     
     editAssignedPatientDetails() {
         this.isLoading = true;

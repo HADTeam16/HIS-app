@@ -39,15 +39,13 @@ export class AssignWardComponent {
             .subscribe({
                 next: (needWard: NeedWard[]) => {
                     this.patientsWhoNeedWard = needWard;
+                    console.log("Patients who need ward:", this.patientsWhoNeedWard);
                 },
                 error: (error) => {
-                    console.error(
-                        'Error fetching patients who need ward:',
-                        error
-                    );
+                    console.error('Error fetching patients who need ward:', error);
                 },
             });
-    }
+    }    
 
     openAllocateWardDialog(needWardId: number): void {
         const dialogRef = this.dialog.open(AllocateWardDialogComponent, {
