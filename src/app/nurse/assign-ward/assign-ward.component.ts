@@ -48,6 +48,8 @@ export class AssignWardComponent {
     }    
 
     openAllocateWardDialog(needWardId: number): void {
+        console.log('HIII');
+        console.log('needWardId - ' + needWardId);
         const dialogRef = this.dialog.open(AllocateWardDialogComponent, {
             data: { needWardId },
         });

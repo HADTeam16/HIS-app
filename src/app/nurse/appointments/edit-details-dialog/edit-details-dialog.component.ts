@@ -47,7 +47,7 @@ export class EditDetailsDialogComponent {
               this.dialogRef.close();
             },
             error: (error: any) => {
-              console.error("Error updating doctor:", error);
+              console.error("Error updating Patient Details:", error);
               this.isLoading = false;
               this.snackbarService.openSnackBar("Error updating Patient Details: " + error);
             }
