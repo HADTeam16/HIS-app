@@ -16,14 +16,17 @@
             <mat-button-toggle-group
                 value="all"
                 name="appointmentStatus"
-                (change)="onStatusToggle($event)"
+                (change)="onStatusToggle($event.value)"
                 class="mb-8"
             >
                 <mat-button-toggle value="all">All</mat-button-toggle>
                 <mat-button-toggle value="upcoming">Upcoming</mat-button-toggle>
-                <mat-button-toggle value="completed"
-                    >Completed</mat-button-toggle
-                >
+                <mat-button-toggle value="completed">
+                    Completed
+                </mat-button-toggle>
+                <mat-button-toggle value="cancelled">
+                    Cancelled
+                </mat-button-toggle>
             </mat-button-toggle-group>
             <ng-template #noAppointmentsFound>
                 <div>
@@ -98,25 +101,52 @@
                                 }}
                             </section>
                         </div>
-                        <br />
                         <mat-action-row>
-                            <button
-                                *ngIf="isToday && !appointment.completed"
-                                mat-raised-button
-                                color="primary"
-                                (click)="
-                                    finishAppointment(appointment.appointmentId)
-                                "
-                            >
-                                Finish Appointment
-                            </button>
-                            <button
-                                mat-stroked-button
-                                color="primary"
-                                (click)="viewHistory(appointment.patientId)"
-                            >
-                                View Patient History
-                            </button>
+                            <div class="w-full flex justify-between">
+                                <div class="-ml-2">
+                                    <button
+                                        mat-stroked-button
+                                        color="primary"
+                                        (click)="
+                                            viewHistory(appointment.patientId)
+                                        "
+                                    >
+                                        View Patient History
+                                    </button>
+                                </div>
+                                <div class="mr-4">
+                                    <button
+                                        *ngIf="
+                                            !isPast &&
+                                            appointment.completed == 0
+                                        "
+                                        mat-button
+                                        color="warn"
+                                        (click)="
+                                            cancelAppointment(
+                                                appointment.appointmentId
+                                            )
+                                        "
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        *ngIf="
+                                            isToday &&
+                                            appointment.completed == 0
+                                        "
+                                        mat-raised-button
+                                        color="primary"
+                                        (click)="
+                                            finishAppointment(
+                                                appointment.appointmentId
+                                            )
+                                        "
+                                    >
+                                        Finish
+                                    </button>
+                                </div>
+                            </div>
                         </mat-action-row>
                     </mat-expansion-panel>
                 </mat-accordion>

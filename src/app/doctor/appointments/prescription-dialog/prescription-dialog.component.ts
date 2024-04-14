@@ -21,7 +21,7 @@ export class PrescriptionDialogComponent {
     constructor(
         public dialogRef: MatDialogRef<PrescriptionDialogComponent>,
         @Inject(MAT_DIALOG_DATA)
-        public prescription: { appointment_id: number; prescription: string },
+        public prescription: { appointment_id: number },
         private doctorService: DoctorService,
         private snackbarService: SnackbarService
     ) {}
@@ -106,7 +106,7 @@ export class PrescriptionDialogComponent {
             .then(
                 (res: string) => {
                     this.snackbarService.openSnackBar(res);
-                    this.dialogRef.close("success");
+                    this.dialogRef.close('success');
                 },
                 (err: string) => {
                     this.snackbarService.openSnackBar(err);

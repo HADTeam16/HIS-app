@@ -146,4 +146,27 @@ export class DoctorService {
         // }
         // return Promise.all([promises]);
     }
+
+    cancelAppointment(appointment_id: number) {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(
+                    environment.baseURL +
+                        Api.cancel_appointment +
+                        appointment_id
+                )
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Appointment cancelled successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
 }
