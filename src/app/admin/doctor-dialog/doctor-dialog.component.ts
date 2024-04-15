@@ -41,9 +41,6 @@ export class DoctorDialogComponent {
     private utilityService: UtilityService,
   ) {
     this.doctorForm = this.formBuilder.group({
-      id: [null],
-      userName: [null],
-      password: [null],
       firstName: [null],
       middleName: [null],
       lastName: [null],
@@ -81,22 +78,23 @@ export class DoctorDialogComponent {
     }
 
     onBoardCertificationSelected(event: string) {
+        console.log(event);
         this.doctorForm.controls['boardCertification'].setValue(event);
         this.filesUploadedFlags[1] = true;
     }
 
     onCVSelected(event: string) {
-        this.doctorForm.controls['boardCertification'].setValue(event);
+        this.doctorForm.controls['cv'].setValue(event);
         this.filesUploadedFlags[2] = true;
     }
 
     onMedicalDegreeSelected(event: string) {
-        this.doctorForm.controls['boardCertification'].setValue(event);
+        this.doctorForm.controls['medicalDegree'].setValue(event);
         this.filesUploadedFlags[3] = true;
     }
 
     onDrugScreeningResultSelected(event: string) {
-        this.doctorForm.controls['boardCertification'].setValue(event);
+        this.doctorForm.controls['drugScreeningResult'].setValue(event);
         this.filesUploadedFlags[4] = true;
     }
 

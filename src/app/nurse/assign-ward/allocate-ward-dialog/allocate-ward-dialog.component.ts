@@ -19,7 +19,6 @@ export class AllocateWardDialogComponent {
     constructor(
         private dialogRef: MatDialogRef<AllocateWardDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        public allocateWard: Patient,
         private snackbarService: SnackbarService,
         private nurseService: NurseService
     ) {

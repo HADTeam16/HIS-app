@@ -31,6 +31,7 @@ export class AppointmentsComponent {
             .subscribe({
                 next: (patients: Patient[]) => {
                     this.assignedPatients = patients;
+                    console.log(this.assignedPatients);
                 },
                 error: (error) => {
                     console.error(
@@ -42,10 +43,12 @@ export class AppointmentsComponent {
     }
 
     editDetails(ele: Patient) {
+        console.log("Heelo");
+        console.log("ele - " + ele);
         const dialogRef = this.dialog.open(EditDetailsDialogComponent, {
             data: { ele },
         });
-
+        console.log("ele - " + ele);
         dialogRef.afterClosed().subscribe((result) => {
             // Handle any actions after the dialog is closed, if needed
         });
