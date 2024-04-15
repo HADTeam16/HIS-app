@@ -126,7 +126,6 @@ export class NurseService {
             .get(environment.baseURL + Api.get_assigned_patients)
             .pipe(
                 tap(response => console.log('Raw response:', response)), // Log the raw response
-                map((response: any) => response.body), // Extract the array of patients from the 'body' property
                 defaultIfEmpty([]),
                 map((patient_list: any[]): Patient[] => {
                     return patient_list.map((item) => ({
