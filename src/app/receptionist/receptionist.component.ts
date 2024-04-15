@@ -25,7 +25,7 @@ export class ReceptionistComponent {
     callEmergency() {
         this.emergency = true;
         this.dialog
-            .open(EmergencyDialogComponent)
+            .open(EmergencyDialogComponent, { height: '80%', width: '60%' })
             .afterClosed()
             .subscribe({
                 next: (response) => {
