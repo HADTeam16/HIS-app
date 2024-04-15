@@ -34,11 +34,26 @@
                             : "Unavailable")
                 }}
             </h2>
-            <div *ngIf="selectedOT.status == true">
+            <div *ngIf="selectedOT.status == true" class="flex items-center">
+                <mat-form-field>
+                    <mat-label>Surgeons</mat-label>
+                    <mat-select [formControl]="surgeonsControl" multiple>
+                        @for (surgeon of availableSurgeons; track surgeon.id) {
+                        <mat-option [value]="surgeon.id">{{
+                            "Dr. " +
+                                surgeon.first_name +
+                                " " +
+                                surgeon.last_name
+                        }}</mat-option>
+                        }@empty {
+                            <span class="font-light text-lg">No surgeons available at the moment!</span>
+                        }
+                    </mat-select>
+                </mat-form-field>
                 <button
-                    *ngIf="selectedOT.status == true"
                     mat-raised-button
                     (click)="bookOT(selectedOT.id)"
+                    class="ml-4"
                 >
                     Book
                 </button>

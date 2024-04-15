@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { OT } from '../../shared/models/ot';
 import { ReceptionistService } from '../receptionist.service';
 import { Subscription } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-emergency-dialog',
@@ -17,6 +18,14 @@ export class EmergencyDialogComponent {
         first_name: string;
         last_name: string;
     }[] = [];
+    surgeonsControl = new FormControl([
+        {
+            id: 1,
+            specialization: 'NeuroSurgeon',
+            first_name: 'Pradeep',
+            last_name: 'Singh',
+        },
+    ]);
     otDataSubscription: Subscription;
     availableSurgeonsSubscription: Subscription;
     constructor(
@@ -59,12 +68,38 @@ export class EmergencyDialogComponent {
             (res) => {
                 console.log('Promise response - ', res);
                 this.ots = res[0] as OT[];
-                this.availableSurgeons = res[1] as {
-                    id: number;
-                    first_name: string;
-                    last_name: string;
-                    specialization: string;
-                }[];
+                // this.availableSurgeons = res[1] as {
+                //     id: number;
+                //     first_name: string;
+                //     last_name: string;
+                //     specialization: string;
+                // }[];
+                this.availableSurgeons = [
+                    {
+                        id: 1,
+                        specialization: 'NeuroSurgeon',
+                        first_name: 'Pradeep',
+                        last_name: 'Singh',
+                    },
+                    {
+                        id: 2,
+                        specialization: 'NeuroSurgeon',
+                        first_name: 'Dilip',
+                        last_name: 'Bhatia',
+                    },
+                    {
+                        id: 3,
+                        specialization: 'Cardiologist',
+                        first_name: 'Nitish',
+                        last_name: 'Sharma',
+                    },
+                    {
+                        id: 4,
+                        specialization: 'LiverSurgeon',
+                        first_name: 'Mahesh',
+                        last_name: 'Bhosale',
+                    },
+                ];
             },
             (err) => {
                 console.log('Promise error - ', err);
@@ -81,6 +116,7 @@ export class EmergencyDialogComponent {
     }
 
     selectOT(ot: OT) {
+        this.surgeonsControl.reset();
         this.selectedOT = ot;
     }
 
