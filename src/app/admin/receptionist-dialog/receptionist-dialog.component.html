@@ -19,19 +19,6 @@
         <input matInput formControlName="lastName">
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>UserName</mat-label>
-        <input matInput formControlName="userName">
-      </mat-form-field>
-
-    </div>
-
-    <div class="row">
-      <mat-form-field class="mr-4">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password">
-      </mat-form-field>
-
       <mat-form-field class="mr-4">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
@@ -101,11 +88,6 @@
         <input matInput formControlName="email">
       </mat-form-field>
 
-      <mat-form-field class="mr-4">
-        <mat-label>Profile Picture</mat-label>
-        <input matInput formControlName="profilePicture">
-      </mat-form-field>
-
       <mat-form-field>
         <mat-label>Emergency Contact Name</mat-label>
         <input matInput formControlName="emergencyContactName">
@@ -118,6 +100,14 @@
         <input matInput formControlName="emergencyContactNumber">
       </mat-form-field>
     </div>
+
+    <div class="row flex justify-around mb-4">
+      <app-single-file-upload
+          [label]="'profilePicture'"
+          [fileTypes]="['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']"
+          (selected)="onProfilePictureSelected($event)"
+      ></app-single-file-upload>
+  </div>
 
     <div class="row mt-3 ml-3 text-center p-4">
       <button 

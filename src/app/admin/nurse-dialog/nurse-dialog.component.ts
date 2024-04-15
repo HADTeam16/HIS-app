@@ -16,6 +16,13 @@ export class NurseDialogComponent {
   getAllNurseSub: Subscription;
   nurse: Nurse[];
   nurseLoading = true;
+  selectedFile: File | undefined;
+    base64Image: string | undefined;
+    selectedFileName: string | undefined;
+    fileLabelMappings = {
+        profile: ['Profile picture selected', 'Select profile picture'],
+    };
+    filesUploadedFlags = [false, false, false, false, false];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,9 +32,6 @@ export class NurseDialogComponent {
     private snackbarService: SnackbarService
   ) {
     this.nurseForm = this.formBuilder.group({
-      id: [null],
-      userName: [null],
-      password: [null],
       firstName: [null],
       middleName: [null],
       lastName: [null],
@@ -57,6 +61,11 @@ export class NurseDialogComponent {
       headNurse: checked
     });
   }
+
+  onProfilePictureSelected(event: string) {
+    this.nurseForm.controls['profilePicture'].setValue(event);
+    this.filesUploadedFlags[0] = true;
+}
 
   onRegisterNurse() {
       const formData = this.nurseForm.value;
