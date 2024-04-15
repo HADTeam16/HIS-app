@@ -69,8 +69,9 @@ export class ReceptionistService {
     getAllOTData() {
         return this.httpClient.get(environment.baseURL + Api.get_ots).pipe(
             defaultIfEmpty([]),
-            catchError(() => {
-                return [];
+            catchError((error) => {
+                console.log('Error in getAllOTData:', error);
+                return error;
             }),
             map(
                 (
@@ -104,8 +105,9 @@ export class ReceptionistService {
             .get(environment.baseURL + Api.get_available_surgeons)
             .pipe(
                 defaultIfEmpty([]),
-                catchError(() => {
-                    return [];
+                catchError((error) => {
+                    console.log('Error in getAvailableSurgeons:', error);
+                    return error;
                 }),
                 map((surgeons: {}[]) => {
                     return surgeons.map((surgeon) => {

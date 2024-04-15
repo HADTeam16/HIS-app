@@ -32,6 +32,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     declarations: [
@@ -83,6 +84,7 @@ import { SingleFileUploadComponent } from './components/single-file-upload/singl
         MatTabsModule,
         MatSlideToggleModule,
         MatMenuModule,
+        MatChipsModule,
     ],
     providers: [SnackbarService],
 })
