@@ -39,6 +39,10 @@ export enum Api {
     get_receptionist_by_id = 'api/users/get/user/',
     register_receptionist = 'auth/signup/user',
     update_receptionist_by_id = 'api/users/update/user',
+    get_ots = 'api/ot/get/all/ots',
+    get_available_surgeons = 'api/ot/get/all/free/surgeons',
+    book_ot = 'api/ot/book/ot/',
+    clear_ot = 'api/ot/free/ot/',
 
     //user
     toggle_user_status = 'auth/toggle/user/status',

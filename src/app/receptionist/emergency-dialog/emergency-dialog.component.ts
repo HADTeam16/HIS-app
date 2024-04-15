@@ -4,7 +4,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
     selector: 'app-emergency-dialog',
     templateUrl: './emergency-dialog.component.html',
-    styleUrl: './emergency-dialog.component.scss',
 })
 export class EmergencyDialogComponent {
     emergencyDoctors = [

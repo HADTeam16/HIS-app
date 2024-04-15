@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../shared/enums/api';
-import { defaultIfEmpty, map } from 'rxjs';
+import { catchError, defaultIfEmpty, map } from 'rxjs';
 import { Doctor, Patient, PatientRegistration } from '../shared/models/user';
 import { Appointment } from '../shared/models/appointment';
+import { OT } from '../shared/models/ot';
 
 @Injectable()
 export class ReceptionistService {
@@ -63,5 +64,97 @@ export class ReceptionistService {
                 defaultIfEmpty('Some error occured'),
                 map((response) => response['response'])
             );
+    }
+
+    getAllOTData() {
+        return this.httpClient.get(environment.baseURL + Api.get_ots).pipe(
+            defaultIfEmpty([]),
+            catchError(() => {
+                return [];
+            }),
+            map(
+                (
+                    ots: {
+                        otId: number;
+                        availableStatus: boolean;
+                        doctors: {}[];
+                    }[]
+                ): OT[] => {
+                    return ots.map((ot): OT => {
+                        return {
+                            id: ot.otId,
+                            status: ot.availableStatus,
+                            doctors: ot.doctors.map((doc) => {
+                                return {
+                                    id: doc['doctorId'],
+                                    specialization: doc['specialization'],
+                                    first_name: doc['user']['firstName'],
+                                    last_name: doc['user']['lastName'],
+                                };
+                            }),
+                        };
+                    });
+                }
+            )
+        );
+    }
+
+    getAvailableSurgeons() {
+        return this.httpClient
+            .get(environment.baseURL + Api.get_available_surgeons)
+            .pipe(
+                defaultIfEmpty([]),
+                catchError(() => {
+                    return [];
+                }),
+                map((surgeons: {}[]) => {
+                    return surgeons.map((surgeon) => {
+                        return {
+                            id: surgeon['doctorId'],
+                            specialization: surgeon['specialization'],
+                            first_name: surgeon['user']['firstName'],
+                            last_name: surgeon['user']['lastName'],
+                        };
+                    });
+                })
+            );
+    }
+
+    bookOT(ot_id: number, surgeon_ids: number[]) {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .put(environment.baseURL + Api.book_ot + ot_id, surgeon_ids)
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'OT booking successful') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    clearOT(ot_id: number) {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(environment.baseURL + Api.clear_ot + ot_id)
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'OT cleared successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
     }
 }
