@@ -1,24 +1,22 @@
-<!-- doctor-dialog.component.html -->
+<!-- nurse-dialog.component.html -->
 <h2 mat-dialog-title>Nurse's Form</h2>
 <div class="dialog-form flex flex-col justify-between m-8 h-96">
   <form [formGroup]="nurseForm">
-    <div class="row">
-
+    <div class="row flex justify-between">
       <mat-form-field class="mr-4">
         <mat-label>First Name</mat-label>
         <input matInput formControlName="firstName">
       </mat-form-field>
-
       <mat-form-field class="mr-4">
         <mat-label>Middle Name</mat-label>
         <input matInput formControlName="middleName">
       </mat-form-field>
-
       <mat-form-field class="mr-4">
         <mat-label>Last Name</mat-label>
         <input matInput formControlName="lastName">
       </mat-form-field>
-
+    </div>
+    <div class="row flex justify-between">
       <mat-form-field class="mr-4">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
@@ -27,75 +25,66 @@
           <mat-option value="notSpecified">Not Specified</mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-form-field>
+      <mat-form-field class="mr-4">
         <mat-label>Date of Birth</mat-label>
         <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-
-    </div>
-
-    <div class="row">
       <mat-form-field class="mr-4">
         <mat-label>Country</mat-label>
         <input matInput formControlName="country">
       </mat-form-field>
-
+    
+    </div>
+    
+    <div class="row flex justify-between">
       <mat-form-field class="mr-4">
         <mat-label>State</mat-label>
-        <input matInput formControlName="state">
+        <input matInput formControlName="state" />
       </mat-form-field>
-
-      <mat-form-field class="m4-4">
+      <mat-form-field class="mr-4">
         <mat-label>City</mat-label>
-        <input matInput formControlName="city">
+        <input matInput formControlName="city" />
       </mat-form-field>
-    </div>
-
-    <div class="row">
       <mat-form-field class="mr-4">
         <mat-label>Address Line 1</mat-label>
-        <input matInput formControlName="addressLine1">
+        <input matInput formControlName="addressLine1" />
       </mat-form-field>
-
+    </div>
+    
+    <div class="row flex justify-between">
       <mat-form-field class="mr-4">
         <mat-label>Address Line 2</mat-label>
         <input matInput formControlName="addressLine2">
       </mat-form-field>
-
       <mat-form-field class="mr-4">
         <mat-label>Landmark</mat-label>
         <input matInput formControlName="landmark">
       </mat-form-field>
-
-      <mat-form-field>
+      <mat-form-field class="mr-4">
         <mat-label>Pincode</mat-label>
         <input matInput formControlName="pinCode">
       </mat-form-field>
-
     </div>
-
-    <div class="row">
+    
+    <div class="row flex justify-around">
       <mat-form-field class="mr-4">
         <mat-label>Contact</mat-label>
         <input matInput formControlName="contact">
       </mat-form-field>
-
       <mat-form-field class="mr-4">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email">
       </mat-form-field>
-
-      <mat-form-field>
+    </div>
+    
+    <div class="row flex justify-between">
+      <mat-form-field class="flex w-64 mr-4">
         <mat-label>Emergency Contact Name</mat-label>
         <input matInput formControlName="emergencyContactName">
       </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field class="mr-4">
+      <mat-form-field class="flex w-64 mr-4">
         <mat-label>Emergency Contact Number</mat-label>
         <input matInput formControlName="emergencyContactNumber">
       </mat-form-field>
@@ -103,7 +92,7 @@
 
     <div class="row flex justify-around mb-4">
       <app-single-file-upload
-          [label]="'profilePicture'"
+          [label]="'Profile Picture'"
           [fileTypes]="['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']"
           (selected)="onProfilePictureSelected($event)"
       ></app-single-file-upload>

@@ -124,29 +124,29 @@
     </div>
     <div class="row flex justify-around mb-4">
         <app-single-file-upload
-            [label]="'profilePicture'"
+            [label]="'Profile Picture'"
             [fileTypes]="['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']"
             (selected)="onProfilePictureSelected($event)"
         ></app-single-file-upload>
         <app-single-file-upload
-            [label]="'boardCertification'"
+            [label]="'Board Certification'"
             [fileTypes]="['application/pdf']"
             (selected)="onBoardCertificationSelected($event)"
         ></app-single-file-upload>
     </div>
     <div class="row flex justify-around">
         <app-single-file-upload
-            [label]="'medicalDegree'"
+            [label]="'Medical Degree'"
             [fileTypes]="['application/pdf']"
             (selected)="onMedicalDegreeSelected($event)"
         ></app-single-file-upload>
         <app-single-file-upload
-            [label]="'cv'"
+            [label]="'CV'"
             [fileTypes]="['application/pdf']"
             (selected)="onCVSelected($event)"
         ></app-single-file-upload>
         <app-single-file-upload
-            [label]="'drugScreeningResult'"
+            [label]="'Drug Screening Result'"
             [fileTypes]="['application/pdf']"
             (selected)="onDrugScreeningResultSelected($event)"
         ></app-single-file-upload>
