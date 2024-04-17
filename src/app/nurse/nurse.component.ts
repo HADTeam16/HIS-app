@@ -11,7 +11,11 @@ import { Subscription } from 'rxjs';
 export class NurseComponent {
     chat = 'invisible';
     routes = [
-        { title: 'Patient List', icon: 'patient_list', link: 'appointments' },
+        {
+            title: 'In Patient List',
+            icon: 'patient_list',
+            link: 'in_patient_list',
+        },
     ];
     userSubscription: Subscription;
     headNurseSubscription: Subscription;
@@ -28,11 +32,18 @@ export class NurseComponent {
         });
         this.headNurseSubscription = nurseService.isHeadNurseSubject.subscribe({
             next: (isHeadNurse) => {
-                if (isHeadNurse) {
+                if (
+                    isHeadNurse &&
+                    !this.routes.includes({
+                        title: 'Ward Queue',
+                        icon: 'ward',
+                        link: 'ward_queue',
+                    })
+                ) {
                     this.routes.push({
                         title: 'Ward Queue',
                         icon: 'ward',
-                        link: 'assign_ward',
+                        link: 'ward_queue',
                     });
                 }
             },

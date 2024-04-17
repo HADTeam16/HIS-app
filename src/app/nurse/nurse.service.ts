@@ -14,11 +14,23 @@ export class NurseService {
         new BehaviorSubject<boolean>(false);
 
     isHeadNurse(nurseId: number) {
-        this.httpClient
-            .get(environment.baseURL + Api.is_head_nurse + nurseId)
-            .subscribe((res: { message: string }) => {
-                this.isHeadNurseSubject.next(res.message === 'yes');
-            });
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(environment.baseURL + Api.is_head_nurse + nurseId)
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message === 'yes') {
+                            this.isHeadNurseSubject.next(true);
+                            resolve(true);
+                        } else {
+                            resolve(false);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
     }
 
     // Head Nurse -

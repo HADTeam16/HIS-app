@@ -7,11 +7,10 @@ import { NurseService } from '../nurse.service';
 import { EditDetailsDialogComponent } from './edit-details-dialog/edit-details-dialog.component';
 
 @Component({
-    selector: 'app-appointments',
-    templateUrl: './appointments.component.html',
-    styleUrls: ['./appointments.component.scss'],
+    selector: 'app-in-patient-list',
+    templateUrl: './in-patient-list.component.html',
 })
-export class AppointmentsComponent {
+export class InPatientListComponent {
     getAssignedPatientsWardSub: Subscription;
     assignedPatients: Patient[] = [];
 
@@ -31,7 +30,7 @@ export class AppointmentsComponent {
             .subscribe({
                 next: (patients: Patient[]) => {
                     this.assignedPatients = patients;
-                    console.log(this.assignedPatients);
+                    this.snackbarService.openSnackBar("In-Patient list loaded")
                 },
                 error: (error) => {
                     console.error(
@@ -43,12 +42,12 @@ export class AppointmentsComponent {
     }
 
     editDetails(ele: Patient) {
-        console.log("Heelo");
-        console.log("ele - " + ele);
+        console.log('Heelo');
+        console.log('ele - ' + ele);
         const dialogRef = this.dialog.open(EditDetailsDialogComponent, {
             data: { ele },
         });
-        console.log("ele - " + ele);
+        console.log('ele - ' + ele);
         dialogRef.afterClosed().subscribe((result) => {
             // Handle any actions after the dialog is closed, if needed
         });
