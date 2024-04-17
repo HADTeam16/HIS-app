@@ -8,11 +8,11 @@ import { NurseService } from '../nurse.service';
 import { AllocateWardDialogComponent } from './allocate-ward-dialog/allocate-ward-dialog.component';
 
 @Component({
-    selector: 'app-assign-ward',
-    templateUrl: './assign-ward.component.html',
-    styleUrl: './assign-ward.component.scss',
+    selector: 'app-ward-queue',
+    templateUrl: './ward-queue.component.html',
+    styleUrl: './ward-queue.component.scss',
 })
-export class AssignWardComponent {
+export class WardQueueComponent {
     isLoading = false;
     tableHeaders = ['id', 'firstName', 'lastName', 'gender'];
     headerAlias = {
@@ -39,13 +39,16 @@ export class AssignWardComponent {
             .subscribe({
                 next: (needWard: NeedWard[]) => {
                     this.patientsWhoNeedWard = needWard;
-                    console.log("Patients who need ward:", this.patientsWhoNeedWard);
+                    this.snackbarService.openSnackBar("Ward assignment queue loaded");
                 },
                 error: (error) => {
-                    console.error('Error fetching patients who need ward:', error);
+                    console.error(
+                        'Error fetching patients who need ward:',
+                        error
+                    );
                 },
             });
-    }    
+    }
 
     openAllocateWardDialog(needWardId: number): void {
         console.log('HIII');
