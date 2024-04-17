@@ -30,7 +30,9 @@ export class ReceptionistComponent {
             .subscribe({
                 next: (response) => {
                     this.emergency = false;
-                    this.snackbarService.openSnackBar(response);
+                    if (response) {
+                        this.snackbarService.openSnackBar(response);
+                    }
                 },
             });
     }

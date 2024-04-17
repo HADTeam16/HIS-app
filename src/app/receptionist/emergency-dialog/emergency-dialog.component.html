@@ -34,7 +34,9 @@
                             : "Unavailable")
                 }}
             </h2>
-            <div *ngIf="selectedOT.status == true" class="flex items-center">
+            <div class="flex flex-col items-center">
+                @if (selectedOT.status == true) { @if
+                (availableSurgeons.length>0) {
                 <mat-form-field>
                     <mat-label>Surgeons</mat-label>
                     <mat-select [formControl]="surgeonsControl" multiple>
@@ -45,24 +47,25 @@
                                 " " +
                                 surgeon.last_name
                         }}</mat-option>
-                        }@empty {
-                            <span class="font-light text-lg">No surgeons available at the moment!</span>
                         }
                     </mat-select>
                 </mat-form-field>
                 <button
                     mat-raised-button
                     (click)="bookOT(selectedOT.id)"
-                    class="ml-4"
+                    class="mt-4"
                 >
                     Book
                 </button>
-            </div>
-            <div *ngIf="selectedOT.status == false">
+                }@else {
+                <span class="font-light text-lg">
+                    No surgeons available at the moment!
+                </span>
+                } }@else {
                 <mat-chip-set role="list">
                     <mat-chip
                         role="listitem"
-                        *ngFor="let surgeon of selectedOT.doctors"
+                        *ngFor="let surgeon of selectedOT.surgeons"
                     >
                         {{
                             "Dr. " +
@@ -72,9 +75,10 @@
                         }}
                     </mat-chip>
                 </mat-chip-set>
-                <button mat-raised-button (click)="clearOT(selectedOT.id)">
+                <button mat-raised-button (click)="clearOT(selectedOT.id)" class="mt-4">
                     Clear
                 </button>
+                }
             </div>
         </div>
     </mat-sidenav-content>
