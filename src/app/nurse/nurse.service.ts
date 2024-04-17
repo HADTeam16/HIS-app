@@ -14,7 +14,7 @@ export class NurseService {
         new BehaviorSubject<boolean>(false);
 
     isHeadNurse(nurseId: number) {
-        return this.httpClient
+        this.httpClient
             .get(environment.baseURL + Api.is_head_nurse + nurseId)
             .subscribe((res: { message: string }) => {
                 this.isHeadNurseSubject.next(res.message === 'yes');
@@ -33,7 +33,7 @@ export class NurseService {
         return this.httpClient
             .get(environment.baseURL + Api.get_patients_who_needs_wards)
             .pipe(
-                tap(response => console.log('Raw response:', response)),
+                tap((response) => console.log('Raw response:', response)),
                 defaultIfEmpty([]),
                 map((needWard_list: any[]): NeedWard[] => {
                     return needWard_list.map((item) => {
@@ -54,8 +54,10 @@ export class NurseService {
                             contact: patient.user.contact,
                             email: patient.user.email,
                             profilePicture: patient.user.profilePicture,
-                            emergencyContactName: patient.user.emergencyContactName,
-                            emergencyContactNumber: patient.user.emergencyContactNumber,
+                            emergencyContactName:
+                                patient.user.emergencyContactName,
+                            emergencyContactNumber:
+                                patient.user.emergencyContactNumber,
                             role: patient.user.role,
                             isDisable: patient.disable,
                             temperature: patient.temperature,
@@ -68,8 +70,7 @@ export class NurseService {
                     });
                 })
             );
-    }    
-    
+    }
 
     assignWard(wardId: number, needWardId: number): Observable<any> {
         return this.httpClient.get<any>(
@@ -125,7 +126,7 @@ export class NurseService {
         return this.httpClient
             .get(environment.baseURL + Api.get_assigned_patients)
             .pipe(
-                tap(response => console.log('Raw response:', response)), // Log the raw response
+                tap((response) => console.log('Raw response:', response)), // Log the raw response
                 defaultIfEmpty([]),
                 map((patient_list: any[]): Patient[] => {
                     return patient_list.map((item) => ({
@@ -148,7 +149,8 @@ export class NurseService {
                         email: item.user.email,
                         profilePicture: item.user.profilePicture,
                         emergencyContactName: item.user.emergencyContactName,
-                        emergencyContactNumber: item.user.emergencyContactNumber,
+                        emergencyContactNumber:
+                            item.user.emergencyContactNumber,
                         role: item.user.role,
                         isDisable: item.user.disable,
                         temperature: item.temperature,
@@ -158,7 +160,7 @@ export class NurseService {
                     }));
                 })
             );
-    }    
+    }
 
     updateAssignedPatientDetails(
         patientId: number,
