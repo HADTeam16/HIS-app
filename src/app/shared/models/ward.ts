@@ -1,6 +1,6 @@
 import { PatientRegistration } from "./user"
 
-export interface Ward extends PatientRegistration{
+export class Ward extends PatientRegistration{
     wardId: number
     floor: number
     wardNumber: string
