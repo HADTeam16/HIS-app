@@ -11,10 +11,14 @@ import { Subscription } from 'rxjs';
 export class NurseComponent {
     chat = 'invisible';
     routes = [
-        { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
-        { title: 'Manage Appointments', icon: 'ward', link: 'assign_ward' },
+        {
+            title: 'In Patient List',
+            icon: 'patient_list',
+            link: 'in_patient_list',
+        },
     ];
     userSubscription: Subscription;
+    headNurseSubscription: Subscription;
 
     constructor(
         private nurseService: NurseService,
@@ -26,6 +30,24 @@ export class NurseComponent {
                 if (nurse) this.nurseService.isHeadNurse(nurse.id);
             },
         });
+        this.headNurseSubscription = nurseService.isHeadNurseSubject.subscribe({
+            next: (isHeadNurse) => {
+                if (
+                    isHeadNurse &&
+                    !this.routes.includes({
+                        title: 'Ward Queue',
+                        icon: 'ward',
+                        link: 'ward_queue',
+                    })
+                ) {
+                    this.routes.push({
+                        title: 'Ward Queue',
+                        icon: 'ward',
+                        link: 'ward_queue',
+                    });
+                }
+            },
+        });
     }
 
     onLogout() {
@@ -35,5 +57,6 @@ export class NurseComponent {
 
     ngOnDestroy() {
         this.userSubscription.unsubscribe();
+        this.headNurseSubscription.unsubscribe();
     }
 }

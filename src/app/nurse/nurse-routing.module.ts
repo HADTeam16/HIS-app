@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NurseComponent } from './nurse.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
-import { AssignWardComponent } from './assign-ward/assign-ward.component';
 import { nurseGuard } from './nurse.guard';
+import { InPatientListComponent } from './in-patient-list/in-patient-list.component';
+import { WardQueueComponent } from './ward-queue/ward-queue.component';
 
 const routes: Routes = [
-  {
-      path: '',
-      component: NurseComponent,
-      children: [
-          { path: '', redirectTo: 'appointments', pathMatch: 'full' },
-          { path: 'appointments', component: AppointmentsComponent },
-          { path: 'assign_ward', component: AssignWardComponent,canActivate:[nurseGuard] },
-      ],
-  },
+    {
+        path: '',
+        component: NurseComponent,
+        children: [
+            { path: '', redirectTo: 'in_patient_list', pathMatch: 'full' },
+            { path: 'in_patient_list', component: InPatientListComponent },
+            {
+                path: 'ward_queue',
+                component: WardQueueComponent,
+                canActivate: [nurseGuard],
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class NurseRoutingModule { }
+export class NurseRoutingModule {}
