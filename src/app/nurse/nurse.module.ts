@@ -6,10 +6,10 @@ import { NurseComponent } from './nurse.component';
 import { InPatientListComponent } from './in-patient-list/in-patient-list.component';
 import { MaterialModule } from '../material/material.module';
 import { EditDetailsDialogComponent } from './in-patient-list/edit-details-dialog/edit-details-dialog.component';
-import { FormsModule } from '@angular/forms';
 import { WardQueueComponent } from './ward-queue/ward-queue.component';
 import { AllocateWardDialogComponent } from './ward-queue/allocate-ward-dialog/allocate-ward-dialog.component';
 import { NurseService } from './nurse.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -23,8 +23,8 @@ import { NurseService } from './nurse.service';
         CommonModule,
         NurseRoutingModule,
         MaterialModule,
-        FormsModule,
         ReactiveFormsModule,
+        SharedModule,
     ],
     providers: [NurseService],
 })

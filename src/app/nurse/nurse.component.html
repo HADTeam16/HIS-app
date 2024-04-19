@@ -2,7 +2,7 @@
     <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <a mat-button routerLink="ward_map">Nurse Portal</a>
+    <a mat-button routerLink="in_patient_list">Nurse Portal</a>
     <div class="flex justify-center items-center">
         <button
             mat-icon-button
@@ -11,8 +11,9 @@
         >
             <mat-icon
                 [svgIcon]="chat == 'visible' ? 'chat_filled' : 'chat_outlined'"
-                >chat</mat-icon
             >
+                chat
+            </mat-icon>
         </button>
         <button mat-raised-button type="button" (click)="onLogout()">
             Log Out

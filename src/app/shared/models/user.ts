@@ -23,7 +23,7 @@ export class User extends UserBasicDetails {
     id: number;
     userName: string;
     password: string;
-    isDisable: boolean;
+    disable: boolean;
 }
 
 export class Patient extends User {
