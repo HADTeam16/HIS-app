@@ -1,55 +1,60 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Patient } from '../../shared/models/user';
+import { Patient, User } from '../../shared/models/user';
 import { Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { NurseService } from '../nurse.service';
 import { EditDetailsDialogComponent } from './edit-details-dialog/edit-details-dialog.component';
+import { AuthService } from '../../shared/services/auth.service';
+import { Ward } from '../../shared/models/ward';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-in-patient-list',
     templateUrl: './in-patient-list.component.html',
 })
 export class InPatientListComponent {
-    getAssignedPatientsWardSub: Subscription;
-    assignedPatients: Patient[] = [];
+    nurse: User;
+    allotedWards: Ward[] = [];
+    userSub: Subscription;
+    wardSub: Subscription;
 
     constructor(
         private dialog: MatDialog,
-        private snackbarService: SnackbarService,
-        private nurseService: NurseService
+        private nurseService: NurseService,
+        private authService: AuthService,
+        private snackbarService: SnackbarService
     ) {}
 
     ngOnInit(): void {
-        this.getAssignedPatients();
+        this.userSub = this.authService.user.subscribe({
+            next: (user) => {
+                this.nurse = user;
+                this.getAllotedWards();
+            },
+        });
     }
 
-    getAssignedPatients(): void {
-        this.getAssignedPatientsWardSub = this.nurseService
-            .getAssignedPatients()
-            .subscribe({
-                next: (patients: Patient[]) => {
-                    this.assignedPatients = patients;
-                    this.snackbarService.openSnackBar("In-Patient list loaded")
-                },
-                error: (error) => {
-                    console.error(
-                        'Error fetching patients who need ward:',
-                        error
-                    );
-                },
-            });
+    getAllotedWards() {
+        this.nurseService.getAllottedWards(this.nurse.id).then(
+            (value: Ward[]) => {
+                this.allotedWards = value;
+                this.snackbarService.openSnackBar('In-patient list loaded');
+            },
+            (error: string) => {
+                this.snackbarService.openSnackBar(error);
+            }
+        );
     }
 
-    editDetails(ele: Patient) {
-        console.log('Heelo');
-        console.log('ele - ' + ele);
-        const dialogRef = this.dialog.open(EditDetailsDialogComponent, {
-            data: { ele },
+    editDetails(ward_id: number) {
+        this.dialog.open(EditDetailsDialogComponent, {
+            data: { ward_id },
         });
-        console.log('ele - ' + ele);
-        dialogRef.afterClosed().subscribe((result) => {
-            // Handle any actions after the dialog is closed, if needed
-        });
+    }
+
+    ngOnDestroy() {
+        this.userSub.unsubscribe();
+        this.wardSub.unsubscribe();
     }
 }

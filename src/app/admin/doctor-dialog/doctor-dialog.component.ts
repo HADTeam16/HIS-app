@@ -68,7 +68,7 @@ export class DoctorDialogComponent {
       drugScreeningResult: [null],
       workStart: [null],
       workEnd: [null],
-      isDisable: false,
+      disable: false,
     });
   }
 
@@ -132,7 +132,7 @@ export class DoctorDialogComponent {
                 drugScreeningResult: formData.drugScreeningResult,
                 workStart: formData.workStart,
                 workEnd: formData.workEnd,
-                isDisable: formData.isDisable,
+                disable: formData.disable,
             })
             .subscribe({
                 next: (response: string) => {

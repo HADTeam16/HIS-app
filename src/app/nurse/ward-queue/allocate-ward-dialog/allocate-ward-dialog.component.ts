@@ -1,9 +1,9 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Patient } from '../../../shared/models/user';
 import { SnackbarService } from '../../../material/services/snackbar.service';
 import { Subscription } from 'rxjs';
 import { NurseService } from '../../nurse.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-allocate-ward-dialog',
@@ -12,7 +12,7 @@ import { NurseService } from '../../nurse.service';
 })
 export class AllocateWardDialogComponent {
     needWardId: number;
-    selectedWard: number;
+    selectedWard = new FormControl<number>(null);
     availableWardIds: number[] = [];
     getAllAvailableWardsSub: Subscription;
 
@@ -48,16 +48,20 @@ export class AllocateWardDialogComponent {
         }
     }
 
-    onAssignWard(wardId: number): void {
-        this.nurseService.assignWard(wardId, this.needWardId).subscribe({
-            next: (response) => {
-                console.log('Ward assigned successfully:', response);
-                this.snackbarService.openSnackBar('Ward assigned successfully');
-            },
-            error: (error) => {
-                console.error('Error assigning ward:', error);
-                this.snackbarService.openSnackBar('Error assigning ward');
-            },
-        });
+    onAssignWard(): void {
+        this.nurseService
+            .assignWard(this.selectedWard.value, this.needWardId)
+            .subscribe({
+                next: (response) => {
+                    console.log('Ward assigned successfully:', response);
+                    this.snackbarService.openSnackBar(
+                        'Ward assigned successfully'
+                    );
+                },
+                error: (error) => {
+                    console.error('Error assigning ward:', error);
+                    this.snackbarService.openSnackBar('Error assigning ward');
+                },
+            });
     }
 }

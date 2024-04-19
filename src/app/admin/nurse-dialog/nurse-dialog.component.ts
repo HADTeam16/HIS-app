@@ -51,7 +51,7 @@ export class NurseDialogComponent {
       emergencyContactName: [null],
       emergencyContactNumber: [null],
       role: ['nurse'],
-      isDisable: false,
+      disable: false,
       headNurse: false,
     });
   }
@@ -92,7 +92,7 @@ export class NurseDialogComponent {
         emergencyContactName: formData.emergencyContactName,
         emergencyContactNumber: formData.emergencyContactNumber,
         role: formData.role,
-        isDisable: formData.isDisable,
+        disable: formData.disable,
         headNurse: formData.headNurse,
       })
       .subscribe({

@@ -1,57 +1,58 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Patient } from '../../../shared/models/user';
 import { SnackbarService } from '../../../material/services/snackbar.service';
-import { Subscription } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import { NurseService } from '../../nurse.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-edit-details-dialog',
     templateUrl: './edit-details-dialog.component.html',
-    styleUrl: './edit-details-dialog.component.scss',
 })
 export class EditDetailsDialogComponent {
-    editPatientDetailsForm: FormGroup;
+    editPatientDetailsForm = new FormGroup({
+        temperature: new FormControl<number>(null),
+        bloodPressure: new FormControl<string>(''),
+        height: new FormControl<number>(null),
+        weight: new FormControl<number>(null),
+    });
     editDetails: Patient;
     editPatientDetails: Subscription;
     isLoading = false;
 
     constructor(
-      private dialogRef: MatDialogRef<EditDetailsDialogComponent>,
-      private formBuilder: FormBuilder,
-      @Inject(MAT_DIALOG_DATA) public data: any,
-      private snackbarService: SnackbarService,
-      private nurseService: NurseService
-  ) {
-      this.editPatientDetailsForm = this.formBuilder.group({
-          temperature: [''],
-          bloodPressure: [''],
-          height: [''],
-          weight: [''],
-      });
-      this.editDetails = data?.ele;
-      console.log("Recieved - " + this.editDetails);
-  }  
-    
+        private dialogRef: MatDialogRef<EditDetailsDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private snackbarService: SnackbarService,
+        private nurseService: NurseService
+    ) {
+        console.log(data);
+    }
+
     editAssignedPatientDetails() {
         this.isLoading = true;
-        
-        const updatedPatientData = this.editPatientDetailsForm.value;
-      
-        this.nurseService.updateAssignedPatientDetails(this.editDetails.id, updatedPatientData)
-          .subscribe({
-            next: (response: any) => {
-              console.log("Patient updated successfully:", response);
-              this.isLoading = false;
-              this.dialogRef.close();
-            },
-            error: (error: any) => {
-              console.error("Error updating Patient Details:", error);
-              this.isLoading = false;
-              this.snackbarService.openSnackBar("Error updating Patient Details: " + error);
-            }
-          });
-    } 
-
+        this.nurseService
+            .updateAssignedPatientDetails(
+                this.data.ward_id,
+                this.editPatientDetailsForm.getRawValue()
+            )
+            .then(
+                (response: string) => {
+                    this.snackbarService.openSnackBar(
+                        'Patient data updated successfully:' + response
+                    );
+                    this.dialogRef.close();
+                },
+                (error: string) => {
+                    console.error('Error updating Patient Details:', error);
+                    this.snackbarService.openSnackBar(
+                        'Error updating Patient Details: ' + error
+                    );
+                }
+            )
+            .finally(() => {
+                this.isLoading = false;
+            });
+    }
 }
