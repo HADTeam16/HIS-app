@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Patient, User } from '../../shared/models/user';
+import { User } from '../../shared/models/user';
 import { Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { NurseService } from '../nurse.service';
 import { EditDetailsDialogComponent } from './edit-details-dialog/edit-details-dialog.component';
 import { AuthService } from '../../shared/services/auth.service';
 import { Ward } from '../../shared/models/ward';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-in-patient-list',
@@ -17,7 +16,6 @@ export class InPatientListComponent {
     nurse: User;
     allotedWards: Ward[] = [];
     userSub: Subscription;
-    wardSub: Subscription;
 
     constructor(
         private dialog: MatDialog,
@@ -55,6 +53,5 @@ export class InPatientListComponent {
 
     ngOnDestroy() {
         this.userSub.unsubscribe();
-        this.wardSub.unsubscribe();
     }
 }

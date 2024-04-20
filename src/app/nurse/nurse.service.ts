@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../shared/enums/api';
 import { BehaviorSubject, Observable, defaultIfEmpty, map, tap } from 'rxjs';
-import { Patient, User } from '../shared/models/user';
+import { User } from '../shared/models/user';
 import { Ward, NeedWard } from '../shared/models/ward';
 
 @Injectable()
@@ -84,11 +84,24 @@ export class NurseService {
             );
     }
 
-    assignWard(wardId: number, needWardId: number): Observable<any> {
-        return this.httpClient.get<any>(
-            `${environment.baseURL}/assign/ward/${wardId}/${needWardId}`,
-            {}
-        );
+    assignWard(wardId: number, needWardId: number): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(
+                    environment.baseURL +
+                        Api.assign_ward +
+                        wardId +
+                        '/' +
+                        needWardId
+                )
+                .subscribe((res: { message: string }) => {
+                    if (res.message == 'assign ward success') {
+                        resolve(res.message);
+                    } else {
+                        reject(res.message);
+                    }
+                });
+        });
     }
 
     // For Nurse -
@@ -104,7 +117,7 @@ export class NurseService {
                             floor: number;
                             wardNumber: number;
                             availableStatus: boolean;
-                            appointment: {};
+                            appointment: { purpose: string };
                             managingNurse: {
                                 headNurse: boolean;
                             };
@@ -148,6 +161,7 @@ export class NurseService {
                                     wardNumber: ward.wardNumber,
                                     availableStatus: ward.availableStatus,
                                     emergency: ward.emergency,
+                                    purpose: '',
                                 };
                                 if (!ward.availableStatus && ward.patient) {
                                     ward_data_mapping.firstName =
@@ -194,6 +208,8 @@ export class NurseService {
                                         ward.patient.heartRate;
                                     ward_data_mapping.weight =
                                         ward.patient.weight;
+                                    ward_data_mapping.purpose =
+                                        ward.appointment?.purpose;
                                 }
                                 return ward_data_mapping;
                             })
