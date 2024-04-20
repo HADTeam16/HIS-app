@@ -1,7 +1,4 @@
 <div class="flex flex-col justify-between m-8">
-    <h2 mat-dialog-title>{{ editDetails.id }}</h2>
-    <h3 mat-dialog-title>{{ editDetails.firstName }}</h3>
-
     <form
         [formGroup]="editPatientDetailsForm"
         class="flex flex-col justify-between"
@@ -12,51 +9,36 @@
                 <input
                     matInput
                     formControlName="bloodPressure"
-                    [value]="editDetails?.bloodPressure"
                     class="w-full"
                 />
             </mat-form-field>
 
             <mat-form-field class="mr-2">
-                <mat-label>Temprature :</mat-label>
-                <input
-                    matInput
-                    formControlName="temperature"
-                    [value]="editDetails?.temperature"
-                    class="w-full"
-                />
+                <mat-label>Temperature :</mat-label>
+                <input matInput formControlName="temperature" class="w-full" />
             </mat-form-field>
         </div>
 
         <div class="row">
             <mat-form-field>
                 <mat-label>Heart Rate :</mat-label>
-                <input
-                    matInput
-                    formControlName="heartRate"
-                    [value]="editDetails?.heartRate"
-                    class="w-full"
-                />
+                <input matInput formControlName="heartRate" class="w-full" />
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Weight :</mat-label>
-                <input
-                    matInput
-                    formControlName="weight"
-                    [value]="editDetails?.weight"
-                    class="w-full"
-                />
+                <input matInput formControlName="weight" class="w-full" />
             </mat-form-field>
         </div>
 
         <div class="row mt-6 flex justify-end">
             <button
+                type="submit"
                 mat-stroked-button
                 color="primary"
                 (click)="editAssignedPatientDetails()"
             >
-                Edit
+                Update
             </button>
         </div>
     </form>

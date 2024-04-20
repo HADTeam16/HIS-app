@@ -17,18 +17,15 @@ export class EditDetailsDialogComponent {
         heartRate: new FormControl<number>(null),
         weight: new FormControl<number>(null),
     });
-    editDetails: Patient;
     editPatientDetails: Subscription;
     isLoading = false;
 
     constructor(
         private dialogRef: MatDialogRef<EditDetailsDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        @Inject(MAT_DIALOG_DATA) public data: { ward_id: number },
         private snackbarService: SnackbarService,
         private nurseService: NurseService
-    ) {
-        console.log(data);
-    }
+    ) {}
 
     editAssignedPatientDetails() {
         this.isLoading = true;

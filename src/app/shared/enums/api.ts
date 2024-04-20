@@ -33,6 +33,7 @@ export enum Api {
     update_ward_patient_details = 'api/nurse/update/assigned/ward/patient/details/',
     get_assigned_patients = 'api/nurse/assigned/patients',
     call_emergency = 'api/nurse/call/emergency/',
+    assign_ward = 'api/nurse/assign/ward/',
 
     //receptionist
     get_all_receptionist = 'api/receptionist/get/all/receptionist',

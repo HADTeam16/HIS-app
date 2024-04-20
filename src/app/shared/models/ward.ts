@@ -6,6 +6,7 @@ export class Ward extends PatientRegistration {
     wardNumber: number;
     availableStatus: boolean;
     emergency: boolean;
+    purpose: string;
 }
 
 export class NeedWard extends PatientRegistration {

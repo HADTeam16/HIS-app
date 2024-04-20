@@ -29,7 +29,8 @@
                     }}<br />
                     Gender: {{ ward.gender }} <br />
                     Age: {{ ward.dateOfBirth | age }}<br />
-                    Contact: {{ ward.contact }}
+                    Contact: {{ ward.contact }} <br />
+                    Purpose: {{ ward.purpose }}
                 </section>
                 <section>
                     Blood Pressure:
@@ -44,7 +45,11 @@
                 </section>
             </div>
             <mat-action-row>
-                <button mat-button color="primary" (click)="editDetails(ward.wardId)">
+                <button
+                    mat-button
+                    color="primary"
+                    (click)="editDetails(ward.wardId)"
+                >
                     Edit Details
                 </button>
             </mat-action-row>

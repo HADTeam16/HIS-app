@@ -51,17 +51,14 @@ export class AllocateWardDialogComponent {
     onAssignWard(): void {
         this.nurseService
             .assignWard(this.selectedWard.value, this.needWardId)
-            .subscribe({
-                next: (response) => {
-                    console.log('Ward assigned successfully:', response);
-                    this.snackbarService.openSnackBar(
-                        'Ward assigned successfully'
-                    );
+            .then(
+                (res) => {
+                    this.snackbarService.openSnackBar(res);
+                    this.dialogRef.close('success');
                 },
-                error: (error) => {
-                    console.error('Error assigning ward:', error);
-                    this.snackbarService.openSnackBar('Error assigning ward');
-                },
-            });
+                (err) => {
+                    this.snackbarService.openSnackBar(err);
+                }
+            );
     }
 }
