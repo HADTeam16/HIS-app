@@ -22,7 +22,7 @@ export class ReceptionistService {
                         purpose: item.purpose,
                         temperature: item.temperature,
                         bloodPressure: item.bloodPressure,
-                        height: item.height,
+                        heartRate: item.heartRate,
                         weight: item.weight,
                     }));
                 })

@@ -29,7 +29,7 @@ export class User extends UserBasicDetails {
 export class Patient extends User {
     temperature: number;
     bloodPressure: string;
-    height: number;
+    heartRate: number;
     weight: number;
 }
 
@@ -53,6 +53,6 @@ export class Receptionist extends User {}
 export class PatientRegistration extends UserBasicDetails {
     temperature: number;
     bloodPressure: string;
-    height: number;
+    heartRate: number;
     weight: number;
 }

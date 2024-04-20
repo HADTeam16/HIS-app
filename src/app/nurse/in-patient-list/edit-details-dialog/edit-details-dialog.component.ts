@@ -14,7 +14,7 @@ export class EditDetailsDialogComponent {
     editPatientDetailsForm = new FormGroup({
         temperature: new FormControl<number>(null),
         bloodPressure: new FormControl<string>(''),
-        height: new FormControl<number>(null),
+        heartRate: new FormControl<number>(null),
         weight: new FormControl<number>(null),
     });
     editDetails: Patient;
