@@ -5,7 +5,7 @@ export class Appointment {
     temperature: number;
     bloodPressure: string;
     weight: number;
-    height: number;
+    heartRate: number;
 }
 
 export class DoctorsAppointment extends Appointment {

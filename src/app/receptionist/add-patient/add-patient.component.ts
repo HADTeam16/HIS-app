@@ -54,7 +54,7 @@ export class AddPatientComponent {
     patientDetailsFormGroup = this._formBuilder.group({
         temperature: [],
         bloodPressure: ['', Validators.pattern('^[0-9]{1,3}/[0-9]{1,3}$')],
-        height: [],
+        heartRate: [],
         weight: [],
     });
     stepperOrientation: Observable<StepperOrientation>;
@@ -120,7 +120,7 @@ export class AddPatientComponent {
                     : '',
             temperature: patientDetails.temperature,
             bloodPressure: patientDetails.bloodPressure,
-            height: patientDetails.height,
+            heartRate: patientDetails.heartRate,
             weight: patientDetails.weight,
             role: 'patient',
         };

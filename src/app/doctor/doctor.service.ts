@@ -42,7 +42,7 @@ export class DoctorService {
                                     ],
                                 temperature: appointment['temperature'],
                                 bloodPressure: appointment['bloodPressure'],
-                                height: appointment['height'],
+                                heartRate: appointment['heartRate'],
                                 weight: appointment['weight'],
                                 needWard: appointment['needWard'],
                                 completed: appointment['completed'],

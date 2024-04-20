@@ -74,7 +74,7 @@ export class NurseService {
                             disable: patient.disable,
                             temperature: patient.temperature,
                             bloodPressure: patient.bloodPressure,
-                            height: patient.height,
+                            heartRate: patient.heartRate,
                             weight: patient.weight,
                             needWardId: item.needWardId,
                             requestTime: item.requestTime,
@@ -111,7 +111,7 @@ export class NurseService {
                             patient: {
                                 temperature: number;
                                 bloodPressure: string;
-                                height: number;
+                                heartRate: number;
                                 weight: number;
                                 user: User;
                             };
@@ -141,7 +141,7 @@ export class NurseService {
                                     role: '',
                                     temperature: 0,
                                     bloodPressure: '',
-                                    height: 0,
+                                    heartRate: 0,
                                     weight: 0,
                                     wardId: ward.wardId,
                                     floor: ward.floor,
@@ -190,8 +190,8 @@ export class NurseService {
                                         ward.patient.temperature;
                                     ward_data_mapping.bloodPressure =
                                         ward.patient.bloodPressure;
-                                    ward_data_mapping.height =
-                                        ward.patient.height;
+                                    ward_data_mapping.heartRate =
+                                        ward.patient.heartRate;
                                     ward_data_mapping.weight =
                                         ward.patient.weight;
                                 }
@@ -211,7 +211,7 @@ export class NurseService {
         updatedPatientDetails: {
             temperature: number;
             bloodPressure: string;
-            height: number;
+            heartRate: number;
             weight: number;
         }
     ) {
