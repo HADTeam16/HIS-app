@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <p>Are you sure you want to call emergency?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button
+        mat-raised-button
+        color="accent"
+        type="button"
+        [mat-dialog-close]="'no'"
+    >
+        Cancel
+    </button>
+    <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="toggleEmergency()"
+    >
+        Yes
+    </button>
+</mat-dialog-actions>

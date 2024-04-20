@@ -10,6 +10,7 @@ import { WardQueueComponent } from './ward-queue/ward-queue.component';
 import { AllocateWardDialogComponent } from './ward-queue/allocate-ward-dialog/allocate-ward-dialog.component';
 import { NurseService } from './nurse.service';
 import { SharedModule } from '../shared/shared.module';
+import { WardEmergencyDialogComponent } from './in-patient-list/ward-emergency-dialog/ward-emergency-dialog.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
         EditDetailsDialogComponent,
         WardQueueComponent,
         AllocateWardDialogComponent,
+        WardEmergencyDialogComponent,
     ],
     imports: [
         CommonModule,

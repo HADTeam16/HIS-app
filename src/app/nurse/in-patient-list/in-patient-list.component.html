@@ -2,7 +2,7 @@
     <div class="mt-8">
         <h2>Your Ward Allocations</h2>
     </div>
-    <mat-accordion class="w-2/3 mt-8">
+    <mat-accordion id="wards-accordian" class="w-2/3 mt-8">
         <mat-expansion-panel
             *ngFor="let ward of allotedWards"
             [disabled]="ward.availableStatus"
@@ -15,6 +15,7 @@
                     {{
                         ward.availableStatus == true ? "Available" : "Occupied"
                     }}
+                    <mat-icon *ngIf="ward.emergency" [svgIcon]="'warning'"></mat-icon>
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="flex w-2/3 justify-between">
@@ -45,6 +46,13 @@
                 </section>
             </div>
             <mat-action-row>
+                <button
+                    mat-stroked-button
+                    color="warn"
+                    (click)="toggleEmergency(ward.wardId)"
+                >
+                    {{ ward.emergency ? "Revoke Emergency" : "Call Emergency" }}
+                </button>
                 <button
                     mat-button
                     color="primary"

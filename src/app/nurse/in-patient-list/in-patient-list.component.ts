@@ -7,10 +7,12 @@ import { NurseService } from '../nurse.service';
 import { EditDetailsDialogComponent } from './edit-details-dialog/edit-details-dialog.component';
 import { AuthService } from '../../shared/services/auth.service';
 import { Ward } from '../../shared/models/ward';
+import { WardEmergencyDialogComponent } from './ward-emergency-dialog/ward-emergency-dialog.component';
 
 @Component({
     selector: 'app-in-patient-list',
     templateUrl: './in-patient-list.component.html',
+    styleUrl: './in-patient-list.component.scss',
 })
 export class InPatientListComponent {
     nurse: User;
@@ -43,6 +45,21 @@ export class InPatientListComponent {
                 this.snackbarService.openSnackBar(error);
             }
         );
+    }
+
+    toggleEmergency(ward_id: number) {
+        this.dialog
+            .open(WardEmergencyDialogComponent, { data: { ward_id } })
+            .afterClosed()
+            .subscribe((res) => {
+                if (res == 'yes') {
+                    const i = this.allotedWards.findIndex(
+                        (el) => el.wardId == ward_id
+                    );
+                    this.allotedWards[i].emergency =
+                        !this.allotedWards[i].emergency;
+                }
+            });
     }
 
     editDetails(ward_id: number) {
