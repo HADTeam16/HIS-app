@@ -134,6 +134,7 @@ export class NurseService {
                         resolve(
                             wards.map((ward): Ward => {
                                 const ward_data_mapping = {
+                                    patientId: 0,
                                     firstName: '',
                                     middleName: '',
                                     lastName: '',
@@ -164,6 +165,8 @@ export class NurseService {
                                     purpose: '',
                                 };
                                 if (!ward.availableStatus && ward.patient) {
+                                    ward_data_mapping.patientId =
+                                        ward.patient.user.id;
                                     ward_data_mapping.firstName =
                                         ward.patient.user.firstName;
                                     ward_data_mapping.middleName =
