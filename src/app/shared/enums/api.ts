@@ -20,6 +20,7 @@ export enum Api {
     // add_to_ward_queue = 'api/doctors/recommend/ward/',
     finish_appointment = 'api/doctors/finish/appointment',
     cancel_appointment = 'api/appointment/cancel/appointment/',
+    get_all_wards_data = 'api/doctors/get/all/wards',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',

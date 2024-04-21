@@ -1,55 +1,51 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { WardDetailDialogComponent } from './ward-detail-dialog/ward-detail-dialog.component';
+import { Ward } from '../../shared/models/ward';
+import { DoctorService } from '../doctor.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-ward-map',
     templateUrl: './ward-map.component.html',
-    styleUrl: './ward-map.component.css',
 })
 export class WardMapComponent {
-    wards = {
-        1: [
-            { ward_id: 1, available: false, patient_id: 1 },
-            { ward_id: 2, available: true, patient_id: 0 },
-            { ward_id: 3, available: false, patient_id: 2 },
-            { ward_id: 4, available: false, patient_id: 3 },
-            { ward_id: 5, available: false, patient_id: 4 },
-            { ward_id: 6, available: true, patient_id: 0 },
-            { ward_id: 7, available: false, patient_id: 5 },
-            { ward_id: 8, available: true, patient_id: 0 },
-            { ward_id: 9, available: true, patient_id: 0 },
-            { ward_id: 10, available: false, patient_id: 6 },
-        ],
-        2: [
-            { ward_id: 11, available: false, patient_id: 11 },
-            { ward_id: 12, available: true, patient_id: 0 },
-            { ward_id: 13, available: false, patient_id: 21 },
-            { ward_id: 14, available: false, patient_id: 31 },
-            { ward_id: 15, available: false, patient_id: 41 },
-            { ward_id: 16, available: true, patient_id: 0 },
-            { ward_id: 17, available: false, patient_id: 51 },
-            { ward_id: 18, available: true, patient_id: 0 },
-        ],
-        3: [
-            { ward_id: 19, available: false, patient_id: 17 },
-            { ward_id: 20, available: true, patient_id: 0 },
-            { ward_id: 21, available: false, patient_id: 12 },
-            { ward_id: 22, available: false, patient_id: 13 },
-            { ward_id: 23, available: false, patient_id: 14 },
-            { ward_id: 24, available: true, patient_id: 0 },
-        ],
-    };
-    selectedFloorWards = this.wards[1];
+    floors: number[];
+    allWards: {};
+    selectedFloor: FormControl<number> = new FormControl(0);
+    selectedFloorWards: Ward[];
+    isLoading: boolean;
 
-    constructor(private dialog: MatDialog) {}
-
-    getFloors(wardsObj: any): Array<number> {
-        return Object.keys(wardsObj).map(Number);
+    constructor(
+        private dialog: MatDialog,
+        private doctorService: DoctorService
+    ) {
+        this.isLoading = true;
+        this.selectedFloor.valueChanges.subscribe((res) => {
+            this.selectedFloorWards = this.allWards[res];
+        });
+        this.doctorService
+            .getWardsData()
+            .then((res) => {
+                this.floors = [
+                    ...new Set(res.map((ward) => ward.floor)),
+                ].sort();
+                this.allWards = {};
+                for (let i = 0; i < this.floors.length; i++) {
+                    this.allWards[this.floors[i]] = res.filter(
+                        (ward) => ward.floor && ward.floor == this.floors[i]
+                    );
+                }
+                this.selectedFloor.setValue(this.floors[0]);
+            })
+            .finally(() => {
+                this.isLoading = false;
+            });
     }
 
-    onFloorChange(floor: number): void {
-        this.selectedFloorWards = this.wards[floor];
+    onFloorChange(floor: number) {
+        console.log(floor);
+        this.selectedFloorWards = this.allWards[floor];
     }
 
     openDialog(wardData: any): void {
@@ -58,5 +54,13 @@ export class WardMapComponent {
             width: '60%',
             data: wardData,
         });
+    }
+
+    getFullName(ward: Ward) {
+        return (
+            ward.firstName +
+            (ward.middleName ? ' ' + ward.middleName : '') +
+            (ward.lastName ? ' ' + ward.lastName : '')
+        );
     }
 }
