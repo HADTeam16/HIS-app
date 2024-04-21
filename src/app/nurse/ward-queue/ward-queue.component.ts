@@ -39,7 +39,9 @@ export class WardQueueComponent {
             .subscribe({
                 next: (needWard: NeedWard[]) => {
                     this.patientsWhoNeedWard = needWard;
-                    this.snackbarService.openSnackBar("Ward assignment queue loaded");
+                    this.snackbarService.openSnackBar(
+                        'Ward assignment queue loaded'
+                    );
                 },
                 error: (error) => {
                     console.error(
@@ -58,7 +60,7 @@ export class WardQueueComponent {
         });
 
         dialogRef.afterClosed().subscribe((result) => {
-            // Handle any actions after the dialog is closed, if needed
+            if (result == 'success') this.getPatientsWhoNeedWard();
         });
     }
 

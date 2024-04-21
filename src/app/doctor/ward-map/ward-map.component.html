@@ -1,10 +1,9 @@
+@if (isLoading) {
+<div><mat-spinner></mat-spinner></div>
+}@else {
 <div class="h-5/6 p-4 flex flex-col items-center">
-    <mat-button-toggle-group
-        #floorToggle="matButtonToggleGroup"
-        (change)="onFloorChange(floorToggle.value)"
-        [value]="1"
-    >
-        <mat-button-toggle *ngFor="let floor of getFloors(wards)" [value]="floor">
+    <mat-button-toggle-group [formControl]="selectedFloor">
+        <mat-button-toggle *ngFor="let floor of floors" [value]="floor">
             Floor {{ floor }}
         </mat-button-toggle>
     </mat-button-toggle-group>
@@ -13,7 +12,6 @@
         cols="5"
         rowHeight="fit"
         gutterSize="15px"
-        *ngIf="selectedFloorWards"
     >
         <mat-grid-tile
             elevateOnHover
@@ -21,17 +19,44 @@
             *ngFor="let ward of selectedFloorWards"
             (click)="openDialog(ward)"
         >
-            <mat-card class="h-full w-full rounded-lg">
+            <mat-card
+                class="h-full w-full rounded-lg"
+                [ngStyle]="{
+                    'border-width': '4px',
+                    'border-style': 'solid',
+                    'border-color': ward.availableStatus ? '#90EE90' : '#FFFF8D'
+                }"
+            >
                 <mat-card-header>
                     <mat-card-title-group>
-                        <mat-card-title>Ward ID: {{ ward.ward_id }}</mat-card-title>
-                        <mat-card-subtitle>Patient ID:{{ ward.patient_id }}</mat-card-subtitle>
+                        <mat-card-title>
+                            Ward Number: {{ ward.wardNumber }}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            Status :{{
+                                ward.availableStatus
+                                    ? " Available"
+                                    : " Occupied"
+                            }}
+                        </mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
                 <mat-card-content>
-                    <span>Status:{{ ward.available ? "Available" : "Occupied" }}</span>
+                    @if (!ward.availableStatus) {
+                    <table>
+                        <tr>
+                            <td>PID:</td>
+                            <td>{{ ward.patientId }}</td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td>{{ getFullName(ward) }}</td>
+                        </tr>
+                    </table>
+                    }
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
 </div>
+}

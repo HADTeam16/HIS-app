@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../shared/enums/api';
 import { BehaviorSubject, Observable, defaultIfEmpty, map, tap } from 'rxjs';
-import { Patient } from '../shared/models/user';
+import { User } from '../shared/models/user';
 import { Ward, NeedWard } from '../shared/models/ward';
 
 @Injectable()
@@ -71,10 +71,10 @@ export class NurseService {
                             emergencyContactNumber:
                                 patient.user.emergencyContactNumber,
                             role: patient.user.role,
-                            isDisable: patient.disable,
+                            disable: patient.disable,
                             temperature: patient.temperature,
                             bloodPressure: patient.bloodPressure,
-                            height: patient.height,
+                            heartRate: patient.heartRate,
                             weight: patient.weight,
                             needWardId: item.needWardId,
                             requestTime: item.requestTime,
@@ -84,103 +84,195 @@ export class NurseService {
             );
     }
 
-    assignWard(wardId: number, needWardId: number): Observable<any> {
-        return this.httpClient.get<any>(
-            `${environment.baseURL}/assign/ward/${wardId}/${needWardId}`,
-            {}
-        );
+    assignWard(wardId: number, needWardId: number): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(
+                    environment.baseURL +
+                        Api.assign_ward +
+                        wardId +
+                        '/' +
+                        needWardId
+                )
+                .subscribe((res: { message: string }) => {
+                    if (res.message == 'assign ward success') {
+                        resolve(res.message);
+                    } else {
+                        reject(res.message);
+                    }
+                });
+        });
     }
 
     // For Nurse -
 
-    getAllottedWards(nurseId: number) {
-        return this.httpClient
-            .get(environment.baseURL + Api.get_allotted_wards + nurseId)
-            .pipe(
-                defaultIfEmpty([]),
-                map((ward_list: any[]): Ward[] => {
-                    return ward_list.map((item) => ({
-                        firstName: item.user.firstName,
-                        middleName: item.user.middleName,
-                        lastName: item.user.lastName,
-                        gender: item.user.gender,
-                        dateOfBirth: item.user.dateOfBirth,
-                        country: item.user.country,
-                        state: item.user.state,
-                        city: item.user.city,
-                        addressLine1: item.user.addressLine1,
-                        addressLine2: item.user.addressLine2,
-                        landmark: item.user.landmark,
-                        pinCode: item.user.pinCode,
-                        contact: item.user.contact,
-                        email: item.user.email,
-                        profilePicture: item.user.profilePicture,
-                        emergencyContactName: item.user.emergencyContactName,
-                        emergencyContactNumber:
-                            item.user.emergencyContactNumber,
-                        role: item.user.role,
-                        isDisable: item.user.disable,
-                        temperature: item.user.temperature,
-                        bloodPressure: item.user.bloodPressure,
-                        height: item.user.height,
-                        weight: item.user.weight,
-                        headNurse: item.user.headNurse,
-                        wardId: item.user.wardId,
-                        floor: item.user.floor,
-                        wardNumber: item.user.wardNumber,
-                        availableStatus: item.user.availableStatus,
-                    }));
-                })
-            );
-    }
-
-    getAssignedPatients() {
-        return this.httpClient
-            .get(environment.baseURL + Api.get_assigned_patients)
-            .pipe(
-                tap((response) => console.log('Raw response:', response)), // Log the raw response
-                defaultIfEmpty([]),
-                map((patient_list: any[]): Patient[] => {
-                    return patient_list.map((item) => ({
-                        id: item.id,
-                        userName: item.user.userName,
-                        password: item.user.password,
-                        firstName: item.user.firstName,
-                        middleName: item.user.middleName,
-                        lastName: item.user.lastName,
-                        gender: item.user.gender,
-                        dateOfBirth: item.user.dateOfBirth,
-                        country: item.user.country,
-                        state: item.user.state,
-                        city: item.user.city,
-                        addressLine1: item.user.addressLine1,
-                        addressLine2: item.user.addressLine2,
-                        landmark: item.user.landmark,
-                        pinCode: item.user.pinCode,
-                        contact: item.user.contact,
-                        email: item.user.email,
-                        profilePicture: item.user.profilePicture,
-                        emergencyContactName: item.user.emergencyContactName,
-                        emergencyContactNumber:
-                            item.user.emergencyContactNumber,
-                        role: item.user.role,
-                        isDisable: item.user.disable,
-                        temperature: item.temperature,
-                        bloodPressure: item.bloodPressure,
-                        height: item.height,
-                        weight: item.weight,
-                    }));
-                })
-            );
+    getAllottedWards(nurseId: number): Promise<Ward[]> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(environment.baseURL + Api.get_allotted_wards + nurseId)
+                .subscribe({
+                    next: (
+                        wards: {
+                            wardId: number;
+                            floor: number;
+                            wardNumber: number;
+                            availableStatus: boolean;
+                            appointment: { purpose: string };
+                            managingNurse: {
+                                headNurse: boolean;
+                            };
+                            patient: {
+                                temperature: number;
+                                bloodPressure: string;
+                                heartRate: number;
+                                weight: number;
+                                user: User;
+                            };
+                            emergency: boolean;
+                        }[]
+                    ) => {
+                        resolve(
+                            wards.map((ward): Ward => {
+                                const ward_data_mapping = {
+                                    patientId: 0,
+                                    firstName: '',
+                                    middleName: '',
+                                    lastName: '',
+                                    gender: '',
+                                    dateOfBirth: '',
+                                    country: '',
+                                    state: '',
+                                    city: '',
+                                    addressLine1: '',
+                                    addressLine2: '',
+                                    landmark: '',
+                                    pinCode: '',
+                                    contact: '',
+                                    email: '',
+                                    profilePicture: '',
+                                    emergencyContactName: '',
+                                    emergencyContactNumber: '',
+                                    role: '',
+                                    temperature: 0,
+                                    bloodPressure: '',
+                                    heartRate: 0,
+                                    weight: 0,
+                                    wardId: ward.wardId,
+                                    floor: ward.floor,
+                                    wardNumber: ward.wardNumber,
+                                    availableStatus: ward.availableStatus,
+                                    emergency: ward.emergency,
+                                    purpose: '',
+                                };
+                                if (!ward.availableStatus && ward.patient) {
+                                    ward_data_mapping.patientId =
+                                        ward.patient.user.id;
+                                    ward_data_mapping.firstName =
+                                        ward.patient.user.firstName;
+                                    ward_data_mapping.middleName =
+                                        ward.patient.user.middleName;
+                                    ward_data_mapping.lastName =
+                                        ward.patient.user.lastName;
+                                    ward_data_mapping.gender =
+                                        ward.patient.user.gender;
+                                    ward_data_mapping.dateOfBirth =
+                                        ward.patient.user.dateOfBirth;
+                                    ward_data_mapping.country =
+                                        ward.patient.user.country;
+                                    ward_data_mapping.state =
+                                        ward.patient.user.state;
+                                    ward_data_mapping.city =
+                                        ward.patient.user.city;
+                                    ward_data_mapping.addressLine1 =
+                                        ward.patient.user.addressLine1;
+                                    ward_data_mapping.addressLine2 =
+                                        ward.patient.user.addressLine2;
+                                    ward_data_mapping.landmark =
+                                        ward.patient.user.landmark;
+                                    ward_data_mapping.pinCode =
+                                        ward.patient.user.pinCode;
+                                    ward_data_mapping.contact =
+                                        ward.patient.user.contact;
+                                    ward_data_mapping.email =
+                                        ward.patient.user.email;
+                                    ward_data_mapping.profilePicture =
+                                        ward.patient.user.profilePicture;
+                                    ward_data_mapping.emergencyContactName =
+                                        ward.patient.user.emergencyContactName;
+                                    ward_data_mapping.emergencyContactNumber =
+                                        ward.patient.user.emergencyContactNumber;
+                                    ward_data_mapping.role =
+                                        ward.patient.user.role;
+                                    ward_data_mapping.temperature =
+                                        ward.patient.temperature;
+                                    ward_data_mapping.bloodPressure =
+                                        ward.patient.bloodPressure;
+                                    ward_data_mapping.heartRate =
+                                        ward.patient.heartRate;
+                                    ward_data_mapping.weight =
+                                        ward.patient.weight;
+                                    ward_data_mapping.purpose =
+                                        ward.appointment?.purpose;
+                                }
+                                return ward_data_mapping;
+                            })
+                        );
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
     }
 
     updateAssignedPatientDetails(
-        patientId: number,
-        updatedPatient: Patient
-    ): Observable<Patient> {
-        return this.httpClient.put<Patient>(
-            `${environment.baseURL}${Api.update_assigned_patient_details}/${patientId}`,
-            updatedPatient
-        );
+        wardId: number,
+        updatedPatientDetails: {
+            temperature: number;
+            bloodPressure: string;
+            heartRate: number;
+            weight: number;
+        }
+    ) {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .put(
+                    environment.baseURL +
+                        Api.update_ward_patient_details +
+                        wardId,
+                    updatedPatientDetails
+                )
+                .subscribe({
+                    next: (res: any) => {
+                        if (res.message == 'Updated') resolve(res.message);
+                        else reject(res.message);
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    toggleEmergency(ward_id: number) {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(environment.baseURL + Api.call_emergency + ward_id)
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (
+                            res.message ===
+                            'Ward Emergency Status has been updated'
+                        ) {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
     }
 }

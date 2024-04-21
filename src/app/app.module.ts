@@ -42,6 +42,7 @@ export class AppModule {
         'e911_emergency_outline',
         'arrow_back',
         'verified',
+        'warning',
     ];
 
     constructor(

@@ -20,6 +20,7 @@ export enum Api {
     // add_to_ward_queue = 'api/doctors/recommend/ward/',
     finish_appointment = 'api/doctors/finish/appointment',
     cancel_appointment = 'api/appointment/cancel/appointment/',
+    get_all_wards_data = 'api/doctors/get/all/wards',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
@@ -30,9 +31,10 @@ export enum Api {
     get_available_wards = 'api/nurse/get/all/available/wardIds',
     get_patients_who_needs_wards = 'api/nurse/patients/who/needs/ward',
     get_allotted_wards = 'api/nurse/allotted/ward/',
-    update_ward_patient_details = 'api/nurse/update/assigned/ward/patient/details',
+    update_ward_patient_details = 'api/nurse/update/assigned/ward/patient/details/',
     get_assigned_patients = 'api/nurse/assigned/patients',
-    update_assigned_patient_details = 'api/nurse/update/assigned/ward/patient/details',
+    call_emergency = 'api/nurse/call/emergency/',
+    assign_ward = 'api/nurse/assign/ward/',
 
     //receptionist
     get_all_receptionist = 'api/receptionist/get/all/receptionist',

@@ -38,7 +38,7 @@ export class AdminService {
                         emergencyContactNumber:
                             item.user.emergencyContactNumber,
                         role: item.user.role,
-                        isDisable: item.user.disable,
+                        disable: item.user.disable,
                         medicalLicenseNumber: item.medicalLicenseNumber,
                         specialization: item.specialization,
                         boardCertification: item.boardCertification,
@@ -81,7 +81,7 @@ export class AdminService {
                         emergencyContactNumber:
                             item.user.emergencyContactNumber,
                         role: item.user.role,
-                        isDisable: item.user.disable,
+                        disable: item.user.disable,
                         headNurse: item.headNurse,
                     }));
                 })
@@ -117,7 +117,7 @@ export class AdminService {
                         emergencyContactNumber:
                             item.user.emergencyContactNumber,
                         role: item.user.role,
-                        isDisable: item.user.disable,
+                        disable: item.user.disable,
                     }));
                 })
             );

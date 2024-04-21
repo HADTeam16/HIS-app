@@ -160,8 +160,8 @@ export class AdminComponent {
                         (el) => el.id === doctor.id
                     );
                     if (doctorIndex !== -1) {
-                        this.tableDataDoctor[doctorIndex].isDisable =
-                            !this.tableDataDoctor[doctorIndex].isDisable;
+                        this.tableDataDoctor[doctorIndex].disable =
+                            !this.tableDataDoctor[doctorIndex].disable;
                     }
                     console.log('After toggling:', this.tableDataDoctor);
                 },
@@ -180,8 +180,8 @@ export class AdminComponent {
                         (el) => el.id === doctor.id
                     );
                     if (doctorIndex !== -1) {
-                        this.tableDataDoctor[doctorIndex].isDisable =
-                            !this.tableDataDoctor[doctorIndex].isDisable;
+                        this.tableDataDoctor[doctorIndex].disable =
+                            !this.tableDataDoctor[doctorIndex].disable;
                     }
                 },
             });
@@ -209,8 +209,8 @@ export class AdminComponent {
                         (el) => el.id === nurse.id
                     );
                     if (nurseIndex !== -1) {
-                        this.tableDataNurse[nurseIndex].isDisable =
-                            !this.tableDataNurse[nurseIndex].isDisable;
+                        this.tableDataNurse[nurseIndex].disable =
+                            !this.tableDataNurse[nurseIndex].disable;
                     }
                 },
                 error: (error) => {
@@ -227,8 +227,8 @@ export class AdminComponent {
                         (el) => el.id === nurse.id
                     );
                     if (nurseIndex !== -1) {
-                        this.tableDataNurse[nurseIndex].isDisable =
-                            !this.tableDataNurse[nurseIndex].isDisable;
+                        this.tableDataNurse[nurseIndex].disable =
+                            !this.tableDataNurse[nurseIndex].disable;
                     }
                 },
             });
@@ -256,8 +256,8 @@ export class AdminComponent {
                       (el) => el.id === receptionist.id
                   );
                   if (receptionistIndex !== -1) {
-                      this.tableDataReceptionist[receptionistIndex].isDisable =
-                          !this.tableDataReceptionist[receptionistIndex].isDisable;
+                      this.tableDataReceptionist[receptionistIndex].disable =
+                          !this.tableDataReceptionist[receptionistIndex].disable;
                   }
               },
               error: (error) => {
@@ -274,8 +274,8 @@ export class AdminComponent {
                       (el) => el.id === receptionist.id
                   );
                   if (receptionistIndex !== -1) {
-                      this.tableDataReceptionist[receptionistIndex].isDisable =
-                          !this.tableDataReceptionist[receptionistIndex].isDisable;
+                      this.tableDataReceptionist[receptionistIndex].disable =
+                          !this.tableDataReceptionist[receptionistIndex].disable;
                   }
               },
           });

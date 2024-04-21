@@ -2,28 +2,61 @@
     <div class="mt-8">
         <h2>Your Ward Allocations</h2>
     </div>
-    <mat-accordion class="w-2/3 mt-8">
-        <mat-expansion-panel *ngFor="let patient of assignedPatients">
+    <mat-accordion id="wards-accordian" class="w-2/3 mt-8">
+        <mat-expansion-panel
+            *ngFor="let ward of allotedWards"
+            [disabled]="ward.availableStatus"
+        >
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ patient.id }}
+                    {{ "W" + ward.wardNumber.toString().padStart(2, "0") }}
                 </mat-panel-title>
                 <mat-panel-description>
-                    {{ patient.firstName }}
-                </mat-panel-description>
-                <mat-panel-description>
-                    {{ patient.lastName }}
+                    {{
+                        ward.availableStatus == true ? "Available" : "Occupied"
+                    }}
+                    <mat-icon *ngIf="ward.emergency" [svgIcon]="'warning'"></mat-icon>
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            Blood Pressure: {{ patient.bloodPressure }}<br /><br />
-            Temprature : {{ patient.temperature }}<br /><br />
-            Height : {{ patient.height }}<br /><br />
-            Weight : {{ patient.weight }} <br />
+            <div class="flex w-2/3 justify-between">
+                <section>
+                    Name:
+                    {{
+                        ward.firstName +
+                            " " +
+                            ward.middleName +
+                            " " +
+                            ward.lastName
+                    }}<br />
+                    Gender: {{ ward.gender }} <br />
+                    Age: {{ ward.dateOfBirth | age }}<br />
+                    Contact: {{ ward.contact }} <br />
+                    Purpose: {{ ward.purpose }}
+                </section>
+                <section>
+                    Blood Pressure:
+                    {{ ward.bloodPressure ? ward.bloodPressure : "-" }}<br />
+                    Temperature:
+                    {{ ward.temperature ? ward.temperature + " °C" : "-"
+                    }}<br />
+                    Weight:
+                    {{ ward.weight ? ward.weight + " Kg" : "-" }}<br />
+                    Heart Rate:
+                    {{ ward.heartRate ? ward.heartRate + " bpm" : "-" }}
+                </section>
+            </div>
             <mat-action-row>
+                <button
+                    mat-stroked-button
+                    color="warn"
+                    (click)="toggleEmergency(ward.wardId)"
+                >
+                    {{ ward.emergency ? "Revoke Emergency" : "Call Emergency" }}
+                </button>
                 <button
                     mat-button
                     color="primary"
-                    (click)="editDetails(patient)"
+                    (click)="editDetails(ward.wardId)"
                 >
                     Edit Details
                 </button>

@@ -53,12 +53,12 @@
                                         </button>
                                         <mat-slide-toggle
                                             class="ml-3"
-                                            [checked]="doctor.isDisable"
+                                            [checked]="doctor.disable"
                                             (change)="
                                                 toggleDoctorStatus(doctor)
                                             "
                                         >
-                                        {{ doctor.isDisable ? 'Enable' : 'Disable' }}
+                                        {{ doctor.disable ? 'Enable' : 'Disable' }}
                                         </mat-slide-toggle>
                                     </div>
                                 </ng-template>
@@ -97,7 +97,7 @@
                                     </button>
                                     <mat-slide-toggle
                                         class="ml-3"
-                                        [checked]="receptionist.isDisable"
+                                        [checked]="receptionist.disable"
                                         (change)="
                                             toggleReceptionistStatus(receptionist)
                                         "
@@ -141,7 +141,7 @@
                                         </button>
                                         <mat-slide-toggle
                                             class="ml-3"
-                                            [checked]="nurse.isDisable"
+                                            [checked]="nurse.disable"
                                             (change)="toggleNurseStatus(nurse)"
                                         >
                                             Disable

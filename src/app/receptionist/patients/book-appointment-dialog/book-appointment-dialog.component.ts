@@ -23,7 +23,7 @@ export class BookAppointmentDialogComponent {
         purpose: new FormControl(''),
         temperature: new FormControl(),
         bloodPressure: new FormControl(''),
-        height: new FormControl(),
+        heartRate: new FormControl(),
         weight: new FormControl(),
     });
 
@@ -72,7 +72,7 @@ export class BookAppointmentDialogComponent {
                 purpose: this.patientForm.value.purpose,
                 temperature: this.patientForm.value.temperature,
                 bloodPressure: this.patientForm.value.bloodPressure,
-                height: this.patientForm.value.height,
+                heartRate: this.patientForm.value.heartRate,
                 weight: this.patientForm.value.weight,
             })
             .subscribe({
