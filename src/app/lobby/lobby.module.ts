@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { ForgetPasswordComponent } from './login/forget-password/forget-password-dialog.component'
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { MaterialModule } from '../material/material.module';
         LoginComponent,
         AboutComponent,
         ContactUsComponent,
+        ForgetPasswordComponent
     ],
     imports: [
         CommonModule,
@@ -22,5 +24,7 @@ import { MaterialModule } from '../material/material.module';
         ReactiveFormsModule,
         MaterialModule
     ],
+    providers: [
+    ]
 })
 export class LobbyModule {}

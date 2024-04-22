@@ -52,7 +52,7 @@
                                             Edit
                                         </button>
                                         <mat-slide-toggle
-                                            class="ml-3"
+                                            class="ml-3 mr-3"
                                             [checked]="doctor.disable"
                                             (change)="
                                                 toggleDoctorStatus(doctor)
@@ -60,6 +60,11 @@
                                         >
                                         {{ doctor.disable ? 'Enable' : 'Disable' }}
                                         </mat-slide-toggle>
+                                        <button mat-stroked-button class="mr-3" color="primary" (click)="onChangePasswordByAdmin(doctor.id)">
+                                            <span class="material-symbols-outlined">
+                                                lock_reset
+                                            </span>
+                                        </button>
                                     </div>
                                 </ng-template>
                             </app-dynamic-table>
@@ -96,7 +101,7 @@
                                         Edit
                                     </button>
                                     <mat-slide-toggle
-                                        class="ml-3"
+                                        class="ml-3 mr-3"
                                         [checked]="receptionist.disable"
                                         (change)="
                                             toggleReceptionistStatus(receptionist)
@@ -104,6 +109,11 @@
                                     >
                                         Disable
                                     </mat-slide-toggle>
+                                    <button mat-stroked-button class="mr-3" color="primary" (click)="onChangePasswordByAdmin(receptionist.id)">
+                                        <span class="material-symbols-outlined">
+                                            lock_reset
+                                        </span>
+                                    </button>
                                 </div>
                             </ng-template>
                         </app-dynamic-table>
@@ -140,12 +150,17 @@
                                             Edit
                                         </button>
                                         <mat-slide-toggle
-                                            class="ml-3"
+                                            class="ml-3 mr-3"
                                             [checked]="nurse.disable"
                                             (change)="toggleNurseStatus(nurse)"
                                         >
                                             Disable
                                         </mat-slide-toggle>
+                                        <button mat-stroked-button class="mr-3" color="primary" (click)="onChangePasswordByAdmin(nurse.id)">
+                                            <span class="material-symbols-outlined">
+                                                lock_reset
+                                            </span>
+                                        </button>
                                     </div>
                                 </ng-template>
                             </app-dynamic-table>
