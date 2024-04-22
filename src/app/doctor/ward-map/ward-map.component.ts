@@ -4,6 +4,7 @@ import { WardDetailDialogComponent } from './ward-detail-dialog/ward-detail-dial
 import { Ward } from '../../shared/models/ward';
 import { DoctorService } from '../doctor.service';
 import { FormControl } from '@angular/forms';
+import { SnackbarService } from '../../material/services/snackbar.service';
 
 @Component({
     selector: 'app-ward-map',
@@ -18,7 +19,8 @@ export class WardMapComponent {
 
     constructor(
         private dialog: MatDialog,
-        private doctorService: DoctorService
+        private doctorService: DoctorService,
+        private snackbarService: SnackbarService
     ) {
         this.isLoading = true;
         this.selectedFloor.valueChanges.subscribe((res) => {
@@ -48,19 +50,19 @@ export class WardMapComponent {
         this.selectedFloorWards = this.allWards[floor];
     }
 
-    openDialog(wardData: any): void {
-        this.dialog.open(WardDetailDialogComponent, {
-            height: '60%',
-            width: '60%',
-            data: wardData,
-        });
+    onSelectTile(ward: Ward) {
+        if (ward.availableStatus) {
+            this.snackbarService.openSnackBar('No details to show!');
+        } else {
+            this.openDialog(ward);
+        }
     }
 
-    getFullName(ward: Ward) {
-        return (
-            ward.firstName +
-            (ward.middleName ? ' ' + ward.middleName : '') +
-            (ward.lastName ? ' ' + ward.lastName : '')
-        );
+    openDialog(ward: Ward): void {
+        this.dialog.open(WardDetailDialogComponent, {
+            height: '95%',
+            width: '75%',
+            data: ward,
+        });
     }
 }

@@ -1,9 +1,78 @@
-<h2 mat-dialog-title>Ward ID: {{ ward.ward_id }}</h2>
-<mat-dialog-content>
-    <span class="py-2">Patient ID: {{ ward.patient_id }}</span>
-    <mat-divider></mat-divider>
-    <span class="py-2">Status: {{ ward.available ? "Available" : "Occupied" }}</span>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
+<h2 mat-dialog-title>Ward #: {{ ward.wardNumber }}</h2>
+<mat-divider></mat-divider>
+<div class="h-full flex p-4">
+    @if (ward.profilePicture) {
+    <div class="h-full flex flex-col justify-center items-center mx-4">
+        <img
+            [src]="ward.profilePicture"
+            class="h-64 w-64 rounded-full"
+            alt="Profile Picture"
+        />
+    </div>
+    <mat-divider vertical></mat-divider>
+    }
+    <table class="w-1/3 mx-4">
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td class="text-right">{{ getFullName(ward) }}</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>:</td>
+            <td class="text-right">{{ ward.dateOfBirth | age }}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>:</td>
+            <td class="text-right">{{ ward.gender }}</td>
+        </tr>
+        <tr>
+            <td>Mobile number</td>
+            <td>:</td>
+            <td class="text-right">{{ ward.contact }}</td>
+        </tr>
+    </table>
+    <mat-divider vertical></mat-divider>
+    <table class="w-1/3 mx-4">
+        <tr>
+            <td>Weight</td>
+            <td>:</td>
+            <td class="text-right">
+                {{ ward.weight ? ward.weight + " Kg" : "-" }}
+            </td>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td>:</td>
+            <td class="text-right">
+                {{ ward.temperature ? ward.temperature + " °C" : "-" }}
+            </td>
+        </tr>
+        <tr>
+            <td>BP</td>
+            <td>:</td>
+            <td class="text-right">
+                {{ ward.bloodPressure ? ward.bloodPressure : "-" }}
+            </td>
+        </tr>
+        <tr>
+            <td>Heart Rate</td>
+            <td>:</td>
+            <td class="text-right">
+                {{ ward.heartRate ? ward.heartRate + " bpm" : "-" }}
+            </td>
+        </tr>
+    </table>
+</div>
+<mat-divider></mat-divider>
+<div class="mt-4">
+    <h2 class="text-center">{{ "Purpose : " + ward.purpose }}</h2>
+</div>
+<mat-divider></mat-divider>
+<div class="p-4">
+    <app-line-chart
+        [lineChartData]="lineChartData"
+        [lineChartOptions]="lineChartOptions"
+    ></app-line-chart>
+</div>
