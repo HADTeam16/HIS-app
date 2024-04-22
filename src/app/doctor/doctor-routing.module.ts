@@ -9,7 +9,7 @@ const routes: Routes = [
         path: '',
         component: DoctorComponent,
         children: [
-            { path: '', redirectTo: 'ward_map', pathMatch: 'full' },
+            { path: '', redirectTo: 'appointments', pathMatch: 'full' },
             { path: 'appointments', component: AppointmentsComponent },
             { path: 'ward_map', component: WardMapComponent },
         ],
