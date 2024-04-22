@@ -65,34 +65,91 @@ export class LoginComponent {
         }
     }
 
-    tile_select(i: string) {
+    tile_doubleClick(i: any) {
+        console.log('Double clicked on:', i);
         switch (i) {
             case 'doctor':
                 if (!this.tile_active[0]) {
                     this.passHide = true;
+                    this.tile_active = [true, false, false, false];
                 }
-                this.tile_active = [true, false, false, false];
+                else {
+                    this.passHide = false;
+                    this.tile_active = [false, false, false, false];
+                }
                 break;
             case 'receptionist':
                 if (!this.tile_active[1]) {
                     this.passHide = true;
+                    this.tile_active = [false, true, false, false];
                 }
-                this.tile_active = [false, true, false, false];
+                else {
+                    this.passHide = false;
+                    this.tile_active = [false, false, false, false];
+                }
                 break;
             case 'admin':
                 if (!this.tile_active[2]) {
                     this.passHide = true;
+                    this.tile_active = [false, false, true, false];
                 }
-                this.tile_active = [false, false, true, false];
+                else {
+                    this.passHide = false;
+                    this.tile_active = [false, false, false, false];
+                }
                 break;
             case 'nurse':
                 if (!this.tile_active[3]) {
                     this.passHide = true;
+                    this.tile_active = [false, false, false, true];
                 }
-                this.tile_active = [false, false, false, true];
+                else {
+                    this.passHide = false;
+                    this.tile_active = [false, false, false, false];
+                }
                 break;
             default:
                 this.tile_active = [false, false, false, false];
+        }
+    
+    }
+    lastClickTime: number = 0;
+    tile_select(i: string) {
+        const currentTime = new Date().getTime();
+        if (currentTime - this.lastClickTime < 300) {
+            this.tile_doubleClick(i);
+        }
+        else {
+            this.lastClickTime = currentTime;
+            console.log(i);
+            switch (i) {
+                case 'doctor':
+                    if (!this.tile_active[0]) {
+                        this.passHide = true;
+                    }
+                    this.tile_active = [true, false, false, false];
+                    break;
+                case 'receptionist':
+                    if (!this.tile_active[1]) {
+                        this.passHide = true;
+                    }
+                    this.tile_active = [false, true, false, false];
+                    break;
+                case 'admin':
+                    if (!this.tile_active[2]) {
+                        this.passHide = true;
+                    }
+                    this.tile_active = [false, false, true, false];
+                    break;
+                case 'nurse':
+                    if (!this.tile_active[3]) {
+                        this.passHide = true;
+                    }
+                    this.tile_active = [false, false, false, true];
+                    break;
+                default:
+                    this.tile_active = [false, false, false, false];
+            }
         }
     }
 
