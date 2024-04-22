@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PatientHistoryDialogComponent } from './appointments/patient-history-dialog/patient-history-dialog.component';
 import { SharedModule } from '../shared/shared.module';
 import { CancelAppointmentDialogComponent } from './appointments/cancel-appointment-dialog/cancel-appointment-dialog.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,6 @@ import { CancelAppointmentDialogComponent } from './appointments/cancel-appointm
         SharedModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [DoctorService],
+    providers: [DoctorService, provideCharts(withDefaultRegisterables())],
 })
 export class DoctorModule {}

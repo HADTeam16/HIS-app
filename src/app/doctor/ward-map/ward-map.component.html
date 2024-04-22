@@ -17,12 +17,12 @@
             elevateOnHover
             class="rounded-lg mat-elevation-z2"
             *ngFor="let ward of selectedFloorWards"
-            (click)="openDialog(ward)"
+            (click)="onSelectTile(ward)"
         >
             <mat-card
                 class="h-full w-full rounded-lg"
                 [ngStyle]="{
-                    'border-width': '4px',
+                    'border-width': '3px',
                     'border-style': 'solid',
                     'border-color': ward.availableStatus ? '#90EE90' : '#FFFF8D'
                 }"
@@ -30,31 +30,34 @@
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>
-                            Ward Number: {{ ward.wardNumber }}
+                            Ward # {{ ward.wardNumber }}
                         </mat-card-title>
                         <mat-card-subtitle>
-                            Status :{{
-                                ward.availableStatus
-                                    ? " Available"
-                                    : " Occupied"
-                            }}
+                            <table>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>:</td>
+                                    <td>
+                                        {{
+                                            ward.availableStatus
+                                                ? " Available"
+                                                : " Occupied"
+                                        }}
+                                    </td>
+                                </tr>
+                                @if (!ward.availableStatus) {
+                                <tr>
+                                    <td>PID</td>
+                                    <td>:</td>
+                                    <td>
+                                        {{ ward.patientId }}
+                                    </td>
+                                </tr>
+                                }
+                            </table>
                         </mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
-                <mat-card-content>
-                    @if (!ward.availableStatus) {
-                    <table>
-                        <tr>
-                            <td>PID:</td>
-                            <td>{{ ward.patientId }}</td>
-                        </tr>
-                        <tr>
-                            <td>Name:</td>
-                            <td>{{ getFullName(ward) }}</td>
-                        </tr>
-                    </table>
-                    }
-                </mat-card-content>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>

@@ -33,6 +33,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import {
+    BaseChartDirective,
+    provideCharts,
+    withDefaultRegisterables,
+} from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -41,6 +47,7 @@ import { MatChipsModule } from '@angular/material/chips';
         SnackbarComponent,
         DynamicTableComponent,
         SingleFileUploadComponent,
+        LineChartComponent,
     ],
     imports: [
         CommonModule,
@@ -56,12 +63,14 @@ import { MatChipsModule } from '@angular/material/chips';
         MatCheckboxModule,
         MatSortModule,
         MatButtonModule,
+        BaseChartDirective,
     ],
     exports: [
         CanvasComponent,
         ChatComponent,
         DynamicTableComponent,
         SingleFileUploadComponent,
+        LineChartComponent,
         MatToolbarModule,
         MatIconModule,
         MatSidenavModule,
@@ -86,6 +95,6 @@ import { MatChipsModule } from '@angular/material/chips';
         MatMenuModule,
         MatChipsModule,
     ],
-    providers: [SnackbarService],
+    providers: [SnackbarService, provideCharts(withDefaultRegisterables())],
 })
 export class MaterialModule {}
