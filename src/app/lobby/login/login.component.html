@@ -75,12 +75,15 @@
                     </mat-error>
                 </mat-form-field>
             </ng-template>
-
+            
             <mat-grid-tile-footer>
                 <button mat-raised-button type="submit" color="accent">
                     Login
                 </button>
             </mat-grid-tile-footer>
+            <div class="flex justify-end">
+            <a mat-button color="primary" class="text-sm" (click)="forgotPassword()">Forgot Password?</a>
+            </div>
         </form>
     </mat-grid-tile>
 </mat-grid-list>

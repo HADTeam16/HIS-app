@@ -73,4 +73,14 @@ export class AuthService {
             this.logout();
         }, expirationDuration);
     }
+
+    sendOTPForForgetPasswordRequest(email :string) {
+        return this.httpClient
+            .post(this.baseURL + Api.send_otp_forget_password_user + "/" + email, {})
+    }
+
+    verifyOTPForForgetPasswordRequest(email:string,otp :string) {
+        return this.httpClient
+            .post(this.baseURL + Api.verify_otp_forget_password_user + "/"+email+"/" + otp, {})
+    }
 }

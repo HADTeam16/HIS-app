@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
 import { WebsocketService } from '../../shared/services/websocket.service';
 import { NurseService } from '../../nurse/nurse.service';
+import { ForgetPasswordComponent } from './forget-password/forget-password-dialog.component';
 
 @Component({
     selector: 'app-login',
@@ -23,6 +25,7 @@ export class LoginComponent {
     isLoading = false;
 
     constructor(
+        private dialog: MatDialog,
         private router: Router,
         private authService: AuthService,
         private snackbarService: SnackbarService,
@@ -117,5 +120,9 @@ export class LoginComponent {
                     this.snackbarService.openSnackBar(error.error.message);
                 },
             });
+    }
+
+    forgotPassword() {
+        this.dialog.open(ForgetPasswordComponent);
     }
 }
