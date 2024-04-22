@@ -116,7 +116,7 @@ export class LoginComponent {
     lastClickTime: number = 0;
     tile_select(i: string) {
         const currentTime = new Date().getTime();
-        if (currentTime - this.lastClickTime < 300) {
+        if (currentTime - this.lastClickTime < 250) {
             this.tile_doubleClick(i);
         }
         else {
