@@ -31,8 +31,8 @@ export class ForgetPasswordComponent{
     ){}
 
     sendOTPForForgetPasswordRequest() {
-    this.isLoading = true;
-    this.authService
+        this.isLoading = true;
+        this.authService
         .sendOTPForForgetPasswordRequest(this.forgetPasswordDetailsForm.getRawValue().email)
         .subscribe(res => {
             this.isLoading = false;
@@ -44,13 +44,13 @@ export class ForgetPasswordComponent{
             this.isLoading = false;
             this.snackbarService.openSnackBar(error);
         });
-}
+    }
 
     verifyOTPForForgetPasswordRequest() {
-        this.isLoading = true;
         this.authService
-            .verifyOTPForForgetPasswordRequest(this.forgetPasswordDetailsForm.getRawValue().email,this.forgetPasswordDetailsForm.getRawValue().otp)
-            .subscribe(res=>this.snackbarService.openSnackBar(res["message"]));
+        .verifyOTPForForgetPasswordRequest(this.forgetPasswordDetailsForm.getRawValue().email,this.forgetPasswordDetailsForm.getRawValue().otp)
+        .subscribe(res=>this.snackbarService.openSnackBar(res["message"]));
+        this.isLoading = true;
     }
 
     
