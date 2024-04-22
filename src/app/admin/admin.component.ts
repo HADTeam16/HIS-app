@@ -187,6 +187,40 @@ export class AdminComponent {
             });
     }
 
+    onChangePasswordByAdmin(userId: number): void{
+        console.log(userId);
+         this.isLoading = true;
+         this.adminService
+             .changeUserPasswordByIdByAdmin(userId)
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+         )
+         .subscribe({
+                next: (response) => {
+                    let message;
+                    if (typeof response === 'string') {
+                        message = response;
+                    } else {
+                        message = 'Password changed successfully';
+                    }
+                    this.snackbarService.openSnackBar(message);
+                },
+                error: (error) => {
+                    let errorMessage = 'An error occurred';
+                    if (
+                        error &&
+                        error.error &&
+                        typeof error.error === 'string'
+                    ) {
+                        errorMessage = error.error;
+                    }
+                    this.snackbarService.openSnackBar(errorMessage);
+                },
+            });
+    }
+
     toggleNurseStatus(nurse: Nurse): void {
         this.isLoading = true;
         this.adminService

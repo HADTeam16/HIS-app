@@ -48,6 +48,7 @@ export enum Api {
 
     //user
     toggle_user_status = 'auth/toggle/user/status',
+    change_user_password_by_admin = 'auth/admin/change/password',
 
     //otp
     get_mobile_otp = 'api/otp/verification/send/otp/via/sms',
