@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DoctorComponent } from './doctor.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { WardMapComponent } from './ward-map/ward-map.component';
+import { ProfileComponent } from '../shared/components/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'appointments', pathMatch: 'full' },
             { path: 'appointments', component: AppointmentsComponent },
             { path: 'ward_map', component: WardMapComponent },
+            { path: 'my_profile', component: ProfileComponent },
         ],
     },
 ];

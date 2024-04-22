@@ -1,80 +1,82 @@
-<div class="container w-1/2 mt-8 mb-20 mx-auto">
-  <mat-card>
-    <mat-card-title class="flex justify-center items-center text-center">Contact Us</mat-card-title>
-    <mat-card-content class="mt-8">
-      <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="flex flex-col">
-         
-        <div class="row flex justify-between">
-          <mat-form-field appearance="outline" class="w-1/2 mr-4">
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstname">
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="w-1/2 ml-4">
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastname">
-          </mat-form-field>
-        </div>        
-
-        <div class="row">
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email">
-          </mat-form-field>
+<div class="h-full">
+  <div class="container w-1/2 mt-8 mb-20 mx-auto">
+    <mat-card>
+      <mat-card-title class="flex justify-center items-center text-center">Contact Us</mat-card-title>
+      <mat-card-content class="mt-8">
+        <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="flex flex-col">
+           
+          <div class="row flex justify-between">
+            <mat-form-field appearance="outline" class="w-1/2 mr-4">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstname">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-1/2 ml-4">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastname">
+            </mat-form-field>
+          </div>        
+  
+          <div class="row">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email">
+            </mat-form-field>
+          </div>
+  
+          <div class="row">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Message</mat-label>
+              <textarea matInput formControlName="message"></textarea>
+            </mat-form-field>
+          </div>
+  
+          <button mat-raised-button class="mx-auto" color="primary" type="submit" [disabled]="contactForm.invalid">Submit</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+    
+    <div class="container w-3/4 mt-20 mb-10 mx-auto">
+      <div class="row flex justify-between">
+        <div class="w-1/3 mx-4 flex flex-col">
+          <mat-card class="flex-grow min-h-64">
+            <mat-card-title class="flex justify-center items-center text-center">Address</mat-card-title>
+            <mat-card-content class="mt-5">
+              <p>
+                6A4, Guesture Alta Vista Sander, Electronic City
+              </p>
+            </mat-card-content>
+          </mat-card>
         </div>
-
-        <div class="row">
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Message</mat-label>
-            <textarea matInput formControlName="message"></textarea>
-          </mat-form-field>
+    
+        <div class="w-1/3 mx-4 flex flex-col">
+          <mat-card class="flex-grow min-h-64">
+            <mat-card-title class="flex justify-center items-center text-center">Contacts</mat-card-title>
+            <mat-card-content class="mt-5">
+              <p>
+                +91-1234567890<br>
+                +91-1234567890
+              </p>
+            </mat-card-content>
+          </mat-card>
         </div>
-
-        <button mat-raised-button class="mx-auto" color="primary" type="submit" [disabled]="contactForm.invalid">Submit</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
-  
-  <div class="container w-3/4 mt-20 mb-10 mx-auto">
-    <div class="row flex justify-between">
-      <div class="w-1/3 mx-4 flex flex-col">
-        <mat-card class="flex-grow min-h-64">
-          <mat-card-title class="flex justify-center items-center text-center">Address</mat-card-title>
-          <mat-card-content class="mt-5">
-            <p>
-              6A4, Guesture Alta Vista Sander, Electronic City
-            </p>
-          </mat-card-content>
-        </mat-card>
+    
+        <div class="w-1/3 mx-4 flex flex-col">
+          <mat-card class="flex-grow min-h-64">
+            <mat-card-title class="flex justify-center items-center text-center">Connect with us</mat-card-title>
+            <mat-card-content class="mt-5">
+              <p class="flex justify-center items-center space-x-4">
+                <!-- Facebook icon -->
+                <mat-icon class="text-blue-600" aria-hidden="false">facebook</mat-icon>
+                <!-- Twitter icon -->
+                <mat-icon class="text-blue-400" aria-hidden="false">twitter</mat-icon>
+                <!-- LinkedIn icon -->
+                <mat-icon class="text-blue-800" aria-hidden="false">linkedin</mat-icon>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
-  
-      <div class="w-1/3 mx-4 flex flex-col">
-        <mat-card class="flex-grow min-h-64">
-          <mat-card-title class="flex justify-center items-center text-center">Contacts</mat-card-title>
-          <mat-card-content class="mt-5">
-            <p>
-              +91-1234567890<br>
-              +91-1234567890
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-  
-      <div class="w-1/3 mx-4 flex flex-col">
-        <mat-card class="flex-grow min-h-64">
-          <mat-card-title class="flex justify-center items-center text-center">Connect with us</mat-card-title>
-          <mat-card-content class="mt-5">
-            <p class="flex justify-center items-center space-x-4">
-              <!-- Facebook icon -->
-              <mat-icon class="text-blue-600" aria-hidden="false">facebook</mat-icon>
-              <!-- Twitter icon -->
-              <mat-icon class="text-blue-400" aria-hidden="false">twitter</mat-icon>
-              <!-- LinkedIn icon -->
-              <mat-icon class="text-blue-800" aria-hidden="false">linkedin</mat-icon>
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
-  </div>  
+    </div> 
+</div> 
   

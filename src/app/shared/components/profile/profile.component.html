@@ -1,0 +1,40 @@
+<div class="banner">
+    <div class="row">
+        <div class="grid grid-cols-4 gap-4">
+            <!-- Profile Photo part -->
+            <div
+                class="profilePhoto h-48 w-48 rounded-full overflow-hidden flex justify-center items-center"
+            >
+                <img src="{{ user.profilePicture }}" alt="Profile Photo" />
+            </div>
+
+            <!-- Introduction part -->
+            <div class="introduction col-span-3">
+                <div class="row">
+                    <div class="name text-2xl font-bold">
+                        Name - {{ user.firstName }} {{ user.lastName }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="contact text-lg">
+                        Contact - {{ user.contact }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="body-profile">
+    <div class="row">
+        <mat-card> 
+            <mat-card-title>
+                
+            </mat-card-title>
+        </mat-card>
+    </div>
+</div>
+
+<footer class="h-16 w-full flex justify-center items-center bg-neutral-100">
+    <span class="text-zinc-500">{{ "All rights reserved@HADTeam16" }}</span>
+</footer>

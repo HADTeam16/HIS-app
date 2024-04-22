@@ -29,7 +29,6 @@ import { CancelAppointmentDialogComponent } from './appointments/cancel-appointm
         DoctorRoutingModule,
         ReactiveFormsModule,
         MaterialModule,
-        SharedModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [DoctorService],
