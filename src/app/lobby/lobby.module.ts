@@ -8,7 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { ForgetPasswordComponent } from './login/forget-password/forget-password-dialog.component'
+import { ForgetPasswordComponent } from './login/password-reset/forget-password-dialog.component'
 
 @NgModule({
     declarations: [
