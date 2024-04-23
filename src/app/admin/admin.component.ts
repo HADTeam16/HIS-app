@@ -26,19 +26,13 @@ export class AdminComponent {
         'dateOfBirth',
         'email',
     ];
-  tableNurseHeaders = [
-    'id',
-    'firstName',
-    'lastName',
-    'dateOfBirth',
-    'email'
-  ];
-  tableReceptionistHeaders = [
-    'id',
-    'firstName',
-    'lastName',
-    'dateOfBirth',
-    'email'
+    tableNurseHeaders = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email'];
+    tableReceptionistHeaders = [
+        'id',
+        'firstName',
+        'lastName',
+        'dateOfBirth',
+        'email',
     ];
     headerDoctorAlias = {
         id: 'User ID',
@@ -55,12 +49,12 @@ export class AdminComponent {
         email: 'Email',
     };
     headerReceptionistAlias = {
-      id: 'User ID',
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      dateOfBirth: 'Date of Birth',
-      email: 'Email',
-  };
+        id: 'User ID',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        dateOfBirth: 'Date of Birth',
+        email: 'Email',
+    };
 
     tableDataDoctor: Doctor[] = [];
     tableDataNurse: Nurse[] = [];
@@ -76,7 +70,7 @@ export class AdminComponent {
         this.getNurses();
         this.getReceptionist();
     }
-  
+
     selectedTabIndex = 0;
 
     getDoctors() {
@@ -116,25 +110,25 @@ export class AdminComponent {
                 },
             });
     }
-  
+
     getReceptionist() {
-      this.isLoading = true;
-      this.adminService
-          .getAllReceptionist()
-          .pipe(
-              finalize(() => {
-                  this.isLoading = false;
-              })
-          )
-          .subscribe({
-              next: (response) => {
-                  this.tableDataReceptionist = response;
-              },
-              error: (error) => {
-                  this.snackbarService.openSnackBar(error);
-              },
-          });
-  }
+        this.isLoading = true;
+        this.adminService
+            .getAllReceptionist()
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+            )
+            .subscribe({
+                next: (response) => {
+                    this.tableDataReceptionist = response;
+                },
+                error: (error) => {
+                    this.snackbarService.openSnackBar(error);
+                },
+            });
+    }
 
     toggleDoctorStatus(doctor: Doctor): void {
         this.isLoading = true;
@@ -187,6 +181,39 @@ export class AdminComponent {
             });
     }
 
+    onChangePasswordByAdmin(userId: number): void {
+        this.isLoading = true;
+        this.adminService
+            .changeUserPasswordByIdByAdmin(userId)
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+            )
+            .subscribe({
+                next: (response) => {
+                    let message;
+                    if (typeof response === 'string') {
+                        message = response;
+                    } else {
+                        message = 'Password changed successfully';
+                    }
+                    this.snackbarService.openSnackBar(message);
+                },
+                error: (error) => {
+                    let errorMessage = 'An error occurred';
+                    if (
+                        error &&
+                        error.error &&
+                        typeof error.error === 'string'
+                    ) {
+                        errorMessage = error.error;
+                    }
+                    this.snackbarService.openSnackBar(errorMessage);
+                },
+            });
+    }
+
     toggleNurseStatus(nurse: Nurse): void {
         this.isLoading = true;
         this.adminService
@@ -233,53 +260,57 @@ export class AdminComponent {
                 },
             });
     }
-  
+
     toggleReceptionistStatus(receptionist: Receptionist): void {
-      this.isLoading = true;
-      this.adminService
-          .toggleReceptionistById(receptionist.id)
-          .pipe(
-              finalize(() => {
-                  this.isLoading = false;
-              })
-          )
-          .subscribe({
-              next: (response) => {
-                  let message;
-                  if (typeof response === 'string') {
-                      message = response;
-                  } else {
-                      message = 'Status changed successfully';
-                  }
-                  this.snackbarService.openSnackBar(message);
-                  const receptionistIndex = this.tableDataReceptionist.findIndex(
-                      (el) => el.id === receptionist.id
-                  );
-                  if (receptionistIndex !== -1) {
-                      this.tableDataReceptionist[receptionistIndex].disable =
-                          !this.tableDataReceptionist[receptionistIndex].disable;
-                  }
-              },
-              error: (error) => {
-                  let errorMessage = 'An error occurred';
-                  if (
-                      error &&
-                      error.error &&
-                      typeof error.error === 'string'
-                  ) {
-                      errorMessage = error.error;
-                  }
-                  this.snackbarService.openSnackBar(errorMessage);
-                  const receptionistIndex = this.tableDataReceptionist.findIndex(
-                      (el) => el.id === receptionist.id
-                  );
-                  if (receptionistIndex !== -1) {
-                      this.tableDataReceptionist[receptionistIndex].disable =
-                          !this.tableDataReceptionist[receptionistIndex].disable;
-                  }
-              },
-          });
-  }
+        this.isLoading = true;
+        this.adminService
+            .toggleReceptionistById(receptionist.id)
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                })
+            )
+            .subscribe({
+                next: (response) => {
+                    let message;
+                    if (typeof response === 'string') {
+                        message = response;
+                    } else {
+                        message = 'Status changed successfully';
+                    }
+                    this.snackbarService.openSnackBar(message);
+                    const receptionistIndex =
+                        this.tableDataReceptionist.findIndex(
+                            (el) => el.id === receptionist.id
+                        );
+                    if (receptionistIndex !== -1) {
+                        this.tableDataReceptionist[receptionistIndex].disable =
+                            !this.tableDataReceptionist[receptionistIndex]
+                                .disable;
+                    }
+                },
+                error: (error) => {
+                    let errorMessage = 'An error occurred';
+                    if (
+                        error &&
+                        error.error &&
+                        typeof error.error === 'string'
+                    ) {
+                        errorMessage = error.error;
+                    }
+                    this.snackbarService.openSnackBar(errorMessage);
+                    const receptionistIndex =
+                        this.tableDataReceptionist.findIndex(
+                            (el) => el.id === receptionist.id
+                        );
+                    if (receptionistIndex !== -1) {
+                        this.tableDataReceptionist[receptionistIndex].disable =
+                            !this.tableDataReceptionist[receptionistIndex]
+                                .disable;
+                    }
+                },
+            });
+    }
 
     onDoctorEdit(doctorId: number): void {
         const dialogRef = this.dialog.open(EditDialogComponent, {
@@ -300,16 +331,19 @@ export class AdminComponent {
             // Handle dialog closed if needed
         });
     }
-  
-    onReceptionistEdit(receptionistId: number): void {
-      const dialogRef = this.dialog.open(EditDialogComponent, {
-          data: { tabIndex: this.selectedTabIndex, receptionistId: receptionistId },
-      });
 
-      dialogRef.afterClosed().subscribe((result) => {
-          // Handle dialog closed if needed
-      });
-  }
+    onReceptionistEdit(receptionistId: number): void {
+        const dialogRef = this.dialog.open(EditDialogComponent, {
+            data: {
+                tabIndex: this.selectedTabIndex,
+                receptionistId: receptionistId,
+            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            // Handle dialog closed if needed
+        });
+    }
 
     openAddDialog() {
         const dialogRef = this.dialog.open(AddDialogComponent, {
@@ -340,4 +374,3 @@ export class AdminComponent {
         this.authService.logout();
     }
 }
-
