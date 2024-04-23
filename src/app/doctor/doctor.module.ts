@@ -14,6 +14,7 @@ import { PatientHistoryDialogComponent } from './appointments/patient-history-di
 import { SharedModule } from '../shared/shared.module';
 import { CancelAppointmentDialogComponent } from './appointments/cancel-appointment-dialog/cancel-appointment-dialog.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { WardService } from '../shared/services/ward.service';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,10 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
         SharedModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [DoctorService, provideCharts(withDefaultRegisterables())],
+    providers: [
+        DoctorService,
+        WardService,
+        provideCharts(withDefaultRegisterables()),
+    ],
 })
 export class DoctorModule {}
