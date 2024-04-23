@@ -7,7 +7,7 @@ import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
 import { WebsocketService } from '../../shared/services/websocket.service';
 import { NurseService } from '../../nurse/nurse.service';
-import { ForgetPasswordComponent } from './forget-password/forget-password-dialog.component';
+import { ForgetPasswordComponent } from './password-reset/forget-password-dialog.component';
 
 @Component({
     selector: 'app-login',

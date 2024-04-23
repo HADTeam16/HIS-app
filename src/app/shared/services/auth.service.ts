@@ -74,13 +74,40 @@ export class AuthService {
         }, expirationDuration);
     }
 
-    sendOTPForForgetPasswordRequest(email :string) {
-        return this.httpClient
-            .post(this.baseURL + Api.send_otp_forget_password_user + "/" + email, {})
+    sendOTPForForgetPasswordRequest(email: string) {
+        return this.httpClient.post(
+            this.baseURL + Api.send_otp_forget_password_user + '/' + email,
+            {}
+        );
     }
 
-    verifyOTPForForgetPasswordRequest(email:string,otp :string) {
-        return this.httpClient
-            .post(this.baseURL + Api.verify_otp_forget_password_user + "/"+email+"/" + otp, {})
+    verifyOTPForForgetPasswordRequest(
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(
+                    this.baseURL +
+                        Api.verify_otp_forget_password_user +
+                        '/' +
+                        email +
+                        '/' +
+                        otp,
+                    {}
+                )
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Password updated successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
     }
 }
