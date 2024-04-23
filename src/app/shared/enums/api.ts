@@ -22,6 +22,9 @@ export enum Api {
     cancel_appointment = 'api/appointment/cancel/appointment/',
     get_all_wards_data = 'api/doctors/get/all/wards',
 
+    //shared
+    get_ward_history = 'api/nurse/ward/history/',
+
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
     get_nurse_by_id = 'api/users/get/user/',

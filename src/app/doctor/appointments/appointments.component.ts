@@ -145,11 +145,11 @@ export class AppointmentsComponent {
             });
     }
 
-    viewHistory(patientId: number) {
+    viewHistory(patientId: number, appointmentDate: string) {
         this.dialog.open(PatientHistoryDialogComponent, {
             height: '80%',
             width: '80%',
-            data: { patientId, date: this.selectedDate },
+            data: { patientId, date: new Date(appointmentDate) },
         });
     }
 

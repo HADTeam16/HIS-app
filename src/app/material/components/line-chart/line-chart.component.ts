@@ -8,6 +8,6 @@ import 'chartjs-adapter-date-fns';
     styleUrl: './line-chart.component.scss',
 })
 export class LineChartComponent {
-    @Input() lineChartData:ChartConfiguration['data'];
+    @Input() lineChartData: ChartConfiguration['data'];
     @Input() lineChartOptions: ChartConfiguration['options'];
 }
