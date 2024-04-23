@@ -15,14 +15,18 @@ export class DoctorComponent {
         { title: 'Appointments', icon: 'calendar_clock', link: 'appointments' },
         { title: 'Ward Map', icon: 'ward', link: 'ward_map' },
     ];
-    user: User;
-    constructor(private authService: AuthService, private snackbarService: SnackbarService, private router : Router) {
-        this.user = this.authService.user.getValue();
-        console.log('Profile pic - ' + this.user.profilePicture);
+    user: User = new User();
+    constructor(
+        private authService: AuthService,
+        private snackbarService: SnackbarService
+    ) {
+        this.authService.user.subscribe((res) => {
+            if (res) this.user = res;
+        });
     }
 
     onLogout() {
         this.authService.logout();
-        this.snackbarService.openSnackBar("Logged out successfully");
+        this.snackbarService.openSnackBar('Logged out successfully');
     }
 }

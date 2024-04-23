@@ -1,36 +1,67 @@
-<div class="banner">
-    <div class="row">
-        <div class="grid grid-cols-4 gap-4">
-            <!-- Profile Photo part -->
-            <div
-                class="profilePhoto h-48 w-48 rounded-full overflow-hidden flex justify-center items-center"
-            >
-                <img src="{{ user.profilePicture }}" alt="Profile Photo" />
-            </div>
+<div class="row mt-10 flex justify-center">
+    <div class="w-3/4 flex justify-between">
+        <mat-card class="w-4/6 rounded-full" style="border-radius: 10px;">
+            <mat-card-content class="flex justify-center items-center">
+                <div class="grid grid-cols-4 gap-4">
+                    <!-- Profile Photo part -->
+                    <div
+                        class="profilePhoto h-48 w-48 rounded-full overflow-hidden flex justify-center items-center"
+                    >
+                        <img [src]="user.profilePicture" alt="Profile Photo" />
+                    </div>
 
-            <!-- Introduction part -->
-            <div class="introduction col-span-3">
-                <div class="row">
-                    <div class="name text-2xl font-bold">
-                        Name - {{ user.firstName }} {{ user.lastName }}
+                    <!-- Introduction part -->
+                    <div
+                        class="introduction col-span-3 flex flex-col justify-center"
+                    >
+                        <div class="row">
+                            <div class="name text-2xl font-bold">
+                                Name - {{ user.firstName }} {{ user.lastName }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="contact text-lg">
+                                Contact - {{ user.contact }}
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="w-2/6 ml-2 rounded-full" style="border-radius: 10px;">
+            <mat-card-title style="margin-left: 10px;"> Contact : </mat-card-title>
+            <mat-card-content class="flex justify-center items-center" style="margin-left: 10px;">
                 <div class="row">
-                    <div class="contact text-lg">
-                        Contact - {{ user.contact }}
-                    </div>
+                    <mat-list>
+                        <span matListItemTitle>Personal Contacts </span>
+                        <span matListItemLine
+                            >Contact : {{ user.contact }}</span
+                        >
+                        <span matListItemLine>Email : {{ user.email }}</span>
+                    </mat-list>
                 </div>
-            </div>
-        </div>
+
+                <div class="row">
+                    <mat-list>
+                        <span matListItemTitle>Emergency Contacts </span>
+                        <span matListItemLine
+                            >Name : {{ user.emergencyContactName }}</span
+                        >
+                        <span matListItemLine
+                            >Contact : {{ user.emergencyContactNumber }}</span
+                        >
+                    </mat-list>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
 
 <div class="body-profile">
     <div class="row">
-        <mat-card> 
-            <mat-card-title>
-                
-            </mat-card-title>
+        <mat-card>
+            <mat-card-title> </mat-card-title>
         </mat-card>
     </div>
 </div>

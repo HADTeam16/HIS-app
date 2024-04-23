@@ -5,6 +5,7 @@ import { FormatDateTimePipe } from '../shared/pipes/format-date-full.pipe';
 import { AgePipe } from '../shared/pipes/age.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
         AgePipe,
         ProfileComponent,
     ],
-    imports: [CommonModule, MatCardModule],
+    imports: [CommonModule, MatCardModule, MatListModule],
     exports: [FormatDateTimePipe, AgePipe, ElevateOnHoverDirective],
 })
 export class SharedModule {}

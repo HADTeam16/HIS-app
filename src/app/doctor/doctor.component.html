@@ -14,17 +14,15 @@
                 >chat</mat-icon
             >
         </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <div class="flex items-center">
-                <div class="rounded-full overflow-hidden h-8 w-8 mr-2">
-                    <img
-                        src="{{ user.profilePicture }}"
+            <div [matMenuTriggerFor]="menu" >
+                    @if (user&&user.profilePicture) {
+                        <img
+                        [src]="user.profilePicture"
                         alt="profilePhoto"
-                        class="h-full w-full object-cover"
+                        class="h-3 w-3 rounded-full"
                     />
-                </div>
+                    }
             </div>
-        </button>
         <mat-menu #menu="matMenu">
             <ul class="menu-list">
                 <li class="menu-item">

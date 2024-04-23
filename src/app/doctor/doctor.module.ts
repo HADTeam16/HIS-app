@@ -30,6 +30,7 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
         DoctorRoutingModule,
         ReactiveFormsModule,
         MaterialModule,
+        SharedModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [DoctorService, provideCharts(withDefaultRegisterables())],
