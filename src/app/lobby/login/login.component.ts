@@ -28,7 +28,7 @@ export class LoginComponent {
         private dialog: MatDialog,
         private router: Router,
         private authService: AuthService,
-        private snackbarService: SnackbarService,
+        private snackbarService: SnackbarService
     ) {}
 
     getIcon(user: string) {
@@ -65,91 +65,44 @@ export class LoginComponent {
         }
     }
 
-    tile_doubleClick(i: any) {
-        console.log('Double clicked on:', i);
+    tile_select(i: string) {
         switch (i) {
             case 'doctor':
-                if (!this.tile_active[0]) {
-                    this.passHide = true;
-                    this.tile_active = [true, false, false, false];
-                }
-                else {
-                    this.passHide = false;
+                this.passHide = true;
+                if (this.tile_active[0]) {
                     this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [true, false, false, false];
                 }
                 break;
             case 'receptionist':
-                if (!this.tile_active[1]) {
-                    this.passHide = true;
-                    this.tile_active = [false, true, false, false];
-                }
-                else {
-                    this.passHide = false;
+                this.passHide = true;
+                if (this.tile_active[1]) {
                     this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [false, true, false, false];
                 }
                 break;
             case 'admin':
-                if (!this.tile_active[2]) {
-                    this.passHide = true;
-                    this.tile_active = [false, false, true, false];
-                }
-                else {
-                    this.passHide = false;
+                this.passHide = true;
+                if (this.tile_active[2]) {
                     this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [false, false, true, false];
                 }
                 break;
             case 'nurse':
-                if (!this.tile_active[3]) {
-                    this.passHide = true;
-                    this.tile_active = [false, false, false, true];
-                }
-                else {
-                    this.passHide = false;
+                this.passHide = true;
+                if (this.tile_active[3]) {
                     this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [false, false, false, true];
                 }
                 break;
             default:
+                this.passHide = true;
                 this.tile_active = [false, false, false, false];
-        }
-    
-    }
-    lastClickTime: number = 0;
-    tile_select(i: string) {
-        const currentTime = new Date().getTime();
-        if (currentTime - this.lastClickTime < 250) {
-            this.tile_doubleClick(i);
-        }
-        else {
-            this.lastClickTime = currentTime;
-            console.log(i);
-            switch (i) {
-                case 'doctor':
-                    if (!this.tile_active[0]) {
-                        this.passHide = true;
-                    }
-                    this.tile_active = [true, false, false, false];
-                    break;
-                case 'receptionist':
-                    if (!this.tile_active[1]) {
-                        this.passHide = true;
-                    }
-                    this.tile_active = [false, true, false, false];
-                    break;
-                case 'admin':
-                    if (!this.tile_active[2]) {
-                        this.passHide = true;
-                    }
-                    this.tile_active = [false, false, true, false];
-                    break;
-                case 'nurse':
-                    if (!this.tile_active[3]) {
-                        this.passHide = true;
-                    }
-                    this.tile_active = [false, false, false, true];
-                    break;
-                default:
-                    this.tile_active = [false, false, false, false];
-            }
+                break;
         }
     }
 
@@ -168,10 +121,10 @@ export class LoginComponent {
             )
             .subscribe({
                 next: (response) => {
+                    this.snackbarService.openSnackBar(response['message']);
                     if (response['message'] == 'Login Success') {
                         this.router.navigate([user]);
                     }
-                    this.snackbarService.openSnackBar(response['message']);
                 },
                 error: (error) => {
                     this.snackbarService.openSnackBar(error.error.message);

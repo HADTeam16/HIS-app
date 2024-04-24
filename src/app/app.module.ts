@@ -43,6 +43,9 @@ export class AppModule {
         'arrow_back',
         'verified',
         'warning',
+        'stethoscope_check',
+        'block',
+        'cancel',
     ];
 
     constructor(
