@@ -3,12 +3,14 @@ import { AuthService } from '../shared/services/auth.service';
 import { SnackbarService } from '../material/services/snackbar.service';
 import { NurseService } from './nurse.service';
 import { Subscription } from 'rxjs';
+import { User } from '../shared/models/user';
 
 @Component({
     selector: 'app-nurse',
     templateUrl: './nurse.component.html',
 })
 export class NurseComponent {
+    user: User = new User();
     chat = 'invisible';
     routes = [
         {
@@ -25,6 +27,9 @@ export class NurseComponent {
         private authService: AuthService,
         private snackBarService: SnackbarService
     ) {
+        this.authService.user.subscribe((res) => {
+            if (res) this.user = res;
+        });
         this.userSubscription = authService.user.subscribe({
             next: (nurse) => {
                 if (nurse) this.nurseService.isHeadNurse(nurse.id);
