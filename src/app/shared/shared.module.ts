@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ElevateOnHoverDirective } from '../shared/directives/elevate-on-hover.directive';
 import { FormatDateTimePipe } from '../shared/pipes/format-date-full.pipe';
 import { AgePipe } from '../shared/pipes/age.pipe';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
     declarations: [
         ElevateOnHoverDirective,
         FormatDateTimePipe,
         AgePipe,
+        StatisticsComponent,
     ],
     imports: [CommonModule],
     exports: [FormatDateTimePipe, AgePipe, ElevateOnHoverDirective],
