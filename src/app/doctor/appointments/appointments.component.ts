@@ -139,7 +139,11 @@ export class AppointmentsComponent {
             .subscribe({
                 next: (res) => {
                     if (res == 'success') {
-                        this.setToday();
+                        const i = this.selectedDateAppointments.findIndex(
+                            (el) => el.appointmentId == appointment_id
+                        );
+                        this.selectedDateAppointments[i].completed = 1;
+                        this.appointmentStatusToggle.value = 'completed';
                     }
                 },
             });

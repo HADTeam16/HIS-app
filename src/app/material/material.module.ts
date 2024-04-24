@@ -33,6 +33,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { SingleFileUploadComponent } from './components/single-file-upload/single-file-upload.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import {
     BaseChartDirective,
@@ -94,6 +95,7 @@ import {
         MatSlideToggleModule,
         MatMenuModule,
         MatChipsModule,
+        MatTooltipModule,
     ],
     providers: [SnackbarService, provideCharts(withDefaultRegisterables())],
 })
