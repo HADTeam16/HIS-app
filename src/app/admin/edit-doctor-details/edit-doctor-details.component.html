@@ -1,148 +1,246 @@
 <h2 mat-dialog-title>Edit Doctor Form</h2>
-<form [formGroup]="editdoctorForm" class="flex flex-col justify-between m-8 h-96">
-
-  <div class="row">
-    <mat-form-field class="mr-4">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" [value]="tableDataDoctor?.firstName">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>Middle Name</mat-label>
-      <input matInput formControlName="middleName" [value]="tableDataDoctor?.middleName">
-    </mat-form-field>
+<form
+    [formGroup]="editdoctorForm"
+    class="flex flex-col justify-between m-8 h-96"
+>
+    <div class="row">
+        <mat-form-field class="mr-4">
+            <mat-label>First Name</mat-label>
+            <input
+                matInput
+                formControlName="firstName"
+                [value]="tableDataDoctor?.firstName"
+            />
+        </mat-form-field>
 
         <mat-form-field class="mr-4">
-          <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" [value]="tableDataDoctor?.lastName">
+            <mat-label>Middle Name</mat-label>
+            <input
+                matInput
+                formControlName="middleName"
+                [value]="tableDataDoctor?.middleName"
+            />
         </mat-form-field>
-      </div>
-      <div class="row mt-4">
+
+        <mat-form-field class="mr-4">
+            <mat-label>Last Name</mat-label>
+            <input
+                matInput
+                formControlName="lastName"
+                [value]="tableDataDoctor?.lastName"
+            />
+        </mat-form-field>
+    </div>
+    <div class="row mt-4">
         <mat-form-field class="mb-4 ml-4">
-          <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender" [value]="tableDataDoctor?.gender">
-            <mat-option value="male">Male</mat-option>
-            <mat-option value="female">Female</mat-option>
-            <mat-option value="notSpecified">Not Specified</mat-option>
-          </mat-select>
+            <mat-label>Gender</mat-label>
+            <mat-select
+                formControlName="gender"
+                [value]="tableDataDoctor?.gender"
+            >
+                <mat-option value="male">Male</mat-option>
+                <mat-option value="female">Female</mat-option>
+                <mat-option value="notSpecified">Not Specified</mat-option>
+            </mat-select>
         </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Date of Birth</mat-label>
-      <input matInput formControlName="dateOfBirth" [matDatepicker]="picker" [value]="tableDataDoctor?.dateOfBirth">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
+        <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input
+                matInput
+                formControlName="dateOfBirth"
+                [matDatepicker]="picker"
+                [value]="tableDataDoctor?.dateOfBirth"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field class="mr-4">
-      <mat-label>Country</mat-label>
-      <input matInput formControlName="country" [value]="tableDataDoctor?.country">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>State</mat-label>
-      <input matInput formControlName="state" [value]="tableDataDoctor?.state">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>City</mat-label>
-      <input matInput formControlName="city" [value]="tableDataDoctor?.city">
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Address Line 1</mat-label>
-      <input matInput formControlName="addressLine1" [value]="tableDataDoctor?.addressLine1">
-    </mat-form-field>
-  </div>
-
-  <div class="row">
-    <mat-form-field class="mr-4">
-      <mat-label>Address Line 2</mat-label>
-      <input matInput formControlName="addressLine2" [value]="tableDataDoctor?.addressLine2">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>Landmark</mat-label>
-      <input matInput formControlName="landmark" [value]="tableDataDoctor?.landmark">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>Pincode</mat-label>
-      <input matInput formControlName="pinCode" [value]="tableDataDoctor?.pinCode">
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Contact</mat-label>
-      <input matInput formControlName="contact" [value]="tableDataDoctor?.contact">
-    </mat-form-field>
-  </div>
-
-  <div class="row">
-    <mat-form-field class="mr-4">
-      <mat-label>Profile Picture</mat-label>
-      <input matInput formControlName="profilePicture" [value]="tableDataDoctor?.profilePicture">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>Emergency Contact Name</mat-label>
-      <input matInput formControlName="emergencyContactName" [value]="tableDataDoctor?.emergencyContactName">
-    </mat-form-field>
-
-    <mat-form-field class="mr-4">
-      <mat-label>Emergency Contact Number</mat-label>
-      <input matInput formControlName="emergencyContactNumber" [value]="tableDataDoctor?.emergencyContactNumber">
-    </mat-form-field>
-  </div>
-
-  <!-- Doctor Specific fields -->
-  <div class="row">
-    <mat-form-field class="mr-4">
-      <mat-label>Medical License Number</mat-label>
-      <input matInput formControlName="medicalLicenseNumber" [value]="tableDataDoctor?.medicalLicenseNumber">
-    </mat-form-field>
+    <div class="row">
+        <mat-form-field class="mr-4">
+            <mat-label>Country</mat-label>
+            <input
+                matInput
+                formControlName="country"
+                [value]="tableDataDoctor?.country"
+            />
+        </mat-form-field>
 
         <mat-form-field class="mr-4">
-          <mat-label>Specialization</mat-label>
-          <input matInput formControlName="specialization" [value]="tableDataDoctor?.specialization">
+            <mat-label>State</mat-label>
+            <input
+                matInput
+                formControlName="state"
+                [value]="tableDataDoctor?.state"
+            />
         </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Medical Degree</mat-label>
-      <input matInput formControlName="medicalDegree" [value]="tableDataDoctor?.medicalDegree">
-    </mat-form-field>
-  </div>
+        <mat-form-field class="mr-4">
+            <mat-label>City</mat-label>
+            <input
+                matInput
+                formControlName="city"
+                [value]="tableDataDoctor?.city"
+            />
+        </mat-form-field>
 
-  <div class="row">
-    <mat-form-field class="mr-4">
-      <mat-label>CV</mat-label>
-      <input matInput formControlName="cv" [value]="tableDataDoctor?.cv">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Address Line 1</mat-label>
+            <input
+                matInput
+                formControlName="addressLine1"
+                [value]="tableDataDoctor?.addressLine1"
+            />
+        </mat-form-field>
+    </div>
 
-    <mat-form-field class="mr-4">
-      <mat-label>Drug Screening Result</mat-label>
-      <input matInput formControlName="drugScreeningResult" [value]="tableDataDoctor?.drugScreeningResult">
-    </mat-form-field>
+    <div class="row">
+        <mat-form-field class="mr-4">
+            <mat-label>Address Line 2</mat-label>
+            <input
+                matInput
+                formControlName="addressLine2"
+                [value]="tableDataDoctor?.addressLine2"
+            />
+        </mat-form-field>
 
-    <mat-form-field class="mr-4">
-      <mat-label>Work Start</mat-label>
-      <input matInput formControlName="workStart" [value]="tableDataDoctor?.workStart">
-    </mat-form-field>
+        <mat-form-field class="mr-4">
+            <mat-label>Landmark</mat-label>
+            <input
+                matInput
+                formControlName="landmark"
+                [value]="tableDataDoctor?.landmark"
+            />
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Work End</mat-label>
-      <input matInput formControlName="workEnd" [value]="tableDataDoctor?.workEnd">
-    </mat-form-field>
-  </div>
+        <mat-form-field class="mr-4">
+            <mat-label>Pincode</mat-label>
+            <input
+                matInput
+                formControlName="pinCode"
+                [value]="tableDataDoctor?.pinCode"
+            />
+        </mat-form-field>
 
-  <div class="row mt-3 text-center p-4">
-    <button 
-      mat-stroked-button
-      type="submit"
-      color="primary"
-      (click)="onEditSaveDoctor()">
-      Save
-    </button>
-  </div>
+        <mat-form-field>
+            <mat-label>Contact</mat-label>
+            <input
+                matInput
+                formControlName="contact"
+                [value]="tableDataDoctor?.contact"
+            />
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="mr-4">
+            <mat-label>Profile Picture</mat-label>
+            <input
+                matInput
+                formControlName="profilePicture"
+                [value]="tableDataDoctor?.profilePicture"
+            />
+        </mat-form-field>
+
+        <mat-form-field class="mr-4">
+            <mat-label>Emergency Contact Name</mat-label>
+            <input
+                matInput
+                formControlName="emergencyContactName"
+                [value]="tableDataDoctor?.emergencyContactName"
+            />
+        </mat-form-field>
+
+        <mat-form-field class="mr-4">
+            <mat-label>Emergency Contact Number</mat-label>
+            <input
+                matInput
+                formControlName="emergencyContactNumber"
+                [value]="tableDataDoctor?.emergencyContactNumber"
+            />
+        </mat-form-field>
+    </div>
+
+    <!-- Doctor Specific fields -->
+    <div class="row">
+        <mat-form-field class="mr-4">
+            <mat-label>Medical License Number</mat-label>
+            <input
+                matInput
+                formControlName="medicalLicenseNumber"
+                [value]="tableDataDoctor?.medicalLicenseNumber"
+            />
+        </mat-form-field>
+
+        <mat-form-field class="mr-4">
+            <mat-label>Specialization</mat-label>
+            <input
+                matInput
+                formControlName="specialization"
+                [value]="tableDataDoctor?.specialization"
+            />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Medical Degree</mat-label>
+            <input
+                matInput
+                formControlName="medicalDegree"
+                [value]="tableDataDoctor?.medicalDegree"
+            />
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="mr-4">
+            <mat-label>CV</mat-label>
+            <input
+                matInput
+                formControlName="cv"
+                [value]="tableDataDoctor?.cv"
+            />
+        </mat-form-field>
+
+        <mat-form-field class="mr-4">
+            <mat-label>Drug Screening Result</mat-label>
+            <input
+                matInput
+                formControlName="drugScreeningResult"
+                [value]="tableDataDoctor?.drugScreeningResult"
+            />
+        </mat-form-field>
+
+        <mat-form-field class="mr-4">
+            <mat-label>Work Start</mat-label>
+            <input
+                matInput
+                formControlName="workStart"
+                [value]="tableDataDoctor?.workStart"
+            />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Work End</mat-label>
+            <input
+                matInput
+                formControlName="workEnd"
+                [value]="tableDataDoctor?.workEnd"
+            />
+        </mat-form-field>
+    </div>
+
+    <div class="row mt-3 text-center p-4">
+        <button
+            mat-stroked-button
+            type="submit"
+            color="primary"
+            (click)="onEditSaveDoctor()"
+        >
+            Save
+        </button>
+    </div>
 </form>

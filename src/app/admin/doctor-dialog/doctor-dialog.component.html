@@ -125,7 +125,13 @@
     <div class="row flex justify-around mb-4">
         <app-single-file-upload
             [label]="'Profile Picture'"
-            [fileTypes]="['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']"
+            [fileTypes]="[
+                'application/pdf',
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+                'image/svg+xml'
+            ]"
             (selected)="onProfilePictureSelected($event)"
         ></app-single-file-upload>
         <app-single-file-upload
