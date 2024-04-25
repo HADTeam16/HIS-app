@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NurseRoutingModule } from './nurse-routing.module';
 import { NurseComponent } from './nurse.component';
 import { InPatientListComponent } from './in-patient-list/in-patient-list.component';
-import { MaterialModule } from '../material/material.module';
 import { EditDetailsDialogComponent } from './in-patient-list/edit-details-dialog/edit-details-dialog.component';
 import { WardQueueComponent } from './ward-queue/ward-queue.component';
 import { AllocateWardDialogComponent } from './ward-queue/allocate-ward-dialog/allocate-ward-dialog.component';
@@ -21,13 +20,7 @@ import { WardEmergencyDialogComponent } from './in-patient-list/ward-emergency-d
         AllocateWardDialogComponent,
         WardEmergencyDialogComponent,
     ],
-    imports: [
-        CommonModule,
-        NurseRoutingModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        SharedModule,
-    ],
+    imports: [CommonModule, NurseRoutingModule, SharedModule],
     providers: [NurseService],
 })
 export class NurseModule {}

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorComponent } from './doctor.component';
-import { MaterialModule } from '../material/material.module';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { PrescriptionDialogComponent } from './appointments/prescription-dialog/prescription-dialog.component';
 import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-detail-dialog.component';
@@ -26,13 +25,7 @@ import { WardService } from '../shared/services/ward.service';
         PatientHistoryDialogComponent,
         CancelAppointmentDialogComponent,
     ],
-    imports: [
-        CommonModule,
-        DoctorRoutingModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        SharedModule,
-    ],
+    imports: [CommonModule, DoctorRoutingModule, SharedModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [
         DoctorService,

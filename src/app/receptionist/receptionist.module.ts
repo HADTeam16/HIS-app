@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ReceptionistRoutingModule } from './receptionist-routing.module';
 import { ReceptionistComponent } from './receptionist.component';
-import { MaterialModule } from '../material/material.module';
 import { PatientsComponent } from './patients/patients.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +11,7 @@ import { BookAppointmentDialogComponent } from './patients/book-appointment-dial
 import { EmergencyDialogComponent } from './emergency-dialog/emergency-dialog.component';
 import { MobileotpValidator } from './validators/mobile-otp.validator';
 import { EmailotpValidator } from './validators/email-otp.validator';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -24,8 +24,8 @@ import { EmailotpValidator } from './validators/email-otp.validator';
     imports: [
         CommonModule,
         ReceptionistRoutingModule,
-        MaterialModule,
         ReactiveFormsModule,
+        SharedModule,
     ],
     providers: [ReceptionistService, MobileotpValidator, EmailotpValidator],
 })
