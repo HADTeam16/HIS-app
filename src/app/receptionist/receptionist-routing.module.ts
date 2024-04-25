@@ -4,6 +4,7 @@ import { ReceptionistComponent } from './receptionist.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { PatientsComponent } from './patients/patients.component';
 import { StatisticsComponent } from '../shared/components/statistics/statistics.component';
+import { ProfileComponent } from '../shared/components/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,7 @@ const routes: Routes = [
             { path: 'patients', component: PatientsComponent },
             { path: 'add-patient', component: AddPatientComponent },
             { path: 'stats', component: StatisticsComponent },
+            { path: 'my_profile', component: ProfileComponent },
         ],
     },
 ];

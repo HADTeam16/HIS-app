@@ -5,6 +5,7 @@ import { nurseGuard } from './nurse.guard';
 import { InPatientListComponent } from './in-patient-list/in-patient-list.component';
 import { WardQueueComponent } from './ward-queue/ward-queue.component';
 import { StatisticsComponent } from '../shared/components/statistics/statistics.component';
+import { ProfileComponent } from '../shared/components/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -13,6 +14,7 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'in_patient_list', pathMatch: 'full' },
             { path: 'in_patient_list', component: InPatientListComponent },
+            { path: 'my_profile', component: ProfileComponent },
             {
                 path: 'ward_queue',
                 component: WardQueueComponent,

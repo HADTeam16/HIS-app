@@ -3,6 +3,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { SnackbarService } from '../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmergencyDialogComponent } from './emergency-dialog/emergency-dialog.component';
+import { User } from '../shared/models/user';
 
 @Component({
     selector: 'app-receptionist',
@@ -16,12 +17,16 @@ export class ReceptionistComponent {
         { title: 'Add Patient', icon: 'person_add', link: 'add-patient' },
         { title: 'Statistics', icon: 'monitoring', link: 'stats' },
     ];
-
+    user: User = new User();
     constructor(
         private authService: AuthService,
         private snackbarService: SnackbarService,
         private dialog: MatDialog
-    ) {}
+    ) {
+        this.authService.user.subscribe((res) => {
+            if (res) this.user = res;
+        });
+    }
 
     callEmergency() {
         this.emergency = true;

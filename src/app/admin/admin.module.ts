@@ -12,41 +12,40 @@ import { ReceptionistDialogComponent } from './receptionist-dialog/receptionist-
 import { SearchInputComponent } from './search-input/search-input.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EditNurseDetailsComponent } from './edit-nurse-details/edit-nurse-details.component';
 import { EditReceptionistDetailsComponent } from './edit-receptionist-details/edit-receptionist-details.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-
 @NgModule({
-  declarations: [
-    AdminComponent,
-    DoctorDialogComponent,
-    NurseDialogComponent,
-    ReceptionistDialogComponent,
-    SearchInputComponent,
-    AddDialogComponent,
-    EditDoctorDetailsComponent,
-    EditDialogComponent,
-    EditNurseDetailsComponent,
-    EditReceptionistDetailsComponent
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    MaterialModule,
-    MatTableModule,
-    MatPaginatorModule,
-    ReactiveFormsModule,
-    MatSlideToggleModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
-  providers: [AdminService],
+    declarations: [
+        AdminComponent,
+        DoctorDialogComponent,
+        NurseDialogComponent,
+        ReceptionistDialogComponent,
+        SearchInputComponent,
+        AddDialogComponent,
+        EditDoctorDetailsComponent,
+        EditDialogComponent,
+        EditNurseDetailsComponent,
+        EditReceptionistDetailsComponent,
+    ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        MaterialModule,
+        MatTableModule,
+        MatPaginatorModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatInputModule,
+    ],
+    providers: [AdminService],
 })
-export class AdminModule { }
+export class AdminModule {}
