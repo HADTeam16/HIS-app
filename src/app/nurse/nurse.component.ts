@@ -16,6 +16,7 @@ export class NurseComponent {
             icon: 'patient_list',
             link: 'in_patient_list',
         },
+        { title: 'Statistics', icon: 'monitoring', link: 'stats' },
     ];
     userSubscription: Subscription;
     headNurseSubscription: Subscription;

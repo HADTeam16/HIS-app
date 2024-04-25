@@ -4,6 +4,7 @@ import { NurseComponent } from './nurse.component';
 import { nurseGuard } from './nurse.guard';
 import { InPatientListComponent } from './in-patient-list/in-patient-list.component';
 import { WardQueueComponent } from './ward-queue/ward-queue.component';
+import { StatisticsComponent } from '../shared/components/statistics/statistics.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,7 @@ const routes: Routes = [
                 component: WardQueueComponent,
                 canActivate: [nurseGuard],
             },
+            { path: 'stats', component: StatisticsComponent },
         ],
     },
 ];

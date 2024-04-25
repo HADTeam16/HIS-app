@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
-import { WebsocketService } from '../../shared/services/websocket.service';
+import { WebsocketService } from '../../shared/services/web-socket.service';
 import { NurseService } from '../../nurse/nurse.service';
 import { ForgetPasswordComponent } from './password-reset/forget-password-dialog.component';
 

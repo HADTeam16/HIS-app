@@ -14,6 +14,7 @@ export class ReceptionistComponent {
     routes = [
         { title: 'Patients', icon: 'patient_list', link: 'patients' },
         { title: 'Add Patient', icon: 'person_add', link: 'add-patient' },
+        { title: 'Statistics', icon: 'monitoring', link: 'stats' },
     ];
 
     constructor(

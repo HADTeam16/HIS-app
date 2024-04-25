@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { AuthService } from './shared/services/auth.service';
-import { WebsocketService } from './shared/services/websocket.service';
+import { WebsocketService } from './shared/services/web-socket.service';
 import { UtilityService } from './shared/services/utility.service';
 import { OtpService } from './shared/services/otp.service';
 
@@ -46,6 +46,7 @@ export class AppModule {
         'stethoscope_check',
         'block',
         'cancel',
+        'monitoring',
     ];
 
     constructor(
