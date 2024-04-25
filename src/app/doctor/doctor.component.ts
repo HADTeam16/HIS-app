@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { SnackbarService } from '../material/services/snackbar.service';
 import { User } from '../shared/models/user';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-doctor',
