@@ -14,9 +14,25 @@
                 >chat</mat-icon
             >
         </button>
-        <button mat-raised-button type="button" (click)="onLogout()">
-            Log Out
-        </button>
+        <div [matMenuTriggerFor]="menu">
+            @if (user&&user.profilePicture) {
+            <img
+                [src]="user.profilePicture"
+                alt="profilePhoto"
+                class="mt-2 h-10 w-10 rounded-full"
+            />
+            }
+        </div>
+        <mat-menu #menu="matMenu">
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a mat-button routerLink="my_profile">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <a mat-button (click)="onLogout()">Log Out</a>
+                </li>
+            </ul>
+        </mat-menu>
     </div>
 </mat-toolbar>
 <mat-sidenav-container class="h-full">

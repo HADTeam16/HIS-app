@@ -1,3 +1,48 @@
-<div class="h-full">
-    <h1>about works!</h1>
-</div>
+ <!-- Key features -->
+
+  <section id="services" class="key-features">
+    <div class="container">
+      <div class="inner-title">
+        <h2>Our Key Features</h2>
+        <p>Take a look at some of our key features</p>
+      </div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="single-key" *ngFor="let feature of features">
+          <i class="material-icons">{{feature.icon}}</i>
+          <h5>{{feature.title}}</h5>
+          <p>{{feature.description}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our team -->
+  <section class="our-team">
+    <div class="container">
+      <div class="inner-title row">
+        <h2>Our Team</h2>
+        <p>Take a look at our Team</p>
+      </div>
+      <div class="team-row flex justify-center space-x-6">
+        <!-- Remove 'row' class -->
+        <!-- Adjust column classes to occupy the entire row -->
+        <div class="flex justify-center items-center" *ngFor="let member of teamMembers">
+          <!-- Added 'justify-center' and 'items-center' -->
+          <div class="single-usr flex flex-col">
+            <img [src]="member.image" alt="">
+            <div class="det-o">
+              <h4>{{ member.name }}</h4>
+              <i>{{ member.role }}</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+    
+  
+  
+  

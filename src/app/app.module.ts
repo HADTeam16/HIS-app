@@ -12,6 +12,7 @@ import { AuthService } from './shared/services/auth.service';
 import { WebsocketService } from './shared/services/web-socket.service';
 import { UtilityService } from './shared/services/utility.service';
 import { OtpService } from './shared/services/otp.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
     declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { OtpService } from './shared/services/otp.service';
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        MatMenuModule,
     ],
     providers: [
         AuthService,
