@@ -10,7 +10,7 @@ const routes: Routes = [
         path: '',
         component: DoctorComponent,
         children: [
-            { path: '', redirectTo: 'stats', pathMatch: 'full' },
+            { path: '', redirectTo: 'appointments', pathMatch: 'full' },
             { path: 'appointments', component: AppointmentsComponent },
             { path: 'ward_map', component: WardMapComponent },
             { path: 'stats', component: StatisticsComponent },
