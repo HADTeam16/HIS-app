@@ -20,7 +20,6 @@ import { HospitalInfoService } from './services/hospital-info.service';
     ],
     imports: [CommonModule, MaterialModule],
     exports: [
-        StatisticsComponent,
         FormatDateTimePipe,
         AgePipe,
         ElevateOnHoverDirective,
