@@ -47,6 +47,8 @@ export class AppModule {
         'block',
         'cancel',
         'monitoring',
+        'account_circle',
+        'logout',
     ];
 
     constructor(
