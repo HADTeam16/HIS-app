@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorComponent } from './doctor.component';
-import { MaterialModule } from '../material/material.module';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { PrescriptionDialogComponent } from './appointments/prescription-dialog/prescription-dialog.component';
 import { WardDetailDialogComponent } from './ward-map/ward-detail-dialog/ward-detail-dialog.component';
@@ -14,6 +13,7 @@ import { PatientHistoryDialogComponent } from './appointments/patient-history-di
 import { SharedModule } from '../shared/shared.module';
 import { CancelAppointmentDialogComponent } from './appointments/cancel-appointment-dialog/cancel-appointment-dialog.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { WardService } from '../shared/services/ward.service';
 
 @NgModule({
     declarations: [
@@ -25,14 +25,12 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
         PatientHistoryDialogComponent,
         CancelAppointmentDialogComponent,
     ],
-    imports: [
-        CommonModule,
-        DoctorRoutingModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        SharedModule,
-    ],
+    imports: [CommonModule, DoctorRoutingModule, SharedModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [DoctorService, provideCharts(withDefaultRegisterables())],
+    providers: [
+        DoctorService,
+        WardService,
+        provideCharts(withDefaultRegisterables()),
+    ],
 })
 export class DoctorModule {}

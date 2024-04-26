@@ -1,0 +1,64 @@
+<div class="flex flex-wrap items-center">
+    <section class="w-1/3">
+        <app-chart
+            type="doughnut"
+            [chartData]="getSpecialitywiseAllDoctors() | async"
+        ></app-chart>
+    </section>
+    <section class="w-1/3">
+        <app-chart
+            type="bar"
+            [chartData]="getBarGraphData() | async"
+        ></app-chart>
+    </section>
+    <section class="h-1/2 w-1/2">
+        <table>
+            <tr>
+                <th>Total Registered Patients</th>
+                <td>{{ stats.getValue().totalPatientsCount }}</td>
+            </tr>
+            <tr>
+                <th>Total Upcoming Appointments</th>
+                <td>
+                    {{ stats.getValue().currentlyScheduledAppointmentCount }}
+                </td>
+            </tr>
+        </table>
+    </section>
+    @if (role=="doctor") {
+    <section class="h-1/2 w-1/2">
+        <table>
+            <tr>
+                <th>Total Appointments Completed</th>
+                <td>{{ stats.getValue().totalAttendedAppointments }}</td>
+            </tr>
+            <tr>
+                <th>Total Patients Attended</th>
+                <td>{{ stats.getValue().totalAttendedPatients }}</td>
+            </tr>
+            <tr>
+                <th>Total Wards Request Submissions</th>
+                <td>{{ stats.getValue().wardsAssignedTillDate }}</td>
+            </tr>
+        </table>
+    </section>
+    }@else if (role=="nurse") {
+    <section class="h-1/2 w-1/2">
+        <tr>
+            <th>Currently Attending Patients Count</th>
+            <td>{{ stats.getValue().currentlyAssignedPatientsCount }}</td>
+        </tr>
+        <tr>
+            <th>Total Wards Alloted</th>
+            <td>{{ stats.getValue().totalWardsAllottedCount }}</td>
+        </tr>
+    </section>
+    } @else if(role=="receptionist"){
+    <section>
+        <app-chart
+            type="doughnut"
+            [chartData]="getSpecialitywiseAvailableDoctors() | async"
+        ></app-chart>
+    </section>
+    }
+</div>

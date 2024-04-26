@@ -207,7 +207,11 @@ export class AdminService {
             );
     }
 
+<<<<<<< HEAD
     changeUserPasswordByIdByAdmin(userId: number): Observable<string>{
+=======
+    changeUserPasswordByIdByAdmin(userId: number): Observable<string> {
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
         return this.httpClient
             .put<string>(
                 `${environment.baseURL}${Api.change_user_password_by_admin}/${userId}`,
@@ -215,7 +219,10 @@ export class AdminService {
             )
             .pipe(
                 catchError((error: any) => {
+<<<<<<< HEAD
                     console.error('An error occurred:', error);
+=======
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
                     throw 'Error occurred while toggling doctor status';
                 })
             );

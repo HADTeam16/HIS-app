@@ -74,6 +74,7 @@ export class AuthService {
         }, expirationDuration);
     }
 
+<<<<<<< HEAD
     sendOTPForForgetPasswordRequest(email :string) {
         return this.httpClient
             .post(this.baseURL + Api.send_otp_forget_password_user + "/" + email, {})
@@ -82,5 +83,42 @@ export class AuthService {
     verifyOTPForForgetPasswordRequest(email:string,otp :string) {
         return this.httpClient
             .post(this.baseURL + Api.verify_otp_forget_password_user + "/"+email+"/" + otp, {})
+=======
+    sendOTPForForgetPasswordRequest(email: string) {
+        return this.httpClient.post(
+            this.baseURL + Api.send_otp_forget_password_user + '/' + email,
+            {}
+        );
+    }
+
+    verifyOTPForForgetPasswordRequest(
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(
+                    this.baseURL +
+                        Api.verify_otp_forget_password_user +
+                        '/' +
+                        email +
+                        '/' +
+                        otp,
+                    {}
+                )
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Password updated successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
     }
 }

@@ -5,9 +5,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize } from 'rxjs';
-import { WebsocketService } from '../../shared/services/websocket.service';
+import { WebsocketService } from '../../shared/services/web-socket.service';
 import { NurseService } from '../../nurse/nurse.service';
+<<<<<<< HEAD
 import { ForgetPasswordComponent } from './forget-password/forget-password-dialog.component';
+=======
+import { ForgetPasswordComponent } from './password-reset/forget-password-dialog.component';
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
 
 @Component({
     selector: 'app-login',
@@ -28,7 +32,7 @@ export class LoginComponent {
         private dialog: MatDialog,
         private router: Router,
         private authService: AuthService,
-        private snackbarService: SnackbarService,
+        private snackbarService: SnackbarService
     ) {}
 
     getIcon(user: string) {
@@ -69,6 +73,7 @@ export class LoginComponent {
         console.log('Double clicked on:', i);
         switch (i) {
             case 'doctor':
+<<<<<<< HEAD
                 if (!this.tile_active[0]) {
                     this.passHide = true;
                     this.tile_active = [true, false, false, false];
@@ -106,10 +111,43 @@ export class LoginComponent {
                 else {
                     this.passHide = false;
                     this.tile_active = [false, false, false, false];
+=======
+                this.passHide = true;
+                if (this.tile_active[0]) {
+                    this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [true, false, false, false];
+                }
+                break;
+            case 'receptionist':
+                this.passHide = true;
+                if (this.tile_active[1]) {
+                    this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [false, true, false, false];
+                }
+                break;
+            case 'admin':
+                this.passHide = true;
+                if (this.tile_active[2]) {
+                    this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [false, false, true, false];
+                }
+                break;
+            case 'nurse':
+                this.passHide = true;
+                if (this.tile_active[3]) {
+                    this.tile_active = [false, false, false, false];
+                } else {
+                    this.tile_active = [false, false, false, true];
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
                 }
                 break;
             default:
+                this.passHide = true;
                 this.tile_active = [false, false, false, false];
+                break;
         }
     
     }
@@ -168,10 +206,10 @@ export class LoginComponent {
             )
             .subscribe({
                 next: (response) => {
+                    this.snackbarService.openSnackBar(response['message']);
                     if (response['message'] == 'Login Success') {
                         this.router.navigate([user]);
                     }
-                    this.snackbarService.openSnackBar(response['message']);
                 },
                 error: (error) => {
                     this.snackbarService.openSnackBar(error.error.message);

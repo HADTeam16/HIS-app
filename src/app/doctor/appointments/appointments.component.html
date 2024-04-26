@@ -52,6 +52,25 @@
                             <mat-panel-description>
                                 {{ formatTime(appointment.slot) }}
                             </mat-panel-description>
+                            @if (appointment.completed==1) {
+                            <mat-icon
+                                svgIcon="stethoscope_check"
+                                class="mr-4"
+                                matTooltip="Completed"
+                            ></mat-icon>
+                            }@else if (appointment.completed==-1) {
+                            <mat-icon
+                                svgIcon="cancel"
+                                class="mr-4"
+                                matTooltip="Cancelled"
+                            ></mat-icon>
+                            }@else if (isPast) {
+                            <mat-icon
+                                svgIcon="warning"
+                                class="mr-4"
+                                matTooltip="Expired"
+                            ></mat-icon>
+                            }
                         </mat-expansion-panel-header>
                         <div class="flex w-2/3 justify-between">
                             <section>
@@ -108,7 +127,10 @@
                                         mat-stroked-button
                                         color="primary"
                                         (click)="
-                                            viewHistory(appointment.patientId)
+                                            viewHistory(
+                                                appointment.patientId,
+                                                appointment.slot
+                                            )
                                         "
                                     >
                                         View Patient History

@@ -139,17 +139,21 @@ export class AppointmentsComponent {
             .subscribe({
                 next: (res) => {
                     if (res == 'success') {
-                        this.setToday();
+                        const i = this.selectedDateAppointments.findIndex(
+                            (el) => el.appointmentId == appointment_id
+                        );
+                        this.selectedDateAppointments[i].completed = 1;
+                        this.appointmentStatusToggle.value = 'completed';
                     }
                 },
             });
     }
 
-    viewHistory(patientId: number) {
+    viewHistory(patientId: number, appointmentDate: string) {
         this.dialog.open(PatientHistoryDialogComponent, {
             height: '80%',
             width: '80%',
-            data: { patientId, date: this.selectedDate },
+            data: { patientId, date: new Date(appointmentDate) },
         });
     }
 

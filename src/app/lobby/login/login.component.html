@@ -33,55 +33,67 @@
             ></mat-spinner>
 
             <ng-template #notLoadingContent>
-                <mat-form-field>
-                    <mat-label>Username</mat-label>
-                    <input
-                        matInput
-                        formControlName="email"
-                        placeholder="Enter Your Username"
-                    />
-                    <mat-error
-                        *ngIf="
-                            loginForm.get('email').invalid &&
-                            loginForm.get('email').touched
-                        "
-                    >
-                        {{ getErrorMessage("email") }}
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input
-                        matInput
-                        formControlName="password"
-                        [type]="passHide ? 'password' : 'text'"
-                        placeholder="Enter Your Password"
-                    />
-                    <button
-                        mat-icon-button
-                        matSuffix
-                        type="button"
-                        (click)="passHide = !passHide"
-                    >
-                        <mat-icon>{{
-                            passHide ? "visibility_off" : "visibility"
-                        }}</mat-icon>
-                    </button>
-                    <mat-error
-                        *ngIf="
-                            loginForm.get('password').invalid &&
-                            loginForm.get('password').touched
-                        "
-                    >
-                        {{ getErrorMessage("password") }}
-                    </mat-error>
-                </mat-form-field>
+                <div (click)="$event.stopPropagation()">
+                    <mat-form-field>
+                        <mat-label>Username</mat-label>
+                        <input
+                            matInput
+                            formControlName="email"
+                            placeholder="Enter Your Username"
+                        />
+                        <mat-error
+                            *ngIf="
+                                loginForm.get('email').invalid &&
+                                loginForm.get('email').touched
+                            "
+                        >
+                            {{ getErrorMessage("email") }}
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input
+                            matInput
+                            formControlName="password"
+                            [type]="passHide ? 'password' : 'text'"
+                            placeholder="Enter Your Password"
+                        />
+                        <button
+                            mat-icon-button
+                            matSuffix
+                            type="button"
+                            (click)="passHide = !passHide"
+                        >
+                            <mat-icon>{{
+                                passHide ? "visibility_off" : "visibility"
+                            }}</mat-icon>
+                        </button>
+                        <mat-error
+                            *ngIf="
+                                loginForm.get('password').invalid &&
+                                loginForm.get('password').touched
+                            "
+                        >
+                            {{ getErrorMessage("password") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
             </ng-template>
-            
-            <mat-grid-tile-footer>
-                <button mat-raised-button type="submit" color="accent">
-                    Login
-                </button>
+
+            <mat-grid-tile-footer (click)="$event.stopPropagation()">
+                <div class="w-full flex justify-between items-center">
+                    <button
+                        mat-raised-button
+                        type="submit"
+                        color="accent"
+                        [disabled]="loginForm.invalid"
+                    >
+                        Login
+                    </button>
+                    <button mat-button type="button" (click)="forgotPassword()">
+                        Forgot Password?
+                    </button>
+                </div>
             </mat-grid-tile-footer>
             <div class="flex justify-end">
             <a mat-button color="primary" class="text-sm" (click)="forgotPassword()">Forgot Password?</a>

@@ -14,3 +14,11 @@ export class NeedWard extends PatientRegistration {
     needWardId: number;
     requestTime: string;
 }
+
+export class Stats {
+    log: Date;
+    temperature: number;
+    bloodPressure: string;
+    weight: number;
+    heartRate: number;
+}

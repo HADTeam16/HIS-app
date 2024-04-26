@@ -58,10 +58,30 @@
                                                 toggleDoctorStatus(doctor)
                                             "
                                         >
-                                        {{ doctor.disable ? 'Enable' : 'Disable' }}
+                                            {{
+                                                doctor.disable
+                                                    ? "Enable"
+                                                    : "Disable"
+                                            }}
                                         </mat-slide-toggle>
+<<<<<<< HEAD
                                         <button mat-stroked-button class="mr-3" color="primary" (click)="onChangePasswordByAdmin(doctor.id)">
                                             <span class="material-symbols-outlined">
+=======
+                                        <button
+                                            mat-stroked-button
+                                            class="mr-3"
+                                            color="primary"
+                                            (click)="
+                                                onChangePasswordByAdmin(
+                                                    doctor.id
+                                                )
+                                            "
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
                                                 lock_reset
                                             </span>
                                         </button>
@@ -74,6 +94,7 @@
             </div>
         </mat-tab>
         <mat-tab label="Receptionist">
+<<<<<<< HEAD
           <div class="mat-elevation-z8 w-full">
             <section class="flex justify-center items-center p-4">
                 <mat-spinner
@@ -121,6 +142,72 @@
                 </ng-template>
             </section>
         </div>
+=======
+            <div class="mat-elevation-z8 w-full">
+                <section class="flex justify-center items-center p-4">
+                    <mat-spinner
+                        *ngIf="isLoading; else notLoadingReceptionistContent"
+                    ></mat-spinner>
+                    <ng-template #notLoadingReceptionistContent>
+                        <div class="w-full overflow-x-auto">
+                            <app-dynamic-table
+                                [headers]="tableReceptionistHeaders"
+                                [data]="tableDataReceptionist"
+                                [headerAlias]="headerReceptionistAlias"
+                                [hasActions]="true"
+                                [paginate]="true"
+                                [filter]="true"
+                                [title]="'Receptionist\'s List'"
+                            >
+                                <ng-template #actionsTemplate let-receptionist>
+                                    <div>
+                                        <button
+                                            mat-stroked-button
+                                            class="mr-3"
+                                            color="primary"
+                                            (click)="
+                                                onReceptionistEdit(
+                                                    receptionist.id
+                                                )
+                                            "
+                                        >
+                                            Edit
+                                        </button>
+                                        <mat-slide-toggle
+                                            class="ml-3 mr-3"
+                                            [checked]="receptionist.disable"
+                                            (change)="
+                                                toggleReceptionistStatus(
+                                                    receptionist
+                                                )
+                                            "
+                                        >
+                                            Disable
+                                        </mat-slide-toggle>
+                                        <button
+                                            mat-stroked-button
+                                            class="mr-3"
+                                            color="primary"
+                                            (click)="
+                                                onChangePasswordByAdmin(
+                                                    receptionist.id
+                                                )
+                                            "
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+                                                lock_reset
+                                            </span>
+                                        </button>
+                                    </div>
+                                </ng-template>
+                            </app-dynamic-table>
+                        </div>
+                    </ng-template>
+                </section>
+            </div>
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
         </mat-tab>
         <mat-tab label="Nurse">
             <div class="mat-elevation-z8 w-full">
@@ -156,8 +243,24 @@
                                         >
                                             Disable
                                         </mat-slide-toggle>
+<<<<<<< HEAD
                                         <button mat-stroked-button class="mr-3" color="primary" (click)="onChangePasswordByAdmin(nurse.id)">
                                             <span class="material-symbols-outlined">
+=======
+                                        <button
+                                            mat-stroked-button
+                                            class="mr-3"
+                                            color="primary"
+                                            (click)="
+                                                onChangePasswordByAdmin(
+                                                    nurse.id
+                                                )
+                                            "
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+>>>>>>> e2cbd71e6213691e11fe4db3466fd74e9c78544f
                                                 lock_reset
                                             </span>
                                         </button>
