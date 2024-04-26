@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { SnackbarService } from '../material/services/snackbar.service';
 import { User } from '../shared/models/user';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-doctor',
@@ -18,7 +19,7 @@ export class DoctorComponent {
     user: User = new User();
     constructor(
         private authService: AuthService,
-        private snackbarService: SnackbarService
+        private snackbarService: SnackbarService,
     ) {
         this.authService.user.subscribe((res) => {
             if (res) this.user = res;
