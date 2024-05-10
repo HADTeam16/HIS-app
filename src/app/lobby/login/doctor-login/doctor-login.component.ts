@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { BreakpointService } from '../../../material/services/breakpoint.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-doctor-login',
