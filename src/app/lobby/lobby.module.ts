@@ -8,7 +8,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { ForgetPasswordComponent } from './login/password-reset/forget-password-dialog.component'
+import { ForgetPasswordComponent } from './login/password-reset/forget-password-dialog.component';
+import { DoctorLoginComponent } from './login/doctor-login/doctor-login.component';
 
 @NgModule({
     declarations: [
@@ -16,15 +17,15 @@ import { ForgetPasswordComponent } from './login/password-reset/forget-password-
         LoginComponent,
         AboutComponent,
         ContactUsComponent,
-        ForgetPasswordComponent
+        ForgetPasswordComponent,
+        DoctorLoginComponent,
     ],
     imports: [
         CommonModule,
         LobbyRoutingModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
     ],
-    providers: [
-    ]
+    providers: [],
 })
 export class LobbyModule {}
