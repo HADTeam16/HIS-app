@@ -26,6 +26,10 @@ body {
     justify-content: center;
 }
 
+.mat-button-toggle-button {
+    height: 100%;
+}
+
 $my-primary: mat.define-palette(mat.$teal-palette, 500);
 $my-accent: mat.define-palette(mat.$grey-palette, 50);
 
