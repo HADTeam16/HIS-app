@@ -6,7 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize, Subscription } from 'rxjs';
 import { ForgetPasswordComponent } from './password-reset/forget-password-dialog.component';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointService } from '../../material/services/breakpoint.service';
 
 @Component({
     selector: 'app-login',
@@ -23,28 +23,20 @@ export class LoginComponent {
     passHide = true;
     isLoading = false;
     isTablet = false;
-    breakpointsub: Subscription;
+    bpsub: Subscription;
 
     constructor(
         private dialog: MatDialog,
         private router: Router,
         private authService: AuthService,
         private snackbarService: SnackbarService,
-        private breakPointObserver: BreakpointObserver
+        private breakPointService: BreakpointService
     ) {}
 
     ngOnInit() {
-        this.breakpointsub = this.breakPointObserver
-            .observe([
-                Breakpoints.TabletPortrait,
-                Breakpoints.Small,
-                Breakpoints.XSmall,
-            ])
-            .subscribe({
-                next: (res) => {
-                    this.isTablet = res.matches;
-                },
-            });
+        this.bpsub = this.breakPointService.isTablet.subscribe((res) => {
+            this.isTablet = res;
+        });
     }
 
     getIcon(user: string) {
@@ -152,7 +144,7 @@ export class LoginComponent {
         this.dialog.open(ForgetPasswordComponent);
     }
 
-    ngOnDestroy() {
-        this.breakpointsub.unsubscribe();
+    ngDestroy() {
+        this.bpsub.unsubscribe();
     }
 }
