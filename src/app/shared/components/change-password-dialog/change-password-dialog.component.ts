@@ -12,7 +12,7 @@ import { ChangePasswordRequest } from '../../models/user';
     styleUrls: ['./change-password-dialog.component.scss'],
 })
 export class ChangePasswordDialogComponent {
-    changeUserPasswrodForm = new FormGroup({
+    changeUserPasswordForm = new FormGroup({
         oldPassword: new FormControl<string>(''),
         newPassword: new FormControl<string>(''),
     });
@@ -27,27 +27,31 @@ export class ChangePasswordDialogComponent {
     ) {}
 
     changeUserPassword() {
-      this.isLoading = true;
-      const oldPassword = this.changeUserPasswrodForm.get('oldPassword').value;
-      const newPassword = this.changeUserPasswrodForm.get('newPassword').value;
-  
-      const changePasswordRequest: ChangePasswordRequest = {
-          oldPassword,
-          newPassword,
-      };
-  
-      this.authService.changeUserPasswrod(changePasswordRequest)
-          .subscribe(
-              (response: string) => {
-                  this.snackbarService.openSnackBar('Password updated successfully: ' + response);
-                  this.dialogRef.close();
-              },
-              (error: string) => {
-                  console.error('Error updating password:', error);
-                  this.snackbarService.openSnackBar('Error updating the password: ' + error);
-              }
-          ).add(() => {
-              this.isLoading = false;
-          });
-  }
+        this.isLoading = true;
+        const oldPassword =
+            this.changeUserPasswordForm.get('oldPassword').value;
+        const newPassword =
+            this.changeUserPasswordForm.get('newPassword').value;
+
+        const changePasswordRequest: ChangePasswordRequest = {
+            oldPassword,
+            newPassword,
+        };
+
+        this.authService
+            .changeUserPassword(changePasswordRequest)
+            .then(
+                (response: string) => {
+                    this.snackbarService.openSnackBar(response);
+                    this.dialogRef.close();
+                },
+                (error: string) => {
+                    this.snackbarService.openSnackBar(error);
+                    this.dialogRef.close();
+                }
+            )
+            .finally(() => {
+                this.isLoading = false;
+            });
+    }
 }

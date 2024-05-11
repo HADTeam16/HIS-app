@@ -113,19 +113,27 @@ export class AuthService {
         });
     }
 
-    changeUserPasswrod(
+    changeUserPassword(
         changePasswordRequest: ChangePasswordRequest
-    ): Observable<string> {
-        return this.httpClient
-            .put<string>(
-                environment.baseURL + Api.user_change_password,
-                changePasswordRequest
-            )
-            .pipe(
-                catchError((error: any) => {
-                    console.error('An error occurred:', error);
-                    throw 'Error occurred while toggling receptionist status';
-                })
-            );
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .put(
+                    environment.baseURL + Api.user_change_password,
+                    changePasswordRequest
+                )
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Password updated successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (err: HttpErrorResponse) => {
+                        reject(err.error.message);
+                    },
+                });
+        });
     }
 }
