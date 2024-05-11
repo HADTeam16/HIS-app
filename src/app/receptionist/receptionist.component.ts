@@ -4,6 +4,7 @@ import { SnackbarService } from '../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmergencyDialogComponent } from './emergency-dialog/emergency-dialog.component';
 import { User } from '../shared/models/user';
+import { ChangePasswordDialogComponent } from '../shared/components/change-password-dialog/change-password-dialog.component';
 
 @Component({
     selector: 'app-receptionist',
@@ -41,6 +42,10 @@ export class ReceptionistComponent {
                     }
                 },
             });
+    }
+
+    changeUserPassword() {
+        this.dialog.open(ChangePasswordDialogComponent);
     }
 
     onLogout() {

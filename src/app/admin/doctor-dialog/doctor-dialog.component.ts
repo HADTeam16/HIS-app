@@ -136,7 +136,7 @@ export class DoctorDialogComponent {
             })
             .subscribe({
                 next: (response: string) => {
-                    this.snackbarService.openSnackBar(response);
+                    this.snackbarService.openSnackBar(response['message']);
                     this.dialogRef.close(true);
                 },
                 error: (err) => {

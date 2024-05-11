@@ -14,8 +14,7 @@
                     <button
                         mat-stroked-button
                         (click)="
-                            bookAppointment(patient);
-                            $event.stopPropagation()
+                            bookAppointment(patient); $event.stopPropagation()
                         "
                     >
                         Book Appointment
@@ -33,7 +32,9 @@
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td colspan="3">{{ getFullAddress(patient) }}</td>
+                            <td colspan="3">
+                                {{ getFullAddress(patient) }}
+                            </td>
                         </tr>
                         <tr>
                             <th>Contact</th>
@@ -45,7 +46,9 @@
                             <th>Emergency Contact Name</th>
                             <td>{{ patient.emergencyContactName }}</td>
                             <th>Emergency Contact Number</th>
-                            <td>{{ patient.emergencyContactNumber }}</td>
+                            <td>
+                                {{ patient.emergencyContactNumber }}
+                            </td>
                         </tr>
                     </table>
                 </div>

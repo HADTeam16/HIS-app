@@ -10,6 +10,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { HospitalInfoService } from './services/hospital-info.service';
+import { ChangePasswordDialogComponent } from './components/change-password-dialog/change-password-dialog.component';
 @NgModule({
     declarations: [
         ElevateOnHoverDirective,
@@ -17,6 +18,7 @@ import { HospitalInfoService } from './services/hospital-info.service';
         AgePipe,
         StatisticsComponent,
         ProfileComponent,
+        ChangePasswordDialogComponent,
     ],
     imports: [CommonModule, MaterialModule],
     exports: [
