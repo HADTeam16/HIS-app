@@ -9,27 +9,31 @@
     </button>
 </mat-menu>
 @if (isTablet) {
-<mat-toolbar color="primary" class="flex justify-between">
-    <a mat-button routerLink="appointments">Doctor Portal</a>
-    <div [matMenuTriggerFor]="menu">
-        @if (user&&user.profilePicture) {
-        <img
-            [src]="user.profilePicture"
-            alt="Menu"
-            class="mt-2 h-10 w-10 rounded-full"
-        />
-        }
+<div class="h-full flex flex-col">
+    <mat-toolbar color="primary" class="sticky top-0 z-50 flex justify-between">
+        <a mat-button routerLink="appointments">Doctor Portal</a>
+        <div [matMenuTriggerFor]="menu">
+            @if (user&&user.profilePicture) {
+            <img
+                [src]="user.profilePicture"
+                alt="Menu"
+                class="mt-2 h-10 w-10 rounded-full"
+            />
+            }
+        </div>
+    </mat-toolbar>
+    <div class="flex-1 pb-24">
+        <router-outlet></router-outlet>
     </div>
-</mat-toolbar>
-<router-outlet></router-outlet>
-<div class="h-24 w-full fixed bottom-0">
-    <mat-button-toggle-group class="h-full w-full" [value]="0">
-        @for (route of routes; track $index) {
-        <mat-button-toggle [value]="$index" [routerLink]="route.link" class="flex-1 flex justify-center items-center">
-            <mat-icon [svgIcon]="route.icon" class="h-full"></mat-icon>
-        </mat-button-toggle>
-        }
-    </mat-button-toggle-group>
+    <div class="h-24 w-full fixed bottom-0">
+        <mat-button-toggle-group class="h-full w-full" [value]="0">
+            @for (route of routes; track $index) {
+            <mat-button-toggle [value]="$index" [routerLink]="route.link" class="flex-1 flex justify-center items-center">
+                <mat-icon [svgIcon]="route.icon" class="h-full"></mat-icon>
+            </mat-button-toggle>
+            }
+        </mat-button-toggle-group>
+    </div>
 </div>
 }@else {
 <mat-toolbar color="primary" class="flex justify-between">

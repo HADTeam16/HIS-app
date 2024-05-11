@@ -51,6 +51,8 @@ export class AppModule {
         'monitoring',
         'account_circle',
         'logout',
+        'arrow_forward_ios',
+        'arrow_back_ios',
     ];
 
     constructor(
