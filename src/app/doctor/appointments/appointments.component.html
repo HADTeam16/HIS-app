@@ -1,4 +1,5 @@
 <div class="h-full w-full flex justify-evenly">
+    @if (!isTablet) {
     <div class="w-1/5">
         <mat-calendar
             [selected]="selectedDate"
@@ -8,32 +9,70 @@
         <button mat-button (click)="setTomorrow()">Tomorrow</button>
     </div>
     <mat-divider [vertical]="true"></mat-divider>
-    <div class="w-2/3 mt-8" *ngIf="isLoading; else notLoadingContent">
+    }
+    <div
+        [ngClass]="{
+            'h-full w-full flex justify-center items-center': isTablet,
+            'w-2/3': !isTablet
+        }"
+        class="mt-8"
+        *ngIf="isLoading; else notLoadingContent"
+    >
         <mat-spinner></mat-spinner>
     </div>
     <ng-template #notLoadingContent>
-        <div class="w-2/3 mt-8">
-            <mat-button-toggle-group
-                value="all"
-                name="appointmentStatus"
-                (change)="onStatusToggle($event.value)"
-                class="mb-8"
-            >
-                <mat-button-toggle value="all">All</mat-button-toggle>
-                <mat-button-toggle value="upcoming">Upcoming</mat-button-toggle>
-                <mat-button-toggle value="completed">
-                    Completed
-                </mat-button-toggle>
-                <mat-button-toggle value="cancelled">
-                    Cancelled
-                </mat-button-toggle>
-            </mat-button-toggle-group>
+        <div
+            [ngClass]="{ 'w-full px-8': isTablet, 'w-2/3': !isTablet }"
+            class="mt-8"
+        >
+            <div class="w-full mb-8 flex justify-between items-center">
+                @if (isTablet) {
+                <div class="flex justify-center items-center">
+                    <mat-form-field style="width: 0px; visibility: hidden">
+                        <input
+                            matInput
+                            [matDatepicker]="picker"
+                            (dateChange)="onDateChange($event.value)"
+                        />
+                        <mat-datepicker
+                            #picker
+                        ></mat-datepicker> </mat-form-field
+                    >
+                    <button
+                        mat-fab
+                        color="primary"
+                        type="button"
+                        (click)="picker.open()"
+                    >
+                        <mat-icon>calendar_month</mat-icon>
+                    </button>
+                </div>
+                }
+                <mat-button-toggle-group
+                    value="all"
+                    name="appointmentStatus"
+                    (change)="onStatusToggle($event.value)"
+                >
+                    <mat-button-toggle value="all">All</mat-button-toggle>
+                    <mat-button-toggle value="upcoming"
+                        >Upcoming</mat-button-toggle
+                    >
+                    <mat-button-toggle value="completed">
+                        Completed
+                    </mat-button-toggle>
+                    <mat-button-toggle value="cancelled">
+                        Cancelled
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <mat-divider></mat-divider>
             <ng-template #noAppointmentsFound>
-                <div>
+                <div class="mt-8">
                     <span class="text-xl">No Appointments found!</span>
                 </div>
             </ng-template>
             <div
+                class="mt-8"
                 *ngIf="displayAppointments.length > 0; else noAppointmentsFound"
             >
                 <mat-accordion>

@@ -11,7 +11,7 @@
     </mat-button-toggle-group>
     <mat-grid-list
         class="h-5/6 w-full m-4"
-        cols="5"
+        [cols]="isTablet ? 2 : 5"
         rowHeight="fit"
         gutterSize="15px"
     >

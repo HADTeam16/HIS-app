@@ -1,0 +1,20 @@
+.tablet-view-table {
+    width: 100%;
+    tr {
+        display: flex;
+        margin-bottom: 16px;
+        th,
+        td {
+            flex: 1 1 50%;
+        }
+        th {
+            text-align: left;
+        }
+        td:nth-of-type(1){
+            text-align: center;
+        }
+        td:last-child {
+            text-align: right;
+        }
+    }
+}

@@ -9,6 +9,7 @@ import { PatientHistoryDialogComponent } from './patient-history-dialog/patient-
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { UtilityService } from '../../shared/services/utility.service';
 import { CancelAppointmentDialogComponent } from './cancel-appointment-dialog/cancel-appointment-dialog.component';
+import { BreakpointService } from '../../material/services/breakpoint.service';
 
 @Component({
     selector: 'app-appointments',
@@ -24,14 +25,23 @@ export class AppointmentsComponent {
     displayAppointments: DoctorsAppointment[] = [];
     @ViewChild(MatButtonToggleGroup)
     appointmentStatusToggle: MatButtonToggleGroup;
+    isTablet: boolean;
+    bpsub: Subscription;
 
     constructor(
         private doctorService: DoctorService,
         private dialog: MatDialog,
         private snackbarService: SnackbarService,
-        private utilityService: UtilityService
+        private utilityService: UtilityService,
+        private breakPointService: BreakpointService
     ) {
         this.onDateChange(new Date());
+    }
+
+    ngOnInit() {
+        this.bpsub = this.breakPointService.isTablet.subscribe((res) => {
+            this.isTablet = res;
+        });
     }
 
     getAppointmentList(date: string) {
@@ -172,5 +182,6 @@ export class AppointmentsComponent {
 
     ngOnDestroy() {
         this.getAppointmentSub.unsubscribe();
+        this.bpsub.unsubscribe();
     }
 }
