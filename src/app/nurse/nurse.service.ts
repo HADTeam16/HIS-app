@@ -76,6 +76,8 @@ export class NurseService {
                             bloodPressure: patient.bloodPressure,
                             heartRate: patient.heartRate,
                             weight: patient.weight,
+                            height: patient.height,
+                            bloodGroup: patient.bloodGroup,
                             needWardId: item.needWardId,
                             requestTime: item.requestTime,
                         };
@@ -126,6 +128,8 @@ export class NurseService {
                                 bloodPressure: string;
                                 heartRate: number;
                                 weight: number;
+                                height: number;
+                                bloodGroup: string,
                                 user: User;
                             };
                             emergency: boolean;
@@ -157,6 +161,8 @@ export class NurseService {
                                     bloodPressure: '',
                                     heartRate: 0,
                                     weight: 0,
+                                    height: 0,
+                                    bloodGroup: '',
                                     wardId: ward.wardId,
                                     floor: ward.floor,
                                     wardNumber: ward.wardNumber,
@@ -211,8 +217,13 @@ export class NurseService {
                                         ward.patient.heartRate;
                                     ward_data_mapping.weight =
                                         ward.patient.weight;
+                                    ward_data_mapping.bloodGroup =
+                                        ward.patient.bloodGroup;
+                                    ward_data_mapping.height =
+                                        ward.patient.height;
                                     ward_data_mapping.purpose =
                                         ward.appointment?.purpose;
+                                    
                                 }
                                 return ward_data_mapping;
                             })

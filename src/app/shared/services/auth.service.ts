@@ -2,9 +2,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Api } from '../enums/api';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { ChangePasswordRequest } from '../models/user';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -109,5 +111,21 @@ export class AuthService {
                     },
                 });
         });
+    }
+
+    changeUserPasswrod(
+        changePasswordRequest: ChangePasswordRequest
+    ): Observable<string> {
+        return this.httpClient
+            .put<string>(
+                environment.baseURL + Api.user_change_password,
+                changePasswordRequest
+            )
+            .pipe(
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while toggling receptionist status';
+                })
+            );
     }
 }

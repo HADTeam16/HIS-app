@@ -31,6 +31,7 @@ export class Patient extends User {
     bloodPressure: string;
     heartRate: number;
     weight: number;
+    consent: boolean;
 }
 
 export class Doctor extends User {
@@ -55,4 +56,11 @@ export class PatientRegistration extends UserBasicDetails {
     bloodPressure: string;
     heartRate: number;
     weight: number;
+    bloodGroup: string;
+    height: number;
+}
+
+export class ChangePasswordRequest {
+    oldPassword: string;
+    newPassword: string;
 }

@@ -25,6 +25,7 @@ export enum Api {
     //shared
     get_ward_history = 'api/nurse/ward/history/',
     get_live_stats = 'api/users/hospital/live/stats',
+    user_change_password = 'auth/user/change/password',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
