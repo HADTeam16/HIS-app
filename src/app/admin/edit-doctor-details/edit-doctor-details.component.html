@@ -137,14 +137,6 @@
     </div>
 
     <div class="row">
-        <mat-form-field class="mr-4">
-            <mat-label>Profile Picture</mat-label>
-            <input
-                matInput
-                formControlName="profilePicture"
-                [value]="tableDataDoctor?.profilePicture"
-            />
-        </mat-form-field>
 
         <mat-form-field class="mr-4">
             <mat-label>Emergency Contact Name</mat-label>
@@ -219,6 +211,7 @@
             <input
                 matInput
                 formControlName="workStart"
+                placeholder="09:00:00"
                 [value]="tableDataDoctor?.workStart"
             />
         </mat-form-field>
@@ -228,6 +221,7 @@
             <input
                 matInput
                 formControlName="workEnd"
+                placeholder="09:00:00"
                 [value]="tableDataDoctor?.workEnd"
             />
         </mat-form-field>

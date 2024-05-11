@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { SnackbarService } from '../material/services/snackbar.service';
 import { User } from '../shared/models/user';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordDialogComponent } from '../shared/components/change-password-dialog/change-password-dialog.component';
 
 @Component({
     selector: 'app-doctor',
@@ -20,10 +21,15 @@ export class DoctorComponent {
     constructor(
         private authService: AuthService,
         private snackbarService: SnackbarService,
+        private dialog: MatDialog
     ) {
         this.authService.user.subscribe((res) => {
             if (res) this.user = res;
         });
+    }
+
+    changeUserPassword() {
+        this.dialog.open(ChangePasswordDialogComponent);
     }
 
     onLogout() {

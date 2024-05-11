@@ -56,6 +56,8 @@ export class AddPatientComponent {
         bloodPressure: ['', Validators.pattern('^[0-9]{1,3}/[0-9]{1,3}$')],
         heartRate: [],
         weight: [],
+        height: [],
+        bloodGroup: [],
     });
     stepperOrientation: Observable<StepperOrientation>;
     showOtpField = [false, false];
@@ -122,6 +124,8 @@ export class AddPatientComponent {
             bloodPressure: patientDetails.bloodPressure,
             heartRate: patientDetails.heartRate,
             weight: patientDetails.weight,
+            height: patientDetails.height,
+            bloodGroup: patientDetails.bloodGroup,
             role: 'patient',
         };
         this.receptionistService.registerPatient(patient).subscribe({

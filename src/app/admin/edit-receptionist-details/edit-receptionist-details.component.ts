@@ -39,7 +39,6 @@ export class EditReceptionistDetailsComponent {
             landmark: [''],
             pinCode: [''],
             contact: [''],
-            profilePicture: [''],
             emergencyContactName: [''],
             emergencyContactNumber: [''],
         });
@@ -95,7 +94,6 @@ export class EditReceptionistDetailsComponent {
                         landmark: response.landmark,
                         pinCode: response.pinCode,
                         contact: response.contact,
-                        profilePicture: response.profilePicture,
                         emergencyContactName: response.emergencyContactName,
                         emergencyContactNumber: response.emergencyContactNumber,
                     });

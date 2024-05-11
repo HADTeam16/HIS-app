@@ -200,6 +200,8 @@ export class DoctorService {
                                 bloodPressure: string;
                                 heartRate: number;
                                 weight: number;
+                                bloodGroup: string;
+                                height: number;
                                 user: User;
                             };
                             emergency: boolean;
@@ -231,6 +233,8 @@ export class DoctorService {
                                     bloodPressure: '',
                                     heartRate: 0,
                                     weight: 0,
+                                    height: 0,
+                                    bloodGroup: '',
                                     wardId: ward.wardId,
                                     floor: ward.floor,
                                     wardNumber: ward.wardNumber,
@@ -285,6 +289,10 @@ export class DoctorService {
                                         ward.patient.heartRate;
                                     ward_data_mapping.weight =
                                         ward.patient.weight;
+                                    ward_data_mapping.bloodGroup =
+                                        ward.patient.bloodGroup;
+                                    ward_data_mapping.height =
+                                        ward.patient.height;
                                     ward_data_mapping.purpose =
                                         ward.appointment?.purpose;
                                 }
