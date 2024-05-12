@@ -16,11 +16,50 @@
                         (click)="
                             bookAppointment(patient); $event.stopPropagation()
                         "
+                        *ngIf="patient.consent"
                     >
                         Book Appointment
                     </button>
+
+                    <button
+                        mat-stroked-button
+                        (click)="
+                            bookAppointment(patient); $event.stopPropagation()
+                        "
+                        *ngIf="!patient.consent"
+                        disabled
+                    >
+                        Book Appointment
+                    </button>
+
+                    <button
+                        class="ml-2"
+                        mat-stroked-button
+                        (click)="
+                            toggleConsent(patient); $event.stopPropagation()
+                        "
+                    >
+                        <ng-container
+                            *ngIf="patient.consent; else addConsentButton"
+                        >
+                            Remove Consent
+                        </ng-container>
+                        <ng-template #addConsentButton>
+                            Add Consent
+                        </ng-template>
+                    </button>
+                    <button
+                        class="ml-2"
+                        mat-stroked-button
+                        (click)="
+                            deletePatient(patient); $event.stopPropagation()
+                        "
+                    >
+                        <mat-icon class="pl-2">delete</mat-icon>
+                    </button>
                 </div>
             </ng-template>
+
             <ng-template #expansionTemplate let-patient>
                 <div class="expanded-row-detail">
                     <table class="expansion-table">

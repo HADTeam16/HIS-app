@@ -15,7 +15,10 @@
                     {{
                         ward.availableStatus == true ? "Available" : "Occupied"
                     }}
-                    <mat-icon *ngIf="ward.emergency" [svgIcon]="'warning'"></mat-icon>
+                    <mat-icon
+                        *ngIf="ward.emergency"
+                        [svgIcon]="'warning'"
+                    ></mat-icon>
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="flex w-2/3 justify-between">
@@ -49,7 +52,7 @@
                 <button
                     mat-stroked-button
                     color="warn"
-                    (click)="toggleEmergency(ward.wardId)"
+                    (click)="toggleEmergency(ward.wardId, ward.emergency)"
                 >
                     {{ ward.emergency ? "Revoke Emergency" : "Call Emergency" }}
                 </button>

@@ -26,6 +26,12 @@ export enum Api {
     get_ward_history = 'api/nurse/ward/history/',
     get_live_stats = 'api/users/hospital/live/stats',
     user_change_password = 'auth/user/change/password',
+    user_remove_consent = 'api/otp/verification/validate/otp/for/consent/remove',
+    user_add_consent = 'api/otp/verification/validate/otp',
+    send_otp_for_consent_remove = 'api/otp/verification/send/otp/via/email/for/consent/remove',
+    send_otp_for_delete_patient = 'api/receptionist/send/otp/for/delete/patient/data/request',
+    verify_otp_for_delete_patient = 'api/receptionist/validate/otp/for/delete/patient/data/request',
+    user_change_profile_picture = 'api/users/update/profilepic',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
@@ -56,6 +62,7 @@ export enum Api {
     change_user_password_by_admin = 'auth/admin/change/password',
     send_otp_forget_password_user = 'auth/user/forget/password/send/otp',
     verify_otp_forget_password_user = 'auth/user/forget/password/validate/otp',
+
 
     //otp
     get_mobile_otp = 'api/otp/verification/send/otp/via/sms',

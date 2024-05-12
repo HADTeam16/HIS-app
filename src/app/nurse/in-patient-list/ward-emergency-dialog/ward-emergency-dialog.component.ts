@@ -10,7 +10,8 @@ import { SnackbarService } from '../../../material/services/snackbar.service';
 export class WardEmergencyDialogComponent {
     constructor(
         private dialogRef: MatDialogRef<WardEmergencyDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { ward_id: number },
+        @Inject(MAT_DIALOG_DATA)
+        public data: { ward_id: number; emergency_status: boolean },
         private nurseService: NurseService,
         private snackbarService: SnackbarService
     ) {}

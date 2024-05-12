@@ -351,7 +351,17 @@ export class AdminComponent {
         });
 
         dialogRef.afterClosed().subscribe((result) => {
-            // Handle dialog closed if needed
+            console.log("Result - " + result);
+            if (typeof result == 'object' && Object.keys(result).length > 1) {
+                console.log("Inside if", Object.keys(result));
+                switch (this.selectedTabIndex) {
+                    case 0: this.tableDataDoctor.push(result); this.tableDataDoctor = this.tableDataDoctor; break;
+                    case 1: this.tableDataReceptionist.push(result); break;
+                    case 2: this.tableDataNurse.push(result); break;
+                }
+            } else {
+                this.snackbarService.openSnackBar(result.message);
+            }
         });
     }
 

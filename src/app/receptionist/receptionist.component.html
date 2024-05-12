@@ -11,8 +11,7 @@
                         ? 'e911_emergency_filled'
                         : 'e911_emergency_outline'
                 "
-                >chat</mat-icon
-            >
+            ></mat-icon>
         </button>
         <div [matMenuTriggerFor]="menu">
             @if (user&&user.profilePicture) {
@@ -29,7 +28,7 @@
                 <span>My Profile</span>
             </button>
             <button mat-menu-item (click)="changeUserPassword()">
-                <mat-icon>lock</mat-icon>
+                <mat-icon svgIcon="password"></mat-icon>
                 <span>Change Password</span>
             </button>
             <button mat-menu-item (click)="onLogout()">

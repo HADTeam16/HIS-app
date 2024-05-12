@@ -26,21 +26,21 @@ export class EditReceptionistDetailsComponent {
     ) {
         this.receptionistId = data.receptionistId;
         this.editReceptionistuForm = this.formBuilder.group({
-            firstName: [''],
+            firstName: ['', Validators.required],
             middleName: [''],
-            lastName: [''],
-            gender: [''],
-            dateOfBirth: [''],
-            country: [''],
-            state: [''],
-            city: [''],
-            addressLine1: [''],
-            addressLine2: [''],
-            landmark: [''],
-            pinCode: [''],
-            contact: [''],
-            emergencyContactName: [''],
-            emergencyContactNumber: [''],
+            lastName: ['', Validators.required],
+            gender: ['', Validators.required],
+            dateOfBirth: [new Date('2000-01-01'), Validators.required],
+            country: ['', Validators.required],
+            state: ['', Validators.required],
+            city: ['', Validators.required],
+            addressLine1: ['', Validators.required],
+            addressLine2: [null],
+            landmark: [null],
+            pinCode: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
+            contact: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+            emergencyContactName: ['', Validators.required],
+            emergencyContactNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
         });
         this.fetchReceptionistDetails(this.receptionistId);
     }

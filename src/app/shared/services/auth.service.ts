@@ -83,6 +83,20 @@ export class AuthService {
         );
     }
 
+    sendOTPforConsentRequest(email: string) {
+        return this.httpClient.post(
+            this.baseURL + Api.send_otp_for_consent_remove,
+            { username: email, email: email, name: email }
+        );
+    }
+
+    sendOTPforPatientDelete(id: number) {
+        return this.httpClient.get(
+            this.baseURL + Api.send_otp_for_delete_patient + '/' + id,
+            {}
+        );
+    }
+
     verifyOTPForForgetPasswordRequest(
         email: string,
         otp: string
@@ -101,6 +115,31 @@ export class AuthService {
                 .subscribe({
                     next: (res: { message: string }) => {
                         if (res.message == 'Password updated successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    verifyOTPForRemoveConsentRequest(
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(this.baseURL + Api.user_remove_consent, {
+                    username: email,
+                    otpNumber: otp,
+                })
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Consent removed successfully') {
                             resolve(res.message);
                         } else {
                             reject(res.message);
@@ -136,4 +175,93 @@ export class AuthService {
                 });
         });
     }
+
+    verifyOTPForPatientDelete(
+        id: number,
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(
+                    this.baseURL +
+                        Api.verify_otp_for_delete_patient +
+                        '/' +
+                        id +
+                        '/' +
+                        email +
+                        '/' +
+                        otp,
+                    {}
+                )
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Patient Removed Successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    verifyOTPForAddConsentRequest(email: string, otp: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(this.baseURL + Api.user_add_consent, {
+                    username: email,
+                    otpNumber: otp,
+                })
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Consent added successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    changeUserPasswrod(
+        changePasswordRequest: ChangePasswordRequest
+    ): Observable<string> {
+        return this.httpClient
+            .put<string>(
+                environment.baseURL + Api.user_change_password,
+                changePasswordRequest
+            )
+            .pipe(
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while toggling receptionist status';
+                })
+            );
+    }
+
+    changeProfileImage(image: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .put<string>(environment.baseURL + Api.user_change_profile_picture, {
+                    profilePic: image,
+                })
+                .subscribe({
+                    next: (response: string) => {
+                        resolve(response);
+                    },
+                    error: (error: any) => {
+                        console.error('An error occurred:', error);
+                        reject('Error occurred while changing profile image');
+                    },
+                });
+        });
+    }    
 }

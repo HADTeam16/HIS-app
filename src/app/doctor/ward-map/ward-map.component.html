@@ -33,6 +33,7 @@
                     <mat-card-title-group>
                         <mat-card-title>
                             Ward # {{ ward.wardNumber }}
+                            @if (ward.emergency) {<mat-icon class="ml-4" svgIcon="warning"></mat-icon>}
                         </mat-card-title>
                         <mat-card-subtitle>
                             <table>

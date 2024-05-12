@@ -5,6 +5,8 @@ import { finalize, Subscription } from 'rxjs';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BookAppointmentDialogComponent } from './book-appointment-dialog/book-appointment-dialog.component';
+import { ConsentOtpDialogComponent } from '../../shared/components/consent-otp-dialog/consent-otp-dialog.component';
+import { DeletePatientOtpDialogComponent } from '../../shared/components/delete-patient-otp-dialog/delete-patient-otp-dialog.component';
 
 @Component({
     selector: 'app-patients',
@@ -65,6 +67,27 @@ export class PatientsComponent {
                     this.snackbarService.openSnackBar('Error : ', err);
                 },
             });
+    }
+
+    toggleConsent(patient: Patient) {
+        const dialogRef = this.dialog.open(ConsentOtpDialogComponent, {
+            data: patient,
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+                if (patient.consent == true && result === 'Consent removed successfully') {
+                    patient.consent = false;
+                }
+                if (patient.consent == false && result === 'Consent added successfully') {
+                    patient.consent = true;
+                }
+        });
+    }
+
+    deletePatient(patient: Patient) {
+        const dialogRef = this.dialog.open(DeletePatientOtpDialogComponent, {
+            data: patient,
+        });
     }
 
     getFullAddress(patient: Patient) {
