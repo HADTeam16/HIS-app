@@ -83,6 +83,13 @@ export class AuthService {
         );
     }
 
+    sendOTPforConsentRequest(email: string) {
+        return this.httpClient.post(
+            this.baseURL + Api.send_otp_for_consent_remove,
+            { username: email, email: email, name: email }
+        );
+    }
+
     verifyOTPForForgetPasswordRequest(
         email: string,
         otp: string
@@ -101,6 +108,53 @@ export class AuthService {
                 .subscribe({
                     next: (res: { message: string }) => {
                         if (res.message == 'Password updated successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    verifyOTPForRemoveConsentRequest(
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(this.baseURL + Api.user_remove_consent, {
+                    username: email,
+                    otpNumber: otp,
+                })
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Consent removed successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    verifyOTPForAddConsentRequest(email: string, otp: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(this.baseURL + Api.user_add_consent, {
+                    username: email,
+                    otpNumber: otp,
+                })
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Consent added successfully') {
                             resolve(res.message);
                         } else {
                             reject(res.message);

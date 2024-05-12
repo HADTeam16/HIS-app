@@ -9,7 +9,6 @@ import { ChangePasswordRequest } from '../../models/user';
 @Component({
     selector: 'app-change-password-dialog',
     templateUrl: './change-password-dialog.component.html',
-    styleUrls: ['./change-password-dialog.component.scss'],
 })
 export class ChangePasswordDialogComponent {
     changeUserPasswrodForm = new FormGroup({
@@ -39,12 +38,12 @@ export class ChangePasswordDialogComponent {
       this.authService.changeUserPasswrod(changePasswordRequest)
           .subscribe(
               (response: string) => {
-                  this.snackbarService.openSnackBar('Password updated successfully: ' + response);
+                  this.snackbarService.openSnackBar('Password updated successfully');
                   this.dialogRef.close();
               },
               (error: string) => {
                   console.error('Error updating password:', error);
-                  this.snackbarService.openSnackBar('Error updating the password: ' + error);
+                  this.snackbarService.openSnackBar('Error updating the password');
               }
           ).add(() => {
               this.isLoading = false;

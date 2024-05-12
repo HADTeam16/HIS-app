@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Api } from '../shared/enums/api';
-import { Observable, catchError, defaultIfEmpty, map } from 'rxjs';
+import { Observable, catchError, defaultIfEmpty, map, throwError } from 'rxjs';
 import { Doctor, Nurse, Receptionist } from '../shared/models/user';
 
 @Injectable()
@@ -249,23 +249,39 @@ export class AdminService {
     }
 
     registerDoctor(doctor: Doctor) {
-        return this.httpClient.post(
-            environment.baseURL + Api.register_doctor,
-            doctor
-        );
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(environment.baseURL + Api.register_doctor, doctor)
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        resolve(res.message);
+                    },
+                    error: (error) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
     }
 
     registerNurse(nurse: Nurse) {
-        return this.httpClient.post(
-            environment.baseURL + Api.register_nurse,
-            nurse
-        );
+        return this.httpClient
+            .post(environment.baseURL + Api.register_nurse, nurse)
+            .pipe(
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while registering nurse';
+                })
+            );
     }
 
     registerReceptionist(receptionist: Receptionist) {
-        return this.httpClient.post(
-            environment.baseURL + Api.register_receptionist,
-            receptionist
-        );
+        return this.httpClient
+            .post(environment.baseURL + Api.register_receptionist, receptionist)
+            .pipe(
+                catchError((error: any) => {
+                    console.error('An error occurred:', error);
+                    throw 'Error occurred while registering receptionist';
+                })
+            );
     }
 }

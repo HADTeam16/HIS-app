@@ -17,6 +17,7 @@ export class EditDoctorDetailsComponent {
     isLoading = false;
     tableDataDoctor: Doctor; // Change to Doctor instead of Doctor[] for a single doctor
     doctorId: number;
+    filesUploadedFlags = [false, false, false, false, false];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,30 +29,51 @@ export class EditDoctorDetailsComponent {
     ) {
         this.doctorId = data.doctorId;
         this.editdoctorForm = this.formBuilder.group({
-            firstName: [''],
+            firstName: ['', Validators.required],
             middleName: [''],
-            lastName: [''],
-            gender: [''],
-            dateOfBirth: [''],
-            country: [''],
-            state: [''],
-            city: [''],
-            addressLine1: [''],
-            addressLine2: [''],
-            landmark: [''],
-            pinCode: [''],
-            contact: [''],
-            emergencyContactName: [''],
-            emergencyContactNumber: [''],
-            medicalLicenseNumber: [''],
-            specialization: [''],
+            lastName: ['', Validators.required],
+            gender: ['', Validators.required],
+            dateOfBirth: [new Date('2000-01-01'), Validators.required],
+            country: ['', Validators.required],
+            state: ['', Validators.required],
+            city: ['', Validators.required],
+            addressLine1: ['', Validators.required],
+            addressLine2: [null],
+            landmark: [null],
+            pinCode: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
+            contact: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+            emergencyContactName: ['', Validators.required],
+            emergencyContactNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+            medicalLicenseNumber: ['', Validators.required],
+            specialization: ['', Validators.required],
             medicalDegree: [''],
             cv: [''],
             drugScreeningResult: [''],
-            workStart: [''],
-            workEnd: [''],
+            workStart: ['', Validators.required],
+            workEnd: ['', Validators.required],
         });
         this.fetchDoctorDetails(this.doctorId);
+    }
+
+    onBoardCertificationSelected(event: string) {
+        console.log(event);
+        this.editdoctorForm.controls['boardCertification'].setValue(event);
+        this.filesUploadedFlags[1] = true;
+    }
+
+    onCVSelected(event: string) {
+        this.editdoctorForm.controls['cv'].setValue(event);
+        this.filesUploadedFlags[2] = true;
+    }
+
+    onMedicalDegreeSelected(event: string) {
+        this.editdoctorForm.controls['medicalDegree'].setValue(event);
+        this.filesUploadedFlags[3] = true;
+    }
+
+    onDrugScreeningResultSelected(event: string) {
+        this.editdoctorForm.controls['drugScreeningResult'].setValue(event);
+        this.filesUploadedFlags[4] = true;
     }
 
     onEditSaveDoctor() {

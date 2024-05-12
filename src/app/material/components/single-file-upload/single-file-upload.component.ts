@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SingleFileUploadComponent {
     @Input() label: string = 'Select a file';
     @Input() fileTypes: string[] = ['image/png', 'image/jpeg'];
+    @Input() fileData: string = '';
     @Output() selected: EventEmitter<string> = new EventEmitter();
 
     onFileSelect() {

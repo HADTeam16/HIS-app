@@ -19,8 +19,25 @@
                     >
                         Book Appointment
                     </button>
+                    <button
+                    class="ml-2"
+                        mat-stroked-button
+                        (click)="
+                            toggleConsent(patient); $event.stopPropagation()
+                        "
+                    >
+                        <ng-container
+                            *ngIf="patient.consent; else addConsentButton"
+                        >
+                            Remove Consent
+                        </ng-container>
+                        <ng-template #addConsentButton>
+                            Add Consent
+                        </ng-template>
+                    </button>
                 </div>
             </ng-template>
+
             <ng-template #expansionTemplate let-patient>
                 <div class="expanded-row-detail">
                     <table class="expansion-table">
