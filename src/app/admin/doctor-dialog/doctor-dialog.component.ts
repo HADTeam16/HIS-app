@@ -1,11 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Doctor } from '../../shared/models/user';
 import { AdminService } from '../admin.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { Subscription } from 'rxjs';
-import { UtilityService } from '../../shared/services/utility.service';
 
 @Component({
     selector: 'app-doctor-dialog',
@@ -31,43 +29,50 @@ export class DoctorDialogComponent {
         drugs: ['Drug screening selected', 'Select drug screening'],
     };
     filesUploadedFlags = [false, false, false, false, false];
+    @Output() doctorSelected = new EventEmitter<Doctor>();
 
     constructor(
         private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DoctorDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Doctor,
         private adminService: AdminService,
-        private snackbarService: SnackbarService,
-        private utilityService: UtilityService
+        private snackbarService: SnackbarService
     ) {
         this.doctorForm = this.formBuilder.group({
-            firstName: [null],
-            middleName: [null],
-            lastName: [null],
-            gender: [null],
-            dateOfBirth: [null],
-            country: [null],
-            state: [null],
-            city: [null],
-            addressLine1: [null],
+            firstName: ['', Validators.required],
+            middleName: [''],
+            lastName: ['', Validators.required],
+            gender: ['', Validators.required],
+            dateOfBirth: [new Date('2000-01-01'), Validators.required],
+            country: ['', Validators.required],
+            state: ['', Validators.required],
+            city: ['', Validators.required],
+            addressLine1: ['', Validators.required],
             addressLine2: [null],
             landmark: [null],
-            pinCode: [null],
-            contact: [null],
-            email: [null],
-            profilePicture: [null],
-            emergencyContactName: [null],
-            emergencyContactNumber: [null],
+            pinCode: [
+                '',
+                [Validators.required, Validators.pattern('[0-9]{6}')],
+            ],
+            contact: [
+                '',
+                [Validators.required, Validators.pattern('[0-9]{10}')],
+            ],
+            email: ['', [Validators.required, Validators.email]],
+            profilePicture: ['', Validators.required],
+            emergencyContactName: ['', Validators.required],
+            emergencyContactNumber: [
+                '',
+                [Validators.required, Validators.pattern('[0-9]{10}')],
+            ],
             role: ['doctor'],
-            medicalLicenseNumber: [null],
-            specialization: [null],
-            boardCertification: [null],
-            experience: [null],
-            medicalDegree: [null],
-            cv: [null],
-            drugScreeningResult: [null],
-            workStart: [null],
-            workEnd: [null],
+            medicalLicenseNumber: ['', Validators.required],
+            specialization: ['', Validators.required],
+            boardCertification: ['', Validators.required],
+            experience: ['', Validators.required],
+            medicalDegree: ['', Validators.required],
+            cv: ['', Validators.required],
+            drugScreeningResult: ['', Validators.required],
+            workStart: ['', Validators.required],
+            workEnd: ['', Validators.required],
             disable: false,
         });
     }
@@ -100,50 +105,45 @@ export class DoctorDialogComponent {
 
     onRegisterDoctor() {
         const formData = this.doctorForm.value;
-        console.log(formData);
-        this.adminService
-            .registerDoctor({
-                id: formData.id,
-                userName: formData.userName,
-                password: formData.password,
-                firstName: formData.firstName,
-                middleName: formData.middleName,
-                lastName: formData.lastName,
-                gender: formData.gender,
-                dateOfBirth: formData.dateOfBirth,
-                country: formData.country,
-                state: formData.state,
-                city: formData.city,
-                addressLine1: formData.addressLine1,
-                addressLine2: formData.addressLine2,
-                landmark: formData.landmark,
-                pinCode: formData.pinCode,
-                contact: formData.contact,
-                email: formData.email,
-                profilePicture: formData.profilePicture,
-                emergencyContactName: formData.emergencyContactName,
-                emergencyContactNumber: formData.emergencyContactNumber,
-                role: formData.role,
-                medicalLicenseNumber: formData.medicalLicenseNumber,
-                specialization: formData.specialization,
-                boardCertification: formData.boardCertification,
-                medicalDegree: formData.medicalDegree,
-                cv: formData.cv,
-                drugScreeningResult: formData.drugScreeningResult,
-                workStart: formData.workStart,
-                workEnd: formData.workEnd,
-                disable: formData.disable,
-            })
-            .subscribe({
-                next: (response: string) => {
-                    this.snackbarService.openSnackBar(response['message']);
-                    this.dialogRef.close(true);
-                },
-                error: (err) => {
-                    this.snackbarService.openSnackBar(err);
-                    this.dialogRef.close(false);
-                },
-            });
-        console.log(formData);
+        const doc = {
+            id: formData.id,
+            userName: formData.userName,
+            password: formData.password,
+            firstName: formData.firstName,
+            middleName: formData.middleName,
+            lastName: formData.lastName,
+            gender: formData.gender,
+            dateOfBirth: formData.dateOfBirth,
+            country: formData.country,
+            state: formData.state,
+            city: formData.city,
+            addressLine1: formData.addressLine1,
+            addressLine2: formData.addressLine2,
+            landmark: formData.landmark,
+            pinCode: formData.pinCode,
+            contact: formData.contact,
+            email: formData.email,
+            profilePicture: formData.profilePicture,
+            emergencyContactName: formData.emergencyContactName,
+            emergencyContactNumber: formData.emergencyContactNumber,
+            role: formData.role,
+            medicalLicenseNumber: formData.medicalLicenseNumber,
+            specialization: formData.specialization,
+            boardCertification: formData.boardCertification,
+            medicalDegree: formData.medicalDegree,
+            cv: formData.cv,
+            drugScreeningResult: formData.drugScreeningResult,
+            workStart: formData.workStart,
+            workEnd: formData.workEnd,
+            disable: formData.disable,
+        };
+        this.adminService.registerDoctor(doc).then(
+            (response: string) => {
+                this.snackbarService.openSnackBar(response);
+            },
+            (err) => {
+                this.snackbarService.openSnackBar(err);
+            }
+        );
     }
 }

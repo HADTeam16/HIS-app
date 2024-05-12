@@ -24,6 +24,7 @@ export class ReceptionistService {
                         bloodPressure: item.bloodPressure,
                         heartRate: item.heartRate,
                         weight: item.weight,
+                        consent:item.consent
                     }));
                 })
             );

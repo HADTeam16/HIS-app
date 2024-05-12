@@ -1,0 +1,33 @@
+<mat-spinner
+    *ngIf="isLoading; else notLoadingOtpVerificationContent"
+></mat-spinner>
+<ng-template #notLoadingOtpVerificationContent>
+    <form
+        [formGroup]="patientDeleteOptForm"
+        (ngSubmit)="verifyOTPForPatientDeleteRequest()"
+        class="px-8 py-6"
+    >
+        <div class="flex items-center">
+            <mat-form-field class="mr-4">
+                <mat-label>OTP</mat-label>
+                <input matInput formControlName="otp" />
+                <mat-error
+                    *ngIf="
+                        patientDeleteOptForm
+                            .get('otp')
+                            .hasError('required')
+                    "
+                >
+                    Enter OTP
+                </mat-error>
+            </mat-form-field>
+            <button
+                mat-raised-button
+                type="submit"
+                [disabled]="patientDeleteOptForm.get('otp').invalid"
+            >
+                Verify OTP
+            </button>
+        </div>
+    </form>
+</ng-template>

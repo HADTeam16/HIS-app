@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { finalize, Subscription } from 'rxjs';
-import { ForgetPasswordComponent } from './password-reset/forget-password-dialog.component';
 import { BreakpointService } from '../../material/services/breakpoint.service';
+import { ForgetPasswordComponent } from '../../shared/components/otp-dialog/forget-password-dialog.component';
 
 @Component({
     selector: 'app-login',

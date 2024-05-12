@@ -36,16 +36,11 @@ export class EditDetailsDialogComponent {
             )
             .then(
                 (response: string) => {
-                    this.snackbarService.openSnackBar(
-                        'Patient data updated successfully:' + response
-                    );
+                    this.snackbarService.openSnackBar(response);
                     this.dialogRef.close();
                 },
                 (error: string) => {
-                    console.error('Error updating Patient Details:', error);
-                    this.snackbarService.openSnackBar(
-                        'Error updating Patient Details: ' + error
-                    );
+                    this.snackbarService.openSnackBar(error);
                 }
             )
             .finally(() => {

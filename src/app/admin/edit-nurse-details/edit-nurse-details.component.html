@@ -3,7 +3,7 @@
     [formGroup]="editNurseForm"
     class="flex flex-col justify-between m-8 h-96"
 >
-    <div class="row">
+    <div class="row flex justify-between">
         <mat-form-field class="mr-4">
             <mat-label>First Name</mat-label>
             <input
@@ -31,8 +31,8 @@
             />
         </mat-form-field>
     </div>
-    <div class="row mt-4">
-        <mat-form-field class="mb-4 ml-4">
+    <div class="row flex justify-between">
+        <mat-form-field class="mr-4">
             <mat-label>Gender</mat-label>
             <mat-select
                 formControlName="gender"
@@ -44,7 +44,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="mr-4">
             <mat-label>Date of Birth</mat-label>
             <input
                 matInput
@@ -58,9 +58,6 @@
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-    </div>
-
-    <div class="row">
         <mat-form-field class="mr-4">
             <mat-label>Country</mat-label>
             <input
@@ -69,6 +66,9 @@
                 [value]="tableDataNurse?.country"
             />
         </mat-form-field>
+    </div>
+
+    <div class="row flex justify-between">
 
         <mat-form-field class="mr-4">
             <mat-label>State</mat-label>
@@ -79,7 +79,7 @@
             />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="mr-4">
             <mat-label>City</mat-label>
             <input
                 matInput
@@ -87,9 +87,6 @@
                 [value]="tableDataNurse?.city"
             />
         </mat-form-field>
-    </div>
-
-    <div class="row">
         <mat-form-field class="mr-4">
             <mat-label>Address Line 1</mat-label>
             <input
@@ -98,6 +95,9 @@
                 [value]="tableDataNurse?.addressLine1"
             />
         </mat-form-field>
+    </div>
+
+    <div class="row flex justify-between">
 
         <mat-form-field class="mr-4">
             <mat-label>Address Line 2</mat-label>
@@ -108,7 +108,7 @@
             />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="mr-4">
             <mat-label>Landmark</mat-label>
             <input
                 matInput
@@ -116,9 +116,6 @@
                 [value]="tableDataNurse?.landmark"
             />
         </mat-form-field>
-    </div>
-
-    <div class="row">
         <mat-form-field class="mr-4">
             <mat-label>Pincode</mat-label>
             <input
@@ -127,6 +124,9 @@
                 [value]="tableDataNurse?.pinCode"
             />
         </mat-form-field>
+    </div>
+
+    <div class="row flex justify-between">
 
         <mat-form-field class="mr-4">
             <mat-label>Contact</mat-label>
@@ -137,7 +137,7 @@
             />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="mr-4">
             <mat-label>Emergency Contact Name</mat-label>
             <input
                 matInput
@@ -145,10 +145,7 @@
                 [value]="tableDataNurse?.emergencyContactName"
             />
         </mat-form-field>
-    </div>
-
-    <div class="row">
-        <mat-form-field class="mb-4 ml-4 mr-8">
+        <mat-form-field class="mr-4">
             <mat-label>Emergency Contact Number</mat-label>
             <input
                 matInput

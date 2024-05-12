@@ -8,8 +8,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { ForgetPasswordComponent } from './login/password-reset/forget-password-dialog.component';
 import { DoctorLoginComponent } from './login/doctor-login/doctor-login.component';
+import { ForgetPasswordComponent } from '../shared/components/otp-dialog/forget-password-dialog.component';
 
 @NgModule({
     declarations: [
