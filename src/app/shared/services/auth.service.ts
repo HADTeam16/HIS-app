@@ -246,4 +246,22 @@ export class AuthService {
                 })
             );
     }
+
+    changeProfileImage(image: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .put<string>(environment.baseURL + Api.user_change_profile_picture, {
+                    profilePic: image,
+                })
+                .subscribe({
+                    next: (response: string) => {
+                        resolve(response);
+                    },
+                    error: (error: any) => {
+                        console.error('An error occurred:', error);
+                        reject('Error occurred while changing profile image');
+                    },
+                });
+        });
+    }    
 }
