@@ -1,5 +1,9 @@
 <mat-dialog-content>
+    @if (data.emergency_status) {
+    <p>Are you sure you want to revoke emergency?</p>
+    }@else {
     <p>Are you sure you want to call emergency?</p>
+    }
 </mat-dialog-content>
 <mat-dialog-actions align="center">
     <button

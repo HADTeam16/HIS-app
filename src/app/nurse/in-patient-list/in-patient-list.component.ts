@@ -47,9 +47,11 @@ export class InPatientListComponent {
         );
     }
 
-    toggleEmergency(ward_id: number) {
+    toggleEmergency(ward_id: number, emergency_status: boolean) {
         this.dialog
-            .open(WardEmergencyDialogComponent, { data: { ward_id } })
+            .open(WardEmergencyDialogComponent, {
+                data: { ward_id, emergency_status },
+            })
             .afterClosed()
             .subscribe((res) => {
                 if (res == 'yes') {

@@ -29,11 +29,12 @@
     <div class="flex-1 pb-24">
         <router-outlet></router-outlet>
     </div>
-    <div class="h-24 w-full fixed bottom-0 z-50">
+    <div class="h-24 w-full fixed bottom-0 z-50 bottom-nav-wrapper">
         <mat-button-toggle-group class="h-full w-full" [value]="0">
             @for (route of routes; track $index) {
             <mat-button-toggle [value]="$index" [routerLink]="route.link" class="flex-1 flex justify-center items-center">
                 <mat-icon [svgIcon]="route.icon" class="h-full"></mat-icon>
+                {{route.title}}
             </mat-button-toggle>
             }
         </mat-button-toggle-group>
