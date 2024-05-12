@@ -1,0 +1,18 @@
+<div class="w-full flex justify-center items-center">
+    <form
+        [formGroup]="doctorloginForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col items-center rounded mt-[40%] p-8 shadow-lg"
+    >
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+        <button class="my-4 w-full" color="primary" mat-raised-button type="submit">Login</button>
+        <button type="button" mat-button (click)="onForgotPassword()">Forgot Password</button>
+    </form>
+</div>

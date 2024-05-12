@@ -4,9 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
-import { finalize } from 'rxjs';
-import { WebsocketService } from '../../shared/services/web-socket.service';
-import { NurseService } from '../../nurse/nurse.service';
+import { finalize, Subscription } from 'rxjs';
+import { BreakpointService } from '../../material/services/breakpoint.service';
 import { ForgetPasswordComponent } from '../../shared/components/otp-dialog/forget-password-dialog.component';
 
 @Component({
@@ -18,18 +17,27 @@ export class LoginComponent {
     users = ['doctor', 'receptionist', 'admin', 'nurse'];
     tile_active = [false, false, false, false];
     loginForm = new FormGroup({
-        email: new FormControl(null, Validators.required),
+        username: new FormControl(null, Validators.required),
         password: new FormControl(null, Validators.required),
     });
     passHide = true;
     isLoading = false;
+    isTablet = false;
+    bpsub: Subscription;
 
     constructor(
         private dialog: MatDialog,
         private router: Router,
         private authService: AuthService,
-        private snackbarService: SnackbarService
+        private snackbarService: SnackbarService,
+        private breakPointService: BreakpointService
     ) {}
+
+    ngOnInit() {
+        this.bpsub = this.breakPointService.isTablet.subscribe((res) => {
+            this.isTablet = res;
+        });
+    }
 
     getIcon(user: string) {
         switch (user) {
@@ -48,8 +56,8 @@ export class LoginComponent {
 
     getErrorMessage(i: string) {
         switch (i) {
-            case 'email':
-                if (this.loginForm.get('email').hasError('required')) {
+            case 'username':
+                if (this.loginForm.get('username').hasError('required')) {
                     return 'You must enter a value';
                 } else {
                     return '';
@@ -110,7 +118,7 @@ export class LoginComponent {
         this.isLoading = true;
         this.authService
             .login(
-                this.loginForm.value.email,
+                this.loginForm.value.username,
                 this.loginForm.value.password,
                 user
             )
@@ -134,5 +142,9 @@ export class LoginComponent {
 
     forgotPassword() {
         this.dialog.open(ForgetPasswordComponent);
+    }
+
+    ngDestroy() {
+        this.bpsub.unsubscribe();
     }
 }

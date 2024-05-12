@@ -1,3 +1,10 @@
+@if (isTablet) {
+<app-doctor-login
+    [form]="loginForm"
+    (doctorLogin)="onSubmit('doctor')"
+    (forgotPassword)="forgotPassword()"
+></app-doctor-login>
+}@else {
 <mat-grid-list class="h-5/6 m-8" cols="2" rowHeight="fit" gutterSize="32px">
     <mat-grid-tile
         *ngFor="let user of users; let i = index"
@@ -36,16 +43,16 @@
                         <mat-label>Username</mat-label>
                         <input
                             matInput
-                            formControlName="email"
+                            formControlName="username"
                             placeholder="Enter Your Username"
                         />
                         <mat-error
                             *ngIf="
-                                loginForm.get('email').invalid &&
-                                loginForm.get('email').touched
+                                loginForm.get('username').invalid &&
+                                loginForm.get('username').touched
                             "
                         >
-                            {{ getErrorMessage("email") }}
+                            {{ getErrorMessage("username") }}
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field>
@@ -96,3 +103,4 @@
         </form>
     </mat-grid-tile>
 </mat-grid-list>
+}

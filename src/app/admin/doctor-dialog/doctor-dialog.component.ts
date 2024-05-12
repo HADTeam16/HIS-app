@@ -4,7 +4,6 @@ import { Doctor } from '../../shared/models/user';
 import { AdminService } from '../admin.service';
 import { SnackbarService } from '../../material/services/snackbar.service';
 import { Subscription } from 'rxjs';
-import { UtilityService } from '../../shared/services/utility.service';
 
 @Component({
     selector: 'app-doctor-dialog',
@@ -35,7 +34,7 @@ export class DoctorDialogComponent {
     constructor(
         private formBuilder: FormBuilder,
         private adminService: AdminService,
-        private snackbarService: SnackbarService,
+        private snackbarService: SnackbarService
     ) {
         this.doctorForm = this.formBuilder.group({
             firstName: ['', Validators.required],
@@ -49,12 +48,21 @@ export class DoctorDialogComponent {
             addressLine1: ['', Validators.required],
             addressLine2: [null],
             landmark: [null],
-            pinCode: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
-            contact: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+            pinCode: [
+                '',
+                [Validators.required, Validators.pattern('[0-9]{6}')],
+            ],
+            contact: [
+                '',
+                [Validators.required, Validators.pattern('[0-9]{10}')],
+            ],
             email: ['', [Validators.required, Validators.email]],
             profilePicture: ['', Validators.required],
             emergencyContactName: ['', Validators.required],
-            emergencyContactNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+            emergencyContactNumber: [
+                '',
+                [Validators.required, Validators.pattern('[0-9]{10}')],
+            ],
             role: ['doctor'],
             medicalLicenseNumber: ['', Validators.required],
             specialization: ['', Validators.required],
@@ -97,7 +105,6 @@ export class DoctorDialogComponent {
 
     onRegisterDoctor() {
         const formData = this.doctorForm.value;
-        console.log(formData);
         const doc = {
             id: formData.id,
             userName: formData.userName,
@@ -130,16 +137,13 @@ export class DoctorDialogComponent {
             workEnd: formData.workEnd,
             disable: formData.disable,
         };
-        this.adminService
-            .registerDoctor(doc)
-            .then(
-                 (response: string) => {
-                    this.snackbarService.openSnackBar(response);
-                    this.doctorSelected.emit(doc);
-                },
-                 (err) => {
-                    this.snackbarService.openSnackBar(err);
-                },
-            );
+        this.adminService.registerDoctor(doc).then(
+            (response: string) => {
+                this.snackbarService.openSnackBar(response);
+            },
+            (err) => {
+                this.snackbarService.openSnackBar(err);
+            }
+        );
     }
 }

@@ -12,6 +12,7 @@ import { AuthService } from './shared/services/auth.service';
 import { WebsocketService } from './shared/services/web-socket.service';
 import { UtilityService } from './shared/services/utility.service';
 import { OtpService } from './shared/services/otp.service';
+import { BreakpointService } from './material/services/breakpoint.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { OtpService } from './shared/services/otp.service';
         WebsocketService,
         UtilityService,
         OtpService,
+        BreakpointService,
     ],
     bootstrap: [AppComponent],
 })
@@ -49,6 +51,9 @@ export class AppModule {
         'monitoring',
         'account_circle',
         'logout',
+        'arrow_forward_ios',
+        'arrow_back_ios',
+        'password',
     ];
 
     constructor(

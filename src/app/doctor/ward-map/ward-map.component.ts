@@ -5,6 +5,8 @@ import { Ward } from '../../shared/models/ward';
 import { DoctorService } from '../doctor.service';
 import { FormControl } from '@angular/forms';
 import { SnackbarService } from '../../material/services/snackbar.service';
+import { BreakpointService } from '../../material/services/breakpoint.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-ward-map',
@@ -16,12 +18,20 @@ export class WardMapComponent {
     selectedFloor: FormControl<number> = new FormControl(0);
     selectedFloorWards: Ward[];
     isLoading: boolean;
+    isTablet: boolean;
+    bpsub: Subscription;
 
     constructor(
         private dialog: MatDialog,
         private doctorService: DoctorService,
-        private snackbarService: SnackbarService
-    ) {
+        private snackbarService: SnackbarService,
+        private breakPointService: BreakpointService
+    ) {}
+
+    ngOnInit() {
+        this.bpsub = this.breakPointService.isTablet.subscribe((res) => {
+            this.isTablet = res;
+        });
         this.isLoading = true;
         this.selectedFloor.valueChanges.subscribe((res) => {
             this.selectedFloorWards = this.allWards[res];
@@ -64,5 +74,9 @@ export class WardMapComponent {
             width: '75%',
             data: ward,
         });
+    }
+
+    ngOnDestroy() {
+        this.bpsub.unsubscribe();
     }
 }

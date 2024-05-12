@@ -4,10 +4,13 @@ import { Ward } from '../../../shared/models/ward';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { WardService } from '../../../shared/services/ward.service';
 import { SnackbarService } from '../../../material/services/snackbar.service';
+import { BreakpointService } from '../../../material/services/breakpoint.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-ward-detail-dialog',
     templateUrl: './ward-detail-dialog.component.html',
+    styleUrl: './ward-detail-dialog.component.scss',
 })
 export class WardDetailDialogComponent {
     lineChartData: ChartConfiguration['data'] = {
@@ -46,12 +49,20 @@ export class WardDetailDialogComponent {
             },
         },
     };
+    isTablet: boolean;
+    bpsub: Subscription;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public ward: Ward,
         private wardService: WardService,
-        private snackbarService: SnackbarService
-    ) {
+        private snackbarService: SnackbarService,
+        private breakPointService: BreakpointService
+    ) {}
+
+    ngOnInit() {
+        this.bpsub = this.breakPointService.isTablet.subscribe((res) => {
+            this.isTablet = res;
+        });
         this.wardService.getWardHistory(this.ward.wardId).then(
             (res) => {
                 res.sort(
@@ -79,5 +90,9 @@ export class WardDetailDialogComponent {
             (ward.middleName ? ' ' + ward.middleName : '') +
             (ward.lastName ? ' ' + ward.lastName : '')
         );
+    }
+
+    ngOnDestroy() {
+        this.bpsub.unsubscribe();
     }
 }
