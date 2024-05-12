@@ -14,6 +14,8 @@ import { ChangePasswordDialogComponent } from './components/change-password-dial
 import { ForgetPasswordComponent } from './components/otp-dialog/forget-password-dialog.component';
 import { ConsentOtpDialogComponent } from './components/consent-otp-dialog/consent-otp-dialog.component';
 import { DeletePatientOtpDialogComponent } from './components/delete-patient-otp-dialog/delete-patient-otp-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { ChangeProfilePictureDialogComponent } from './components/profile/change-profile-picture-dialog/change-profile-picture-dialog.component';
 
 @NgModule({
     declarations: [
@@ -26,8 +28,9 @@ import { DeletePatientOtpDialogComponent } from './components/delete-patient-otp
         ForgetPasswordComponent,
         ConsentOtpDialogComponent,
         DeletePatientOtpDialogComponent,
+        ChangeProfilePictureDialogComponent,
     ],
-    imports: [CommonModule, MaterialModule],
+    imports: [CommonModule, MaterialModule, MatInputModule],
     exports: [
         FormatDateTimePipe,
         AgePipe,
