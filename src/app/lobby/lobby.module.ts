@@ -9,7 +9,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { DoctorLoginComponent } from './login/doctor-login/doctor-login.component';
-import { ForgetPasswordComponent } from '../shared/components/otp-dialog/forget-password-dialog.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +16,6 @@ import { ForgetPasswordComponent } from '../shared/components/otp-dialog/forget-
         LoginComponent,
         AboutComponent,
         ContactUsComponent,
-        ForgetPasswordComponent,
         DoctorLoginComponent,
     ],
     imports: [
