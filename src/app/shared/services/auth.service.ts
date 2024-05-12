@@ -90,6 +90,13 @@ export class AuthService {
         );
     }
 
+    sendOTPforPatientDelete(id: number) {
+        return this.httpClient.get(
+            this.baseURL + Api.send_otp_for_delete_patient + '/' + id,
+            {}
+        );
+    }
+
     verifyOTPForForgetPasswordRequest(
         email: string,
         otp: string
@@ -133,6 +140,39 @@ export class AuthService {
                 .subscribe({
                     next: (res: { message: string }) => {
                         if (res.message == 'Consent removed successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
+    verifyOTPForPatientDelete(
+        id: number,
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .get(
+                    this.baseURL +
+                        Api.verify_otp_for_delete_patient +
+                        '/' +
+                        id +
+                        '/' +
+                        email +
+                        '/' +
+                        otp,
+                    {}
+                )
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Patient Removed Successfully') {
                             resolve(res.message);
                         } else {
                             reject(res.message);

@@ -13,6 +13,7 @@ import { HospitalInfoService } from './services/hospital-info.service';
 import { ChangePasswordDialogComponent } from './components/change-password-dialog/change-password-dialog.component';
 import { ForgetPasswordComponent } from './components/otp-dialog/forget-password-dialog.component';
 import { ConsentOtpDialogComponent } from './components/consent-otp-dialog/consent-otp-dialog.component';
+import { DeletePatientOtpDialogComponent } from './components/delete-patient-otp-dialog/delete-patient-otp-dialog.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { ConsentOtpDialogComponent } from './components/consent-otp-dialog/conse
         ChangePasswordDialogComponent,
         ForgetPasswordComponent,
         ConsentOtpDialogComponent,
+        DeletePatientOtpDialogComponent,
     ],
     imports: [CommonModule, MaterialModule],
     exports: [

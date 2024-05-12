@@ -6,6 +6,7 @@ import { SnackbarService } from '../../material/services/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BookAppointmentDialogComponent } from './book-appointment-dialog/book-appointment-dialog.component';
 import { ConsentOtpDialogComponent } from '../../shared/components/consent-otp-dialog/consent-otp-dialog.component';
+import { DeletePatientOtpDialogComponent } from '../../shared/components/delete-patient-otp-dialog/delete-patient-otp-dialog.component';
 
 @Component({
     selector: 'app-patients',
@@ -69,7 +70,6 @@ export class PatientsComponent {
     }
 
     toggleConsent(patient: Patient) {
-        console.log(patient);
         const dialogRef = this.dialog.open(ConsentOtpDialogComponent, {
             data: patient,
         });
@@ -81,6 +81,12 @@ export class PatientsComponent {
                 if (patient.consent == false && result === 'Consent added successfully') {
                     patient.consent = true;
                 }
+        });
+    }
+
+    deletePatient(patient: Patient) {
+        const dialogRef = this.dialog.open(DeletePatientOtpDialogComponent, {
+            data: patient,
         });
     }
 

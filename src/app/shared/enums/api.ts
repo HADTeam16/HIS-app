@@ -29,6 +29,8 @@ export enum Api {
     user_remove_consent = 'api/otp/verification/validate/otp/for/consent/remove',
     user_add_consent = 'api/otp/verification/validate/otp',
     send_otp_for_consent_remove = 'api/otp/verification/send/otp/via/email/for/consent/remove',
+    send_otp_for_delete_patient = 'api/receptionist/send/otp/for/delete/patient/data/request',
+    verify_otp_for_delete_patient = 'api/receptionist/validate/otp/for/delete/patient/data/request',
 
     //nurse
     get_all_nurse = 'api/nurse/get/all/nurse',
