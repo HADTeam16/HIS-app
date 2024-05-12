@@ -4,6 +4,8 @@ import { SnackbarService } from '../material/services/snackbar.service';
 import { NurseService } from './nurse.service';
 import { Subscription } from 'rxjs';
 import { User } from '../shared/models/user';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordDialogComponent } from '../shared/components/change-password-dialog/change-password-dialog.component';
 
 @Component({
     selector: 'app-nurse',
@@ -26,7 +28,8 @@ export class NurseComponent {
     constructor(
         private nurseService: NurseService,
         private authService: AuthService,
-        private snackBarService: SnackbarService
+        private snackBarService: SnackbarService,
+        private dialog: MatDialog
     ) {
         this.authService.user.subscribe((res) => {
             if (res) this.user = res;
@@ -54,6 +57,10 @@ export class NurseComponent {
                 }
             },
         });
+    }
+
+    changeUserPassword() {
+        this.dialog.open(ChangePasswordDialogComponent);
     }
 
     onLogout() {

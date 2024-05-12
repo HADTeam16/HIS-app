@@ -11,4 +11,7 @@ export class ProfileComponent {
     constructor(private authService: AuthService) {
         this.user = this.authService.user.getValue();
     }
+    updateProfileImage(data: string) {
+        console.log(data);
+    }
 }

@@ -4,11 +4,12 @@
             <mat-card-content class="flex justify-center items-center">
                 <div class="grid grid-cols-4 gap-4 p-3">
                     <!-- Profile Photo part -->
-                    <div
+                    <!-- <div
                         class="profilePhoto h-48 w-48 rounded-full overflow-hidden flex justify-center items-center"
                     >
                         <img [src]="user.profilePicture" alt="Profile Photo" />
-                    </div>
+                    </div> -->
+                    <app-single-file-upload displayType="image" [fileData]="user.profilePicture" (selected)="updateProfileImage($event)"></app-single-file-upload>
 
                     <!-- Introduction part -->
                     <div
