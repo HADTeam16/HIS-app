@@ -127,6 +127,31 @@ export class AuthService {
         });
     }
 
+    verifyOTPForRemoveConsentRequest(
+        email: string,
+        otp: string
+    ): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.httpClient
+                .post(this.baseURL + Api.user_remove_consent, {
+                    username: email,
+                    otpNumber: otp,
+                })
+                .subscribe({
+                    next: (res: { message: string }) => {
+                        if (res.message == 'Consent removed successfully') {
+                            resolve(res.message);
+                        } else {
+                            reject(res.message);
+                        }
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        reject(error.error.message);
+                    },
+                });
+        });
+    }
+
     changeUserPassword(
         changePasswordRequest: ChangePasswordRequest
     ): Promise<string> {

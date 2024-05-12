@@ -29,7 +29,7 @@
     <div class="flex-1 pb-24">
         <router-outlet></router-outlet>
     </div>
-    <div class="h-24 w-full fixed bottom-0">
+    <div class="h-24 w-full fixed bottom-0 z-50">
         <mat-button-toggle-group class="h-full w-full" [value]="0">
             @for (route of routes; track $index) {
             <mat-button-toggle [value]="$index" [routerLink]="route.link" class="flex-1 flex justify-center items-center">
@@ -46,7 +46,7 @@
     </button>
     <a mat-button routerLink="appointments">Doctor Portal</a>
     <div class="flex justify-center items-center">
-        <button
+        <!-- <button
             mat-icon-button
             class="mr-4"
             (click)="chat = chat == 'visible' ? 'invisible' : 'visible'"
@@ -55,7 +55,7 @@
                 [svgIcon]="chat == 'visible' ? 'chat_filled' : 'chat_outlined'"
                 >chat</mat-icon
             >
-        </button>
+        </button> -->
         <div [matMenuTriggerFor]="menu">
             @if (user&&user.profilePicture) {
             <img

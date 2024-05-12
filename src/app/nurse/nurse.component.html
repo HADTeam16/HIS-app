@@ -4,7 +4,7 @@
     </button>
     <a mat-button routerLink="in_patient_list">Nurse Portal</a>
     <div class="flex justify-center items-center">
-        <button
+        <!-- <button
             mat-icon-button
             class="mr-4"
             (click)="chat = chat == 'visible' ? 'invisible' : 'visible'"
@@ -14,7 +14,7 @@
             >
                 chat
             </mat-icon>
-        </button>
+        </button> -->
         <div [matMenuTriggerFor]="menu">
             @if (user&&user.profilePicture) {
             <img
