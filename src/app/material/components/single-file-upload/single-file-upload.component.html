@@ -1,6 +1,17 @@
 <div class="h-full flex items-center">
-    <button mat-fab extended type="button" extended color="accent" (click)="onFileSelect()">
+    @if (displayType=='file') {
+    <button
+        *ngIf="displayType == 'file'"
+        mat-fab
+        extended
+        type="button"
+        extended
+        color="accent"
+        (click)="onFileSelect()"
+    >
         <mat-icon>attach_file</mat-icon>
-        <span>{{ label }}</span>
-    </button>
+        <span>{{ label }}</span></button
+    >}@else if(displayType=='image') {
+    <img (click)="onFileSelect()" class="h-48 w-48 rounded-full" [src]="fileData" alt="profileimg" />
+    }
 </div>

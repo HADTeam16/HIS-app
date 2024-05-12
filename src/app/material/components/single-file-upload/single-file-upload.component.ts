@@ -9,12 +9,13 @@ export class SingleFileUploadComponent {
     @Input() label: string = 'Select a file';
     @Input() fileTypes: string[] = ['image/png', 'image/jpeg'];
     @Input() fileData: string = '';
+    @Input() displayType: string = 'file';
     @Output() selected: EventEmitter<string> = new EventEmitter();
 
     onFileSelect() {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.multiple = true;
+        fileInput.multiple = false;
         fileInput.style.display = 'none';
         fileInput.onchange = (event: Event) => {
             const files = (event.target as HTMLInputElement).files;
@@ -22,6 +23,7 @@ export class SingleFileUploadComponent {
                 if (this.fileTypes.includes(files[0].type)) {
                     this.convertFileToBase64(files[0]).then(
                         (res: string) => {
+                            this.fileData = res;
                             this.label = files[0].name;
                             this.selected.emit(res);
                         },
