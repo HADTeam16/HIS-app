@@ -8,6 +8,7 @@ import { EditDetailsDialogComponent } from './edit-details-dialog/edit-details-d
 import { AuthService } from '../../shared/services/auth.service';
 import { Ward } from '../../shared/models/ward';
 import { WardEmergencyDialogComponent } from './ward-emergency-dialog/ward-emergency-dialog.component';
+import { PatientHistoryDialogComponent } from '../../doctor/appointments/patient-history-dialog/patient-history-dialog.component';
 
 @Component({
     selector: 'app-in-patient-list',
@@ -67,6 +68,14 @@ export class InPatientListComponent {
     editDetails(ward_id: number) {
         this.dialog.open(EditDetailsDialogComponent, {
             data: { ward_id },
+        });
+    }
+
+    viewHistory(patientId: number) {
+        this.dialog.open(PatientHistoryDialogComponent, {
+            height: '80%',
+            width: '80%',
+            data: { patientId, date: new Date() },
         });
     }
 
