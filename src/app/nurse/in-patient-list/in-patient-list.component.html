@@ -51,6 +51,13 @@
             <mat-action-row>
                 <button
                     mat-stroked-button
+                    color="primary"
+                    (click)="viewHistory(ward.patientId)"
+                >
+                    View Patient History
+                </button>
+                <button
+                    mat-stroked-button
                     color="warn"
                     (click)="toggleEmergency(ward.wardId, ward.emergency)"
                 >

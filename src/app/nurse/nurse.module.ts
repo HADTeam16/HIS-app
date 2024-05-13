@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NurseRoutingModule } from './nurse-routing.module';
 import { NurseComponent } from './nurse.component';
 import { InPatientListComponent } from './in-patient-list/in-patient-list.component';
@@ -10,6 +9,7 @@ import { AllocateWardDialogComponent } from './ward-queue/allocate-ward-dialog/a
 import { NurseService } from './nurse.service';
 import { SharedModule } from '../shared/shared.module';
 import { WardEmergencyDialogComponent } from './in-patient-list/ward-emergency-dialog/ward-emergency-dialog.component';
+import { DoctorService } from '../doctor/doctor.service';
 
 @NgModule({
     declarations: [
@@ -21,6 +21,6 @@ import { WardEmergencyDialogComponent } from './in-patient-list/ward-emergency-d
         WardEmergencyDialogComponent,
     ],
     imports: [CommonModule, NurseRoutingModule, SharedModule],
-    providers: [NurseService],
+    providers: [NurseService, DoctorService],
 })
 export class NurseModule {}
